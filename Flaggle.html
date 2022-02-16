@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html>
     <head>
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -342,7 +343,44 @@
                 modalstat.style.display = "none";
             }
 	
-        </script>		
+        </script>
+        
+                <!-- The Modal -->
+        <div id="settingstext" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+                <div class="modal-header">
+                <span class="close" id="closesettings">&times;</span>
+                <h2>Settings</h2>
+                </div>
+                <div class="modal-body">
+                <p>Settings here</p>
+                </div>
+            </div>
+
+        </div>
+        <script>
+            // Get the modal
+            var modalset = document.getElementById("settingstext");
+
+            // Get the button that opens the modal
+            var btnset = document.getElementById("settings");
+
+            // Get the <span> element that closes the modal
+            var spanset = document.getElementById("closesettings");
+
+            // When the user clicks the button, open the modal 
+            btnset.onclick = function() {
+                modalset.style.display = "block";
+            }
+
+            // When the user clicks on <span> (x), close the modal
+            spanset.onclick = function() {
+                modalset.style.display = "none";
+            }
+	
+        </script>
 		
 		
         <!-- The Modal -->
@@ -390,6 +428,9 @@
                 }        
                 else if (event.target == modalstat) {
                     modalstat.style.display = "none";
+                }                
+                else if (event.target == modalset) {
+                    modalset.style.display = "none";
                 }
             }
         </script>
