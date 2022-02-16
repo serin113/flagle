@@ -515,7 +515,8 @@
             let country = null
             let countries = null
             let maxScore = 0
-            randomizer(10).then((data) => {
+            let countryChoicesCount = 30
+            randomizer(countryChoicesCount).then((data) => {
                 let randCountry = data[1]
                 let randCountries = data[0]
                 console.log("RANDOMIZED: ")
