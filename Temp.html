@@ -25,7 +25,28 @@
             .darkft1,.darkft2,.darkft3,.darkft4,.darkft5,.darkft6,.darkft7{
                 color: white;
             }
-
+            .settingsmodalbodydark {
+                background: black;
+                color: white;
+            }
+            .settingsmodaldark {
+                position: relative;
+                background-color: black;
+                color: white;
+                margin: auto;
+                padding: 0;
+                border: 1px solid #888;
+                width: 500px;
+                box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+                -webkit-animation-name: animatetop;
+                -webkit-animation-duration: 0.4s;
+                animation-name: animatetop;
+                animation-duration: 0.4s;
+                font-family: 'Poppins', sans-serif;
+                font-size: 110%;
+                border-radius: 10px;
+            }
+            /*End of Dark Theme*/
 
             .HeaderBody {	 
 				align-items: center;
@@ -221,8 +242,8 @@
             display: inline-block;
             color: black;
             font-size: 2em;
-            animation: animate 4.5s ease-in-out infinite;
-            animation-delay: calc(.15s*var(--i))
+            animation: animate 2s ease-in-out infinite;
+            animation-delay: calc(.1s*var(--i))
             }
 
             @keyframes animate {
@@ -310,7 +331,7 @@
             }
 
             #darktheme {
-                margin-top: 20px;
+                padding-top: 20px;
             }
 
         </style>
@@ -431,12 +452,12 @@
 
         <!-- Settings -->
         <div id="settingstext" class="modal">
-            <div class="modal-content">
-                <div class="modal-header">
-                <span class="close" id="closesettings">&times;</span>
-                <h3 class="modalheadertext">Settings</h3>
+            <div class="modal-content" id="settingsmodal">
+                <div class="modal-header" id="settingsmodalheader">
+                    <span class="close" id="closesettings">&times;</span>
+                    <h3 class="modalheadertext">Settings</h3>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" id="settingsmodalbody">
 
                     <div class="settingsdivs" id="darktheme">
                         <text class="settingsfont">Explorer Mode</text>
@@ -495,6 +516,7 @@
             checkbox.addEventListener('change', ()=>{
                 var body = document.body;
                 body.classList.toggle("darkbody");
+                //FLAGGLE Letters
                 var mht = document.getElementById('MainHeaderText');
                 mht.classList.toggle("darkMainHeaderText");                
                 var ft1 = document.getElementById('ft1');
@@ -511,6 +533,11 @@
                 ft6.classList.toggle("darkft6");
                 var ft7 = document.getElementById('ft7');
                 ft7.classList.toggle("darkft7");
+                //All Modals                
+                var settingsmodalbody = document.getElementById('settingsmodalbody');
+                settingsmodalbody.classList.toggle("settingsmodalbodydark");
+                var settingsmodal = document.getElementById('settingsmodal');
+                settingsmodal.classList.toggle("settingsmodaldark");
 
             })
         </script>
@@ -553,6 +580,8 @@
                 }
             }
         </script>
+
+
 
         <script>
             function comp (a,b) {

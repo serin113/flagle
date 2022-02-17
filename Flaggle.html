@@ -13,19 +13,31 @@
 
         <style>
             /*Dark Theme*/
-            .darkbody{
+            .darkbody {
                 background: black;
                 color: white;
             }
-            .darkMainHeaderText{
+            .darkMainHeaderText {
                 background: black;
                 color: white;
             }
 
-            .darkft1,.darkft2,.darkft3,.darkft4,.darkft5,.darkft6,.darkft7{
+            .darkft1, .darkft2, .darkft3, .darkft4, .darkft5, .darkft6, .darkft7 {
+                color: white;
+            }
+            /*Color Keys*/
+            .darkcolorkeys {
+                color: rgb(53, 53, 53);
+            }
+
+            /*Modals*/
+            .settingsmodalbodydark, .settingsmodalheaderdark, .closesettingsdark, .flagsmodalbodydark, .flagsmodalheaderdark, .closeflagdark,
+            .howtomodalbodydark, .howtomodalheaderdark, .closehowtodark, .statsmodalbodydark, .statsmodalheaderdark, .closestatsdark, .closestatdark {
+                background: black;
                 color: white;
             }
 
+            /*End of Dark Theme*/
 
             .HeaderBody {	 
 				align-items: center;
@@ -76,7 +88,6 @@
 
             .colors {		
                 border-style: solid;
-                border-color: black;
                 border-width: 2px;
                 border-radius: 8px;
                 text-align: center;
@@ -171,10 +182,11 @@
 
             /* The Close Button */
             .close {
-                color: black;
                 float: right;
                 font-size: 28px;
                 font-weight: bold;
+                cursor: pointer;
+                margin-right: 5px;
             }
 
             .close:hover, .close:focus {
@@ -184,20 +196,21 @@
             }
 
             .modal-header {  
-                border-radius: 10px;
+                border-radius: 10px 10px 0px 0px;
                 padding: 2px 5px;
-                background-color: white;
-                color: black;
                 text-align: center;
                 font-family: 'Poppins', sans-serif;
                 font-size: 120%;
             }
 
+            .modalheadertext {
+                letter-spacing: 1px;
+            }
+
             .modal-body {
-                border-top: 1px solid black;
-                margin-left: 5px;
-                margin-right: 5px;
+                border-top: 1px solid grey;
                 padding: 2px 16px;
+                border-radius: 0px 0px 10px 10px;
             }
 
             #colorchange {
@@ -207,12 +220,11 @@
 
             @-webkit-keyframes colorchange {
                 0% { color: red; }
-                16% { color: orange; }
-                30% { color: yellow-orange; }
-                44% { color: green; }
-                58% { color: blue; }
-                72% { color: lightblue; }
-                86% { color: black; }
+                15% { color: orange; }
+                32% { color: rgb(255, 209, 4); }
+                49% { color: green; }
+                66% { color: rgb(56, 56, 255); }
+                83% { color: lightblue; }
                 100% { color: red; }
             }
 
@@ -221,8 +233,8 @@
             display: inline-block;
             color: black;
             font-size: 2em;
-            animation: animate 4.5s ease-in-out infinite;
-            animation-delay: calc(.15s*var(--i))
+            animation: animate 2s ease-in-out infinite;
+            animation-delay: calc(.1s*var(--i))
             }
 
             @keyframes animate {
@@ -310,7 +322,7 @@
             }
 
             #darktheme {
-                margin-top: 20px;
+                padding-top: 20px;
             }
 
         </style>
@@ -373,11 +385,11 @@
 
          <div id="howtotext" class="modal">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header" id="howtomodalheader">
                 <span class="close" id="closehowto">&times;</span>
                 <h3 class="modalheadertext">How to Play</h3>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" id="howtomodalbody">
                 <p>Guess the <b>FLAGGLE</b> in 6 tries.</p>
                 <p>You start with 30 flags.</p>
                 <p>Use the <t id="colorchange">color buttons</t> to filter whether or not the <b>FLAGGLE</b> contains the color.</p>
@@ -403,11 +415,11 @@
 		
         <div id="statstext" class="modal">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header" id="statsmodalheader">
                 <span class="close" id="closestat">&times;</span>
                 <h3 class="modalheadertext">Statistics</h3>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" id="statsmodalbody">
                 <p>Stats</p>
                 </div>
             </div>
@@ -431,12 +443,12 @@
 
         <!-- Settings -->
         <div id="settingstext" class="modal">
-            <div class="modal-content">
-                <div class="modal-header">
-                <span class="close" id="closesettings">&times;</span>
-                <h3 class="modalheadertext">Settings</h3>
+            <div class="modal-content" id="settingsmodal">
+                <div class="modal-header" id="settingsmodalheader">
+                    <span class="close" id="closesettings">&times;</span>
+                    <h3 class="modalheadertext">Settings</h3>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" id="settingsmodalbody">
 
                     <div class="settingsdivs" id="darktheme">
                         <text class="settingsfont">Explorer Mode</text>
@@ -478,45 +490,16 @@
 		
         <div id="flaglist" class="modal">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header" id="flagsmodalheader">
                 <span class="close" id="closeflag">&times;</span>
                 <h3 class="modalheadertext">Flag List</h3>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" id="flagsmodalbody">
                 <p>shieee</p>
                 </div>
             </div>
         </div>
 
-        <script>
-            //Dark Theme
-            const checkbox = document.getElementById('darkthemeswitch');
-
-            checkbox.addEventListener('change', ()=>{
-                var body = document.body;
-                body.classList.toggle("darkbody");
-                var mht = document.getElementById('MainHeaderText');
-                mht.classList.toggle("darkMainHeaderText");                
-                var ft1 = document.getElementById('ft1');
-                ft1.classList.toggle("darkft1");
-                var ft2 = document.getElementById('ft2');
-                ft2.classList.toggle("darkft2");
-                var ft3 = document.getElementById('ft3');
-                ft3.classList.toggle("darkft3");
-                var ft4 = document.getElementById('ft4');
-                ft4.classList.toggle("darkft4");
-                var ft5 = document.getElementById('ft5');
-                ft5.classList.toggle("darkft5");
-                var ft6 = document.getElementById('ft6');
-                ft6.classList.toggle("darkft6");
-                var ft7 = document.getElementById('ft7');
-                ft7.classList.toggle("darkft7");
-
-            })
-        </script>
-
-
-        
         <script>
             // Get the modal
             var modalflag = document.getElementById("flaglist");
@@ -553,6 +536,69 @@
                 }
             }
         </script>
+
+        <script>
+            //Dark Theme
+            const checkbox = document.getElementById('darkthemeswitch');
+
+            checkbox.addEventListener('change', ()=>{
+                var body = document.body;
+                body.classList.toggle("darkbody");
+                //FLAGGLE Letters
+                var mht = document.getElementById('MainHeaderText');
+                mht.classList.toggle("darkMainHeaderText");                
+                var ft1 = document.getElementById('ft1');
+                ft1.classList.toggle("darkft1");
+                var ft2 = document.getElementById('ft2');
+                ft2.classList.toggle("darkft2");
+                var ft3 = document.getElementById('ft3');
+                ft3.classList.toggle("darkft3");
+                var ft4 = document.getElementById('ft4');
+                ft4.classList.toggle("darkft4");
+                var ft5 = document.getElementById('ft5');
+                ft5.classList.toggle("darkft5");
+                var ft6 = document.getElementById('ft6');
+                ft6.classList.toggle("darkft6");
+                var ft7 = document.getElementById('ft7');
+                ft7.classList.toggle("darkft7");
+                //Color Keys
+                var colorkeys = document.getElementById('colorkeys');
+                colorkeys.classList.toggle("darkcolorkeys");
+
+                //All Modals
+                //Settings                
+                var settingsmodalbody = document.getElementById('settingsmodalbody');
+                settingsmodalbody.classList.toggle("settingsmodalbodydark");
+                var settingsmodalheader = document.getElementById('settingsmodalheader');
+                settingsmodalheader.classList.toggle("settingsmodalheaderdark");
+                var closesettings = document.getElementById('closesettings');
+                closesettings.classList.toggle("closesettingsdark");
+                //Flags
+                var flagsmodalbody = document.getElementById('flagsmodalbody');
+                flagsmodalbody.classList.toggle("flagsmodalbodydark");
+                var flagsmodalheader = document.getElementById('flagsmodalheader');
+                flagsmodalheader.classList.toggle("flagsmodalheaderdark");
+                var closeflag = document.getElementById('closeflag');
+                closeflag.classList.toggle("closeflagdark");
+                //HowTo
+                var howtomodalbody = document.getElementById('howtomodalbody');
+                howtomodalbody.classList.toggle("howtomodalbodydark");
+                var howtomodalheader = document.getElementById('howtomodalheader');
+                howtomodalheader.classList.toggle("howtomodalheaderdark");
+                var closehowto = document.getElementById('closehowto');
+                closehowto.classList.toggle("closehowtodark");
+                //Stats
+                var statsmodalbody = document.getElementById('statsmodalbody');
+                statsmodalbody.classList.toggle("statsmodalbodydark");
+                var statsmodalheader = document.getElementById('statsmodalheader');
+                statsmodalheader.classList.toggle("statsmodalheaderdark");
+                var closestat = document.getElementById('closestat');
+                closestat.classList.toggle("closestatdark");
+            })
+        </script>
+
+
+
 
         <script>
             function comp (a,b) {
