@@ -2,19 +2,23 @@
 
 <html>
     <head>
+
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
 
         <link href="https://fonts.googleapis.com/css?family=Material+Icons+Outlined" rel="stylesheet">
+
         <meta name="viewport" content="width=device-width, initial-scale=1">
+
         <style>
 
-            .HeaderBody{	 
+            .HeaderBody {	 
 				align-items: center;
                 justify-content: center;
 			}
-            .MainHeader{
+            
+            .MainHeader {
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -23,7 +27,8 @@
                 padding-top: 10px;
                 margin: 0 auto;
             }	
-            #MainHeaderText{
+
+            #MainHeaderText {
                 font-family: 'Poppins', sans-serif;
                 text-align: center;
                 font-size: 125%;
@@ -37,18 +42,25 @@
                 margin-right: 7px;
                 display: inline-block;
             }
+
             .material-icons-outlined:hover {
                 color: grey;
                 cursor: pointer;
             }
-			#colorkeys{
-				width:600px;
-				text-align: center;
+
+            #keyscontainer {
+                width: 100%;
+                text-align: center;
+            }
+
+			#colorkeys {
+				width: 500px;
 				align-items: center;
                 justify-content: center;
 				margin: 0 auto;
 			}
-            .colors{		
+
+            .colors {		
                 border-style: solid;
                 border-color: black;
                 border-width: 2px;
@@ -61,112 +73,110 @@
                 margin-right: 2px;
 				display: inline-block;
             }
-            .colors:hover{
+
+            .colors:hover {
                 cursor: pointer;
             }
-            .colorkeys{
-                text-align: center;
-            }
-            #green{
+
+            #green {
 
                 background: green;		
             }
-            #red{
+            #red {
 
                 background: red;		
             }
-            #black{
+            #black {
 
                 background: black;
             }
-            #yellow{
+            #yellow {
 
                 background: yellow;
             }
-            #blue{
+            #blue {
 
                 background: blue;
             }
-            #lightblue{
+            #lightblue {
 
                 background: powderblue;
             }
-            #white{
+            #white {
 
                 background: white;
             }
-            #orange{
+            #orange {
 
                 background: orange;
             }
 
             /* The Modal (background) */
             .modal {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 1; /* Sit on top */
-            padding-top: 100px; /* Location of the box */
-            left: 0;
-            top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgb(0,0,0); /* Fallback color */
-            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+                display: none; /* Hidden by default */
+                position: fixed; /* Stay in place */
+                z-index: 1; /* Sit on top */
+                padding-top: 100px; /* Location of the box */
+                left: 0;
+                top: 0;
+                width: 100%; /* Full width */
+                height: 100%; /* Full height */
+                overflow: auto; /* Enable scroll if needed */
+                background-color: rgb(0,0,0); /* Fallback color */
+                background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
             }
 
             /* Modal Content */
             .modal-content {
-            position: relative;
-            background-color: white;
-            margin: auto;
-            padding: 0;
-            border: 1px solid #888;
-            width: 25%;
-            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-            -webkit-animation-name: animatetop;
-            -webkit-animation-duration: 0.4s;
-            animation-name: animatetop;
-            animation-duration: 0.4s;
-            font-family: 'Poppins', sans-serif;
-            font-size: 110%;
-            border-radius: 10px;
+                position: relative;
+                background-color: white;
+                margin: auto;
+                padding: 0;
+                border: 1px solid #888;
+                width: 500px;
+                box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+                -webkit-animation-name: animatetop;
+                -webkit-animation-duration: 0.4s;
+                animation-name: animatetop;
+                animation-duration: 0.4s;
+                font-family: 'Poppins', sans-serif;
+                font-size: 110%;
+                border-radius: 10px;
             }
 
             /* Add Animation */
             @-webkit-keyframes animatetop {
-            from {top:-300px; opacity:0} 
-            to {top:0; opacity:1}
+                from {top:-300px; opacity:0} 
+                to {top:0; opacity:1}
             }
 
             @keyframes animatetop {
-            from {top:-300px; opacity:0}
-            to {top:0; opacity:1}
+                from {top:-300px; opacity:0}
+                to {top:0; opacity:1}
             }
 
             /* The Close Button */
             .close {
-            color: black;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
+                color: black;
+                float: right;
+                font-size: 28px;
+                font-weight: bold;
             }
 
-            .close:hover,
-            .close:focus {
-            color: grey;
-            text-decoration: none;
-            cursor: pointer;
+            .close:hover, .close:focus {
+                color: grey;
+                text-decoration: none;
+                cursor: pointer;
             }
 
             .modal-header {  
-            border-radius: 10px;
-            padding: 2px 16px;
-            background-color: white;
-            color: black;
-            text-align: center;
-            font-family: 'Poppins', sans-serif;
-            font-size: 120%;
+                border-radius: 10px;
+                padding: 2px 5px;
+                background-color: white;
+                color: black;
+                text-align: center;
+                font-family: 'Poppins', sans-serif;
+                font-size: 120%;
             }
 
             .modal-body {
@@ -183,35 +193,110 @@
 
             @-webkit-keyframes colorchange {
                 0% { color: red; }
-            16% { color: orange; }
-            30% { color: yellow-orange; }
-            44% { color: green; }
-            58% { color: blue; }
-            72% { color: lightblue; }
-            86% { color: black; }
-            100% { color: red; }
+                16% { color: orange; }
+                30% { color: yellow-orange; }
+                44% { color: green; }
+                58% { color: blue; }
+                72% { color: lightblue; }
+                86% { color: black; }
+                100% { color: red; }
             }
 
-
-            .wavy span{
+            .wavy span {
             position: relative;
             display: inline-block;
             color: black;
             font-size: 2em;
-            animation: animate 3s ease-in-out infinite;
-            animation-delay: calc(.1s*var(--i))
+            animation: animate 4.5s ease-in-out infinite;
+            animation-delay: calc(.15s*var(--i))
             }
 
-            @keyframes animate{
-            0%{
+            @keyframes animate {
+                0%{
                 transform: translateY(0px)
-            }
-            20%{
+                }
+                20%{
                 transform: translateY(-15px)
-            }
-            40%, 100%{
+                }
+                40%, 100%{
                 transform: translateY(0px)
+                }
             }
+            .switch {
+                position: relative;
+                display: inline-block;
+                width: 46px;
+                height: 26px;
+            }
+
+            .switch input { 
+                opacity: 0;
+                width: 0;
+                height: 0;
+            }
+
+            .slider {
+                position: absolute;
+                cursor: pointer;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: #ccc;
+                -webkit-transition: .4s;
+                transition: .4s;
+            }
+
+            .slider:before {
+                position: absolute;
+                content: "";
+                height: 18px;
+                width: 18px;
+                left: 4px;
+                bottom: 4px;
+                background-color: white;
+                -webkit-transition: .4s;
+                transition: .4s;
+            }
+
+            input:checked + .slider {
+                background-color: rgb(149, 149, 226);
+            }
+
+            input:focus + .slider {
+                box-shadow: 0 0 1px rgb(149, 149, 226);
+            }
+
+            input:checked + .slider:before {
+                -webkit-transform: translateX(20px);
+                -ms-transform: translateX(20px);
+                transform: translateX(20px);
+            }
+
+            /* Rounded sliders */
+            .slider.round {
+                border-radius: 13px;
+            }
+
+            .slider.round:before {
+                border-radius: 50%;
+            }
+
+            .settingsfont {
+                font-size: 110%;
+                font-weight: bolder;
+            }
+
+            .settingsdivs {
+                display: flex;
+                justify-content: space-between;
+                vertical-align: baseline;
+                padding-bottom: 20px;
+                border-bottom: 1px solid grey;
+            }
+
+            #darktheme {
+                margin-top: 20px;
             }
 
         </style>
@@ -236,11 +321,11 @@
                     </div>
                 </div>
     
-                <span class="material-icons-outlined" id="howto" onclick="howto()">help_outline
-                </span>
+                <span class="material-icons-outlined" id="howto">help_outline</span>
                 <span class="material-icons-outlined" id="settings">settings</span>
             </div>
         </div>
+
         <div class="display">
         
         </div>
@@ -250,33 +335,33 @@
         <div id="results">
             
         </div>
-        <div id="colorkeys">
-            <div class="colors" id="white" data-color="white">
-            </div>
-			<div class="colors" id="red" data-color="red">
-            </div>
-            <div class="colors" id="orange" data-color="orange">
-            </div>	
-            <div class="colors" id="yellow" data-color="yellow">
-            </div>
-            <div class="colors" id="green" data-color="green">
-            </div>
-            <div class="colors" id="blue" data-color="blue">
-            </div>
-            <div class="colors" id="lightblue" data-color="lightblue">
-            </div>
-            <div class="colors" id="black" data-color="black">
+
+        <div id="keyscontainer">
+            <div id="colorkeys">
+                <div class="colors" id="white" data-color="white">
+                </div>
+                <div class="colors" id="red" data-color="red">
+                </div>
+                <div class="colors" id="orange" data-color="orange">
+                </div>	
+                <div class="colors" id="yellow" data-color="yellow">
+                </div>
+                <div class="colors" id="green" data-color="green">
+                </div>
+                <div class="colors" id="blue" data-color="blue">
+                </div>
+                <div class="colors" id="lightblue" data-color="lightblue">
+                </div>
+                <div class="colors" id="black" data-color="black">
+                </div>
             </div>
         </div>
 
-         <!-- The Modal -->
          <div id="howtotext" class="modal">
-
-            <!-- Modal content -->
             <div class="modal-content">
                 <div class="modal-header">
                 <span class="close" id="closehowto">&times;</span>
-                <h2>How to Play</h2>
+                <h3 class="modalheadertext">How to Play</h3>
                 </div>
                 <div class="modal-body">
                 <p>Guess the <b>FLAGGLE</b> in 6 tries.</p>
@@ -284,120 +369,111 @@
                 <p>Use the <t id="colorchange">color buttons</t> to filter whether or not the <b>FLAGGLE</b> contains the color.</p>
                 </div>
             </div>
-
         </div>
+
         <script>
-            // Get the modal
+
             var modalhow = document.getElementById("howtotext");
 
-            // Get the button that opens the modal
             var btnhow = document.getElementById("howto");
 
-            // Get the <span> element that closes the modal
             var spanhow = document.getElementById("closehowto");
 
-            // When the user clicks the button, open the modal 
             btnhow.onclick = function() {
                 modalhow.style.display = "block";
             }
-
-            // When the user clicks on <span> (x), close the modal
             spanhow.onclick = function() {
                 modalhow.style.display = "none";
             }
-	
         </script>
 		
-        <!-- The Modal -->
         <div id="statstext" class="modal">
-
-            <!-- Modal content -->
             <div class="modal-content">
                 <div class="modal-header">
                 <span class="close" id="closestat">&times;</span>
-                <h2>Statistics</h2>
+                <h3 class="modalheadertext">Statistics</h3>
                 </div>
                 <div class="modal-body">
                 <p>Stats</p>
                 </div>
             </div>
-
         </div>
+
         <script>
-            // Get the modal
             var modalstat = document.getElementById("statstext");
 
-            // Get the button that opens the modal
             var btnstat = document.getElementById("stats");
 
-            // Get the <span> element that closes the modal
             var spanstat = document.getElementById("closestat");
-
-            // When the user clicks the button, open the modal 
+ 
             btnstat.onclick = function() {
                 modalstat.style.display = "block";
             }
 
-            // When the user clicks on <span> (x), close the modal
             spanstat.onclick = function() {
                 modalstat.style.display = "none";
             }
-	
         </script>
-        
-                <!-- The Modal -->
-        <div id="settingstext" class="modal">
 
-            <!-- Modal content -->
+        <!-- Settings -->
+        <div id="settingstext" class="modal">
             <div class="modal-content">
                 <div class="modal-header">
                 <span class="close" id="closesettings">&times;</span>
-                <h2>Settings</h2>
+                <h3 class="modalheadertext">Settings</h3>
                 </div>
                 <div class="modal-body">
-                <p>Settings here</p>
+
+                    <div class="settingsdivs" id="darktheme">
+                        <text class="settingsfont">Explorer Mode</text>
+                        <!-- Toggle Switches -->
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                    
+                    <div class="settingsdivs" id="darktheme">
+                        <text class="settingsfont">Dark Theme</text>
+                        <!-- Toggle Switches -->
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+
                 </div>
             </div>
-
         </div>
+
         <script>
-            // Get the modal
             var modalset = document.getElementById("settingstext");
 
-            // Get the button that opens the modal
             var btnset = document.getElementById("settings");
 
-            // Get the <span> element that closes the modal
             var spanset = document.getElementById("closesettings");
 
-            // When the user clicks the button, open the modal 
             btnset.onclick = function() {
                 modalset.style.display = "block";
             }
 
-            // When the user clicks on <span> (x), close the modal
             spanset.onclick = function() {
                 modalset.style.display = "none";
             }
-	
         </script>
 		
-		
-        <!-- The Modal -->
         <div id="flaglist" class="modal">
-
-            <!-- Modal content -->
             <div class="modal-content">
                 <div class="modal-header">
                 <span class="close" id="closeflag">&times;</span>
-                <h2>Flag List</h2>
+                <h3 class="modalheadertext">Flag List</h3>
                 </div>
                 <div class="modal-body">
                 <p>shieee</p>
                 </div>
             </div>
-
         </div>
+
         <script>
             // Get the modal
             var modalflag = document.getElementById("flaglist");
