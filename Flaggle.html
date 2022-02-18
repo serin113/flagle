@@ -125,7 +125,7 @@
             }
             #lightblue {
 
-                background: powderblue;
+                background: rgb(102, 237, 255);
             }
             #white {
 
@@ -209,7 +209,8 @@
 
             .modal-body {
                 border-top: 1px solid grey;
-                padding: 2px 16px;
+                padding: 10px 16px;
+                padding-bottom: 20px;
                 border-radius: 0px 0px 10px 10px;
             }
 
@@ -224,7 +225,7 @@
                 32% { color: rgb(255, 209, 4); }
                 49% { color: green; }
                 66% { color: rgb(56, 56, 255); }
-                83% { color: lightblue; }
+                83% { color: rgb(102, 237, 255); }
                 100% { color: red; }
             }
 
@@ -325,6 +326,33 @@
                 padding-top: 20px;
             }
 
+            /*Stats Display*/
+            #statsmodalbody {
+                text-align: center;  
+                justify-content: center; 
+            }
+
+            #statsdisplay {
+                display: inline-block;
+                width: 100%;
+            }
+
+            #flagsguessed, #currentstreak, #beststreak {
+                display: inline-block;
+                width: 70px;
+                text-align: center;
+                margin-left: 10px;
+                margin-right: 10px;
+            }
+
+            .statstext {
+                font-size: 45px;
+                font-weight: bold;
+            }
+
+            .statsdesc {
+                font-size: 16px;
+            }
         </style>
 
     </head>
@@ -420,7 +448,20 @@
                 <h3 class="modalheadertext">Statistics</h3>
                 </div>
                 <div class="modal-body" id="statsmodalbody">
-                <p>Stats</p>
+                    <div id="statsdisplay">
+                        <div class="statstab" id="flagsguessed">
+                            <text class="statstext" id="flagsguessedtext">0</text></br>
+                            <text class="statsdesc" id="flagsguesseddesc">FLAGGLEs Guessed</text>
+                        </div>
+                        <div class="statstab" id="currentstreak">
+                            <text class="statstext" id="currentstreaktext">0</text></br>
+                            <text class="statsdesc" id="currentstreakdesc">Current Streak</text>
+                        </div>
+                        <div class="statstab" id="beststreak">
+                            <text class="statstext" id="beststreaktext">0</text></br>
+                            <text class="statsdesc" id="beststreakdesc">Best Streak</text>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -495,7 +536,8 @@
                 <h3 class="modalheadertext">Flag List</h3>
                 </div>
                 <div class="modal-body" id="flagsmodalbody">
-                <p>shieee</p>
+                <p>Searchbar and filter option(alphabetical up down)</p>
+                <p>This will contain list of flags already guessed?</p>
                 </div>
             </div>
         </div>
