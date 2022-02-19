@@ -108,7 +108,7 @@ randomizer(countryChoicesCount).then((data) => {
         let flag_img = document.createElement("img")
         flag_img.className = "flagpic"
         flag_img.src = x.img
-        let flag_text = document.createElement("text")
+        let flag_text = document.createElement("div")
         flag_text.className = "countryname"
         flag_text.innerHTML = x.name
         flag.appendChild(flag_img)
