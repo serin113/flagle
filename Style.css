@@ -1,0 +1,399 @@
+body {
+    font-family: 'Poppins', sans-serif;
+}
+/*Dark Theme*/
+.darkbody {
+    background: black;
+    color: white;
+}
+
+.darkMainHeaderText {
+    background: black;
+    color: white;
+}
+
+.darkft1, .darkft2, .darkft3, .darkft4, .darkft5, .darkft6, .darkft7 {
+    color: white;
+}
+/*Color Keys*/
+.darkcolorkeys {
+    color: rgb(149, 149, 226);
+}
+
+/*Modals*/
+.settingsmodalbodydark, .settingsmodalheaderdark, .closesettingsdark, .flagsmodalbodydark, .flagsmodalheaderdark, .closeflagdark,
+.howtomodalbodydark, .howtomodalheaderdark, .closehowtodark, .statsmodalbodydark, .statsmodalheaderdark, .closestatsdark, .closestatdark {
+    background: black;
+    color: white;
+}
+
+.searchbardark {
+    background: black;
+    color: white;
+}
+/*End of Dark Theme*/
+
+.HeaderBody {	 
+    align-items: center;
+    justify-content: center;
+}
+
+.MainHeader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid grey;
+    width: 520px;
+    padding-top: 10px;
+    margin: 0 auto;
+}	
+
+#MainHeaderText {
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    font-size: 125%;
+    margin-left: 80px;
+    margin-right: 80px;
+    font-weight: bold;
+}
+
+.material-icons-outlined {
+    margin-left: 7px;
+    margin-right: 7px;
+    display: inline-block;
+}
+
+.material-icons-outlined:hover {
+    color: grey;
+    cursor: pointer;
+}
+
+#keyscontainer {
+    width: 100%;
+    text-align: center;
+}
+
+#colorkeys {
+    width: 510px;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.colors {		
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 8px;
+    text-align: center;
+    width: 50px;
+    height: 70px;
+    margin-top: 20px;
+    margin-left: 2px;
+    margin-right: 2px;
+    display: inline-block;
+}
+
+.colors:hover {
+    cursor: pointer;
+}
+
+#green {
+
+    background: green;		
+}
+#red {
+
+    background: red;		
+}
+#black {
+
+    background: black;
+}
+#yellow {
+
+    background: yellow;
+}
+#blue {
+
+    background: blue;
+}
+#lightblue {
+
+    background: rgb(102, 237, 255);
+}
+#white {
+
+    background: white;
+}
+#orange {
+
+    background: orange;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    position: relative;
+    background-color: white;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 500px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+    font-family: 'Poppins', sans-serif;
+    font-size: 110%;
+    border-radius: 10px;
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0} 
+    to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.close:hover, .close:focus {
+    color: grey;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-header {  
+    border-radius: 10px 10px 0px 0px;
+    padding: 2px 5px;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    font-size: 120%;
+}
+
+.modalheadertext {
+    letter-spacing: 1px;
+}
+
+.modal-body {
+    border-top: 1px solid grey;
+    padding: 10px 16px;
+    padding-bottom: 20px;
+    border-radius: 0px 0px 10px 10px;
+}
+
+#colorchange {
+    -webkit-animation: colorchange 10s infinite ;
+    font-weight:bold;
+}
+
+@-webkit-keyframes colorchange {
+    0% { color: red; }
+    15% { color: orange; }
+    32% { color: rgb(255, 209, 4); }
+    49% { color: green; }
+    66% { color: rgb(56, 56, 255); }
+    83% { color: rgb(102, 237, 255); }
+    100% { color: red; }
+}
+
+.wavy span {
+position: relative;
+display: inline-block;
+color: black;
+font-size: 2em;
+animation: animate 2s ease-in-out infinite;
+animation-delay: calc(.1s*var(--i))
+}
+
+@keyframes animate {
+    0%{
+    transform: translateY(0px)
+    }
+    20%{
+    transform: translateY(-15px)
+    }
+    40%, 100%{
+    transform: translateY(0px)
+    }
+}
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 46px;
+    height: 26px;
+}
+
+.switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: rgb(149, 149, 226);
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px rgb(149, 149, 226);
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(20px);
+    -ms-transform: translateX(20px);
+    transform: translateX(20px);
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 13px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+.settingsfont {
+    font-size: 110%;
+    font-weight: bolder;
+}
+
+.settingsdivs {
+    display: flex;
+    justify-content: space-between;
+    vertical-align: baseline;
+    padding-bottom: 20px;
+    border-bottom: 1px solid grey;
+}
+
+#darktheme {
+    padding-top: 20px;
+}
+
+/*Stats Display*/
+#statsmodalbody {
+    text-align: center;  
+    justify-content: center; 
+}
+
+#statsdisplay {
+    display: inline-block;
+    width: 100%;
+}
+
+#flagsguessed, #currentstreak, #beststreak {
+    display: inline-block;
+    width: 70px;
+    text-align: center;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.statstext {
+    font-size: 45px;
+    font-weight: bold;
+}
+
+.statsdesc {
+    font-size: 16px;
+}
+
+/*Flags List*/
+#searchbar {
+    padding: 6px;
+    border: 1px solid;
+    border-radius: 5px;
+    width: 350px;
+    margin-top: 8px;
+    margin-right: 16px;
+    font-size: 17px;
+}
+
+/*Game Choices*/
+#gamediv {
+    margin: 0 auto;
+    width: 100%;
+    text-align: center;
+}
+
+#choices {
+    text-align: center;
+    display: inline-block;
+    width: 520px;
+    margin-top: 10px;
+    padding: 2px;
+}
+
+.flagpic {
+    width: 100px;
+    margin-left: 2px;
+    margin-right: 2px;
+}
+
+.countryname {
+    width: 100px;
+    margin-left: 2px;
+    margin-right: 2px;
+}
+
+.flagpics {
+    display: inline-flex;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+}
+
+.flagnames {
+    display: inline-flex;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+}
