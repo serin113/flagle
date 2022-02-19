@@ -1,5 +1,6 @@
 let countryChoicesCount = 30
 let maxTries = 6
+let inactiveOpacity = "0.2"
 
 function comp (a,b) {
     // return a.localeCompare(b)
@@ -100,20 +101,51 @@ randomizer(countryChoicesCount).then((data) => {
 
     let choices = document.getElementById("choices")
     choices.innerHTML = ""
+    let picList = []
+    let nameList = []
+    let count = 0
     for (let i = 0; i < countries.length ; i++) {
         let x = countries[i]
-        let flag = document.createElement("div")
-        flag.className = "flagname"
-        flag.dataset.index = i
+
+        let flag_img_div = document.createElement("div")
         let flag_img = document.createElement("img")
         flag_img.className = "flagpic"
+        flag_img.dataset.index = i
         flag_img.src = x.img
-        let flag_text = document.createElement("div")
-        flag_text.className = "countryname"
-        flag_text.innerHTML = x.name
-        flag.appendChild(flag_img)
-        flag.appendChild(flag_text)
-        choices.appendChild(flag)
+        flag_img_div.appendChild(flag_img)
+        picList.push(flag_img_div)
+
+        let flag_name_div = document.createElement("div")
+        flag_name_div.className = "countryname"
+        flag_name_div.dataset.index = i
+        let flag_name_text_div = document.createElement("text")
+        flag_name_text_div.innerHTML = x.name
+        flag_name_div.appendChild(flag_name_text_div)
+        nameList.push(flag_name_div)
+
+        count += 1
+
+        if (count == 5 || (i == countries.length - 1)) {
+            let flagpics = document.createElement("div")
+            flagpics.classList = "flagpics"
+            let flagnames = document.createElement("div")
+            flagnames.classList = "flagnames"
+            for (let j = 0; j < picList.length; j++) {
+                flagpics.appendChild(picList[j])
+            }
+            for (let j = 0; j < nameList.length; j++) {
+                flagnames.appendChild(nameList[j])
+            }
+            choices.appendChild(flagpics)
+            choices.appendChild(flagnames)
+            picList = []
+            nameList = []
+            count = 0
+        }
+
+        //flag.dataset.index = i
+        //flag_img.src = x.img
+        //flag_text.innerHTML = x.name
     }
 })
 
@@ -124,20 +156,25 @@ function colorCheck(color) {
 
 // remove flags not containing "color"
 function filterFlags(color) {
-    let choices = document.getElementById("choices")
+    let choices = document.getElementById("choices").querySelectorAll(".flagpic")
     let answerContainsColor = colorCheck(color)
-    for (let x of choices.children) {
+    for (let x of choices) {
+        let x_name_elem = document.getElementById("choices").querySelector(".countryname[data-index='"+x.dataset.index+"']")
+        console.log(x.dataset.index)
+        console.log(x_name_elem)
         let x_colors = countries[x.dataset.index].colors
         let x_name = countries[x.dataset.index].name
         if (answerContainsColor) {
             if (!(x_colors.includes(color))) {
-                x.style.display = "none"
+                x.style.opacity = inactiveOpacity
+                x_name_elem.style.opacity = inactiveOpacity
                 currentCountryChoicesCount--
             }
         }
         else {
             if (x_colors.includes(color)) {
-                x.style.display = "none"
+                x.style.opacity = inactiveOpacity
+                x_name_elem.style.opacity = inactiveOpacity
                 currentCountryChoicesCount--
             }
         }
@@ -146,7 +183,7 @@ function filterFlags(color) {
 
 let tries = 0
 let colorButtons = document.getElementById("colorkeys").children
-let flagButtons = document.getElementById("choices").children
+let flagButtons = document.getElementById("choices").querySelectorAll(".flagpic")
 function onClickButtons() {
     this.removeEventListener("click", onClickButtons)
     tries += 1
