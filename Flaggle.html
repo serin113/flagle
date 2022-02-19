@@ -37,6 +37,10 @@
                 color: white;
             }
 
+            .searchbardark {
+                background: black;
+                color: white;
+            }
             /*End of Dark Theme*/
 
             .HeaderBody {	 
@@ -353,6 +357,37 @@
             .statsdesc {
                 font-size: 16px;
             }
+
+            /*Flags List*/
+            #searchbar {
+                padding: 6px;
+                border: 1px solid;
+                border-radius: 5px;
+                width: 350px;
+                margin-top: 8px;
+                margin-right: 16px;
+                font-size: 17px;
+            }
+            
+            /*Game Choices*/
+            #gamediv {
+                margin: 0 auto;
+                width: 100%;
+                text-align: center;
+            }
+
+            #choices {
+                text-align: center;
+                display: inline-block;
+                border: 1px solid;
+                width: 500px;
+                margin-top: 10px;
+                padding: 2px;
+            }
+
+            .flagpic {
+                width: 100px;
+            }
         </style>
 
     </head>
@@ -380,14 +415,23 @@
             </div>
         </div>
 
-        <div class="display">
-        
-        </div>
-        <div id="choices">
+        <div id="gamediv">
+            <div class="display">
             
-        </div>
-        <div id="results">
-            
+            </div>
+                <!--Game Choices-->
+            <div id="choices">
+                <div class="flagname" id="country1">
+                    <img class="flagpic" src="https://www.worldometers.info/img/flags/br-flag.gif"></br>
+                    <text class="countryname">Brazil</text>
+                </div>
+            </div>
+
+            <div id="results">
+                <div id="answer">
+
+                </div>
+            </div>
         </div>
 
         <div id="keyscontainer">
@@ -538,6 +582,8 @@
                 <div class="modal-body" id="flagsmodalbody">
                 <p>Searchbar and filter option(alphabetical up down)</p>
                 <p>This will contain list of flags already guessed?</p>
+                    <input type="text" placeholder="Search Country" id="searchbar">
+                    <button type="submit"><i class="fa fa-search"></i></button>
                 </div>
             </div>
         </div>
@@ -603,6 +649,7 @@
                 ft6.classList.toggle("darkft6");
                 var ft7 = document.getElementById('ft7');
                 ft7.classList.toggle("darkft7");
+                
                 //Color Keys
                 var colorkeys = document.getElementById('colorkeys');
                 colorkeys.classList.toggle("darkcolorkeys");
@@ -622,6 +669,8 @@
                 flagsmodalheader.classList.toggle("flagsmodalheaderdark");
                 var closeflag = document.getElementById('closeflag');
                 closeflag.classList.toggle("closeflagdark");
+                var searchbar = document.getElementById('searchbar');
+                searchbar.classList.toggle("searchbardark");
                 //HowTo
                 var howtomodalbody = document.getElementById('howtomodalbody');
                 howtomodalbody.classList.toggle("howtomodalbodydark");
@@ -749,10 +798,10 @@
                     disableButtons()
                 }
                 if (!colorCheck(this.dataset.color)) {
-                    this.style.border = "4px dotted black"
+                    this.style.border = "3px dashed"
                     this.style.opacity = "0.5"
                 } else {
-                    this.style.border = "4px solid black"
+                    this.style.border = "3px solid"
                     score += 1
                     if (score >= maxScore) {
                         document.getElementById("results").innerHTML = "Yay! Country is " + country.name
