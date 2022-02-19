@@ -1,3 +1,6 @@
+let countryChoicesCount = 30
+let maxTries = 6
+
 function comp (a,b) {
     // return a.localeCompare(b)
     let x = a.name
@@ -46,7 +49,15 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
 }
 async function getCountries(){
-    const response = await fetch("countries.json")
+    var fetchHeaders = new Headers()
+    fetchHeaders.append("pragma", "no-cache")
+    fetchHeaders.append("cache-control", "no-cache")
+    var fetchInit = {
+        method: "GET",
+        headers: fetchHeaders
+    }
+    var fetchRequest = new Request("countries.json")
+    const response = await fetch(fetchRequest, fetchInit)
     const countries = await response.json()
     return countries
 }
@@ -76,8 +87,7 @@ async function randomizer(count){
 let jsonLoaded = false
 let country = null
 let countries = null
-let maxScore = 0
-let countryChoicesCount = 30
+let currentCountryChoicesCount = countryChoicesCount
 randomizer(countryChoicesCount).then((data) => {
     let randCountry = data[1]
     let randCountries = data[0]
@@ -87,43 +97,84 @@ randomizer(countryChoicesCount).then((data) => {
     country = randCountry
     countries = randCountries
     jsonLoaded = true
-    maxScore = country.colors.length
+
+    let choices = document.getElementById("choices")
+    choices.innerHTML = ""
+    for (let i = 0; i < countries.length ; i++) {
+        let x = countries[i]
+        let flag = document.createElement("div")
+        flag.className = "flagname"
+        flag.dataset.index = i
+        let flag_img = document.createElement("img")
+        flag_img.className = "flagpic"
+        flag_img.src = x.img
+        let flag_text = document.createElement("text")
+        flag_text.className = "countryname"
+        flag_text.innerHTML = x.name
+        flag.appendChild(flag_img)
+        flag.appendChild(flag_text)
+        choices.appendChild(flag)
+    }
 })
+
 function colorCheck(color) {
     console.log(country.colors)
     return country.colors.includes(color)
 }
+
+// remove flags not containing "color"
+function filterFlags(color) {
+    let choices = document.getElementById("choices")
+    let answerContainsColor = colorCheck(color)
+    for (let x of choices.children) {
+        let x_colors = countries[x.dataset.index].colors
+        let x_name = countries[x.dataset.index].name
+        if (answerContainsColor) {
+            if (!(x_colors.includes(color))) {
+                x.style.display = "none"
+                currentCountryChoicesCount--
+            }
+        }
+        else {
+            if (x_colors.includes(color)) {
+                x.style.display = "none"
+                currentCountryChoicesCount--
+            }
+        }
+    }
+}
+
 let tries = 0
-let maxTries = 6
-let score = 0
-let colors = document.getElementById("colorkeys").querySelectorAll(".colors")
-function handleButtons() {
+let colorButtons = document.getElementById("colorkeys").children
+let flagButtons = document.getElementById("choices").children
+function onClickButtons() {
+    this.removeEventListener("click", onClickButtons)
     tries += 1
     if (tries >= maxTries) {
         document.getElementById("results").innerHTML = "Oops! Country is " + country.name
         disableButtons()
     }
-    if (!colorCheck(this.dataset.color)) {
-        this.style.border = "3px dashed"
-        this.style.opacity = "0.5"
-    } else {
-        this.style.border = "3px solid"
-        score += 1
-        if (score >= maxScore) {
-            document.getElementById("results").innerHTML = "Yay! Country is " + country.name
-            disableButtons()
+    if ("color" in this.dataset) {
+        filterFlags(this.dataset.color)
+        if (!colorCheck(this.dataset.color)) {
+            this.style.border = "3px dashed"
+            this.style.opacity = "0.5"
+        } else {
+            this.style.border = "3px solid"
         }
     }
-    console.log("Score: " + score)
+    else if ("country" in this.dataset) {
+        
+    }
 }
 function enableButtons() {
-    for (let c of colors) {
-        c.addEventListener("click", handleButtons)
+    for (let c of colorButtons) {
+        c.addEventListener("click", onClickButtons)
     }
 }
 enableButtons()
 function disableButtons() {
-    for (let c of colors) {
-        c.removeEventListener("click", handleButtons)
+    for (let c of colorButtons) {
+        c.removeEventListener("click", onClickButtons)
     }
 }
