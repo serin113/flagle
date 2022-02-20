@@ -188,13 +188,13 @@ function onClickButtons() {
     this.removeEventListener("click", onClickButtons)
     tries += 1
     if (tries >= maxTries) {
-        document.getElementById("results").innerHTML = "Oops! Country is " + country.name
+        document.getElementById("results").innerHTML = "WRONG! Country is " + country.name
         disableButtons()
     }
     if ("color" in this.dataset) {
         filterFlags(this.dataset.color)
         if (!colorCheck(this.dataset.color)) {
-            this.style.border = "3px dashed"
+            this.style.border = "3px solid"
             this.style.opacity = "0.5"
         } else {
             this.style.border = "3px solid"

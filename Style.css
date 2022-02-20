@@ -375,9 +375,11 @@ input:checked + .slider:before {
 }
 
 .flagpic {
-    width: 100px;
+    width: 95px;
+    height: 50px;
     margin-left: 2px;
     margin-right: 2px;
+    border: 2px solid;
 }
 
 .countryname {
