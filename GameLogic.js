@@ -1,14 +1,39 @@
+// configs
 let countryChoicesCount = 30
 let maxTries = 6
 let dailyMode = true
 
-// mergeSort comparison function
+
+// global-ish variables
+let randomizer = null       // randomizer function for getRandomInt
+let countries = null        // <countryChoicesCount>-length list of countries w/ data
+let country = null          // chosen country w/ data
+let countryIndex = null     // <country>'s index in <countries>
+let currentCountryChoicesCount = countryChoicesCount
+                            // number of enabled country buttons
+let tries = 0               // number of tries (button pushes) so far
+
+
+// helper functions
+
+/* ranged integer randomizer */
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    if (randomizer == null) {
+        console.log("ERROR (getRandomInt): randomizer function not initialized")
+    }
+    return Math.floor(randomizer() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
+}
+
+/* comparison function for mergeSort */
 function comp (a,b) {
     let x = a.name
     let y = b.name
     return x.localeCompare(y)
 }
-// merge sorting for flag list display
+
+/* merge sorting for flag list display */
 function mergeSort(list) {
     if (list.length == 1) return [list[0]]
     let mid = Math.floor(list.length / 2.0)
@@ -43,7 +68,8 @@ function mergeSort(list) {
     return temp
 }
 
-// Mulberry32 PRNG: https://github.com/bryc/code/blob/master/jshash/PRNGs.md#mulberry32
+/* Mulberry32 PRNG: https://github.com/bryc/code/blob/master/jshash/PRNGs.md#mulberry32 
+    for generating pseudorandom numbers for the randomizer */
 function mulberry32(a) {
     return function() {
       var t = a += 0x6D2B79F5;
@@ -53,7 +79,8 @@ function mulberry32(a) {
     }
 }
 
-// MurmurHash3 hash function: https://github.com/bryc/code/blob/master/jshash/hashes/murmurhash3.js
+/* MurmurHash3 hash function: https://github.com/bryc/code/blob/master/jshash/hashes/murmurhash3.js
+    for hashing the current date as a reproducible seed for the randomizer */
 function MurmurHash3(key, seed = 0) {
     var k, p1 = 3432918353, p2 = 461845907, h = seed | 0;
     for(var i = 0, b = key.length & -4; i < b; i += 4) {
@@ -77,27 +104,8 @@ function MurmurHash3(key, seed = 0) {
     return h >>> 0;
 }
 
-let randomizer = null   // randomizer function
-function getRandomInt(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    if (randomizer == null) {
-        if (dailyMode) {
-            let dateString = new Date().toDateString()
-            let dateBytes = Array.from(dateString, (x) => x.charCodeAt(0))
-            let dateHash = MurmurHash3(dateBytes)
-            console.log("Current day: \""+dateString+"\"")
-            console.log("Hash: \""+dateHash+"\"")
-            randomizer = mulberry32(new Date().getDay())
-            for (let i = 0; i < 15; i++) randomizer()
-        }
-        else {
-            randomizer = Math.random
-        }
-    }
-    return Math.floor(randomizer() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
-}
-async function getCountries(){
+/* JSON file loader for the country list */
+async function fetchCountries(){
     var fetchHeaders = new Headers()
     fetchHeaders.append("pragma", "no-cache")
     fetchHeaders.append("cache-control", "no-cache")
@@ -110,13 +118,10 @@ async function getCountries(){
     const countries = await response.json()
     return countries
 }
-// async function randomizer(){
-// 	let countries = getCountries()
-// 	let randIndex = getRandomInt(0,countries.length)
-// 	return countries[randIndex]
-// }
+
+/* gets <count> number of countries from the country list */
 async function countryRandomizerArray(count){
-    let countries = await getCountries()
+    let countries = await fetchCountries()
     let chosenCountries = []
     currCount = 0
     while (currCount < count) {
@@ -128,92 +133,95 @@ async function countryRandomizerArray(count){
     chosenCountries = mergeSort(chosenCountries)
     return chosenCountries
 }
+
+/* picks 1 random country from the country list */
 async function countryRandomizer(count){
     let countries = await countryRandomizerArray(count)
     let country_index = getRandomInt(0,countries.length)
     let country = countries[country_index]
     return [countries,country,country_index]
 }
-let jsonLoaded = false
-let country = null
-let countries = null
-let countryIndex = null
-let currentCountryChoicesCount = countryChoicesCount
-countryRandomizer(countryChoicesCount).then((data) => {
-    let randCountries = data[0]
-    let randCountry = data[1]
-    let randCountryIndex = data[2]
-    console.log("RANDOMIZED: ")
-    console.log(randCountry)
-    console.log(randCountries)
-    country = randCountry
-    countries = randCountries
-    countryIndex = randCountryIndex
-    jsonLoaded = true
 
+
+// initializations
+
+/* set the randomizer function based on <dailyMode> */
+if (dailyMode) {
+    let dateString = new Date().toDateString()
+    let dateBytes = Array.from(dateString, (x) => x.charCodeAt(0))
+    let dateHash = MurmurHash3(dateBytes)
+    console.log("Current day: \""+dateString+"\"")
+    console.log("Hash: \""+dateHash+"\"")
+    randomizer = mulberry32(new Date().getDay())
+    for (let i = 0; i < 15; i++) randomizer()
+}
+else {
+    randomizer = Math.random
+}
+
+/* create and initialize the guess counter based on <maxTries> */
+document.getElementById("guesses").innerHTML = ""
+for (let i = 0; i < maxTries; i++) {
+    let guessIndicator = document.createElement("div")
+    guessIndicator.dataset.index = i
+    guessIndicator.classList.add("guessindicators")
+    if (i == 0) {
+        guessIndicator.classList.add("current")
+    }
+    document.getElementById("guesses").appendChild(guessIndicator)
+}
+
+/* display country flags and names from the country list */
+function displayCountries() {
     let choices = document.getElementById("choices")
     choices.innerHTML = ""
-    let picList = []
-    let nameList = []
-    let count = 0
-    for (let i = 0; i < countries.length ; i++) {
+    let div_flagpics = null
+    let div_flagnames = null
+    for (let i = 0; i < countries.length; i++) {
         let x = countries[i]
 
+        if (div_flagpics == null) {
+            div_flagpics = document.createElement("div")
+            div_flagpics.classList.add("flagpics")
+        }
+        if (div_flagnames == null) {
+            div_flagnames = document.createElement("div")
+            div_flagnames.classList.add("flagnames")
+        }
+        
         let flag_img_div = document.createElement("div")
         let flag_img = document.createElement("img")
         flag_img.className = "flagpic"
         flag_img.dataset.index = i
         flag_img.src = x.img
         flag_img_div.appendChild(flag_img)
-        picList.push(flag_img_div)
+        div_flagpics.appendChild(flag_img_div)
 
         let flag_name_div = document.createElement("div")
-        flag_name_div.className = "countryname"
+        flag_name_div.className = "flagname"
         flag_name_div.dataset.index = i
         let flag_name_text_div = document.createElement("text")
         flag_name_text_div.innerHTML = x.name
         flag_name_div.appendChild(flag_name_text_div)
-        nameList.push(flag_name_div)
+        div_flagnames.appendChild(flag_name_div)
 
-        count += 1
-
-        if (count == 5 || (i == countries.length - 1)) {
-            let flagpics = document.createElement("div")
-            flagpics.classList = "flagpics"
-            let flagnames = document.createElement("div")
-            flagnames.classList = "flagnames"
-            for (let j = 0; j < picList.length; j++) {
-                flagpics.appendChild(picList[j])
+        if (div_flagpics.childElementCount == 5 || (i == countries.length - 1)) {
+            if ((i == countries.length - 1) && (div_flagpics.childElementCount < 5)) {
+                for (let j = 0; j < 5-div_flagpics.childElementCount; j++) {
+                    let blankdiv = document.createElement("div")
+                    div_flagpics.appendChild(blankdiv)
+                    div_flagnames.appendChild(blankdiv)
+                }
             }
-            for (let j = 0; j < nameList.length; j++) {
-                flagnames.appendChild(nameList[j])
-            }
-            choices.appendChild(flagpics)
-            choices.appendChild(flagnames)
-            picList = []
-            nameList = []
-            count = 0
+            choices.appendChild(div_flagpics)
+            choices.appendChild(div_flagnames)
+            div_flagpics = null
+            div_flagnames = null
         }
-    }
-    enableButtons()
-})
-
-function initGuessCounter() {
-    let guessCounter = document.getElementById("guesses")
-    guessCounter.innerHTML = ""
-    for (let i = 0; i < maxTries; i++) {
-        let guessIndicator = document.createElement("div")
-        guessIndicator.dataset.index = i
-        guessIndicator.classList.add("guessindicators")
-        if (i == 0) {
-            guessIndicator.classList.add("current")
-        }
-        guessCounter.appendChild(guessIndicator)
     }
 }
 
-initGuessCounter()
-
+/* set the appearance for the guess counter at <index> */
 // zero-indexed
 // if color==null, country
 function setGuessCounter(index, color=null) {
@@ -233,16 +241,19 @@ function setGuessCounter(index, color=null) {
     }
 }
 
+/* check if <color> is in <country>'s colors */
 function colorCheck(color) {
     return country.colors.includes(color)
 }
 
+/* set country name at <index> as disabled */
 function fadeCountryName(index) {
-    let elem = document.getElementById("choices").querySelector(".countryname[data-index='"+index+"']")
+    let elem = document.getElementById("choices").querySelector(".flagname[data-index='"+index+"']")
     elem.dataset.disabled = true
 }
 
-function hideFlag(elem) {
+/* set country flag element as disabled, tally remaining countries */
+function fadeFlagPic(elem) {
     fadeCountryName(elem.dataset.index)
     elem.dataset.disabled = true
     elem.removeEventListener("click", onClickButtons)
@@ -251,10 +262,9 @@ function hideFlag(elem) {
     console.log("current count: " + currentCountryChoicesCount)
 }
 
-// remove flags not containing "color"
+/* remove flags not containing "color" */
 function filterFlags(color) {
     let choices = document.getElementById("choices").querySelectorAll(".flagpic")
-    let answerContainsColor = colorCheck(color)
     console.log(choices)
     for (let x of choices) {
         if (x.hasAttribute("data-disabled")) {
@@ -262,26 +272,55 @@ function filterFlags(color) {
             continue
         }
         let x_colors = countries[x.dataset.index].colors
-        if (answerContainsColor) {
+        if (colorCheck(color)) {
             if (!(x_colors.includes(color))) {
-                hideFlag(x)
+                fadeFlagPic(x)
             }
         }
         else {
             if (x_colors.includes(color)) {
-                hideFlag(x)
+                fadeFlagPic(x)
             }
         }
     }
 }
 
-let tries = 0
+/* enable all flag & color buttons */
+function enableButtons() {
+    for (let c of document.getElementById("colorkeys").children) {
+        c.addEventListener("click", onClickButtons)
+    }
+    for (let f of document.getElementById("choices").querySelectorAll(".flagpic")) {
+        f.addEventListener("click", onClickButtons)
+    }
+}
+
+/* disable all flag & color buttons */
+function disableButtons() {
+    for (let c of document.getElementById("colorkeys").children) {
+        c.removeEventListener("click", onClickButtons)
+        c.dataset.disabled = true
+        if (!colorCheck(c.dataset.color)) {
+            c.dataset.wrong = true
+        }
+    }
+    for (let f of document.getElementById("choices").querySelectorAll(".flagpic")) {
+        f.removeEventListener("click", onClickButtons)
+        if (f.dataset.index != countryIndex) {
+            fadeCountryName(f.dataset.index)
+            f.dataset.disabled = true
+        }
+    }
+}
+
+/* handle clicks on flag and color buttons, check win status */
 function onClickButtons() {
     console.log("current count: " + currentCountryChoicesCount)
     this.removeEventListener("click", onClickButtons)
     tries += 1
     let isColorButton = "color" in this.dataset
-    if (isColorButton) {
+
+    if (isColorButton) { // color buttons
         setGuessCounter(tries-1, this.dataset.color)
         filterFlags(this.dataset.color)
         this.dataset.disabled = true
@@ -289,10 +328,10 @@ function onClickButtons() {
             this.dataset.wrong = true
         }
     }
-    else { // country buttons
+    else { // flag buttons
         setGuessCounter(tries-1)
         if (this.dataset.index != countryIndex) {
-            hideFlag(this)
+            fadeFlagPic(this)
         }
         else {
             document.getElementById("results").innerHTML = "CORRECT! Country is " + country.name
@@ -301,6 +340,7 @@ function onClickButtons() {
         }
     }
 
+    // win/lose state checker
     let win = null
     if (tries == maxTries) {
         if (isColorButton) {
@@ -324,44 +364,28 @@ function onClickButtons() {
         win = true
     }
 
+    // indicate win/lose, disable buttons
     if (win != null) {
         if (win) {
             document.getElementById("results").innerHTML = "CORRECT! Country is " + country.name
-            disableButtons()
-            return
         }
         else {
             document.getElementById("results").innerHTML = "WRONG! Country is " + country.name
-            disableButtons()
-            return
         }
+        disableButtons()
     }
 }
 
-function enableButtons() {
-    for (let c of document.getElementById("colorkeys").children) {
-        c.addEventListener("click", onClickButtons)
-    }
-    for (let f of document.getElementById("choices").querySelectorAll(".flagpic")) {
-        f.addEventListener("click", onClickButtons)
-    }
-}
 
-enableButtons()
+// main program
 
-function disableButtons() {
-    for (let c of document.getElementById("colorkeys").children) {
-        c.removeEventListener("click", onClickButtons)
-        c.dataset.disabled = true
-        if (!colorCheck(c.dataset.color)) {
-            c.dataset.wrong = true
-        }
-    }
-    for (let f of document.getElementById("choices").querySelectorAll(".flagpic")) {
-        f.removeEventListener("click", onClickButtons)
-        if (f.dataset.index != countryIndex) {
-            fadeCountryName(f.dataset.index)
-            f.dataset.disabled = true
-        }
-    }
-}
+countryRandomizer(countryChoicesCount).then((data) => {
+    country = data[1]
+    countries = data[0]
+    countryIndex = data[2]
+    console.log("RANDOMIZED: ")
+    console.log(country)
+    console.log(countries)
+    displayCountries()
+    enableButtons()
+})

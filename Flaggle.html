@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
+
+        <link href="https://fonts.googleapis.com/css?family=Material+Icons+Outlined" rel="stylesheet">
+
+        <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        <link rel="manifest" href="/site.webmanifest">
+
+        <link rel="stylesheet" type="text/css" href="/Style.css">
+        <title>Flaggle</title>
+    </head>
+    <body>
+        <div id="loading">
+        </div>
+        <div class="HeaderBody">
+            <div class="MainHeader">
+            
+                <span class="material-icons-outlined" id="flag">flag</span>
+                <span class="material-icons-outlined" id="stats">leaderboard</span>
+                
+                <div id="MainHeaderText">
+                    <div class="wavy">
+                        <span class="flaggletext" style="--i:1"><t id="ft1">F</t></span>
+                        <span class="flaggletext" style="--i:2"><t id="ft2">L</t></span>
+                        <span class="flaggletext" style="--i:3"><t id="ft3">A</t></span>
+                        <span class="flaggletext" style="--i:4"><t id="ft4">G</t></span>
+                        <span class="flaggletext" style="--i:5"><t id="ft5">G</t></span>
+                        <span class="flaggletext" style="--i:6"><t id="ft6">L</t></span>
+                        <span class="flaggletext" style="--i:7"><t id="ft7">E</t></span>
+                    </div>
+                </div>
+    
+                <span class="material-icons-outlined" id="howto">help_outline</span>
+                <span class="material-icons-outlined" id="settings">settings</span>
+            </div>
+        </div>
+
+        <div id="gamediv">
+            <div class="DisplayBody">
+                <div class="MainDisplay">
+                    <div class="displaybuttons" id="dailyflaggle"><b>Daily Flaggle</b></div>
+                    <div id="guesses">
+                        <div class="guessindicators" id="guess1"></div>
+                        <div class="guessindicators" id="guess2"></div>
+                        <div class="guessindicators" id="guess3"></div>
+                        <div class="guessindicators" id="guess4"></div>
+                        <div class="guessindicators" id="guess5"></div>
+                        <div class="guessindicators" id="guess6"></div>
+                    </div>
+                    <div class="displaybuttons" id="randomflaggle"><b>Random Flaggle</b></div>
+                </div>
+            </div>
+
+                <!--Game Choices-->
+            <div id="choices">
+                <div class="flagpics" id="country1">
+
+                </div>
+                <div class="flagnames" id="country1">
+
+                </div>
+            </div>
+
+            <div id="results">
+                <div id="answer">
+
+                </div>
+            </div>
+        </div>
+
+        <div id="keyscontainer">
+            <div id="colorkeys">
+                <div class="colors" id="white" data-color="white">
+                </div>
+                <div class="colors" id="red" data-color="red">
+                </div>
+                <div class="colors" id="orange" data-color="orange">
+                </div>	
+                <div class="colors" id="yellow" data-color="yellow">
+                </div>
+                <div class="colors" id="green" data-color="green">
+                </div>
+                <div class="colors" id="blue" data-color="blue">
+                </div>
+                <div class="colors" id="lightblue" data-color="lightblue">
+                </div>
+                <div class="colors" id="black" data-color="black">
+                </div>
+            </div>
+        </div>
+
+         <div id="howtotext" class="modal">
+            <div class="modal-content">
+                <div class="modal-header" id="howtomodalheader">
+                <span class="close" id="closehowto">&times;</span>
+                <h3 class="modalheadertext">How to Play</h3>
+                </div>
+                <div class="modal-body" id="howtomodalbody">
+                <p>Guess the <b>FLAGGLE</b> in 6 tries.</p>
+                <p>You choose from 30 flags.</p>
+                <p>Use the <t id="colorchange">color buttons</t> to filter whether or not the <b>FLAGGLE</b> contains the color.</p>
+                <p>You win by:</p>
+                <li>Clicking on the correct flag <b>OR</b></li>
+                <li>Only the <b>FLAGGLE</b> remains unfiltered</li>
+                </div>
+            </div>
+        </div>
+
+        <script>
+
+            var modalhow = document.getElementById("howtotext");
+
+            var btnhow = document.getElementById("howto");
+
+            var spanhow = document.getElementById("closehowto");
+
+            btnhow.onclick = function() {
+                modalhow.style.display = "block";
+            }
+            spanhow.onclick = function() {
+                modalhow.style.display = "none";
+            }
+        </script>
+		
+        <div id="statstext" class="modal">
+            <div class="modal-content">
+                <div class="modal-header" id="statsmodalheader">
+                <span class="close" id="closestat">&times;</span>
+                <h3 class="modalheadertext">Statistics</h3>
+                </div>
+                <div class="modal-body" id="statsmodalbody">
+                    <div id="statsdisplay">
+                        <div class="statstab" id="flagsguessed">
+                            <text class="statstext" id="flagsguessedtext">0</text></br>
+                            <text class="statsdesc" id="flagsguesseddesc">FLAGGLEs Guessed</text>
+                        </div>
+                        <div class="statstab" id="winpercent">
+                            <text class="statstext" id="winpercenttext">0</text></br>
+                            <text class="statsdesc" id="winpercentdesc"></br>Win %</text></br>
+                            <text class="statsdesc" id="winpercentdesc">D</text>
+                        </div>
+                        <div class="statstab" id="currentstreak">
+                            <text class="statstext" id="currentstreaktext">0</text></br>
+                            <text class="statsdesc" id="currentstreakdesc">Current Streak</text>
+                        </div>
+                        <div class="statstab" id="beststreak">
+                            <text class="statstext" id="beststreaktext">0</text></br>
+                            <text class="statsdesc" id="beststreakdesc">Best Streak</text>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            var modalstat = document.getElementById("statstext");
+
+            var btnstat = document.getElementById("stats");
+
+            var spanstat = document.getElementById("closestat");
+ 
+            btnstat.onclick = function() {
+                modalstat.style.display = "block";
+            }
+
+            spanstat.onclick = function() {
+                modalstat.style.display = "none";
+            }
+        </script>
+
+        <!-- Settings -->
+        <div id="settingstext" class="modal">
+            <div class="modal-content" id="settingsmodal">
+                <div class="modal-header" id="settingsmodalheader">
+                    <span class="close" id="closesettings">&times;</span>
+                    <h3 class="modalheadertext">Settings</h3>
+                </div>
+                <div class="modal-body" id="settingsmodalbody">
+
+                    <div class="settingsdivs" id="darktheme">
+                        <text class="settingsfont">Explorer Mode</text>
+                        <!-- Toggle Switches -->
+                        <label class="switch">
+                            <input type="checkbox" id="explorer">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+
+                    <div class="settingsdivs" id="darktheme">
+                        <text class="settingsfont">Dark Theme</text>
+                        <!-- Toggle Switches -->
+                        <label class="switch">
+                            <input type="checkbox" id="darkthemeswitch">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <script>
+            var modalset = document.getElementById("settingstext");
+
+            var btnset = document.getElementById("settings");
+
+            var spanset = document.getElementById("closesettings");
+
+            btnset.onclick = function() {
+                modalset.style.display = "block";
+            }
+
+            spanset.onclick = function() {
+                modalset.style.display = "none";
+            }
+        </script>
+		
+        <div id="flaglist" class="modal">
+            <div class="modal-content">
+                <div class="modal-header" id="flagsmodalheader">
+                <span class="close" id="closeflag">&times;</span>
+                <h3 class="modalheadertext">Flag List</h3>
+                </div>
+                <div class="modal-body" id="flagsmodalbody">
+                <p>Searchbar and filter option(alphabetical up down)</p>
+                <p>This will contain list of flags already guessed?</p>
+                    <input type="text" placeholder="Search Country" id="searchbar">
+                    <button type="submit"><i class="fa fa-search"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            // Get the modal
+            var modalflag = document.getElementById("flaglist");
+
+            // Get the button that opens the modal
+            var btnflag = document.getElementById("flag");
+
+            // Get the <span> element that closes the modal
+            var spanflag = document.getElementById("closeflag");
+
+            // When the user clicks the button, open the modal 
+            btnflag.onclick = function() {
+                modalflag.style.display = "block";
+            }
+
+            // When the user clicks on <span> (x), close the modal
+            spanflag.onclick = function() {
+                modalflag.style.display = "none";
+            }
+
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function(event) {
+                if (event.target == modalflag) {
+                    modalflag.style.display = "none";
+                }
+                else if (event.target == modalhow) {
+                    modalhow.style.display = "none";
+                }        
+                else if (event.target == modalstat) {
+                    modalstat.style.display = "none";
+                }                
+                else if (event.target == modalset) {
+                    modalset.style.display = "none";
+                }
+            }
+        </script>
+
+        <script>
+            //Dark Theme
+            const checkbox = document.getElementById('darkthemeswitch');
+
+            function setTheme() {
+                var body = document.body;
+
+                //FLAGGLE Letters
+                var mht = document.getElementById('MainHeaderText');              
+                var ft1 = document.getElementById('ft1');
+                var ft2 = document.getElementById('ft2');
+                var ft3 = document.getElementById('ft3');
+                var ft4 = document.getElementById('ft4');
+                var ft5 = document.getElementById('ft5');
+                var ft6 = document.getElementById('ft6');
+                var ft7 = document.getElementById('ft7');
+                
+                //Color Keys
+                var colorkeys = document.getElementById('colorkeys');
+
+                //All Modals
+                //Settings                
+                var settingsmodalbody = document.getElementById('settingsmodalbody');
+                var settingsmodalheader = document.getElementById('settingsmodalheader');
+                var closesettings = document.getElementById('closesettings');
+
+                //Flags
+                var flagsmodalbody = document.getElementById('flagsmodalbody');
+                var flagsmodalheader = document.getElementById('flagsmodalheader');
+                var closeflag = document.getElementById('closeflag');
+                var searchbar = document.getElementById('searchbar');
+
+                //HowTo
+                var howtomodalbody = document.getElementById('howtomodalbody');
+                var howtomodalheader = document.getElementById('howtomodalheader');
+                var closehowto = document.getElementById('closehowto');
+
+                //Stats
+                var statsmodalbody = document.getElementById('statsmodalbody');
+                var statsmodalheader = document.getElementById('statsmodalheader');
+                var closestat = document.getElementById('closestat');
+
+                if (checkbox.checked) {
+                    body.classList.add("dark");
+
+                    mht.classList.add("dark");  
+                    ft1.classList.add("dark_flaggletext");
+                    ft2.classList.add("dark_flaggletext");
+                    ft3.classList.add("dark_flaggletext");
+                    ft4.classList.add("dark_flaggletext");
+                    ft5.classList.add("dark_flaggletext");
+                    ft6.classList.add("dark_flaggletext");
+                    ft7.classList.add("dark_flaggletext");
+
+                    colorkeys.classList.add("dark_colorkeys");
+
+                    settingsmodalbody.classList.add("dark");
+                    settingsmodalheader.classList.add("dark");
+                    closesettings.classList.add("dark");
+
+                    flagsmodalbody.classList.add("dark");
+                    flagsmodalheader.classList.add("dark");
+                    closeflag.classList.add("dark");
+                    searchbar.classList.add("dark");
+
+                    howtomodalbody.classList.add("dark");
+                    howtomodalheader.classList.add("dark");
+                    closehowto.classList.add("dark");
+
+                    statsmodalbody.classList.add("dark");
+                    statsmodalheader.classList.add("dark");
+                    closestat.classList.add("dark");
+                } 
+                else {
+                    body.classList.remove("dark");
+
+                    mht.classList.remove("dark");  
+                    ft1.classList.remove("dark_flaggletext");
+                    ft2.classList.remove("dark_flaggletext");
+                    ft3.classList.remove("dark_flaggletext");
+                    ft4.classList.remove("dark_flaggletext");
+                    ft5.classList.remove("dark_flaggletext");
+                    ft6.classList.remove("dark_flaggletext");
+                    ft7.classList.remove("dark_flaggletext");
+
+                    colorkeys.classList.remove("dark_colorkeys");
+
+                    settingsmodalbody.classList.remove("dark");
+                    settingsmodalheader.classList.remove("dark");
+                    closesettings.classList.remove("dark");
+
+                    flagsmodalbody.classList.remove("dark");
+                    flagsmodalheader.classList.remove("dark");
+                    closeflag.classList.remove("dark");
+                    searchbar.classList.remove("dark");
+
+                    howtomodalbody.classList.remove("dark");
+                    howtomodalheader.classList.remove("dark");
+                    closehowto.classList.remove("dark");
+
+                    statsmodalbody.classList.remove("dark");
+                    statsmodalheader.classList.remove("dark");
+                    closestat.classList.remove("dark");
+                }
+            }
+
+            setTheme()
+            checkbox.addEventListener('change', setTheme)
+        </script>
+        <script src="GameLogic.js"></script>
+        <script>
+            window.onload = function(){
+                let loading = document.getElementById("loading")
+                loading.style.opacity = "0"
+                loading.style.visibility = "hidden"
+            }
+        </script>
+    </body>
+</html>
