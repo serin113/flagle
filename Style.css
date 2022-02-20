@@ -91,6 +91,7 @@ body {
     margin-left: 2px;
     margin-right: 2px;
     display: inline-block;
+    box-sizing: border-box;
 }
 
 .colors:hover {
@@ -330,7 +331,7 @@ input:checked + .slider:before {
     display: inline-block;
     width: 100%;
     height: 100px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 #flagsguessed, #currentstreak, #beststreak, #winpercent {
@@ -403,3 +404,17 @@ input:checked + .slider:before {
     font-family: 'Poppins', sans-serif;
     font-weight: bold;
 }
+
+.DisplayBody {	 
+    align-items: center;
+    justify-content: center;
+}
+
+.MainDisplay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 520px;
+    padding-top: 10px;
+    margin: 0 auto;
+}	
