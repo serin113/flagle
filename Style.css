@@ -65,6 +65,7 @@ body {
 
 .colors {		
     border-style: solid;
+    border-color: rgb(0, 0, 0);
     border-width: 2px;
     border-radius: 8px;
     text-align: center;
@@ -75,10 +76,15 @@ body {
     margin-right: 2px;
     display: inline-block;
     box-sizing: border-box;
+    cursor: pointer;
 }
 
-.colors:hover {
-    cursor: pointer;
+.colors[data-disabled] {
+    border-width: 4px;
+}
+
+.colors[data-disabled][data-wrong] {
+    opacity: 0.2;
 }
 
 #green {
@@ -90,8 +96,9 @@ body {
     background: red;		
 }
 #black {
-
+    border-color: rgb(26, 26, 26);
     background: black;
+    color: white;
 }
 #yellow {
 
@@ -367,6 +374,22 @@ input:checked + .slider:before {
     margin-left: 2px;
     margin-right: 2px;
     border: 2px solid;
+    cursor: pointer;
+    transition: opacity 150ms, filter 150ms, transform 150ms;
+}
+
+.flagpic:hover {
+    transform: scale(1.2);
+}
+
+.flagpic[data-disabled] {
+    opacity: 0.2;
+    filter: grayscale(100%);
+    cursor: default;
+}
+
+.flagpic[data-disabled]:hover {
+    transform: none;
 }
 
 .countryname {
@@ -374,6 +397,11 @@ input:checked + .slider:before {
     margin-left: 2px;
     margin-right: 2px;
     font-size: 98%;
+    transition: opacity 150ms;
+}
+
+.countryname[data-disabled] {
+    opacity: 0.2;
 }
 
 .flagpics {
@@ -417,6 +445,12 @@ input:checked + .slider:before {
     margin-right: 2px;
     box-sizing: border-box;
     vertical-align: middle;
+    transition: 
+        border 150ms,
+        transform 150ms,
+        border-radius 150ms,
+        scale 150ms,
+        margin 150ms;
 }
 
 .guessindicators.flag_guessed {
@@ -425,8 +459,9 @@ input:checked + .slider:before {
 }
 
 .guessindicators.current {
-    height: 24px;
-    width: 24px;
+    transform: scale(2);
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .guessindicators.guessed {

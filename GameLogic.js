@@ -1,7 +1,6 @@
 let countryChoicesCount = 30
 let maxTries = 6
-let inactiveOpacity = "0.2"
-let dailyMode = false
+let dailyMode = true
 
 // mergeSort comparison function
 function comp (a,b) {
@@ -9,6 +8,7 @@ function comp (a,b) {
     let y = b.name
     return x.localeCompare(y)
 }
+// merge sorting for flag list display
 function mergeSort(list) {
     if (list.length == 1) return [list[0]]
     let mid = Math.floor(list.length / 2.0)
@@ -77,12 +77,17 @@ function MurmurHash3(key, seed = 0) {
     return h >>> 0;
 }
 
-let randomizer = null
+let randomizer = null   // randomizer function
 function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     if (randomizer == null) {
         if (dailyMode) {
+            let dateString = new Date().toDateString()
+            let dateBytes = Array.from(dateString, (x) => x.charCodeAt(0))
+            let dateHash = MurmurHash3(dateBytes)
+            console.log("Current day: \""+dateString+"\"")
+            console.log("Hash: \""+dateHash+"\"")
             randomizer = mulberry32(new Date().getDay())
             for (let i = 0; i < 15; i++) randomizer()
         }
@@ -157,7 +162,6 @@ countryRandomizer(countryChoicesCount).then((data) => {
         let flag_img_div = document.createElement("div")
         let flag_img = document.createElement("img")
         flag_img.className = "flagpic"
-        flag_img.dataset.enabled = true
         flag_img.dataset.index = i
         flag_img.src = x.img
         flag_img_div.appendChild(flag_img)
@@ -235,7 +239,16 @@ function colorCheck(color) {
 
 function fadeCountryName(index) {
     let elem = document.getElementById("choices").querySelector(".countryname[data-index='"+index+"']")
-    elem.style.opacity = inactiveOpacity
+    elem.dataset.disabled = true
+}
+
+function hideFlag(elem) {
+    fadeCountryName(elem.dataset.index)
+    elem.dataset.disabled = true
+    elem.removeEventListener("click", onClickButtons)
+    currentCountryChoicesCount--
+    console.log("remove: " + countries[elem.dataset.index].name)
+    console.log("current count: " + currentCountryChoicesCount)
 }
 
 // remove flags not containing "color"
@@ -244,31 +257,19 @@ function filterFlags(color) {
     let answerContainsColor = colorCheck(color)
     console.log(choices)
     for (let x of choices) {
-        if (!(x.hasAttribute("data-enabled"))) {
+        if (x.hasAttribute("data-disabled")) {
             console.log("skip: " + countries[x.dataset.index].name)
             continue
         }
         let x_colors = countries[x.dataset.index].colors
         if (answerContainsColor) {
             if (!(x_colors.includes(color))) {
-                fadeCountryName(x.dataset.index)
-                x.style.opacity = inactiveOpacity
-                x.removeAttribute("data-enabled")
-                x.removeEventListener("click", onClickButtons)
-                currentCountryChoicesCount--
-                console.log("remove: " + countries[x.dataset.index].name)
-                console.log("current count: " + currentCountryChoicesCount)
+                hideFlag(x)
             }
         }
         else {
             if (x_colors.includes(color)) {
-                fadeCountryName(x.dataset.index)
-                x.style.opacity = inactiveOpacity
-                x.removeAttribute("data-enabled")
-                x.removeEventListener("click", onClickButtons)
-                currentCountryChoicesCount--
-                console.log("remove: " + countries[x.dataset.index].name)
-                console.log("current count: " + currentCountryChoicesCount)
+                hideFlag(x)
             }
         }
     }
@@ -283,23 +284,15 @@ function onClickButtons() {
     if (isColorButton) {
         setGuessCounter(tries-1, this.dataset.color)
         filterFlags(this.dataset.color)
+        this.dataset.disabled = true
         if (!colorCheck(this.dataset.color)) {
-            this.style.border = "3px solid"
-            this.style.opacity = inactiveOpacity
-        } else {
-            this.style.border = "3px solid"
+            this.dataset.wrong = true
         }
     }
     else { // country buttons
         setGuessCounter(tries-1)
         if (this.dataset.index != countryIndex) {
-            fadeCountryName(this.dataset.index)
-            this.style.opacity = inactiveOpacity
-            this.removeAttribute("data-enabled")
-            this.removeEventListener("click", onClickButtons)
-            currentCountryChoicesCount--
-            console.log("remove: " + countries[this.dataset.index].name)
-            console.log("current count: " + currentCountryChoicesCount)
+            hideFlag(this)
         }
         else {
             document.getElementById("results").innerHTML = "CORRECT! Country is " + country.name
@@ -344,6 +337,7 @@ function onClickButtons() {
         }
     }
 }
+
 function enableButtons() {
     for (let c of document.getElementById("colorkeys").children) {
         c.addEventListener("click", onClickButtons)
@@ -352,23 +346,22 @@ function enableButtons() {
         f.addEventListener("click", onClickButtons)
     }
 }
+
 enableButtons()
+
 function disableButtons() {
     for (let c of document.getElementById("colorkeys").children) {
         c.removeEventListener("click", onClickButtons)
+        c.dataset.disabled = true
         if (!colorCheck(c.dataset.color)) {
-            c.style.border = "3px solid"
-            c.style.opacity = inactiveOpacity
-        } else {
-            c.style.border = "3px solid"
+            c.dataset.wrong = true
         }
     }
     for (let f of document.getElementById("choices").querySelectorAll(".flagpic")) {
         f.removeEventListener("click", onClickButtons)
         if (f.dataset.index != countryIndex) {
             fadeCountryName(f.dataset.index)
-            f.style.opacity = inactiveOpacity
-            f.removeAttribute("data-enabled")
+            f.dataset.disabled = true
         }
     }
 }
