@@ -1,6 +1,7 @@
 let countryChoicesCount = 30
 let maxTries = 6
 let inactiveOpacity = "0.2"
+let dailyMode = false
 
 function comp (a,b) {
     // return a.localeCompare(b)
@@ -44,10 +45,55 @@ function mergeSort(list) {
     }
     return temp
 }
+
+// Mulberry32 PRNG: https://github.com/bryc/code/blob/master/jshash/PRNGs.md#mulberry32
+function mulberry32(a) {
+    return function() {
+      var t = a += 0x6D2B79F5;
+      t = Math.imul(t ^ t >>> 15, t | 1);
+      t ^= t + Math.imul(t ^ t >>> 7, t | 61);
+      return ((t ^ t >>> 14) >>> 0) / 4294967296;
+    }
+}
+
+// MurmurHash3 hash function: https://github.com/bryc/code/blob/master/jshash/hashes/murmurhash3.js
+function MurmurHash3(key, seed = 0) {
+    var k, p1 = 3432918353, p2 = 461845907, h = seed | 0;
+    for(var i = 0, b = key.length & -4; i < b; i += 4) {
+        k = key[i+3] << 24 | key[i+2] << 16 | key[i+1] << 8 | key[i];
+        k = Math.imul(k, p1); k = k << 15 | k >>> 17;
+        h ^= Math.imul(k, p2); h = h << 13 | h >>> 19;
+        h = Math.imul(h, 5) + 3864292196 | 0; // |0 = prevent float
+    }
+    k = 0;
+    switch (key.length & 3) {
+        case 3: k ^= key[i+2] << 16;
+        case 2: k ^= key[i+1] << 8;
+        case 1: k ^= key[i];
+                k = Math.imul(k, p1); k = k << 15 | k >>> 17;
+                h ^= Math.imul(k, p2);
+    }
+    h ^= key.length;
+    h ^= h >>> 16; h = Math.imul(h, 2246822507);
+    h ^= h >>> 13; h = Math.imul(h, 3266489909);
+    h ^= h >>> 16;
+    return h >>> 0;
+}
+
+let randomizer = null
 function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
+    if (randomizer == null) {
+        if (dailyMode) {
+            randomizer = mulberry32(new Date().getDay())
+            for (let i = 0; i < 15; i++) randomizer()
+        }
+        else {
+            randomizer = Math.random
+        }
+    }
+    return Math.floor(randomizer() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
 }
 async function getCountries(){
     var fetchHeaders = new Headers()
@@ -67,7 +113,7 @@ async function getCountries(){
 // 	let randIndex = getRandomInt(0,countries.length)
 // 	return countries[randIndex]
 // }
-async function randomizerArray(count){
+async function countryRandomizerArray(count){
     let countries = await getCountries()
     let chosenCountries = []
     currCount = 0
@@ -80,23 +126,27 @@ async function randomizerArray(count){
     chosenCountries = mergeSort(chosenCountries)
     return chosenCountries
 }
-async function randomizer(count){
-    let countries = await randomizerArray(count)
-    let country = countries[getRandomInt(0,countries.length)]
-    return [countries,country]
+async function countryRandomizer(count){
+    let countries = await countryRandomizerArray(count)
+    let country_index = getRandomInt(0,countries.length)
+    let country = countries[country_index]
+    return [countries,country,country_index]
 }
 let jsonLoaded = false
 let country = null
 let countries = null
+let countryIndex = null
 let currentCountryChoicesCount = countryChoicesCount
-randomizer(countryChoicesCount).then((data) => {
-    let randCountry = data[1]
+countryRandomizer(countryChoicesCount).then((data) => {
     let randCountries = data[0]
+    let randCountry = data[1]
+    let randCountryIndex = data[2]
     console.log("RANDOMIZED: ")
     console.log(randCountry)
     console.log(randCountries)
     country = randCountry
     countries = randCountries
+    countryIndex = randCountryIndex
     jsonLoaded = true
 
     let choices = document.getElementById("choices")
@@ -110,6 +160,7 @@ randomizer(countryChoicesCount).then((data) => {
         let flag_img_div = document.createElement("div")
         let flag_img = document.createElement("img")
         flag_img.className = "flagpic"
+        flag_img.dataset.enabled = true
         flag_img.dataset.index = i
         flag_img.src = x.img
         flag_img_div.appendChild(flag_img)
@@ -147,71 +198,147 @@ randomizer(countryChoicesCount).then((data) => {
         //flag_img.src = x.img
         //flag_text.innerHTML = x.name
     }
+    enableButtons()
 })
 
 function colorCheck(color) {
-    console.log(country.colors)
     return country.colors.includes(color)
+}
+
+function fadeCountryName(index) {
+    let elem = document.getElementById("choices").querySelector(".countryname[data-index='"+index+"']")
+    elem.style.opacity = inactiveOpacity
 }
 
 // remove flags not containing "color"
 function filterFlags(color) {
     let choices = document.getElementById("choices").querySelectorAll(".flagpic")
     let answerContainsColor = colorCheck(color)
+    console.log(choices)
     for (let x of choices) {
-        let x_name_elem = document.getElementById("choices").querySelector(".countryname[data-index='"+x.dataset.index+"']")
-        console.log(x.dataset.index)
-        console.log(x_name_elem)
+        if (!(x.hasAttribute("data-enabled"))) {
+            console.log("skip: " + countries[x.dataset.index].name)
+            continue
+        }
         let x_colors = countries[x.dataset.index].colors
-        let x_name = countries[x.dataset.index].name
         if (answerContainsColor) {
             if (!(x_colors.includes(color))) {
+                fadeCountryName(x.dataset.index)
                 x.style.opacity = inactiveOpacity
-                x_name_elem.style.opacity = inactiveOpacity
+                x.removeAttribute("data-enabled")
+                x.removeEventListener("click", onClickButtons)
                 currentCountryChoicesCount--
+                console.log("remove: " + countries[x.dataset.index].name)
+                console.log("current count: " + currentCountryChoicesCount)
             }
         }
         else {
             if (x_colors.includes(color)) {
+                fadeCountryName(x.dataset.index)
                 x.style.opacity = inactiveOpacity
-                x_name_elem.style.opacity = inactiveOpacity
+                x.removeAttribute("data-enabled")
+                x.removeEventListener("click", onClickButtons)
                 currentCountryChoicesCount--
+                console.log("remove: " + countries[x.dataset.index].name)
+                console.log("current count: " + currentCountryChoicesCount)
             }
         }
     }
 }
 
 let tries = 0
-let colorButtons = document.getElementById("colorkeys").children
-let flagButtons = document.getElementById("choices").querySelectorAll(".flagpic")
 function onClickButtons() {
+    console.log("current count: " + currentCountryChoicesCount)
     this.removeEventListener("click", onClickButtons)
     tries += 1
-    if (tries >= maxTries) {
-        document.getElementById("results").innerHTML = "WRONG! Country is " + country.name
-        disableButtons()
-    }
-    if ("color" in this.dataset) {
+    let isColorButton = "color" in this.dataset
+    if (isColorButton) {
         filterFlags(this.dataset.color)
         if (!colorCheck(this.dataset.color)) {
             this.style.border = "3px solid"
-            this.style.opacity = "0.5"
+            this.style.opacity = inactiveOpacity
         } else {
             this.style.border = "3px solid"
         }
     }
-    else if ("country" in this.dataset) {
-        
+    else { // country buttons
+        if (this.dataset.index != countryIndex) {
+            fadeCountryName(this.dataset.index)
+            this.style.opacity = inactiveOpacity
+            this.removeAttribute("data-enabled")
+            this.removeEventListener("click", onClickButtons)
+            currentCountryChoicesCount--
+            console.log("remove: " + countries[this.dataset.index].name)
+            console.log("current count: " + currentCountryChoicesCount)
+        }
+        else {
+            document.getElementById("results").innerHTML = "CORRECT! Country is " + country.name
+            disableButtons()
+            return
+        }
+    }
+
+    let win = null
+    if (tries == maxTries) {
+        if (isColorButton) {
+            if (currentCountryChoicesCount == 1) {
+                win = true
+            }
+            else {
+                win = false
+            }
+        }
+        else {
+            if (this.dataset.index == countryIndex) {
+                win = true
+            }
+            else {
+                win = false
+            }
+        }
+    }
+    else if (currentCountryChoicesCount == 1) {
+        win = true
+    }
+
+    if (win != null) {
+        if (win) {
+            document.getElementById("results").innerHTML = "CORRECT! Country is " + country.name
+            disableButtons()
+            return
+        }
+        else {
+            document.getElementById("results").innerHTML = "WRONG! Country is " + country.name
+            disableButtons()
+            return
+        }
     }
 }
 function enableButtons() {
-    for (let c of colorButtons) {
+    for (let c of document.getElementById("colorkeys").children) {
         c.addEventListener("click", onClickButtons)
+    }
+    for (let f of document.getElementById("choices").querySelectorAll(".flagpic")) {
+        f.addEventListener("click", onClickButtons)
     }
 }
 enableButtons()
 function disableButtons() {
-    for (let c of colorButtons) {
+    for (let c of document.getElementById("colorkeys").children) {
         c.removeEventListener("click", onClickButtons)
+        if (!colorCheck(c.dataset.color)) {
+            c.style.border = "3px solid"
+            c.style.opacity = inactiveOpacity
+        } else {
+            c.style.border = "3px solid"
+        }
+    }
+    for (let f of document.getElementById("choices").querySelectorAll(".flagpic")) {
+        f.removeEventListener("click", onClickButtons)
+        if (f.dataset.index != countryIndex) {
+            fadeCountryName(f.dataset.index)
+            f.style.opacity = inactiveOpacity
+            f.removeAttribute("data-enabled")
+        }
     }
 }
