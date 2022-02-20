@@ -1,19 +1,37 @@
 body {
     font-family: 'Poppins', sans-serif;
 }
+
 /*Dark Theme*/
 .dark {
-    background: black;
-    color: white;
+    background: rgb(27, 27, 27);
+    color: rgb(216, 216, 216);
+}
+
+.dark .flagpic {
+    opacity: 0.75;
 }
 
 .dark_flaggletext {
-    color: white;
+    color: rgb(216, 216, 216);
 }
-/*Color Keys*/
+
 .dark_colorkeys {
     color: rgb(149, 149, 226);
+    border-color: rgb(149, 149, 226);
 }
+
+.dark .guessindicators {
+    border-color: rgb(117, 117, 117);
+}
+
+.dark .guessindicators.current,
+.dark .guessindicators.guessed,
+.dark .guessindicators.flag_guessed {
+    border-color: rgb(216, 216, 216);
+}
+
+
 /*End of Dark Theme*/
 
 .HeaderBody {	 
@@ -65,7 +83,6 @@ body {
 
 .colors {		
     border-style: solid;
-    border-color: rgb(0, 0, 0);
     border-width: 2px;
     border-radius: 8px;
     text-align: center;
@@ -96,9 +113,8 @@ body {
     background: red;		
 }
 #black {
-    border-color: rgb(26, 26, 26);
     background: black;
-    color: white;
+
 }
 #yellow {
 
@@ -375,11 +391,13 @@ input:checked + .slider:before {
     margin-right: 2px;
     border: 2px solid;
     cursor: pointer;
+    background-color: white;
     transition: opacity 150ms, filter 150ms, transform 150ms;
 }
 
 .flagpic:hover {
-    transform: scale(1.2);
+    transform: scale(1.05);
+    opacity: 1;
 }
 
 .flagpic[data-disabled] {
@@ -390,6 +408,7 @@ input:checked + .slider:before {
 
 .flagpic[data-disabled]:hover {
     transform: none;
+    opacity: 0.2;
 }
 
 .countryname {
@@ -439,33 +458,37 @@ input:checked + .slider:before {
     height: 16px;
     width: 16px;
     border-radius: 16px;
-    border: 1px solid;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(143, 143, 143);
     display: inline-block;
     margin-left: 2px;
     margin-right: 2px;
     box-sizing: border-box;
     vertical-align: middle;
     transition: 
-        border 150ms,
         transform 150ms,
-        border-radius 150ms,
         scale 150ms,
-        margin 150ms;
+        margin 150ms,
+        background-color 150ms;
 }
 
 .guessindicators.flag_guessed {
     border-radius: 0;
-    border: 8px solid;
+    border-width: 8px;
+    border-color: black;
 }
 
 .guessindicators.current {
     transform: scale(2);
+    border-color: black;
     margin-left: 10px;
     margin-right: 10px;
 }
 
 .guessindicators.guessed {
-    border: 2px solid;
+    border-width: 2px;
+    border-color: black;
 }
 
 .guessindicators.guessed.green {
