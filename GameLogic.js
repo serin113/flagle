@@ -3,14 +3,11 @@ let maxTries = 6
 let inactiveOpacity = "0.2"
 let dailyMode = false
 
+// mergeSort comparison function
 function comp (a,b) {
-    // return a.localeCompare(b)
     let x = a.name
     let y = b.name
     return x.localeCompare(y)
-    // if (a<b) return -1
-    // else if (a>b) return 1
-    // return 0
 }
 function mergeSort(list) {
     if (list.length == 1) return [list[0]]
@@ -193,13 +190,44 @@ countryRandomizer(countryChoicesCount).then((data) => {
             nameList = []
             count = 0
         }
-
-        //flag.dataset.index = i
-        //flag_img.src = x.img
-        //flag_text.innerHTML = x.name
     }
     enableButtons()
 })
+
+function initGuessCounter() {
+    let guessCounter = document.getElementById("guesses")
+    guessCounter.innerHTML = ""
+    for (let i = 0; i < maxTries; i++) {
+        let guessIndicator = document.createElement("div")
+        guessIndicator.dataset.index = i
+        guessIndicator.classList.add("guessindicators")
+        if (i == 0) {
+            guessIndicator.classList.add("current")
+        }
+        guessCounter.appendChild(guessIndicator)
+    }
+}
+
+initGuessCounter()
+
+// zero-indexed
+// if color==null, country
+function setGuessCounter(index, color=null) {
+    let guessIndicator = document.getElementById("guesses")
+    let guessIndicatorCurrent = guessIndicator.querySelector(".guessindicators[data-index='"+index+"']")
+    guessIndicatorCurrent.classList.remove("current")
+    if (index < maxTries - 1) {
+        let guessIndicatorNext = guessIndicator.querySelector(".guessindicators[data-index='"+(index+1)+"']")
+        guessIndicatorNext.classList.add("current")
+    }
+    if (color==null) {
+        guessIndicatorCurrent.classList.add("flag_guessed")
+    }
+    else {
+        guessIndicatorCurrent.classList.add("guessed")
+        guessIndicatorCurrent.classList.add(color)
+    }
+}
 
 function colorCheck(color) {
     return country.colors.includes(color)
@@ -253,6 +281,7 @@ function onClickButtons() {
     tries += 1
     let isColorButton = "color" in this.dataset
     if (isColorButton) {
+        setGuessCounter(tries-1, this.dataset.color)
         filterFlags(this.dataset.color)
         if (!colorCheck(this.dataset.color)) {
             this.style.border = "3px solid"
@@ -262,6 +291,7 @@ function onClickButtons() {
         }
     }
     else { // country buttons
+        setGuessCounter(tries-1)
         if (this.dataset.index != countryIndex) {
             fadeCountryName(this.dataset.index)
             this.style.opacity = inactiveOpacity

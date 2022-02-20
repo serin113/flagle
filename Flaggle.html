@@ -274,63 +274,110 @@
             //Dark Theme
             const checkbox = document.getElementById('darkthemeswitch');
 
-            checkbox.addEventListener('change', ()=>{
+            function setTheme() {
                 var body = document.body;
-                body.classList.toggle("darkbody");
+
                 //FLAGGLE Letters
-                var mht = document.getElementById('MainHeaderText');
-                mht.classList.toggle("darkMainHeaderText");                
+                var mht = document.getElementById('MainHeaderText');              
                 var ft1 = document.getElementById('ft1');
-                ft1.classList.toggle("darkft1");
                 var ft2 = document.getElementById('ft2');
-                ft2.classList.toggle("darkft2");
                 var ft3 = document.getElementById('ft3');
-                ft3.classList.toggle("darkft3");
                 var ft4 = document.getElementById('ft4');
-                ft4.classList.toggle("darkft4");
                 var ft5 = document.getElementById('ft5');
-                ft5.classList.toggle("darkft5");
                 var ft6 = document.getElementById('ft6');
-                ft6.classList.toggle("darkft6");
                 var ft7 = document.getElementById('ft7');
-                ft7.classList.toggle("darkft7");
                 
                 //Color Keys
                 var colorkeys = document.getElementById('colorkeys');
-                colorkeys.classList.toggle("darkcolorkeys");
 
                 //All Modals
                 //Settings                
                 var settingsmodalbody = document.getElementById('settingsmodalbody');
-                settingsmodalbody.classList.toggle("settingsmodalbodydark");
                 var settingsmodalheader = document.getElementById('settingsmodalheader');
-                settingsmodalheader.classList.toggle("settingsmodalheaderdark");
                 var closesettings = document.getElementById('closesettings');
-                closesettings.classList.toggle("closesettingsdark");
+
                 //Flags
                 var flagsmodalbody = document.getElementById('flagsmodalbody');
-                flagsmodalbody.classList.toggle("flagsmodalbodydark");
                 var flagsmodalheader = document.getElementById('flagsmodalheader');
-                flagsmodalheader.classList.toggle("flagsmodalheaderdark");
                 var closeflag = document.getElementById('closeflag');
-                closeflag.classList.toggle("closeflagdark");
                 var searchbar = document.getElementById('searchbar');
-                searchbar.classList.toggle("searchbardark");
+
                 //HowTo
                 var howtomodalbody = document.getElementById('howtomodalbody');
-                howtomodalbody.classList.toggle("howtomodalbodydark");
                 var howtomodalheader = document.getElementById('howtomodalheader');
-                howtomodalheader.classList.toggle("howtomodalheaderdark");
                 var closehowto = document.getElementById('closehowto');
-                closehowto.classList.toggle("closehowtodark");
+
                 //Stats
                 var statsmodalbody = document.getElementById('statsmodalbody');
-                statsmodalbody.classList.toggle("statsmodalbodydark");
                 var statsmodalheader = document.getElementById('statsmodalheader');
-                statsmodalheader.classList.toggle("statsmodalheaderdark");
                 var closestat = document.getElementById('closestat');
-                closestat.classList.toggle("closestatdark");
-            })
+
+                if (checkbox.checked) {
+                    body.classList.add("dark");
+
+                    mht.classList.add("dark");  
+                    ft1.classList.add("dark_flaggletext");
+                    ft2.classList.add("dark_flaggletext");
+                    ft3.classList.add("dark_flaggletext");
+                    ft4.classList.add("dark_flaggletext");
+                    ft5.classList.add("dark_flaggletext");
+                    ft6.classList.add("dark_flaggletext");
+                    ft7.classList.add("dark_flaggletext");
+
+                    colorkeys.classList.add("dark_colorkeys");
+
+                    settingsmodalbody.classList.add("dark");
+                    settingsmodalheader.classList.add("dark");
+                    closesettings.classList.add("dark");
+
+                    flagsmodalbody.classList.add("dark");
+                    flagsmodalheader.classList.add("dark");
+                    closeflag.classList.add("dark");
+                    searchbar.classList.add("dark");
+
+                    howtomodalbody.classList.add("dark");
+                    howtomodalheader.classList.add("dark");
+                    closehowto.classList.add("dark");
+
+                    statsmodalbody.classList.add("dark");
+                    statsmodalheader.classList.add("dark");
+                    closestat.classList.add("dark");
+                } 
+                else {
+                    body.classList.remove("dark");
+
+                    mht.classList.remove("dark");  
+                    ft1.classList.remove("dark_flaggletext");
+                    ft2.classList.remove("dark_flaggletext");
+                    ft3.classList.remove("dark_flaggletext");
+                    ft4.classList.remove("dark_flaggletext");
+                    ft5.classList.remove("dark_flaggletext");
+                    ft6.classList.remove("dark_flaggletext");
+                    ft7.classList.remove("dark_flaggletext");
+
+                    colorkeys.classList.remove("dark_colorkeys");
+
+                    settingsmodalbody.classList.remove("dark");
+                    settingsmodalheader.classList.remove("dark");
+                    closesettings.classList.remove("dark");
+
+                    flagsmodalbody.classList.remove("dark");
+                    flagsmodalheader.classList.remove("dark");
+                    closeflag.classList.remove("dark");
+                    searchbar.classList.remove("dark");
+
+                    howtomodalbody.classList.remove("dark");
+                    howtomodalheader.classList.remove("dark");
+                    closehowto.classList.remove("dark");
+
+                    statsmodalbody.classList.remove("dark");
+                    statsmodalheader.classList.remove("dark");
+                    closestat.classList.remove("dark");
+                }
+            }
+
+            setTheme()
+            checkbox.addEventListener('change', setTheme)
         </script>
 
 

@@ -2,34 +2,17 @@ body {
     font-family: 'Poppins', sans-serif;
 }
 /*Dark Theme*/
-.darkbody {
+.dark {
     background: black;
     color: white;
 }
 
-.darkMainHeaderText {
-    background: black;
-    color: white;
-}
-
-.darkft1, .darkft2, .darkft3, .darkft4, .darkft5, .darkft6, .darkft7 {
+.dark_flaggletext {
     color: white;
 }
 /*Color Keys*/
-.darkcolorkeys {
+.dark_colorkeys {
     color: rgb(149, 149, 226);
-}
-
-/*Modals*/
-.settingsmodalbodydark, .settingsmodalheaderdark, .closesettingsdark, .flagsmodalbodydark, .flagsmodalheaderdark, .closeflagdark,
-.howtomodalbodydark, .howtomodalheaderdark, .closehowtodark, .statsmodalbodydark, .statsmodalheaderdark, .closestatsdark, .closestatdark {
-    background: black;
-    color: white;
-}
-
-.searchbardark {
-    background: black;
-    color: white;
 }
 /*End of Dark Theme*/
 
@@ -420,16 +403,67 @@ input:checked + .slider:before {
 }	
 
 #guesses {
-    margin-left: 40px;
-    margin-right: 40px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .guessindicators {
-    height: 10px;
-    width: 10px;
-    border-radius: 10px;
-    border: 2px solid;
+    height: 16px;
+    width: 16px;
+    border-radius: 16px;
+    border: 1px solid;
     display: inline-block;
+    margin-left: 2px;
+    margin-right: 2px;
+    box-sizing: border-box;
+    vertical-align: middle;
+}
+
+.guessindicators.flag_guessed {
+    border-radius: 0;
+    border: 8px solid;
+}
+
+.guessindicators.current {
+    height: 24px;
+    width: 24px;
+}
+
+.guessindicators.guessed {
+    border: 2px solid;
+}
+
+.guessindicators.guessed.green {
+
+    background: green;		
+}
+.guessindicators.guessed.red {
+
+    background: red;		
+}
+.guessindicators.guessed.black {
+
+    background: black;
+}
+.guessindicators.guessed.yellow {
+
+    background: yellow;
+}
+.guessindicators.guessed.blue {
+
+    background: blue;
+}
+.guessindicators.guessed.lightblue {
+
+    background: rgb(102, 237, 255);
+}
+.guessindicators.guessed.white {
+
+    background: white;
+}
+.guessindicators.guessed.orange {
+
+    background: orange;
 }
 
 .displaybuttons {
