@@ -418,3 +418,25 @@ input:checked + .slider:before {
     padding-top: 10px;
     margin: 0 auto;
 }	
+
+#guesses {
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
+.guessindicators {
+    height: 10px;
+    width: 10px;
+    border-radius: 10px;
+    border: 2px solid;
+    display: inline-block;
+}
+
+.displaybuttons {
+    border: 2px solid;
+    height: 20px;
+    border-radius: 10px;
+    width: 150px;
+    padding: 5px;
+    padding-bottom: 10px;
+}
