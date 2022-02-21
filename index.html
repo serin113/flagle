@@ -84,9 +84,38 @@
                 <div class="modal-body" id="resultsmodalbody">
                     <div id="flaggleresultsdata">
                         <img id="flagglepic" src="https://www.worldometers.info/img/flags/ja-flag.gif"></br><!--Flaggle Pic-->
-                        <text id="flagglenamedisplay">The <b>FLAGGLE</b> is Japan</text></br> <!--if daily: The DAILY FLAGGLE ...-->
+                        <text id="flagglenamedisplay">The <b>FLAGGLE</b> is <b>Japan</b></text></br> <!--if daily: The DAILY FLAGGLE ...-->
+                        <div id="guesses">              <!--Redisplay Guess Indicators-->
+                            <div class="guessindicators" id="guess1"></div>
+                            <div class="guessindicators" id="guess2"></div>
+                            <div class="guessindicators" id="guess3"></div>
+                            <div class="guessindicators" id="guess4"></div>
+                            <div class="guessindicators" id="guess5"></div>
+                            <div class="guessindicators" id="guess6"></div>
+                        </div>
                         <text id="dailyflaggledate">February 21, 2022</text> <!--ONLY if DAILY-->
                     </div>
+
+                    <text class="statsmodetext" id="dailytext">DAILY</text>     <!--Change if Daily or Random-->
+                    <div id="statsdisplay">             <!--Show Relevant Stats Accordingly-->
+                        <div class="statstab" id="flagsguessed">
+                            <text class="statstext" id="flagsguessedtext">0</text></br>
+                            <text class="statsdesc" id="flagsguesseddesc">FLAGGLEs Guessed</text>
+                        </div>
+                        <div class="statstab" id="winpercent">
+                            <text class="statstext" id="winpercenttext">0</text></br>
+                            <text class="statsdesc" id="winpercentdesc">Win %</text></br>
+                        </div>
+                        <div class="statstab" id="currentstreak">
+                            <text class="statstext" id="currentstreaktext">0</text></br>
+                            <text class="statsdesc" id="currentstreakdesc">Current Streak</text>
+                        </div>
+                        <div class="statstab" id="beststreak">
+                            <text class="statstext" id="beststreaktext">0</text></br>
+                            <text class="statsdesc" id="beststreakdesc">Best Streak</text>
+                        </div>
+                    </div>
+
                 </div>
                 <div id="resultsmodalfooter">
                     <div class="footerhalf "id="footerleft">
@@ -216,6 +245,7 @@
                             <text class="statsdesc" id="beststreakdesc">Best Streak</text>
                         </div>
                     </div>
+
                     <div id="resultsmodalfooter">
                         <div class="footerhalf "id="footerleft">
                             <div id="dailycountdowndiv">

@@ -578,7 +578,7 @@ input:checked + .slider:before {
 }
 
 #flaggleresultsdata {
-    margin-bottom: 50px;
+    margin-bottom: 20px;
 }
 
 #resultsmodalfooter {
