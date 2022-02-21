@@ -535,6 +535,6 @@ countryRandomizer(countryChoicesCount).then((data) => {
     console.log(countries)
     displayCountries()
     enableButtons()
-}) displayCountries()
-enableButtons()
+    displayCountries()
+    enableButtons()
 })
