@@ -1,7 +1,7 @@
 // configs
 let countryChoicesCount = 30
 let maxTries = 6
-let dailyMode = false //Daily Mode Value
+let dailyMode = false
 
 
 // global-ish variables

@@ -64,49 +64,57 @@
 
                 </div>
             </div>
+            
+            <div id="results">
+                <div id="answer">
 
-            <!--Game Result Popup-->
-            <div id="GameResults" class="resultsmodal">
-                <div class="modal-content">
-                    <div class="modal-header" id="resultsmodalheader">
+                </div>
+            </div>
+
+        </div>
+
+
+        <!--Game Result Popup-->
+        <div id="GameResults" class="resultsmodal">
+            <div id="gameresults-content" class="modal-content">
+                <div class="modal-header" id="resultsmodalheader">
                     <span class="close" id="closeresults">&times;</span>
                     <h3 class="modalheadertext" id="gameoverresult">Correct!</h3> <!--Changes if it's a win or not, and by how many tries (1=Excellent!,3=Great!,6=Phew,etc.)-->
+                </div>
+                <div class="modal-body" id="resultsmodalbody">
+                    <div id="flaggleresultsdata">
+                        <img id="flagglepic" src="https://www.worldometers.info/img/flags/ja-flag.gif"></br><!--Flaggle Pic-->
+                        <text id="flagglenamedisplay">The <b>FLAGGLE</b> is Japan</text></br> <!--if daily: The DAILY FLAGGLE ...-->
+                        <text id="dailyflaggledate">February 21, 2022</text> <!--ONLY if DAILY-->
                     </div>
-                    <div class="modal-body" id="resultsmodalbody">
-                        <div id="flaggleresultsdata">
-                            <img id="flagglepic" src="https://www.worldometers.info/img/flags/ja-flag.gif"></img></br><!--Flaggle Pic-->
-                            <text id="flagglenamedisplay">The <b>FLAGGLE</b> is Japan</text></br> <!--if daily: The DAILY FLAGGLE ...-->
-                            <text id="dailyflaggledate">February 21, 2022</text> <!--ONLY if DAILY-->
+                </div>
+                <div id="resultsmodalfooter">
+                    <div class="footerhalf "id="footerleft">
+                        <div id="dailycountdowndiv">
+                            <text id="dailycountdowntext">12 : 34 : 56</text>
                         </div>
-                    <div id="resultsmodalfooter">
-                        <div class="footerhalf "id="footerleft">
-                            <div id="dailycountdowndiv">
-                                <text id="dailycountdowntext">12 : 34 : 56</text>
-                            </div>
-                        </div>
-                        <div class="footerhalf "id="footerright">
-                            <div id="sharebutton">
-                                <div id="sharebuttoncontents">
-                                    <text id="sharetext">Share</text> 
-                                </div>
+                    </div>
+                    <div class="footerhalf "id="footerright">
+                        <div id="sharebutton">
+                            <div id="sharebuttoncontents">
+                                <text id="sharetext">Share</text> 
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <script>
-
-                var modalresults = document.getElementById("GameResults");
-    
-                var spanresults = document.getElementById("closeresults");
-    
-                spanresults.onclick = function() {
-                    modalresults.style.display = "none";
-                }
-            </script>
-
         </div>
+
+        <script>
+
+            var modalresults = document.getElementById("GameResults");
+    
+            var spanresults = document.getElementById("closeresults");
+    
+            spanresults.onclick = function() {
+                modalresults.style.display = "none";
+            }
+        </script>
 
         <div id="keyscontainer">
             <div id="colorkeys">
@@ -206,6 +214,20 @@
                         <div class="statstab" id="beststreak">
                             <text class="statstext" id="beststreaktext">0</text></br>
                             <text class="statsdesc" id="beststreakdesc">Best Streak</text>
+                        </div>
+                    </div>
+                    <div id="resultsmodalfooter">
+                        <div class="footerhalf "id="footerleft">
+                            <div id="dailycountdowndiv">
+                                <text id="dailycountdowntext">12 : 34 : 56</text>
+                            </div>
+                        </div>
+                        <div class="footerhalf "id="footerright">
+                            <div id="sharebutton">
+                                <div id="sharebuttoncontents">
+                                    <text id="sharetext">Share</text> 
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
