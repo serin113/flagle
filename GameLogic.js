@@ -1,3 +1,9 @@
+//TO DO:
+//Make GameResult Popup when game is over
+    //Conditional text if fast win, close win, loss, etc.
+    //Daily countdown timer on both stats and GameResult timer
+//Stats Display Change
+
 // configs
 let countryChoicesCount = 30
 let maxTries = 6
