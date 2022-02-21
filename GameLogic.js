@@ -1,26 +1,46 @@
 //TO DO:
-//Make GameResult Popup when game is over
-    //Conditional text if fast win, close win, loss, etc.
-    //Daily countdown timer on both stats and GameResult timer
+//Daily countdown timer on both stats and GameResult timer
 //Stats Display Change
+//Daily & Random buttons
+//Restore game state on refresh
 
 // configs
 let countryChoicesCount = 30
 let maxTries = 6
 let dailyMode = true
+let icons = {
+    rightColor: "🟣",
+    wrongColor: "⚫",
+    rightFlag: "🟪",
+    wrongFlag: "⬛",
+    flaggle: "🏁"
+}
+let resultMsgs_win = [ // least to most tries
+    "Superb!",
+    "Amazing!",
+    "Bravo!",
+    "Great!",
+    "Nice!",
+    "Phew..."
+]
+let resultMsgs_lose = [ // least to most tries
+    "So close!",
+    "Nice try"
+]
+let seedOverride = null // null if disabled, string if needed
 
 
 // global-ish variables
-let randomizer = null       // randomizer function for getRandomInt
-let countries = null        // <countryChoicesCount>-length list of countries w/ data
-let country = null          // chosen country w/ data
-let countryIndex = null     // <country>'s index in <countries>
+let randomizer = null // randomizer function for getRandomInt
+let countries = null // <countryChoicesCount>-length list of countries w/ data
+let country = null // chosen country w/ data
+let countryIndex = null // <country>'s index in <countries>
 let currentCountryChoicesCount = countryChoicesCount
-                            // number of enabled country buttons
-let tries = 0               // number of tries (button pushes) so far
-let currDate = new Date()   // current date on page load
-let resultText = ""         // game's share text
-let isWin = null
+    // number of enabled country buttons
+let tries = 0 // number of tries (button pushes) so far
+let currDate = new Date() // current date on page load
+let resultText = "" // game's share text
+let isWin = null // game state variable: null/true/false
 
 
 // helper functions
@@ -29,14 +49,11 @@ let isWin = null
 function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
-    if (randomizer == null) {
-        console.log("ERROR (getRandomInt): randomizer function not initialized")
-    }
     return Math.floor(randomizer() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
 }
 
 /* comparison function for mergeSort */
-function comp (a,b) {
+function comp(a, b) {
     let x = a.name
     let y = b.name
     return x.localeCompare(y)
@@ -46,8 +63,8 @@ function comp (a,b) {
 function mergeSort(list) {
     if (list.length == 1) return [list[0]]
     let mid = Math.floor(list.length / 2.0)
-    let l1 = list.slice(0,mid)
-    let l2 = list.slice(mid,list.length)
+    let l1 = list.slice(0, mid)
+    let l2 = list.slice(mid, list.length)
     l1 = mergeSort(l1)
     l2 = mergeSort(l2)
     temp = []
@@ -55,12 +72,11 @@ function mergeSort(list) {
     let j = 0 // l2 index
     let k = 0 // temp index
     while (i < l1.length && j < l2.length) {
-        if (comp(l1[i],l2[j]) <= 0) {
+        if (comp(l1[i], l2[j]) <= 0) {
             temp.push(l1[i])
             k += 1
             i += 1
-        }
-        else {
+        } else {
             temp.push(l2[j])
             k += 1
             j += 1
@@ -81,40 +97,63 @@ function mergeSort(list) {
     for generating pseudorandom numbers for the randomizer */
 function mulberry32(a) {
     return function() {
-      var t = a += 0x6D2B79F5;
-      t = Math.imul(t ^ t >>> 15, t | 1);
-      t ^= t + Math.imul(t ^ t >>> 7, t | 61);
-      return ((t ^ t >>> 14) >>> 0) / 4294967296;
+        var t = a += 0x6D2B79F5;
+        t = Math.imul(t ^ t >>> 15, t | 1);
+        t ^= t + Math.imul(t ^ t >>> 7, t | 61);
+        return ((t ^ t >>> 14) >>> 0) / 4294967296;
     }
 }
 
 /* MurmurHash3 hash function: https://github.com/bryc/code/blob/master/jshash/hashes/murmurhash3.js
     for hashing the current date as a reproducible seed for the randomizer */
 function MurmurHash3(key, seed = 0) {
-    var k, p1 = 3432918353, p2 = 461845907, h = seed | 0;
-    for(var i = 0, b = key.length & -4; i < b; i += 4) {
-        k = key[i+3] << 24 | key[i+2] << 16 | key[i+1] << 8 | key[i];
-        k = Math.imul(k, p1); k = k << 15 | k >>> 17;
-        h ^= Math.imul(k, p2); h = h << 13 | h >>> 19;
+    var k, p1 = 3432918353,
+        p2 = 461845907,
+        h = seed | 0;
+    for (var i = 0, b = key.length & -4; i < b; i += 4) {
+        k = key[i + 3] << 24 | key[i + 2] << 16 | key[i + 1] << 8 | key[i];
+        k = Math.imul(k, p1);
+        k = k << 15 | k >>> 17;
+        h ^= Math.imul(k, p2);
+        h = h << 13 | h >>> 19;
         h = Math.imul(h, 5) + 3864292196 | 0; // |0 = prevent float
     }
     k = 0;
     switch (key.length & 3) {
-        case 3: k ^= key[i+2] << 16;
-        case 2: k ^= key[i+1] << 8;
-        case 1: k ^= key[i];
-                k = Math.imul(k, p1); k = k << 15 | k >>> 17;
-                h ^= Math.imul(k, p2);
+        case 3:
+            k ^= key[i + 2] << 16;
+        case 2:
+            k ^= key[i + 1] << 8;
+        case 1:
+            k ^= key[i];
+            k = Math.imul(k, p1);
+            k = k << 15 | k >>> 17;
+            h ^= Math.imul(k, p2);
     }
     h ^= key.length;
-    h ^= h >>> 16; h = Math.imul(h, 2246822507);
-    h ^= h >>> 13; h = Math.imul(h, 3266489909);
+    h ^= h >>> 16;
+    h = Math.imul(h, 2246822507);
+    h ^= h >>> 13;
+    h = Math.imul(h, 3266489909);
     h ^= h >>> 16;
     return h >>> 0;
 }
 
+/* initialize the randomizer function, default seed as date if <seed> is null */
+function initRandomizer(seedString = null) {
+    if (seedString == null) {
+        seedString = currDate.toDateString()
+    }
+    let seedBytes = Array.from(seedString, (x) => x.charCodeAt(0))
+    let seedHash = MurmurHash3(seedBytes)
+    console.log("Seed: \"" + seedString + "\"")
+    console.log("Hash: \"" + seedHash + "\"")
+    randomizer = mulberry32(seedHash)
+    for (let i = 0; i < 15; i++) randomizer()
+}
+
 /* JSON file loader for the country list */
-async function fetchCountries(){
+async function fetchCountries() {
     var fetchHeaders = new Headers()
     fetchHeaders.append("pragma", "no-cache")
     fetchHeaders.append("cache-control", "no-cache")
@@ -129,12 +168,12 @@ async function fetchCountries(){
 }
 
 /* gets <count> number of countries from the country list */
-async function countryRandomizerArray(count){
+async function countryRandomizerArray(count) {
     let countries = await fetchCountries()
     let chosenCountries = []
     currCount = 0
     while (currCount < count) {
-        let randIndex = getRandomInt(0,countries.length)
+        let randIndex = getRandomInt(0, countries.length)
         chosenCountries.push(countries[randIndex])
         countries.splice(randIndex, 1)
         currCount += 1
@@ -144,11 +183,11 @@ async function countryRandomizerArray(count){
 }
 
 /* picks 1 random country from the country list */
-async function countryRandomizer(count){
+async function countryRandomizer(count) {
     let countries = await countryRandomizerArray(count)
-    let country_index = getRandomInt(0,countries.length)
+    let country_index = getRandomInt(0, countries.length)
     let country = countries[country_index]
-    return [countries,country,country_index]
+    return [countries, country, country_index]
 }
 
 /* display country flags and names from the country list */
@@ -186,7 +225,7 @@ function displayCountries() {
 
         if (div_flagpics.childElementCount == 5 || (i == countries.length - 1)) {
             if ((i == countries.length - 1) && (div_flagpics.childElementCount < 5)) {
-                for (let j = 0; j < 5-div_flagpics.childElementCount; j++) {
+                for (let j = 0; j < 5 - div_flagpics.childElementCount; j++) {
                     let blankdiv = document.createElement("div")
                     div_flagpics.appendChild(blankdiv)
                     div_flagnames.appendChild(blankdiv)
@@ -203,18 +242,17 @@ function displayCountries() {
 /* set the appearance for the guess counter at <index> */
 // zero-indexed
 // if color==null, country
-function setGuessCounter(index, color=null) {
+function setGuessCounter(index, color = null) {
     let guessIndicator = document.getElementById("guesses")
-    let guessIndicatorCurrent = guessIndicator.querySelector(".guessindicators[data-index='"+index+"']")
+    let guessIndicatorCurrent = guessIndicator.querySelector(".guessindicators[data-index='" + index + "']")
     guessIndicatorCurrent.classList.remove("current")
     if (index < maxTries - 1) {
-        let guessIndicatorNext = guessIndicator.querySelector(".guessindicators[data-index='"+(index+1)+"']")
+        let guessIndicatorNext = guessIndicator.querySelector(".guessindicators[data-index='" + (index + 1) + "']")
         guessIndicatorNext.classList.add("current")
     }
-    if (color==null) {
+    if (color == null) {
         guessIndicatorCurrent.classList.add("flag_guessed")
-    }
-    else {
+    } else {
         guessIndicatorCurrent.classList.add("guessed")
         guessIndicatorCurrent.classList.add(color)
     }
@@ -227,7 +265,7 @@ function colorCheck(color) {
 
 /* set country name at <index> as disabled */
 function fadeCountryName(index) {
-    let elem = document.getElementById("choices").querySelector(".flagname[data-index='"+index+"']")
+    let elem = document.getElementById("choices").querySelector(".flagname[data-index='" + index + "']")
     elem.dataset.disabled = true
 }
 
@@ -252,8 +290,7 @@ function filterFlags(color) {
             if (!(x_colors.includes(color))) {
                 fadeFlagPic(x)
             }
-        }
-        else {
+        } else {
             if (x_colors.includes(color)) {
                 fadeFlagPic(x)
             }
@@ -306,16 +343,16 @@ function cloneGuesses() {
 function fallbackCopyTextToClipboard(text) {
     var textArea = document.createElement("textarea");
     textArea.value = text;
-    
+
     // Avoid scrolling to bottom
     textArea.style.top = "0";
     textArea.style.left = "0";
     textArea.style.position = "fixed";
-  
+
     document.body.appendChild(textArea);
     textArea.focus();
     textArea.select();
-  
+
     try {
         var successful = document.execCommand('copy');
         var msg = successful ? 'successful' : 'unsuccessful';
@@ -326,6 +363,7 @@ function fallbackCopyTextToClipboard(text) {
 
     document.body.removeChild(textArea);
 }
+
 function copyTextToClipboard(text) {
     if (!navigator.clipboard) {
         fallbackCopyTextToClipboard(text);
@@ -342,33 +380,12 @@ function copyTextToClipboard(text) {
 function showResults() {
     let resultMsg = ""
     if (isWin) {
-        switch (tries) {
-            case 1:
-                resultMsg = "Superb!"
-                break
-            case 2:
-                resultMsg = "Amazing!"
-                break
-            case 3:
-                resultMsg = "Bravo!"
-                break
-            case 4:
-                resultMsg = "Great!"
-                break
-            case 5:
-                resultMsg = "Nice!"
-                break
-            case 6:
-                resultMsg = "Phew..."
-                break
-        }
-    }
-    else {
-        if (currentCountryChoicesCount > 4) {
-            resultMsg = "Nice try"
-        }
-        else {
-            resultMsg = "So close!"
+        resultMsg = resultMsgs_win[tries - 1]
+    } else {
+        if (currentCountryChoicesCount <= 4) {
+            resultMsg = resultMsgs_lose[0]
+        } else {
+            resultMsg = resultMsgs_lose[1]
         }
     }
 
@@ -383,22 +400,21 @@ function showResults() {
     newGuesses_parent.removeChild(document.getElementById("resultguesses_temp"))
     if (dailyMode) {
         document.getElementById("dailyflaggledate").innerHTML = currDate.toDateString()
-    }
-    else {
+    } else {
         document.getElementById("dailyflaggledate").innerHTML = ""
     }
 
-    document.getElementById("sharebutton").addEventListener("click", function(){
+    document.getElementById("sharebutton").addEventListener("click", function() {
         let finalShareText = "Flaggle "
 
         if (dailyMode) finalShareText += "Daily  "
         else finalShareText += "Random  "
 
-        finalShareText += tries+"/"+maxTries+"\n"
+        finalShareText += tries + "/" + maxTries + "\n"
 
         if (dailyMode) finalShareText += currDate.toDateString().slice(4)
 
-        finalShareText += "\n\n"+resultText
+        finalShareText += "\n\n" + resultText
 
         copyTextToClipboard(finalShareText)
         this.querySelector("#sharetext").innerHTML = "Copied!"
@@ -417,28 +433,23 @@ function onClickButtons() {
     let clickedFlaggle = false
 
     if (isColorButton) { // color buttons
-        setGuessCounter(tries-1, this.dataset.color)
+        setGuessCounter(tries - 1, this.dataset.color)
         filterFlags(this.dataset.color)
         this.dataset.disabled = true
         if (!colorCheck(this.dataset.color)) {
             this.dataset.wrong = true
-            resultText += "⚫"
+            resultText += icons.wrongColor
+        } else {
+            resultText += icons.rightColor
         }
-        else {
-            resultText += "🟣"
-        }
-    }
-    else { // flag buttons
-        setGuessCounter(tries-1)
+    } else { // flag buttons
+        setGuessCounter(tries - 1)
         if (this.dataset.index != countryIndex) {
             fadeFlagPic(this)
-            resultText += "⬛"
-        }
-        else {
+            resultText += icons.wrongFlag
+        } else {
             clickedFlaggle = true
-            resultText += "🟪"
-
-            //win = true
+            resultText += icons.rightFlag
         }
     }
 
@@ -446,29 +457,24 @@ function onClickButtons() {
     if (clickedFlaggle) {
         // win by directly picking flaggle
         isWin = true
-    }
-    else if (tries == maxTries) { // sudden death (last try)
+    } else if (tries == maxTries) { // sudden death (last try)
         if (isColorButton) {
             if (currentCountryChoicesCount == 1) {
                 // win by sudden death (elimination by color)
                 isWin = true
-            }
-            else {
+            } else {
                 isWin = false
             }
-        }
-        else {
+        } else {
             if (clickedFlaggle) {
                 // win by sudden death (directly picking flaggle)
                 console.log("sudden death")
                 isWin = true
-            }
-            else {
+            } else {
                 isWin = false
             }
         }
-    }
-    else if (currentCountryChoicesCount == 1) {
+    } else if (currentCountryChoicesCount == 1) {
         // win by elimination with remaining tries
         isWin = true
     }
@@ -479,9 +485,9 @@ function onClickButtons() {
             let guessList = document.getElementById("guesses")
                 .querySelectorAll(".guessed, .flag_guessed")
             if (clickedFlaggle) {
-                guessList[guessList.length-1].classList.add("flaggle")
+                guessList[guessList.length - 1].classList.add("flaggle")
             }
-            resultText += "  🏁"
+            resultText += "  " + icons.flaggle
         }
         let currGuess = document.getElementById("guesses")
             .querySelectorAll(".current")
@@ -496,18 +502,15 @@ function onClickButtons() {
 
 // initializations
 
-/* set the randomizer function based on <dailyMode> */
-if (dailyMode) {
-    let dateString = currDate.toDateString()
-    let dateBytes = Array.from(dateString, (x) => x.charCodeAt(0))
-    let dateHash = MurmurHash3(dateBytes)
-    console.log("Current day: \""+dateString+"\"")
-    console.log("Hash: \""+dateHash+"\"")
-    randomizer = mulberry32(currDate.getDay())
-    for (let i = 0; i < 15; i++) randomizer()
-}
-else {
-    randomizer = Math.random
+/* initialize randomizer function */
+if (seedOverride == null) {
+    if (dailyMode) {
+        initRandomizer()
+    } else {
+        initRandomizer(String(Math.random()))
+    }
+} else {
+    initRandomizer(seedOverride)
 }
 
 /* create and initialize the guess counter based on <maxTries> */
@@ -516,9 +519,7 @@ for (let i = 0; i < maxTries; i++) {
     let guessIndicator = document.createElement("div")
     guessIndicator.dataset.index = i
     guessIndicator.classList.add("guessindicators")
-    if (i == 0) {
-        guessIndicator.classList.add("current")
-    }
+    if (i == 0) guessIndicator.classList.add("current")
     document.getElementById("guesses").appendChild(guessIndicator)
 }
 
@@ -534,4 +535,6 @@ countryRandomizer(countryChoicesCount).then((data) => {
     console.log(countries)
     displayCountries()
     enableButtons()
+}) displayCountries()
+enableButtons()
 })

@@ -1,6 +1,6 @@
 body {
     font-family: 'Poppins', sans-serif;
-    transition: background-color 500ms;
+    transition: background-color 250ms;
 }
 
 #loading {
@@ -22,16 +22,18 @@ body {
     display: none;
 }
 
+
 /*Dark Theme*/
-.dark, .dark #loading, .dark .modal {
+
+.dark,
+.dark #loading,
+.dark .modal {
     color: rgb(216, 216, 216);
 }
 
+.dark,
+.dark #loading,
 .dark .modal-content {
-    background: rgb(27, 27, 27);
-}
-
-.dark, .dark #loading {
     background: rgb(27, 27, 27);
 }
 
@@ -73,7 +75,7 @@ body {
 
 /*End of Dark Theme*/
 
-.HeaderBody {	 
+.HeaderBody {
     align-items: center;
     justify-content: center;
 }
@@ -86,7 +88,7 @@ body {
     width: 520px;
     padding-top: 10px;
     margin: 0 auto;
-}	
+}
 
 #MainHeaderText {
     font-family: 'Poppins', sans-serif;
@@ -120,7 +122,7 @@ body {
     margin: 0 auto;
 }
 
-.colors {		
+.colors {
     border-style: solid;
     border-width: 2px;
     border-radius: 8px;
@@ -134,10 +136,7 @@ body {
     box-sizing: border-box;
     cursor: pointer;
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.75);
-    transition:
-        border-width 150ms,
-        box-shadow 150ms,
-        opacity 150ms;
+    transition: border-width 150ms, box-shadow 150ms, opacity 150ms;
 }
 
 .colors[data-disabled] {
@@ -150,54 +149,66 @@ body {
 }
 
 #green {
-
-    background: green;		
+    background: green;
 }
+
 #red {
-
-    background: red;		
+    background: red;
 }
+
 #black {
     background: rgb(51, 51, 51);
-
 }
-#yellow {
 
+#yellow {
     background: yellow;
 }
-#blue {
 
+#blue {
     background: blue;
 }
-#lightblue {
 
+#lightblue {
     background: rgb(102, 237, 255);
 }
-#white {
 
+#white {
     background: white;
 }
-#orange {
 
+#orange {
     background: orange;
 }
 
+
 /* The Modal (background) */
+
 .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    padding-top: 100px;
+    /* Location of the box */
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
 }
 
+
 /* Modal Content */
+
 .modal-content {
     position: relative;
     background-color: white;
@@ -205,7 +216,7 @@ body {
     padding: 0;
     border: 1px solid #888;
     width: 500px;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     -webkit-animation-name: animatetop;
     -webkit-animation-duration: 0.4s;
     animation-name: animatetop;
@@ -215,18 +226,34 @@ body {
     border-radius: 10px;
 }
 
+
 /* Add Animation */
+
 @-webkit-keyframes animatetop {
-    from {top:-300px; opacity:0} 
-    to {top:0; opacity:1}
+    from {
+        top: -300px;
+        opacity: 0
+    }
+    to {
+        top: 0;
+        opacity: 1
+    }
 }
 
 @keyframes animatetop {
-    from {top:-300px; opacity:0}
-    to {top:0; opacity:1}
+    from {
+        top: -300px;
+        opacity: 0
+    }
+    to {
+        top: 0;
+        opacity: 1
+    }
 }
 
+
 /* The Close Button */
+
 .close {
     font-size: 28px;
     font-weight: bold;
@@ -237,12 +264,13 @@ body {
     cursor: pointer;
 }
 
-.close:hover, .close:focus {
+.close:hover,
+.close:focus {
     color: grey;
     text-decoration: none;
 }
 
-.modal-header {  
+.modal-header {
     border-radius: 10px 10px 0px 0px;
     padding: 2px 5px;
     text-align: center;
@@ -262,40 +290,57 @@ body {
 }
 
 #colorchange {
-    -webkit-animation: colorchange 10s infinite ;
-    font-weight:bold;
+    -webkit-animation: colorchange 10s infinite;
+    animation: colorchange 10s infinite;
+    font-weight: bold;
 }
 
-@-webkit-keyframes colorchange {
-    0% { color: red; }
-    15% { color: orange; }
-    32% { color: rgb(255, 209, 4); }
-    49% { color: green; }
-    66% { color: rgb(56, 56, 255); }
-    83% { color: rgb(102, 237, 255); }
-    100% { color: red; }
+@keyframes colorchange {
+    0% {
+        color: red;
+    }
+    15% {
+        color: orange;
+    }
+    32% {
+        color: rgb(255, 209, 4);
+    }
+    49% {
+        color: green;
+    }
+    66% {
+        color: rgb(56, 56, 255);
+    }
+    83% {
+        color: rgb(102, 237, 255);
+    }
+    100% {
+        color: red;
+    }
 }
 
 .wavy span {
-position: relative;
-display: inline-block;
-color: black;
-font-size: 2em;
-animation: animate 2s ease-in-out infinite;
-animation-delay: calc(.1s*var(--i))
+    position: relative;
+    display: inline-block;
+    color: black;
+    font-size: 2em;
+    animation: animate 2s ease-in-out infinite;
+    animation-delay: calc(.1s*var(--i))
 }
 
 @keyframes animate {
-    0%{
-    transform: translateY(0px)
+    0% {
+        transform: translateY(0px)
     }
-    20%{
-    transform: translateY(-15px)
+    20% {
+        transform: translateY(-15px)
     }
-    40%, 100%{
-    transform: translateY(0px)
+    40%,
+    100% {
+        transform: translateY(0px)
     }
 }
+
 .switch {
     position: relative;
     display: inline-block;
@@ -303,7 +348,7 @@ animation-delay: calc(.1s*var(--i))
     height: 26px;
 }
 
-.switch input { 
+.switch input {
     opacity: 0;
     width: 0;
     height: 0;
@@ -333,21 +378,23 @@ animation-delay: calc(.1s*var(--i))
     transition: .4s;
 }
 
-input:checked + .slider {
+input:checked+.slider {
     background-color: rgb(149, 149, 226);
 }
 
-input:focus + .slider {
+input:focus+.slider {
     box-shadow: 0 0 1px rgb(149, 149, 226);
 }
 
-input:checked + .slider:before {
+input:checked+.slider:before {
     -webkit-transform: translateX(20px);
     -ms-transform: translateX(20px);
     transform: translateX(20px);
 }
 
+
 /* Rounded sliders */
+
 .slider.round {
     border-radius: 13px;
 }
@@ -373,10 +420,12 @@ input:checked + .slider:before {
     padding-top: 20px;
 }
 
+
 /*Stats Display*/
+
 #statsmodalbody {
-    text-align: center;  
-    justify-content: center; 
+    text-align: center;
+    justify-content: center;
 }
 
 #statsdisplay {
@@ -386,7 +435,10 @@ input:checked + .slider:before {
     margin-bottom: 10px;
 }
 
-#flagsguessed, #currentstreak, #beststreak, #winpercent {
+#flagsguessed,
+#currentstreak,
+#beststreak,
+#winpercent {
     display: inline-table;
     width: 70px;
     text-align: center;
@@ -408,7 +460,9 @@ input:checked + .slider:before {
     font-weight: bold;
 }
 
+
 /*Flags List*/
+
 #searchbar {
     padding: 6px;
     border: 1px solid;
@@ -419,7 +473,9 @@ input:checked + .slider:before {
     font-size: 17px;
 }
 
+
 /*Game Choices*/
+
 #gamediv {
     margin: 0 auto;
     width: 100%;
@@ -443,10 +499,12 @@ input:checked + .slider:before {
     cursor: pointer;
     background-color: white;
     transition: opacity 150ms, filter 150ms, transform 150ms;
+    object-fit: cover;
 }
 
 .flagpic:hover {
     transform: scale(1.05);
+    object-fit: contain;
     opacity: 1;
 }
 
@@ -466,7 +524,7 @@ input:checked + .slider:before {
     margin-left: 2px;
     margin-right: 2px;
     font-size: 98%;
-    transform:scale(0.8,1);
+    transform: scale(0.8, 1);
     transition: opacity 150ms;
 }
 
@@ -489,7 +547,7 @@ input:checked + .slider:before {
     margin-bottom: 5px;
 }
 
-.DisplayBody {	 
+.DisplayBody {
     align-items: center;
     justify-content: center;
 }
@@ -501,7 +559,7 @@ input:checked + .slider:before {
     width: 520px;
     padding-top: 10px;
     margin: 0 auto;
-}	
+}
 
 #guesses {
     margin-left: auto;
@@ -520,11 +578,7 @@ input:checked + .slider:before {
     margin-right: 2px;
     box-sizing: border-box;
     vertical-align: middle;
-    transition: 
-        transform 150ms,
-        scale 150ms,
-        margin 150ms,
-        background-color 150ms;
+    transition: transform 150ms, scale 150ms, margin 150ms, background-color 150ms;
 }
 
 .guessindicators.flag_guessed {
@@ -550,35 +604,34 @@ input:checked + .slider:before {
 }
 
 .guessindicators.guessed.green {
-
-    background: green;		
+    background: green;
 }
+
 .guessindicators.guessed.red {
-
-    background: red;		
+    background: red;
 }
-.guessindicators.guessed.black {
 
+.guessindicators.guessed.black {
     background: black;
 }
-.guessindicators.guessed.yellow {
 
+.guessindicators.guessed.yellow {
     background: yellow;
 }
-.guessindicators.guessed.blue {
 
+.guessindicators.guessed.blue {
     background: blue;
 }
-.guessindicators.guessed.lightblue {
 
+.guessindicators.guessed.lightblue {
     background: rgb(102, 237, 255);
 }
-.guessindicators.guessed.white {
 
+.guessindicators.guessed.white {
     background: white;
 }
-.guessindicators.guessed.orange {
 
+.guessindicators.guessed.orange {
     background: orange;
 }
 
@@ -592,19 +645,30 @@ input:checked + .slider:before {
     cursor: pointer;
 }
 
+
 /*Results Modal*/
-.resultsmodal { 
-    display: block; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
+
+.resultsmodal {
+    display: block;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    padding-top: 100px;
+    /* Location of the box */
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
 }
 
 #gameresults-content {
@@ -664,4 +728,3 @@ input:checked + .slider:before {
     line-height: 40px;
     font-weight: bold;
 }
-
