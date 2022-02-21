@@ -20,6 +20,7 @@ let currentCountryChoicesCount = countryChoicesCount
 let tries = 0               // number of tries (button pushes) so far
 let currDate = new Date()   // current date on page load
 let resultText = ""         // game's share text
+let isWin = null
 
 
 // helper functions
@@ -150,35 +151,6 @@ async function countryRandomizer(count){
     return [countries,country,country_index]
 }
 
-
-// initializations
-
-/* set the randomizer function based on <dailyMode> */
-if (dailyMode) {
-    let dateString = currDate.toDateString()
-    let dateBytes = Array.from(dateString, (x) => x.charCodeAt(0))
-    let dateHash = MurmurHash3(dateBytes)
-    console.log("Current day: \""+dateString+"\"")
-    console.log("Hash: \""+dateHash+"\"")
-    randomizer = mulberry32(currDate.getDay())
-    for (let i = 0; i < 15; i++) randomizer()
-}
-else {
-    randomizer = Math.random
-}
-
-/* create and initialize the guess counter based on <maxTries> */
-document.getElementById("guesses").innerHTML = ""
-for (let i = 0; i < maxTries; i++) {
-    let guessIndicator = document.createElement("div")
-    guessIndicator.dataset.index = i
-    guessIndicator.classList.add("guessindicators")
-    if (i == 0) {
-        guessIndicator.classList.add("current")
-    }
-    document.getElementById("guesses").appendChild(guessIndicator)
-}
-
 /* display country flags and names from the country list */
 function displayCountries() {
     let choices = document.getElementById("choices")
@@ -197,14 +169,12 @@ function displayCountries() {
             div_flagnames = document.createElement("div")
             div_flagnames.classList.add("flagnames")
         }
-        
-        let flag_img_div = document.createElement("div")
+
         let flag_img = document.createElement("img")
         flag_img.className = "flagpic"
         flag_img.dataset.index = i
         flag_img.src = x.img
-        flag_img_div.appendChild(flag_img)
-        div_flagpics.appendChild(flag_img_div)
+        div_flagpics.appendChild(flag_img)
 
         let flag_name_div = document.createElement("div")
         flag_name_div.className = "flagname"
@@ -267,19 +237,16 @@ function fadeFlagPic(elem) {
     elem.dataset.disabled = true
     elem.removeEventListener("click", onClickButtons)
     currentCountryChoicesCount--
-    console.log("remove: " + countries[elem.dataset.index].name)
-    console.log("current count: " + currentCountryChoicesCount)
 }
 
 /* remove flags not containing "color" */
 function filterFlags(color) {
-    let choices = document.getElementById("choices").querySelectorAll(".flagpic")
-    console.log(choices)
+    // let choices = document.getElementById("choices").querySelectorAll(".flagpic")
+    let choices = document.getElementById("choices").querySelectorAll(".flagpic:not([data-disabled])")
     for (let x of choices) {
-        if (x.hasAttribute("data-disabled")) {
-            console.log("skip: " + countries[x.dataset.index].name)
-            continue
-        }
+        // if (x.hasAttribute("data-disabled")) {
+        //     continue
+        // }
         let x_colors = countries[x.dataset.index].colors
         if (colorCheck(color)) {
             if (!(x_colors.includes(color))) {
@@ -302,6 +269,7 @@ function enableButtons() {
     for (let f of document.getElementById("choices").querySelectorAll(".flagpic")) {
         f.addEventListener("click", onClickButtons)
     }
+    document.getElementById("guesses").removeEventListener("click", showResults)
 }
 
 /* disable all flag & color buttons */
@@ -320,12 +288,7 @@ function disableButtons() {
             f.dataset.disabled = true
         }
     }
-
-    let currGuess = document.getElementById("guesses")
-        .querySelectorAll(".current")
-    if (currGuess.length > 0) {
-        currGuess[0].classList.remove("current")
-    }
+    document.getElementById("guesses").addEventListener("click", showResults)
 }
 
 /* create a new element containing the guesses so far */
@@ -376,7 +339,7 @@ function copyTextToClipboard(text) {
 }
 
 /* update & display results in the GameResults modal */
-function showResults(isWin) {
+function showResults() {
     let resultMsg = ""
     if (isWin) {
         switch (tries) {
@@ -414,19 +377,29 @@ function showResults(isWin) {
     document.getElementById("flagglenamedisplay").innerHTML = "The <b>FLAGGLE</b> is <b>" + country.name + "</b>"
     let newGuesses = cloneGuesses()
     let newGuesses_parent = document.getElementById("flaggleresultsdata")
-    newGuesses_parent.insertBefore(newGuesses, document.getElementById("resultguesses"))
-    newGuesses_parent.removeChild(document.getElementById("resultguesses"))
+    document.getElementById("resultguesses").id = "resultguesses_temp"
+    newGuesses.id = "resultguesses"
+    newGuesses_parent.insertBefore(newGuesses, document.getElementById("resultguesses_temp"))
+    newGuesses_parent.removeChild(document.getElementById("resultguesses_temp"))
     if (dailyMode) {
         document.getElementById("dailyflaggledate").innerHTML = currDate.toDateString()
+    }
+    else {
+        document.getElementById("dailyflaggledate").innerHTML = ""
     }
 
     document.getElementById("sharebutton").addEventListener("click", function(){
         let finalShareText = "Flaggle "
+
         if (dailyMode) finalShareText += "Daily  "
         else finalShareText += "Random  "
+
         finalShareText += tries+"/"+maxTries+"\n"
+
         if (dailyMode) finalShareText += currDate.toDateString().slice(4)
+
         finalShareText += "\n\n"+resultText
+
         copyTextToClipboard(finalShareText)
         this.querySelector("#sharetext").innerHTML = "Copied!"
     })
@@ -441,7 +414,6 @@ function onClickButtons() {
     tries += 1
 
     let isColorButton = "color" in this.dataset
-    let win = null
     let clickedFlaggle = false
 
     if (isColorButton) { // color buttons
@@ -473,37 +445,37 @@ function onClickButtons() {
     // win/lose state checker
     if (clickedFlaggle) {
         // win by directly picking flaggle
-        win = true
+        isWin = true
     }
     else if (tries == maxTries) { // sudden death (last try)
         if (isColorButton) {
             if (currentCountryChoicesCount == 1) {
                 // win by sudden death (elimination by color)
-                win = true
+                isWin = true
             }
             else {
-                win = false
+                isWin = false
             }
         }
         else {
             if (clickedFlaggle) {
                 // win by sudden death (directly picking flaggle)
                 console.log("sudden death")
-                win = true
+                isWin = true
             }
             else {
-                win = false
+                isWin = false
             }
         }
     }
     else if (currentCountryChoicesCount == 1) {
         // win by elimination with remaining tries
-        win = true
+        isWin = true
     }
 
     // indicate win/lose, disable buttons
-    if (win != null) {
-        if (win) {
+    if (isWin != null) {
+        if (isWin) {
             let guessList = document.getElementById("guesses")
                 .querySelectorAll(".guessed, .flag_guessed")
             if (clickedFlaggle) {
@@ -511,9 +483,43 @@ function onClickButtons() {
             }
             resultText += "  🏁"
         }
+        let currGuess = document.getElementById("guesses")
+            .querySelectorAll(".current")
+        if (currGuess.length > 0) {
+            currGuess[0].classList.remove("current")
+        }
         disableButtons()
-        showResults(win)
+        showResults()
     }
+}
+
+
+// initializations
+
+/* set the randomizer function based on <dailyMode> */
+if (dailyMode) {
+    let dateString = currDate.toDateString()
+    let dateBytes = Array.from(dateString, (x) => x.charCodeAt(0))
+    let dateHash = MurmurHash3(dateBytes)
+    console.log("Current day: \""+dateString+"\"")
+    console.log("Hash: \""+dateHash+"\"")
+    randomizer = mulberry32(currDate.getDay())
+    for (let i = 0; i < 15; i++) randomizer()
+}
+else {
+    randomizer = Math.random
+}
+
+/* create and initialize the guess counter based on <maxTries> */
+document.getElementById("guesses").innerHTML = ""
+for (let i = 0; i < maxTries; i++) {
+    let guessIndicator = document.createElement("div")
+    guessIndicator.dataset.index = i
+    guessIndicator.classList.add("guessindicators")
+    if (i == 0) {
+        guessIndicator.classList.add("current")
+    }
+    document.getElementById("guesses").appendChild(guessIndicator)
 }
 
 

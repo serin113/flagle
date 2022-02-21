@@ -1,5 +1,6 @@
 body {
     font-family: 'Poppins', sans-serif;
+    transition: background-color 500ms;
 }
 
 #loading {
@@ -145,7 +146,7 @@ body {
 }
 
 .colors[data-disabled][data-wrong] {
-    opacity: 0.2;
+    opacity: 0.1;
 }
 
 #green {
@@ -227,17 +228,18 @@ body {
 
 /* The Close Button */
 .close {
-    float: right;
     font-size: 28px;
     font-weight: bold;
     cursor: pointer;
-    margin-right: 5px;
+    position: absolute;
+    top: 0;
+    right: 10px;
+    cursor: pointer;
 }
 
 .close:hover, .close:focus {
     color: grey;
     text-decoration: none;
-    cursor: pointer;
 }
 
 .modal-header {  
@@ -449,14 +451,14 @@ input:checked + .slider:before {
 }
 
 .flagpic[data-disabled] {
-    opacity: 0.2;
+    opacity: 0.1;
     filter: grayscale(100%);
     cursor: default;
 }
 
 .flagpic[data-disabled]:hover {
     transform: none;
-    opacity: 0.2;
+    opacity: 0.1;
 }
 
 .flagname {
@@ -464,11 +466,12 @@ input:checked + .slider:before {
     margin-left: 2px;
     margin-right: 2px;
     font-size: 98%;
+    transform:scale(0.8,1);
     transition: opacity 150ms;
 }
 
 .flagname[data-disabled] {
-    opacity: 0.2;
+    opacity: 0.1;
 }
 
 .flagpics {
@@ -481,6 +484,9 @@ input:checked + .slider:before {
     display: inline-flex;
     font-family: 'Poppins', sans-serif;
     font-weight: bold;
+    height: 34px;
+    line-height: 17px;
+    margin-bottom: 5px;
 }
 
 .DisplayBody {	 
@@ -608,6 +614,7 @@ input:checked + .slider:before {
 
 #flagglepic {
     width: 300px;
+    max-height: 300px;
 }
 
 #flaggleresultsdata {
