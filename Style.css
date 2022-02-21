@@ -17,10 +17,21 @@ body {
     transition: visibility 1500ms, opacity 1500ms;
 }
 
+#GameResults {
+    display: none;
+}
+
 /*Dark Theme*/
+.dark, .dark #loading, .dark .modal {
+    color: rgb(216, 216, 216);
+}
+
+.dark .modal-content {
+    background: rgb(27, 27, 27);
+}
+
 .dark, .dark #loading {
     background: rgb(27, 27, 27);
-    color: rgb(216, 216, 216);
 }
 
 .dark .flagpic {
@@ -44,6 +55,18 @@ body {
 .dark .guessindicators.guessed,
 .dark .guessindicators.flag_guessed {
     border-color: rgb(216, 216, 216);
+}
+
+.dark .colors {
+    box-shadow: 0 3px 5px rgba(149, 149, 226, 0.75);
+}
+
+.dark .colors[data-disabled] {
+    box-shadow: 0 0 0 rgba(149, 149, 226, 0);
+}
+
+.dark .guessindicators.flaggle {
+    border-color: rgb(149, 149, 226);
 }
 
 
@@ -109,10 +132,16 @@ body {
     display: inline-block;
     box-sizing: border-box;
     cursor: pointer;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.75);
+    transition:
+        border-width 150ms,
+        box-shadow 150ms,
+        opacity 150ms;
 }
 
 .colors[data-disabled] {
     border-width: 4px;
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
 }
 
 .colors[data-disabled][data-wrong] {
@@ -128,7 +157,7 @@ body {
     background: red;		
 }
 #black {
-    background: black;
+    background: rgb(51, 51, 51);
 
 }
 #yellow {
@@ -508,6 +537,10 @@ input:checked + .slider:before {
 .guessindicators.guessed {
     border-width: 2px;
     border-color: black;
+}
+
+.guessindicators.flaggle {
+    border-color: rgb(149, 149, 226);
 }
 
 .guessindicators.guessed.green {

@@ -18,6 +18,8 @@ let countryIndex = null     // <country>'s index in <countries>
 let currentCountryChoicesCount = countryChoicesCount
                             // number of enabled country buttons
 let tries = 0               // number of tries (button pushes) so far
+let currDate = new Date()   // current date on page load
+let resultText = ""         // game's share text
 
 
 // helper functions
@@ -153,12 +155,12 @@ async function countryRandomizer(count){
 
 /* set the randomizer function based on <dailyMode> */
 if (dailyMode) {
-    let dateString = new Date().toDateString()
+    let dateString = currDate.toDateString()
     let dateBytes = Array.from(dateString, (x) => x.charCodeAt(0))
     let dateHash = MurmurHash3(dateBytes)
     console.log("Current day: \""+dateString+"\"")
     console.log("Hash: \""+dateHash+"\"")
-    randomizer = mulberry32(new Date().getDay())
+    randomizer = mulberry32(currDate.getDay())
     for (let i = 0; i < 15; i++) randomizer()
 }
 else {
@@ -183,6 +185,7 @@ function displayCountries() {
     choices.innerHTML = ""
     let div_flagpics = null
     let div_flagnames = null
+    let counter = 0
     for (let i = 0; i < countries.length; i++) {
         let x = countries[i]
 
@@ -317,6 +320,118 @@ function disableButtons() {
             f.dataset.disabled = true
         }
     }
+
+    let currGuess = document.getElementById("guesses")
+        .querySelectorAll(".current")
+    if (currGuess.length > 0) {
+        currGuess[0].classList.remove("current")
+    }
+}
+
+/* create a new element containing the guesses so far */
+function cloneGuesses() {
+    let newGuesses = document.createElement("div")
+    for (let i of document.getElementById("guesses").children) {
+        if (i.classList.contains("guessed") || i.classList.contains("flag_guessed")) {
+            newGuesses.appendChild(i.cloneNode(true))
+        }
+    }
+    return newGuesses
+}
+
+/* Clipboard stuff: https://stackoverflow.com/a/30810322 */
+function fallbackCopyTextToClipboard(text) {
+    var textArea = document.createElement("textarea");
+    textArea.value = text;
+    
+    // Avoid scrolling to bottom
+    textArea.style.top = "0";
+    textArea.style.left = "0";
+    textArea.style.position = "fixed";
+  
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+  
+    try {
+        var successful = document.execCommand('copy');
+        var msg = successful ? 'successful' : 'unsuccessful';
+        console.log('Fallback: Copying text command was ' + msg);
+    } catch (err) {
+        console.error('Fallback: Oops, unable to copy', err);
+    }
+
+    document.body.removeChild(textArea);
+}
+function copyTextToClipboard(text) {
+    if (!navigator.clipboard) {
+        fallbackCopyTextToClipboard(text);
+        return;
+    }
+    navigator.clipboard.writeText(text).then(function() {
+        console.log('Async: Copying to clipboard was successful!');
+    }, function(err) {
+        console.error('Async: Could not copy text: ', err);
+    });
+}
+
+/* update & display results in the GameResults modal */
+function showResults(isWin) {
+    let resultMsg = ""
+    if (isWin) {
+        switch (tries) {
+            case 1:
+                resultMsg = "Superb!"
+                break
+            case 2:
+                resultMsg = "Amazing!"
+                break
+            case 3:
+                resultMsg = "Bravo!"
+                break
+            case 4:
+                resultMsg = "Great!"
+                break
+            case 5:
+                resultMsg = "Nice!"
+                break
+            case 6:
+                resultMsg = "Phew..."
+                break
+        }
+    }
+    else {
+        if (currentCountryChoicesCount > 4) {
+            resultMsg = "Nice try"
+        }
+        else {
+            resultMsg = "So close!"
+        }
+    }
+
+    document.getElementById("gameoverresult").innerHTML = resultMsg
+    document.getElementById("flagglepic").src = country.img
+    document.getElementById("flagglenamedisplay").innerHTML = "The <b>FLAGGLE</b> is <b>" + country.name + "</b>"
+    let newGuesses = cloneGuesses()
+    let newGuesses_parent = document.getElementById("flaggleresultsdata")
+    newGuesses_parent.insertBefore(newGuesses, document.getElementById("resultguesses"))
+    newGuesses_parent.removeChild(document.getElementById("resultguesses"))
+    if (dailyMode) {
+        document.getElementById("dailyflaggledate").innerHTML = currDate.toDateString()
+    }
+
+    document.getElementById("sharebutton").addEventListener("click", function(){
+        let finalShareText = "Flaggle "
+        if (dailyMode) finalShareText += "Daily  "
+        else finalShareText += "Random  "
+        finalShareText += tries+"/"+maxTries+"\n"
+        if (dailyMode) finalShareText += currDate.toDateString().slice(4)
+        finalShareText += "\n\n"+resultText
+        copyTextToClipboard(finalShareText)
+        this.querySelector("#sharetext").innerHTML = "Copied!"
+    })
+
+    document.getElementById("GameResults").style.display = "block"
 }
 
 /* handle clicks on flag and color buttons, check win status */
@@ -324,7 +439,10 @@ function onClickButtons() {
     console.log("current count: " + currentCountryChoicesCount)
     this.removeEventListener("click", onClickButtons)
     tries += 1
+
     let isColorButton = "color" in this.dataset
+    let win = null
+    let clickedFlaggle = false
 
     if (isColorButton) { // color buttons
         setGuessCounter(tries-1, this.dataset.color)
@@ -332,25 +450,35 @@ function onClickButtons() {
         this.dataset.disabled = true
         if (!colorCheck(this.dataset.color)) {
             this.dataset.wrong = true
+            resultText += "⚫"
+        }
+        else {
+            resultText += "🟣"
         }
     }
     else { // flag buttons
         setGuessCounter(tries-1)
         if (this.dataset.index != countryIndex) {
             fadeFlagPic(this)
+            resultText += "⬛"
         }
         else {
-            document.getElementById("results").innerHTML = "CORRECT! Country is " + country.name
-            disableButtons()
-            return
+            clickedFlaggle = true
+            resultText += "🟪"
+
+            //win = true
         }
     }
 
     // win/lose state checker
-    let win = null
-    if (tries == maxTries) {
+    if (clickedFlaggle) {
+        // win by directly picking flaggle
+        win = true
+    }
+    else if (tries == maxTries) { // sudden death (last try)
         if (isColorButton) {
             if (currentCountryChoicesCount == 1) {
+                // win by sudden death (elimination by color)
                 win = true
             }
             else {
@@ -358,7 +486,9 @@ function onClickButtons() {
             }
         }
         else {
-            if (this.dataset.index == countryIndex) {
+            if (clickedFlaggle) {
+                // win by sudden death (directly picking flaggle)
+                console.log("sudden death")
                 win = true
             }
             else {
@@ -367,18 +497,22 @@ function onClickButtons() {
         }
     }
     else if (currentCountryChoicesCount == 1) {
+        // win by elimination with remaining tries
         win = true
     }
 
     // indicate win/lose, disable buttons
     if (win != null) {
         if (win) {
-            document.getElementById("results").innerHTML = "CORRECT! Country is " + country.name
-        }
-        else {
-            document.getElementById("results").innerHTML = "WRONG! Country is " + country.name
+            let guessList = document.getElementById("guesses")
+                .querySelectorAll(".guessed, .flag_guessed")
+            if (clickedFlaggle) {
+                guessList[guessList.length-1].classList.add("flaggle")
+            }
+            resultText += "  🏁"
         }
         disableButtons()
+        showResults(win)
     }
 }
 
