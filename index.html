@@ -55,7 +55,7 @@
                 </div>
             </div>
 
-                <!--Game Choices-->
+            <!--Game Choices-->
             <div id="choices">
                 <div class="flagpics" id="country1">
 
@@ -65,11 +65,47 @@
                 </div>
             </div>
 
-            <div id="results">
-                <div id="answer">
-
+            <!--Game Result Popup-->
+            <div id="GameResults" class="resultsmodal">
+                <div class="modal-content">
+                    <div class="modal-header" id="resultsmodalheader">
+                    <span class="close" id="closeresults">&times;</span>
+                    <h3 class="modalheadertext" id="gameoverresult">Correct!</h3> <!--Changes if it's a win or not, and by how many tries (1=Excellent!,3=Great!,6=Phew,etc.)-->
+                    </div>
+                    <div class="modal-body" id="resultsmodalbody">
+                        <div id="flaggleresultsdata">
+                            <img id="flagglepic" src="https://www.worldometers.info/img/flags/ja-flag.gif"></img></br><!--Flaggle Pic-->
+                            <text id="flagglenamedisplay">The <b>FLAGGLE</b> is Japan</text></br> <!--if daily: The DAILY FLAGGLE ...-->
+                            <text id="dailyflaggledate">February 21, 2022</text> <!--ONLY if DAILY-->
+                        </div>
+                    <div id="resultsmodalfooter">
+                        <div class="footerhalf "id="footerleft">
+                            <div id="dailycountdowndiv">
+                                <text id="dailycountdowntext">12 : 34 : 56</text>
+                            </div>
+                        </div>
+                        <div class="footerhalf "id="footerright">
+                            <div id="sharebutton">
+                                <div id="sharebuttoncontents">
+                                    <text id="sharetext">Share</text> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+
+            <script>
+
+                var modalresults = document.getElementById("GameResults");
+    
+                var spanresults = document.getElementById("closeresults");
+    
+                spanresults.onclick = function() {
+                    modalresults.style.display = "none";
+                }
+            </script>
+
         </div>
 
         <div id="keyscontainer">
@@ -93,7 +129,7 @@
             </div>
         </div>
 
-         <div id="howtotext" class="modal">
+        <div id="howtotext" class="modal">
             <div class="modal-content">
                 <div class="modal-header" id="howtomodalheader">
                 <span class="close" id="closehowto">&times;</span>
@@ -133,6 +169,7 @@
                 <h3 class="modalheadertext">Statistics</h3>
                 </div>
                 <div class="modal-body" id="statsmodalbody">
+                    <text class="statsmodetext" id="dailytext">DAILY</text>
                     <div id="statsdisplay">
                         <div class="statstab" id="flagsguessed">
                             <text class="statstext" id="flagsguessedtext">0</text></br>
@@ -140,8 +177,27 @@
                         </div>
                         <div class="statstab" id="winpercent">
                             <text class="statstext" id="winpercenttext">0</text></br>
-                            <text class="statsdesc" id="winpercentdesc"></br>Win %</text></br>
-                            <text class="statsdesc" id="winpercentdesc">D</text>
+                            <text class="statsdesc" id="winpercentdesc">Win %</text></br>
+                        </div>
+                        <div class="statstab" id="currentstreak">
+                            <text class="statstext" id="currentstreaktext">0</text></br>
+                            <text class="statsdesc" id="currentstreakdesc">Current Streak</text>
+                        </div>
+                        <div class="statstab" id="beststreak">
+                            <text class="statstext" id="beststreaktext">0</text></br>
+                            <text class="statsdesc" id="beststreakdesc">Best Streak</text>
+                        </div>
+                    </div>
+
+                    <text class="statsmodetext" id="randomtext">RANDOM</text>
+                    <div id="statsdisplay">
+                        <div class="statstab" id="flagsguessed">
+                            <text class="statstext" id="flagsguessedtext">0</text></br>
+                            <text class="statsdesc" id="flagsguesseddesc">FLAGGLEs Guessed</text>
+                        </div>
+                        <div class="statstab" id="winpercent">
+                            <text class="statstext" id="winpercenttext">0</text></br>
+                            <text class="statsdesc" id="winpercentdesc">Win %</text></br>
                         </div>
                         <div class="statstab" id="currentstreak">
                             <text class="statstext" id="currentstreaktext">0</text></br>
@@ -218,7 +274,8 @@
                 modalset.style.display = "none";
             }
         </script>
-		
+
+        <!--Flag List Modal-->
         <div id="flaglist" class="modal">
             <div class="modal-content">
                 <div class="modal-header" id="flagsmodalheader">
@@ -267,6 +324,9 @@
                 }                
                 else if (event.target == modalset) {
                     modalset.style.display = "none";
+                }
+                else if (event.target == modalresults) {
+                    modalresults.style.display = "none";
                 }
             }
         </script>
