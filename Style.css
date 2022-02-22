@@ -101,6 +101,11 @@ body {
     background-color: rgba(149, 149, 226, 0.425);
 }
 
+.dark #middlediv {
+    background: rgb(27, 27, 27);
+    border: 0.05rem solid rgb(27, 27, 27);
+    color: white;
+}
 
 /*End of Dark Theme*/
 
@@ -141,6 +146,8 @@ body {
 #keyscontainer {
     width: 100%;
     text-align: center;
+    position: sticky;
+    bottom: 0rem;
 }
 
 #colorkeys {
@@ -216,7 +223,7 @@ body {
     /* Hidden by default */
     position: fixed;
     /* Stay in place */
-    z-index: 1;
+    z-index: 100;
     /* Sit on top */
     padding-top: 5rem;
     /* Location of the box */
@@ -544,6 +551,7 @@ input:checked+.slider:before {
 
 #gamediv {
     margin: 0 auto;
+    margin-top: 0.5rem;
     /* width: 100%; */
     width: 26rem;
     text-align: center;
@@ -754,12 +762,13 @@ input:checked+.slider:before {
 }
 
 .displaybuttons {
+    margin-top: 0.25rem;
     font-family: 'Poppins', sans-serif;
     font-size: 0.9rem;
     color: white;
     height: 1.75rem;
     border-radius: 0.5rem;
-    width: 4rem;
+    width: 5rem;
     box-sizing: content-box;
     padding: 0.25rem;
     padding-bottom: 0.5rem;
@@ -832,7 +841,7 @@ input:checked+.slider:before {
     /* Hidden by default */
     position: fixed;
     /* Stay in place */
-    z-index: 1;
+    z-index: 100;
     /* Sit on top */
     padding-top: 5rem;
     /* Location of the box */
@@ -939,6 +948,11 @@ input:checked+.slider:before {
     position: sticky;
     top: 0.5rem;
     z-index: 5;
+    background: white;
+    border: 0.05rem solid white;
+    color: black;
+    border-radius: 0.5rem;
+    padding-bottom: 0.25rem;
 }
 
 #drnotiftext {
@@ -955,7 +969,7 @@ input:checked+.slider:before {
     /* Hidden by default */
     position: fixed;
     /* Stay in place */
-    z-index: 1;
+    z-index: 100;
     /* Sit on top */
     padding-top: 12.5rem;
     /* Location of the box */
@@ -989,4 +1003,12 @@ input:checked+.slider:before {
 
 #flagglezoompic {
     border: 0.05rem solid grey;
+}
+
+#dailyflaggle {
+    margin-left: 0.5rem;
+}
+
+#randomflaggle {
+    margin-right: 0.5rem;
 }

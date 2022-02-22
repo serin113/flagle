@@ -470,6 +470,8 @@
             var guesses = document.getElementById('guesses');
             var sharebutton = document.getElementById('sharebutton');
 
+            var middlediv = document.getElementById('middlediv');
+
             if (checkbox.checked) {
                 Cookies.set("darkMode", "true", {
                     sameSite: 'strict'
@@ -508,6 +510,8 @@
                 randomflaggle.classList.add("dark");
                 guesses.classList.add("dark");
                 sharebutton.classList.add("dark");
+
+                middlediv.classList.add("dark");
             } else {
                 Cookies.set("darkMode", "false", {
                     sameSite: 'strict'
@@ -546,6 +550,8 @@
                 randomflaggle.classList.remove("dark");
                 guesses.classList.remove("dark");
                 sharebutton.classList.remove("dark");
+
+                middlediv.classList.remove("dark");
             }
         }
 
