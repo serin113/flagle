@@ -7,7 +7,7 @@
 // configs
 let countryChoicesCount = 30
 let maxTries = 6
-let dailyMode = false
+let dailyMode = true
 let icons = {
     rightColor: "🟣",
     wrongColor: "⚫",
@@ -533,8 +533,6 @@ countryRandomizer(countryChoicesCount).then((data) => {
     console.log("RANDOMIZED: ")
     console.log(country)
     console.log(countries)
-    displayCountries()
-    enableButtons()
     displayCountries()
     enableButtons()
 })
