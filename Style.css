@@ -826,7 +826,7 @@ input:checked+.slider:before {
     color: white;
     height: 1.75rem;
     border-radius: 0.5rem;
-    width: 5rem;
+    width: 6rem;
     box-sizing: content-box;
     padding: 0.25rem;
     padding-bottom: 0.5rem;
