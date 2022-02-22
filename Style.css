@@ -517,6 +517,10 @@ input:checked+.slider:before {
     background: rgb(149, 149, 226);
 }
 
+#searchbutton:active {
+    opacity: 0.8;
+}
+
 #searchicon {
     line-height: 35px;
     margin-left: 5px;
@@ -806,6 +810,7 @@ input:checked+.slider:before {
     width: 300px;
     max-height: 300px;
     border: 1px solid grey;
+    margin-top: 20px;
 }
 
 #flaggleresultsdata {
