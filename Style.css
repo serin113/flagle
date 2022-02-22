@@ -471,10 +471,6 @@ input:checked+.slider:before {
     font-size: 16px;
 }
 
-.statsmodetext {
-    font-weight: bold;
-}
-
 
 /*Flags List*/
 
@@ -679,6 +675,44 @@ input:checked+.slider:before {
     cursor: pointer;
 }
 
+/*Stats Modal*/
+
+#drchoice {
+    width: 300px;
+    height: 35px;
+    margin: 0 auto;
+    display: inline-flex;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#drchoiceleft {
+    display: inline-block;
+    width: 50%;
+    height: 35px;
+    background-color: rgb(149, 149, 226);
+    border: 2px solid rgb(149, 149, 226);
+    border-right-width: 1px;
+    border-radius: 10px 0px 0px 10px;
+    cursor: pointer;
+}
+
+#drchoiceright {
+    display: inline-block;
+    width: 50%;
+    height: 35px;
+    background-color: rgb(133, 133, 133);
+    border: 2px solid rgb(121, 121, 121);
+    border-left-width: 1px;
+    border-radius: 0px 10px 10px 0px;
+    cursor: pointer;
+}
+
+.statsmodetext {
+    font-weight: bold;
+    line-height: 35px;
+    color: white;
+}
 
 /*Results Modal*/
 
@@ -713,6 +747,7 @@ input:checked+.slider:before {
 #flagglepic {
     width: 300px;
     max-height: 300px;
+    border: 1px solid grey;
 }
 
 #flaggleresultsdata {
