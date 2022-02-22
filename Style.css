@@ -154,7 +154,7 @@ body {
     text-align: center;
     position: -webkit-sticky;
     position: sticky;
-    bottom: 0rem;
+    bottom: 0.5rem;
 }
 
 #colorkeys {
@@ -162,6 +162,10 @@ body {
     align-items: center;
     justify-content: center;
     margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+    gap: 0.2rem;
 }
 
 .colors {
@@ -169,16 +173,17 @@ body {
     border-width: 0.1rem;
     border-radius: 0.4rem;
     text-align: center;
-    width: 2.5rem;
+    /* width: 2.5rem; */
+    width: 2.85rem;
     height: 3.5rem;
-    margin-top: 1rem;
-    margin-left: 0.1rem;
-    margin-right: 0.1rem;
+    /* margin-left: 0.1rem;
+    margin-right: 0.1rem; */
     display: inline-block;
     box-sizing: border-box;
     cursor: pointer;
     box-shadow: 0 0.15rem 0.25rem rgba(0, 0, 0, 0.75);
     transition: border-width 150ms, box-shadow 150ms, opacity 150ms;
+    /* flex-grow: 1; */
 }
 
 .colors[data-disabled] {
@@ -601,14 +606,17 @@ input:checked+.slider:before {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
+    align-items: stretch;
+    align-content: stretch;
 }
 
 #choices {
     text-align: center;
     /* display: inline-block; */
     display: flex;
+    flex-grow: 1;
     flex-direction: column;
-    width: 26rem;
+    /* width: 26rem; */
     margin: 0.5rem auto auto;
     padding: 0.1rem;
 }
@@ -616,8 +624,8 @@ input:checked+.slider:before {
 .flagpic {
     width: 4.75rem;
     height: 2.5rem;
-    margin-left: 0.1rem;
-    margin-right: 0.1rem;
+    /* margin-left: 0.1rem;
+    margin-right: 0.1rem; */
     border: 0.1rem solid;
     cursor: pointer;
     background-color: rgba(255, 255, 255, 0.5);
@@ -649,8 +657,8 @@ input:checked+.slider:before {
 
 .flagname {
     width: 5rem;
-    margin-left: 0.1rem;
-    margin-right: 0.1rem;
+    /* margin-left: 0.1rem;
+    margin-right: 0.1rem; */
     font-size: 0.85rem;
     font-weight: bold;
     transition: opacity 150ms;
@@ -677,6 +685,7 @@ input:checked+.slider:before {
     font-family: 'Poppins', sans-serif;
     font-weight: bold;
     margin-bottom: 0.5rem;
+    gap: 0.2rem;
 }
 
 .flagnames {
@@ -686,6 +695,7 @@ input:checked+.slider:before {
     height: 1.7rem;
     line-height: 0.85rem;
     margin-bottom: 0.5rem;
+    gap: 0.2rem;
 }
 
 .DisplayBody {
@@ -934,13 +944,13 @@ input:checked+.slider:before {
     display: inline-flex;
 }
 
-#dailycountdowntext {
+.dailycountdowntext {
     font-weight: bold;
     letter-spacing: 0.1rem;
     font-size: 1.5rem;
 }
 
-#dailycountdowndiv {
+.dailycountdowndiv {
     margin-top: 0.5rem;
 }
 
