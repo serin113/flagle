@@ -836,24 +836,13 @@ input:checked+.slider:before {
 }
 
 #sharebutton {
-    color: white;
-    margin-top: 10px;
-    text-align: center;
-    justify-content: center;
-    border-radius: 5px;
     height: 40px;
-    width: 70%;
-    margin-left: auto;
-    margin-right: auto;
-    cursor: pointer;
-    border: 2px solid rgb(149, 149, 226);
-    background-color: rgb(149, 149, 226);
-    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.75);
-    transition: border-width 150ms, box-shadow 150ms, opacity 150ms;
-    cursor: pointer;
+    max-height: 40px;
+    padding-top: 9px;
 }
 
 #sharetext {
-    line-height: 40px;
+    line-height: 30px;
     font-weight: bold;
+    font-size: 25px;
 }
