@@ -1,12 +1,13 @@
 //TO DO:
 //Daily countdown timer on both stats and GameResult timer
 //Stats Display Change
-//Daily & Random buttons
-//Restore game state on refresh
+//Flag list
+//Hard mode
 /*
 Cookies:
     darkMode (bool)
     dailyMode (bool)
+    hardMode (bool)
     lastGame (json)
         date (string)
         isWin (bool)
@@ -405,6 +406,28 @@ function showResults() {
         }
     }
 
+    if (dailyMode) {
+        let countdownDaily = setInterval(function(){
+            let future = new Date(currDate.getTime())
+            let now = new Date()
+            future.setDate(future.getDate()+1)
+            future.setHours(0, 0, 0)
+            let diff = future - now
+            let hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+            let minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))
+            let seconds = Math.floor((diff % (1000 * 60)) / 1000)
+            if (hours < 10) hours = "0" + hours
+            if (minutes < 10) minutes = "0" + minutes
+            if (seconds < 10) seconds = "0" + seconds
+            let timeText = hours + " : " + minutes + " : " + seconds
+            document.getElementById("dailycountdowntext_stats").innerHTML = timeText
+            document.getElementById("dailycountdowntext_results").innerHTML = timeText
+            if (diff < 0) {
+                clearInterval(countdownDaily);
+            }
+        }, 1000)
+    }
+
     document.getElementById("gameoverresult").innerHTML = resultMsg
     document.getElementById("flagglepic").src = countries[countryIndex].img
     let dailyModeText = "FLAGGLE"
@@ -576,6 +599,7 @@ function setDailyMode() {
     }
 }
 
+/* save game state into lastGame cookie */
 function saveLastGame() {
     console.log("saving game")
     if (isWin == null) {
@@ -593,6 +617,7 @@ function saveLastGame() {
     Cookies.set("lastGame", JSON.stringify(lastGame), { sameSite: 'strict' })
 }
 
+/* load game state from lastGame cookie into globals */
 function loadLastGame() {
     if (Cookies.get("dailyMode") === "false") return
     console.log("loading last game")
@@ -612,6 +637,7 @@ function loadLastGame() {
     showResults()
 }
 
+/* reset lastGame cookie */
 function resetLastGame() {
     Cookies.remove("lastGame")
     location.reload()
@@ -648,6 +674,8 @@ for (let i = 0; i < maxTries; i++) {
     document.getElementById("guesses").appendChild(guessIndicator)
 }
 
+document.getElementById("dailycountdowntext_stats").innerHTML = ""
+document.getElementById("dailycountdowntext_results").innerHTML = ""
 
 // main program
 

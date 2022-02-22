@@ -820,7 +820,6 @@ input:checked+.slider:before {
 }
 
 .displaybuttons {
-    margin-top: 0.25rem;
     font-family: 'Poppins', sans-serif;
     font-size: 0.9rem;
     color: white;
@@ -836,6 +835,10 @@ input:checked+.slider:before {
     transition: border-width 150ms, box-shadow 150ms, opacity 150ms;
     cursor: pointer;
     position: relative;
+}
+
+#gamediv .displaybuttons {
+    margin-top: 0.25rem;
 }
 
 .displaybuttons:active:not([disabled]) {
@@ -969,13 +972,13 @@ input:checked+.slider:before {
 #sharebutton {
     height: 2rem;
     max-height: 2rem;
-    padding-top: 0.45rem;
+    /* padding-top: 0.45rem; */
 }
 
 #sharetext {
     line-height: 1.5rem;
     font-weight: bold;
-    font-size: 1.35rem;
+    font-size: 1.25rem;
 }
 
 
@@ -1018,50 +1021,6 @@ input:checked+.slider:before {
     font-size: 0.85rem;
     font-weight: bold;
     letter-spacing: 0.1rem;
-}
-
-
-/*Zoom Flag Pictures Modal*/
-
-.zoommodal {
-    display: none;
-    /* Hidden by default */
-    position: fixed;
-    /* Stay in place */
-    z-index: 100;
-    /* Sit on top */
-    padding-top: 1rem;
-    /* Location of the box */
-    left: 0;
-    top: 0;
-    width: 100%;
-    /* Full width */
-    height: 100%;
-    /* Full height */
-    overflow: auto;
-    /* Enable scroll if needed */
-    background-color: rgb(0, 0, 0);
-    /* Fallback color */
-    background-color: rgba(0, 0, 0, 0.4);
-    /* Black w/ opacity */
-}
-
-.zoommodalcontent {
-    text-align: center;
-    background: transparent;
-}
-
-#zoomname {
-    color: rgb(255, 255, 255);
-    font-weight: bold;
-    letter-spacing: 0.1rem;
-    text-shadow: 0rem 0.25rem 0.25rem black;
-    font-size: 2rem;
-    margin-bottom: 0rem;
-}
-
-#flagglezoompic {
-    border: 0.05rem solid grey;
 }
 
 #dailyflaggle {
