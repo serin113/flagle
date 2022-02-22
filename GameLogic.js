@@ -3,6 +3,20 @@
 //Stats Display Change
 //Daily & Random buttons
 //Restore game state on refresh
+/*
+Cookies:
+    darkMode (bool)
+    dailyMode (bool)
+    lastGame (json)
+        date (string)
+        isWin (bool)
+        index (int)
+        hasFlaggle (bool)
+        resultText (string)
+        guesses (list of dicts)
+            type (string=color, null=flag)
+            index (int)
+*/
 
 // configs
 let countryChoicesCount = 30
@@ -33,7 +47,6 @@ let seedOverride = null // null if disabled, string if needed
 // global-ish variables
 let randomizer = null // randomizer function for getRandomInt
 let countries = null // <countryChoicesCount>-length list of countries w/ data
-let country = null // chosen country w/ data
 let countryIndex = null // <country>'s index in <countries>
 let currentCountryChoicesCount = countryChoicesCount
     // number of enabled country buttons
@@ -41,8 +54,9 @@ let tries = 0 // number of tries (button pushes) so far
 let currDate = new Date() // current date on page load
 let resultText = "" // game's share text
 let isWin = null // game state variable: null/true/false
-let finalState = [] // game state after win/lose
-    // 
+let hasFlaggle = false // flaggle is directly found
+let guesses = [] // list of guesses
+let lastGame = null // game state after win/lose
 
 
 // helper functions
@@ -258,11 +272,14 @@ function setGuessCounter(index, color = null) {
         guessIndicatorCurrent.classList.add("guessed")
         guessIndicatorCurrent.classList.add(color)
     }
+    if (hasFlaggle) {
+        guessIndicatorCurrent.classList.add("flaggle")
+    }
 }
 
 /* check if <color> is in <country>'s colors */
 function colorCheck(color) {
-    return country.colors.includes(color)
+    return countries[countryIndex].colors.includes(color)
 }
 
 /* set country name at <index> as disabled */
@@ -281,12 +298,8 @@ function fadeFlagPic(elem) {
 
 /* remove flags not containing "color" */
 function filterFlags(color) {
-    // let choices = document.getElementById("choices").querySelectorAll(".flagpic")
     let choices = document.getElementById("choices").querySelectorAll(".flagpic:not([data-disabled])")
     for (let x of choices) {
-        // if (x.hasAttribute("data-disabled")) {
-        //     continue
-        // }
         let x_colors = countries[x.dataset.index].colors
         if (colorCheck(color)) {
             if (!(x_colors.includes(color))) {
@@ -311,7 +324,7 @@ function enableButtons() {
     document.getElementById("guesses").removeEventListener("click", showResults)
 }
 
-/* disable all flag & color buttons */
+/* disable all flag & color buttons except the flaggle */
 function disableButtons() {
     for (let c of document.getElementById("colorkeys").children) {
         c.removeEventListener("click", onClickButtons)
@@ -392,8 +405,8 @@ function showResults() {
     }
 
     document.getElementById("gameoverresult").innerHTML = resultMsg
-    document.getElementById("flagglepic").src = country.img
-    document.getElementById("flagglenamedisplay").innerHTML = "The <b>FLAGGLE</b> is <b>" + country.name + "</b>"
+    document.getElementById("flagglepic").src = countries[countryIndex].img
+    document.getElementById("flagglenamedisplay").innerHTML = "The <b>FLAGGLE</b> is <b>" + countries[countryIndex].name + "</b>"
     let newGuesses = cloneGuesses()
     let newGuesses_parent = document.getElementById("flaggleresultsdata")
     document.getElementById("resultguesses").id = "resultguesses_temp"
@@ -433,8 +446,11 @@ function onClickButtons() {
 
     let isColorButton = "color" in this.dataset
     let clickedFlaggle = false
+    let currGuess = {}
 
+    currGuess.index = this.dataset.index
     if (isColorButton) { // color buttons
+        currGuess.type = this.dataset.color
         setGuessCounter(tries - 1, this.dataset.color)
         filterFlags(this.dataset.color)
         this.dataset.disabled = true
@@ -445,12 +461,14 @@ function onClickButtons() {
             resultText += icons.rightColor
         }
     } else { // flag buttons
+        currGuess.type = null
         setGuessCounter(tries - 1)
         if (this.dataset.index != countryIndex) {
             fadeFlagPic(this)
             resultText += icons.wrongFlag
         } else {
             clickedFlaggle = true
+            hasFlaggle = true
             resultText += icons.rightFlag
         }
     }
@@ -459,7 +477,8 @@ function onClickButtons() {
     if (clickedFlaggle) {
         // win by directly picking flaggle
         isWin = true
-    } else if (tries == maxTries) { // sudden death (last try)
+    } else
+    if (tries == maxTries) { // sudden death (last try)
         if (isColorButton) {
             if (currentCountryChoicesCount == 1) {
                 // win by sudden death (elimination by color)
@@ -480,21 +499,24 @@ function onClickButtons() {
         // win by elimination with remaining tries
         isWin = true
     }
+    if (isWin) resultText += "  " + icons.flaggle
+
+    guesses.push(currGuess)
 
     // indicate win/lose, disable buttons
     if (isWin != null) {
+        if (dailyMode) saveLastGame()
         if (isWin) {
             let guessList = document.getElementById("guesses")
                 .querySelectorAll(".guessed, .flag_guessed")
             if (clickedFlaggle) {
                 guessList[guessList.length - 1].classList.add("flaggle")
             }
-            resultText += "  " + icons.flaggle
         }
-        let currGuess = document.getElementById("guesses")
+        let g = document.getElementById("guesses")
             .querySelectorAll(".current")
-        if (currGuess.length > 0) {
-            currGuess[0].classList.remove("current")
+        if (g.length > 0) {
+            g[0].classList.remove("current")
         }
         disableButtons()
         showResults()
@@ -537,6 +559,47 @@ function setDailyMode() {
         document.getElementById("dailyflaggle").disabled = false
         document.getElementById("dailyflaggle").addEventListener("click", clickDailyModeButton)
     }
+}
+
+function saveLastGame() {
+    console.log("saving game")
+    if (isWin == null) {
+        console.log("skip")
+        return
+    }
+    let lastGame_temp = {}
+    lastGame_temp.date = currDate.toDateString()
+    lastGame_temp.isWin = isWin
+    lastGame_temp.index = countryIndex
+    lastGame_temp.hasFlaggle = hasFlaggle
+    lastGame_temp.resultText = resultText
+    lastGame_temp.guesses = guesses
+    lastGame = lastGame_temp
+    Cookies.set("lastGame", JSON.stringify(lastGame), { sameSite: 'strict' })
+}
+
+function loadLastGame() {
+    if (Cookies.get("dailyMode") === "false") return
+    console.log("loading last game")
+    let lastGameCookie = Cookies.get("lastGame")
+    if (lastGameCookie == undefined) return
+    lastGame = JSON.parse(lastGameCookie)
+    if (currDate.toDateString() != lastGame.date) return
+    isWin = lastGame.isWin
+    countryIndex = lastGame.index
+    tries = lastGame.guesses.length
+    resultText = lastGame.resultText
+    for (let i = 0; i < tries; i++) {
+        if (i == tries - 1) hasFlaggle = lastGame.hasFlaggle
+        setGuessCounter(i, lastGame.guesses[i].type)
+    }
+    disableButtons()
+    showResults()
+}
+
+function resetLastGame() {
+    Cookies.remove("lastGame")
+    location.reload()
 }
 
 
@@ -582,4 +645,5 @@ countryRandomizer(countryChoicesCount).then((data) => {
     console.log(countries)
     displayCountries()
     enableButtons()
+    loadLastGame()
 })
