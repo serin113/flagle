@@ -93,6 +93,10 @@ body {
     box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.75);
 }
 
+.dark .displaybuttons.disabled {
+    background-color: rgba(149, 149, 226, 0.425);
+}
+
 
 /*End of Dark Theme*/
 
@@ -733,6 +737,11 @@ input:checked+.slider:before {
     border: 2px solid rgb(119, 119, 175);
     box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.75);
     opacity: 0.85;
+}
+
+.displaybuttons.disabled {
+    opacity: 0.3;
+    cursor: default;
 }
 
 

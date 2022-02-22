@@ -434,7 +434,9 @@
             var sharebutton = document.getElementById('sharebutton');
 
             if (checkbox.checked) {
-                Cookies.set("darkMode", "true")
+                Cookies.set("darkMode", "true", {
+                    sameSite: 'strict'
+                })
                 body.classList.add("dark");
 
                 mht.classList.add("dark");
@@ -470,7 +472,9 @@
                 guesses.classList.add("dark");
                 sharebutton.classList.add("dark");
             } else {
-                Cookies.set("darkMode", "false")
+                Cookies.set("darkMode", "false", {
+                    sameSite: 'strict'
+                })
                 body.classList.remove("dark");
 
                 mht.classList.remove("dark");

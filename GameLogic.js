@@ -499,8 +499,47 @@ function onClickButtons() {
     }
 }
 
+/* click handler for daily mode button */
+function clickDailyModeButton() {
+    Cookies.set("dailyMode", "true", { sameSite: 'strict' })
+    setDailyMode()
+    location.reload()
+}
+
+/* click handler for random mode button */
+function clickRandomModeButton() {
+    Cookies.set("dailyMode", "false", { sameSite: 'strict' })
+    setDailyMode()
+    location.reload()
+}
+
+/* set game mode based on selection */
+function setDailyMode() {
+    let dailyModeCookie = Cookies.get("dailyMode")
+    if (dailyModeCookie === undefined) {
+        Cookies.set("dailyMode", String(dailyMode), { sameSite: 'strict' })
+        dailyModeCookie = Cookies.get("dailyMode")
+    }
+    if (dailyModeCookie === "true") {
+        dailyMode = true
+        document.getElementById("randomflaggle").classList.remove("disabled")
+        document.getElementById("dailyflaggle").classList.add("disabled")
+    } else {
+        dailyMode = false
+        document.getElementById("randomflaggle").classList.add("disabled")
+        document.getElementById("dailyflaggle").classList.remove("disabled")
+    }
+}
+
 
 // initializations
+
+/* initialize daily and random mode buttons */
+document.getElementById("dailyflaggle").addEventListener("click", clickDailyModeButton)
+document.getElementById("randomflaggle").addEventListener("click", clickRandomModeButton)
+
+/* set game mode */
+setDailyMode()
 
 /* initialize randomizer function */
 if (seedOverride == null) {
@@ -522,8 +561,6 @@ for (let i = 0; i < maxTries; i++) {
     if (i == 0) guessIndicator.classList.add("current")
     document.getElementById("guesses").appendChild(guessIndicator)
 }
-
-
 
 
 // main program
