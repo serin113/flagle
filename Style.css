@@ -2,6 +2,12 @@ html {
     font-size: 20px;
 }
 
+@media screen and (max-width: 600px) {
+    html {
+        font-size: 15px;
+    }
+}
+
 body {
     font-family: 'Poppins', sans-serif;
     transition: background-color 250ms;
@@ -605,6 +611,7 @@ input:checked+.slider:before {
     margin-left: 0.1rem;
     margin-right: 0.1rem;
     font-size: 0.85rem;
+    font-weight: bold;
     transition: opacity 150ms;
     transform: scale(0.8, 1);
 }

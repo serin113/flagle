@@ -407,7 +407,11 @@ function showResults() {
 
     document.getElementById("gameoverresult").innerHTML = resultMsg
     document.getElementById("flagglepic").src = countries[countryIndex].img
-    document.getElementById("flagglenamedisplay").innerHTML = "The <b>FLAGGLE</b> is <b>" + countries[countryIndex].name + "</b>"
+    let dailyModeText = "FLAGGLE"
+    if (dailyMode) {
+        dailyModeText = "DAILY " + dailyModeText
+    }
+    document.getElementById("flagglenamedisplay").innerHTML = "The <b>" + dailyModeText + "</b> is <b>" + countries[countryIndex].name + "</b>"
     let newGuesses = cloneGuesses()
     let newGuesses_parent = document.getElementById("flaggleresultsdata")
     let resultsFlaggle = document.createElement("div")
@@ -505,7 +509,12 @@ function onClickButtons() {
         // win by elimination with remaining tries
         isWin = true
     }
-    if (isWin) resultText += "  " + icons.flaggle
+    if (isWin) {
+        resultText += "  " + icons.flaggle
+    }
+    else if (isWin == false) {
+        resultText += "  " + icons.lose
+    }
 
     guesses.push(currGuess)
 
