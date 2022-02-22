@@ -305,9 +305,17 @@ body {
 
 .modal-body {
     border-top: 1px solid grey;
-    padding: 10px 16px;
     padding-bottom: 20px;
     border-radius: 0px 0px 10px 10px;
+}
+
+#howtomodalbody,
+#flagsmodalbody,
+#settingsmodalbody {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 30px;
 }
 
 #colorchange {
@@ -731,7 +739,7 @@ input:checked+.slider:before {
     height: 35px;
     margin: 0 auto;
     display: inline-flex;
-    margin-top: 10px;
+    margin-top: 30px;
     margin-bottom: 10px;
 }
 
@@ -829,6 +837,8 @@ input:checked+.slider:before {
     display: inline-block;
     width: 50%;
     height: 65px;
+    padding-right: auto;
+    padding-left: auto;
 }
 
 #footerleft {
@@ -854,6 +864,8 @@ input:checked+.slider:before {
     max-height: 30px;
     padding-top: 9px;
     margin-top: 5px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #sharetextstat {
