@@ -234,7 +234,7 @@ function displayCountries() {
         let flag_name_div = document.createElement("div")
         flag_name_div.className = "flagname"
         flag_name_div.dataset.index = i
-        let flag_name_text_div = document.createElement("text")
+        let flag_name_text_div = document.createElement("a")
         flag_name_text_div.innerHTML = x.name
         flag_name_div.appendChild(flag_name_text_div)
         div_flagnames.appendChild(flag_name_div)
