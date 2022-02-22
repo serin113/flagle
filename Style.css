@@ -754,6 +754,11 @@ input:checked+.slider:before {
     margin-bottom: 20px;
 }
 
+.statsmodetextresults {
+    font-weight: bold;
+    line-height: 35px;
+}
+
 #resultsmodalfooter {
     width: 100%;
     margin: 0 auto;
