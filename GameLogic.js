@@ -41,6 +41,8 @@ let tries = 0 // number of tries (button pushes) so far
 let currDate = new Date() // current date on page load
 let resultText = "" // game's share text
 let isWin = null // game state variable: null/true/false
+let finalState = [] // game state after win/lose
+    // 
 
 
 // helper functions
@@ -522,12 +524,18 @@ function setDailyMode() {
     }
     if (dailyModeCookie === "true") {
         dailyMode = true
-        document.getElementById("randomflaggle").classList.remove("disabled")
+        document.getElementById("drnotiftext").innerHTML = "DAILY"
+            // document.getElementById("randomflaggle").classList.remove("disabled")
         document.getElementById("dailyflaggle").classList.add("disabled")
+        document.getElementById("dailyflaggle").disabled = true
+        document.getElementById("dailyflaggle").removeEventListener("click", clickDailyModeButton)
     } else {
         dailyMode = false
-        document.getElementById("randomflaggle").classList.add("disabled")
+        document.getElementById("drnotiftext").innerHTML = "RANDOM"
+            // document.getElementById("randomflaggle").classList.add("disabled")
         document.getElementById("dailyflaggle").classList.remove("disabled")
+        document.getElementById("dailyflaggle").disabled = false
+        document.getElementById("dailyflaggle").addEventListener("click", clickDailyModeButton)
     }
 }
 

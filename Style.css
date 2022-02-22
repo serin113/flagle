@@ -89,7 +89,7 @@ body {
     box-shadow: 0 3px 5px rgba(149, 149, 226, 0.75);
 }
 
-.dark .displaybuttons:active {
+.dark .displaybuttons:active:not([disabled]) {
     box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.75);
 }
 
@@ -322,7 +322,8 @@ body {
     padding-bottom: 30px;
 }
 
-#colorchange {
+.colorchange,
+.colorchange * {
     -webkit-animation: colorchange 10s infinite;
     animation: colorchange 10s infinite;
     font-weight: bold;
@@ -366,7 +367,7 @@ body {
         transform: translateY(0px)
     }
     20% {
-        transform: translateY(-15px)
+        transform: translateY(-5px)
     }
     40%,
     100% {
@@ -740,7 +741,7 @@ input:checked+.slider:before {
     position: relative;
 }
 
-.displaybuttons:active {
+.displaybuttons:active:not([disabled]) {
     top: 2px;
     background-color: rgb(119, 119, 175);
     border: 2px solid rgb(119, 119, 175);
@@ -880,6 +881,7 @@ input:checked+.slider:before {
     font-size: 27px;
 }
 
+
 /*Stats Modal*/
 
 #sharebuttonstat {
@@ -897,7 +899,9 @@ input:checked+.slider:before {
     font-size: 23px;
 }
 
+
 /*Middle div*/
+
 #middlediv {
     width: 150px;
     margin-right: auto;
@@ -909,4 +913,3 @@ input:checked+.slider:before {
     font-weight: bold;
     letter-spacing: 2px;
 }
-
