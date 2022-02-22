@@ -2,15 +2,9 @@ html {
     font-size: 20px;
 }
 
-@media screen and (max-width: 600px) and (min-width: 415px) {
+@media screen and (max-width: 540px) {
     html {
-        font-size: 15px;
-    }
-}
-
-@media screen and (max-width: 415px) {
-    html {
-        font-size: 13px;
+        font-size: 3.7vmin;
     }
 }
 
