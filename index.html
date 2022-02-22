@@ -18,12 +18,12 @@
     <link rel="manifest" href="/site.webmanifest">
 
     <link rel="stylesheet" type="text/css" href="/Style.css">
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3/dist/js.cookie.min.js"></script>
     <title>Flaggle</title>
 </head>
 
 <body>
-    <div id="loading">
-    </div>
+    <div id="loading"></div>
     <div class="HeaderBody">
         <div class="MainHeader">
 
@@ -50,7 +50,7 @@
     <div id="gamediv">
         <div class="DisplayBody">
             <div class="MainDisplay">
-                <div class="displaybuttons" id="dailyflaggle"><b>Daily Flaggle</b></div>
+                <button class="displaybuttons" id="dailyflaggle"><b>Daily Flaggle</b></button>
                 <div id="guesses">
                     <div class="guessindicators" id="guess1"></div>
                     <div class="guessindicators" id="guess2"></div>
@@ -59,7 +59,7 @@
                     <div class="guessindicators" id="guess5"></div>
                     <div class="guessindicators" id="guess6"></div>
                 </div>
-                <div class="displaybuttons" id="randomflaggle"><b>Random Flaggle</b></div>
+                <button class="displaybuttons" id="randomflaggle"><b>Random Flaggle</b></button>
             </div>
         </div>
 
@@ -384,8 +384,16 @@
             }
         }
     </script>
-
     <script>
+        let darkModeCookie = Cookies.get("darkMode")
+        if (darkModeCookie === "true") {
+            document.getElementById('darkthemeswitch').checked = true;
+            console.log("dark mode")
+        } else if (darkModeCookie === "false") {
+            document.getElementById('darkthemeswitch').checked = false;
+            console.log("light mode")
+        }
+
         //Dark Theme
         const checkbox = document.getElementById('darkthemeswitch');
 
@@ -434,6 +442,7 @@
             var sharebutton = document.getElementById('sharebutton');
 
             if (checkbox.checked) {
+                Cookies.set("darkMode", "true")
                 body.classList.add("dark");
 
                 mht.classList.add("dark");
@@ -468,8 +477,8 @@
                 randomflaggle.classList.add("dark");
                 guesses.classList.add("dark");
                 sharebutton.classList.add("dark");
-            } 
-            else {
+            } else {
+                Cookies.set("darkMode", "false")
                 body.classList.remove("dark");
 
                 mht.classList.remove("dark");

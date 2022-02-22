@@ -65,6 +65,7 @@ body {
     border-color: rgb(149, 149, 226);
     background: rgb(70, 70, 70);
 }
+
 .dark .colors {
     box-shadow: 0 3px 5px rgba(149, 149, 226, 0.75);
 }
@@ -83,8 +84,13 @@ body {
 .dark #guesses,
 .dark #randomflaggle,
 .dark #dailyflaggle,
-.dark #sharebutton {
+.dark #sharebutton,
+.dark .displaybuttons {
     box-shadow: 0 3px 5px rgba(149, 149, 226, 0.75);
+}
+
+.dark .displaybuttons:active {
+    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.75);
 }
 
 
@@ -598,15 +604,16 @@ input:checked+.slider:before {
     align-items: center;
     justify-content: center;
     width: 520px;
-    padding-top: 10px;
-    margin: 0 auto;
+    margin: 10px auto 0;
+    /* background-color: rgb(149, 149, 226); */
+    border-radius: 10px;
 }
 
 #guesses {
     margin-left: auto;
     margin-right: auto;
     border: 2px solid rgb(149, 149, 226);
-    background-color: rgb(149, 149, 226);;
+    background-color: rgb(149, 149, 226);
     height: 19px;
     border-radius: 5px;
     width: auto;
@@ -692,18 +699,30 @@ input:checked+.slider:before {
 }
 
 .displaybuttons {
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
     color: white;
     height: 20px;
     border-radius: 10px;
     width: 150px;
+    box-sizing: content-box;
     padding: 5px;
     padding-bottom: 10px;
     border: 2px solid rgb(149, 149, 226);
     background-color: rgb(149, 149, 226);
-    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.75);
-    transition: border-width 150ms, box-shadow 150ms, opacity 150ms;
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.75);
     cursor: pointer;
+    position: relative;
 }
+
+.displaybuttons:active {
+    top: 2px;
+    background-color: rgb(119, 119, 175);
+    border: 2px solid rgb(119, 119, 175);
+    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.75);
+    opacity: 0.85;
+}
+
 
 /*Stats Modal*/
 
@@ -743,6 +762,7 @@ input:checked+.slider:before {
     line-height: 35px;
     color: white;
 }
+
 
 /*Results Modal*/
 
