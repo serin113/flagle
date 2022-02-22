@@ -183,6 +183,15 @@
         </div>
     </div>
 
+    <!--Zoom Modal-->
+    <div class="zoommodal" id="zoommodalid">
+        <div class="zoommodalcontent">
+            <text id="zoomname">JAPAN</text></br>
+            <img id="flagglezoompic" src="https://www.worldometers.info/img/flags/ja-flag.gif">
+        </div>
+    </div>
+
+    <!--How to Modal-->
     <div id="howtotext" class="modal">
         <div class="modal-content">
             <div class="modal-header" id="howtomodalheader">
@@ -369,6 +378,9 @@
         }
 
         // When the user clicks anywhere outside of the modal, close it
+
+        var modalzoom = document.getElementById("zoommodalid");
+
         window.onclick = function(event) {
             if (event.target == modalflag) {
                 modalflag.style.display = "none";
@@ -380,6 +392,8 @@
                 modalset.style.display = "none";
             } else if (event.target == modalresults) {
                 modalresults.style.display = "none";
+            } else if (event.target == modalzoom) {
+                modalzoom.style.display = "none";
             }
         }
     </script>
