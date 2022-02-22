@@ -1,3 +1,7 @@
+html {
+    font-size: 20px;
+}
+
 body {
     font-family: 'Poppins', sans-serif;
     transition: background-color 250ms;
@@ -67,7 +71,7 @@ body {
 }
 
 .dark .colors {
-    box-shadow: 0 3px 5px rgba(149, 149, 226, 0.75);
+    box-shadow: 0 .15rem 0.4rem rgba(149, 149, 226, 0.75);
 }
 
 .dark .colors[data-disabled] {
@@ -75,8 +79,8 @@ body {
 }
 
 .dark .guessindicators.flaggle {
-    border: 2px solid;
-    border-radius: 2px;
+    border: 0.1rem solid;
+    border-radius: 0.1rem;
     border-color: rgb(75, 75, 75);
     background: rgb(149, 149, 226);
 }
@@ -86,11 +90,11 @@ body {
 .dark #dailyflaggle,
 .dark #sharebutton,
 .dark .displaybuttons {
-    box-shadow: 0 3px 5px rgba(149, 149, 226, 0.75);
+    box-shadow: 0 0.15rem 0.25rem rgba(149, 149, 226, 0.75);
 }
 
 .dark .displaybuttons:active:not([disabled]) {
-    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0.75);
 }
 
 .dark .displaybuttons.disabled {
@@ -109,9 +113,9 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    border-bottom: 1px solid grey;
-    width: 520px;
-    padding-top: 10px;
+    border-bottom: 0.05rem solid grey;
+    width: 26rem;
+    padding-top: 0.5rem;
     margin: 0 auto;
 }
 
@@ -119,14 +123,14 @@ body {
     font-family: 'Poppins', sans-serif;
     text-align: center;
     font-size: 125%;
-    margin-left: 80px;
-    margin-right: 80px;
+    margin-left: auto;
+    margin-right: auto;
     font-weight: bold;
 }
 
 .material-icons-outlined {
-    margin-left: 7px;
-    margin-right: 7px;
+    margin-left: 0.35rem;
+    margin-right: 0.35rem;
     display: inline-block;
 }
 
@@ -141,7 +145,7 @@ body {
 }
 
 #colorkeys {
-    width: 510px;
+    width: 25.5rem;
     align-items: center;
     justify-content: center;
     margin: 0 auto;
@@ -149,23 +153,23 @@ body {
 
 .colors {
     border-style: solid;
-    border-width: 2px;
-    border-radius: 8px;
+    border-width: 0.1rem;
+    border-radius: 0.4rem;
     text-align: center;
-    width: 50px;
-    height: 70px;
-    margin-top: 20px;
-    margin-left: 2px;
-    margin-right: 2px;
+    width: 2.5rem;
+    height: 3.5rem;
+    margin-top: 1rem;
+    margin-left: 0.1rem;
+    margin-right: 0.1rem;
     display: inline-block;
     box-sizing: border-box;
     cursor: pointer;
-    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.75);
+    box-shadow: 0 0.15rem 0.25rem rgba(0, 0, 0, 0.75);
     transition: border-width 150ms, box-shadow 150ms, opacity 150ms;
 }
 
 .colors[data-disabled] {
-    border-width: 4px;
+    border-width: 0.2rem;
     box-shadow: 0 0 0 rgba(0, 0, 0, 0);
 }
 
@@ -215,7 +219,7 @@ body {
     /* Stay in place */
     z-index: 1;
     /* Sit on top */
-    padding-top: 100px;
+    padding-top: 5rem;
     /* Location of the box */
     left: 0;
     top: 0;
@@ -239,16 +243,16 @@ body {
     background-color: white;
     margin: auto;
     padding: 0;
-    border: 1px solid #888;
-    width: 500px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border: 0.05rem solid #888;
+    width: 25rem;
+    box-shadow: 0 0.2rem 0.4rem 0 rgba(0, 0, 0, 0.2), 0 0.3rem 1rem 0 rgba(0, 0, 0, 0.19);
     -webkit-animation-name: animatetop;
     -webkit-animation-duration: 0.4s;
     animation-name: animatetop;
     animation-duration: 0.4s;
     font-family: 'Poppins', sans-serif;
     font-size: 110%;
-    border-radius: 10px;
+    border-radius: 0.5rem;
 }
 
 
@@ -256,7 +260,7 @@ body {
 
 @-webkit-keyframes animatetop {
     from {
-        top: -300px;
+        top: -15rem;
         opacity: 0
     }
     to {
@@ -267,7 +271,7 @@ body {
 
 @keyframes animatetop {
     from {
-        top: -300px;
+        top: -15rem;
         opacity: 0
     }
     to {
@@ -280,12 +284,12 @@ body {
 /* The Close Button */
 
 .close {
-    font-size: 28px;
+    font-size: 1.4rem;
     font-weight: bold;
     cursor: pointer;
     position: absolute;
     top: 0;
-    right: 10px;
+    right: 0.5rem;
     cursor: pointer;
 }
 
@@ -296,30 +300,30 @@ body {
 }
 
 .modal-header {
-    border-radius: 10px 10px 0px 0px;
-    padding: 2px 5px;
+    border-radius: 0.5rem 0.5rem 0rem 0rem;
+    padding: 0.1rem 0.25rem;
     text-align: center;
     font-family: 'Poppins', sans-serif;
     font-size: 120%;
 }
 
 .modalheadertext {
-    letter-spacing: 1px;
+    letter-spacing: 0.05rem;
 }
 
 .modal-body {
-    border-top: 1px solid grey;
-    padding-bottom: 20px;
-    border-radius: 0px 0px 10px 10px;
+    border-top: 0.05rem solid grey;
+    padding-bottom: 1rem;
+    border-radius: 0rem 0rem 0.5rem 0.5rem;
 }
 
 #howtomodalbody,
 #flagsmodalbody,
 #settingsmodalbody {
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-top: 10px;
-    padding-bottom: 30px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 1.5rem;
 }
 
 .colorchange,
@@ -364,22 +368,22 @@ body {
 
 @keyframes animate {
     0% {
-        transform: translateY(0px)
+        transform: translateY(0rem)
     }
     20% {
-        transform: translateY(-5px)
+        transform: translateY(-0.25rem)
     }
     40%,
     100% {
-        transform: translateY(0px)
+        transform: translateY(0rem)
     }
 }
 
 .switch {
     position: relative;
     display: inline-block;
-    width: 46px;
-    height: 26px;
+    width: 2.3rem;
+    height: 1.3rem;
 }
 
 .switch input {
@@ -403,10 +407,10 @@ body {
 .slider:before {
     position: absolute;
     content: "";
-    height: 18px;
-    width: 18px;
-    left: 4px;
-    bottom: 4px;
+    height: 0.9rem;
+    width: 0.9rem;
+    left: 0.2rem;
+    bottom: 0.2rem;
     background-color: white;
     -webkit-transition: .4s;
     transition: .4s;
@@ -417,20 +421,20 @@ input:checked+.slider {
 }
 
 input:focus+.slider {
-    box-shadow: 0 0 1px rgb(149, 149, 226);
+    box-shadow: 0 0 0.05rem rgb(149, 149, 226);
 }
 
 input:checked+.slider:before {
-    -webkit-transform: translateX(20px);
-    -ms-transform: translateX(20px);
-    transform: translateX(20px);
+    -webkit-transform: translateX(1rem);
+    -ms-transform: translateX(1rem);
+    transform: translateX(1rem);
 }
 
 
 /* Rounded sliders */
 
 .slider.round {
-    border-radius: 13px;
+    border-radius: 0.65rem;
 }
 
 .slider.round:before {
@@ -446,12 +450,12 @@ input:checked+.slider:before {
     display: flex;
     justify-content: space-between;
     vertical-align: baseline;
-    padding-bottom: 20px;
-    border-bottom: 1px solid grey;
+    padding-bottom: 1rem;
+    border-bottom: 0.05rem solid grey;
 }
 
 #darktheme {
-    padding-top: 20px;
+    padding-top: 1rem;
 }
 
 
@@ -465,8 +469,8 @@ input:checked+.slider:before {
 #statsdisplay {
     display: inline-block;
     width: 100%;
-    height: 130px;
-    margin-bottom: 10px;
+    height: 6.5rem;
+    margin-bottom: 0.5rem;
 }
 
 #flagsguessed,
@@ -474,49 +478,49 @@ input:checked+.slider:before {
 #beststreak,
 #winpercent {
     display: inline-table;
-    width: 70px;
+    width: 3.5rem;
     text-align: center;
-    margin-left: 5px;
-    margin-right: 5px;
-    height: 100px;
+    margin-left: 0.25rem;
+    margin-right: 0.25rem;
+    height: 5rem;
 }
 
 .statstext {
-    font-size: 45px;
+    font-size: 2.25rem;
     font-weight: bold;
 }
 
 .statsdesc {
-    font-size: 16px;
+    font-size: 0.8rem;
 }
 
 
 /*Flags List*/
 
 #searchbarbox {
-    padding: 1px;
-    border: 2px solid grey;
-    border-radius: 5px 0px 0px 5px;
-    height: 33px;
-    width: 350px;
-    margin-top: 8px;
-    margin-right: 0px;
-    font-size: 17px;
+    padding: 0.05rem;
+    border: 0.1rem solid grey;
+    border-radius: 0.25rem 0rem 0rem 0.25rem;
+    height: 1.65rem;
+    width: 17.5rem;
+    margin-top: 0.4rem;
+    margin-right: 0rem;
+    font-size: 0.85rem;
 }
 
 #searchbar {
     border: none;
-    height: 31px;
-    width: 346px;
-    font-size: 17px;
+    height: 1.55rem;
+    width: 17.3rem;
+    font-size: 0.85rem;
 }
 
 #searchbutton {
-    margin-top: 8px;
-    max-height: 35px;
-    max-width: 33px;
-    border: 2px solid rgb(149, 149, 226);
-    border-radius: 0px 5px 5px 0px;
+    margin-top: 0.4rem;
+    max-height: 1.75rem;
+    max-width: 1.65rem;
+    border: 0.1rem solid rgb(149, 149, 226);
+    border-radius: 0rem 0.25rem 0.25rem 0rem;
     vertical-align: middle;
     cursor: pointer;
     background: rgb(149, 149, 226);
@@ -527,8 +531,8 @@ input:checked+.slider:before {
 }
 
 #searchicon {
-    line-height: 35px;
-    margin-left: 5px;
+    line-height: 1.75rem;
+    margin-left: 0.25rem;
     width: 100%;
     color: white;
 }
@@ -549,17 +553,17 @@ input:checked+.slider:before {
 #choices {
     text-align: center;
     display: inline-block;
-    width: 520px;
-    margin-top: 10px;
-    padding: 2px;
+    width: 26rem;
+    margin-top: 0.5rem;
+    padding: 0.1rem;
 }
 
 .flagpic {
-    width: 95px;
-    height: 50px;
-    margin-left: 2px;
-    margin-right: 2px;
-    border: 2px solid;
+    width: 4.75rem;
+    height: 2.5rem;
+    margin-left: 0.1rem;
+    margin-right: 0.1rem;
+    border: 0.1rem solid;
     cursor: pointer;
     background-color: rgba(255, 255, 255, 0.5);
     transition: opacity 150ms, filter 150ms, transform 150ms;
@@ -584,9 +588,9 @@ input:checked+.slider:before {
 }
 
 .flagname {
-    width: 100px;
-    margin-left: 2px;
-    margin-right: 2px;
+    width: 5rem;
+    margin-left: 0.1rem;
+    margin-right: 0.1rem;
     font-size: 98%;
     transform: scale(0.8, 1);
     transition: opacity 150ms;
@@ -606,9 +610,9 @@ input:checked+.slider:before {
     display: inline-flex;
     font-family: 'Poppins', sans-serif;
     font-weight: bold;
-    height: 34px;
-    line-height: 17px;
-    margin-bottom: 5px;
+    height: 1.7rem;
+    line-height: 0.85rem;
+    margin-bottom: 0.25rem;
 }
 
 .DisplayBody {
@@ -620,21 +624,21 @@ input:checked+.slider:before {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 520px;
-    margin: 10px auto 0;
+    width: 26rem;
+    margin: 0.5rem auto 0;
     /* background-color: rgb(149, 149, 226); */
-    border-radius: 10px;
+    border-radius: 0.5rem;
 }
 
 #guesses {
-    border: 2px solid rgb(149, 149, 226);
+    border: 0.1rem solid rgb(149, 149, 226);
     background-color: rgb(149, 149, 226);
-    height: 16px;
-    border-radius: 5px;
+    height: 0.8rem;
+    border-radius: 0.25rem;
     width: auto;
-    padding: 2px;
+    padding: 0.1rem;
     vertical-align: middle;
-    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.75);
+    box-shadow: 0 0.15rem 0.25rem rgba(0, 0, 0, 0.75);
     transition: border-width 150ms, box-shadow 150ms, opacity 150ms;
     cursor: pointer;
     box-sizing: content-box;
@@ -643,31 +647,31 @@ input:checked+.slider:before {
 }
 
 #guesses:active {
-    top: 2px;
+    top: 0.1rem;
     background-color: rgb(119, 119, 175);
-    border: 2px solid rgb(119, 119, 175);
-    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.75);
+    border: 0.1rem solid rgb(119, 119, 175);
+    box-shadow: 0rem 0rem 0rem rgba(0, 0, 0, 0.75);
     opacity: 0.85;
 }
 
 .guessindicators {
-    height: 16px;
-    width: 16px;
-    border-radius: 16px;
-    border-width: 1px;
+    height: 0.8rem;
+    width: 0.8rem;
+    border-radius: 0.8rem;
+    border-width: 0.05rem;
     border-style: solid;
     border-color: rgb(143, 143, 143);
     background-color: white;
     display: inline-block;
-    margin-left: 2px;
-    margin-right: 2px;
+    margin-left: 0.1rem;
+    margin-right: 0.1rem;
     box-sizing: border-box;
     transition: transform 150ms, scale 150ms, margin 150ms, background-color 150ms;
 }
 
 .guessindicators.flag_guessed {
-    border-radius: 2px;
-    border: 2px solid;
+    border-radius: 0.1rem;
+    border: 0.1rem solid;
     border-color: black;
     background: black;
 }
@@ -676,19 +680,19 @@ input:checked+.slider:before {
     transform: scale(2);
     border-color: rgb(149, 149, 226);
     background: white;
-    border-width: 2px;
-    margin-left: 10px;
-    margin-right: 10px;
+    border-width: 0.1rem;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
 }
 
 .guessindicators.guessed {
-    border-width: 2px;
+    border-width: 0.1rem;
     border-color: black;
 }
 
 .guessindicators.flaggle {
-    border: 2px solid;
-    border-radius: 2px;
+    border: 0.1rem solid;
+    border-radius: 0.1rem;
     border-color: black;
     background: rgb(149, 149, 226);
 }
@@ -727,27 +731,27 @@ input:checked+.slider:before {
 
 .displaybuttons {
     font-family: 'Poppins', sans-serif;
-    font-size: 18px;
+    font-size: 0.9rem;
     color: white;
-    height: 35px;
-    border-radius: 10px;
-    width: 150px;
+    height: 1.75rem;
+    border-radius: 0.5rem;
+    width: 7.5rem;
     box-sizing: content-box;
-    padding: 5px;
-    padding-bottom: 10px;
-    border: 2px solid rgb(149, 149, 226);
+    padding: 0.25rem;
+    padding-bottom: 0.5rem;
+    border: 0.1rem solid rgb(149, 149, 226);
     background-color: rgb(149, 149, 226);
-    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.75);
+    box-shadow: 0rem 0.15rem 0.25rem rgba(0, 0, 0, 0.75);
     transition: border-width 150ms, box-shadow 150ms, opacity 150ms;
     cursor: pointer;
     position: relative;
 }
 
 .displaybuttons:active:not([disabled]) {
-    top: 2px;
+    top: 0.1rem;
     background-color: rgb(119, 119, 175);
-    border: 2px solid rgb(119, 119, 175);
-    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.75);
+    border: 0.1rem solid rgb(119, 119, 175);
+    box-shadow: 0rem 0rem 0rem rgba(0, 0, 0, 0.75);
     opacity: 0.85;
 }
 
@@ -760,39 +764,39 @@ input:checked+.slider:before {
 /*Stats Modal*/
 
 #drchoice {
-    width: 300px;
-    height: 35px;
+    width: 15rem;
+    height: 1.75rem;
     margin: 0 auto;
     display: inline-flex;
-    margin-top: 30px;
-    margin-bottom: 10px;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
 }
 
 #drchoiceleft {
     display: inline-block;
     width: 50%;
-    height: 35px;
+    height: 1.75rem;
     background-color: rgb(149, 149, 226);
-    border: 2px solid rgb(149, 149, 226);
-    border-right-width: 1px;
-    border-radius: 10px 0px 0px 10px;
+    border: 0.1rem solid rgb(149, 149, 226);
+    border-right-width: 0.05rem;
+    border-radius: 0.5rem 0rem 0rem 0.5rem;
     cursor: pointer;
 }
 
 #drchoiceright {
     display: inline-block;
     width: 50%;
-    height: 35px;
+    height: 1.75rem;
     background-color: rgb(133, 133, 133);
-    border: 2px solid rgb(121, 121, 121);
-    border-left-width: 1px;
-    border-radius: 0px 10px 10px 0px;
+    border: 0.1rem solid rgb(121, 121, 121);
+    border-left-width: 0.05rem;
+    border-radius: 0rem 0.5rem 0.5rem 0rem;
     cursor: pointer;
 }
 
 .statsmodetext {
     font-weight: bold;
-    line-height: 35px;
+    line-height: 1.75rem;
     color: white;
 }
 
@@ -806,7 +810,7 @@ input:checked+.slider:before {
     /* Stay in place */
     z-index: 1;
     /* Sit on top */
-    padding-top: 100px;
+    padding-top: 5rem;
     /* Location of the box */
     left: 0;
     top: 0;
@@ -824,23 +828,23 @@ input:checked+.slider:before {
 
 #gameresults-content {
     text-align: center;
-    padding-bottom: 20px;
+    padding-bottom: 1rem;
 }
 
 #flagglepic {
-    width: 300px;
-    max-height: 300px;
-    border: 1px solid grey;
-    margin-top: 20px;
+    width: 15rem;
+    max-height: 15rem;
+    border: 0.05rem solid grey;
+    margin-top: 1rem;
 }
 
 #flaggleresultsdata {
-    margin-bottom: 20px;
+    margin-bottom: 1rem;
 }
 
 .statsmodetextresults {
     font-weight: bold;
-    line-height: 35px;
+    line-height: 1.75rem;
 }
 
 #resultsmodalfooter {
@@ -851,69 +855,69 @@ input:checked+.slider:before {
 
 #dailycountdowntext {
     font-weight: bold;
-    letter-spacing: 2px;
-    font-size: 30px;
+    letter-spacing: 0.1rem;
+    font-size: 1.5rem;
 }
 
 #dailycountdowndiv {
-    margin-top: 10px;
+    margin-top: 0.5rem;
 }
 
 .footerhalf {
     display: inline-block;
     width: 50%;
-    height: 65px;
+    height: 3.25rem;
     padding-right: auto;
     padding-left: auto;
 }
 
 #footerleft {
-    border-right: 2px solid grey;
+    border-right: 0.1rem solid grey;
 }
 
 #sharebutton {
-    height: 40px;
-    max-height: 40px;
-    padding-top: 9px;
+    height: 2rem;
+    max-height: 2rem;
+    padding-top: 0.45rem;
 }
 
 #sharetext {
-    line-height: 30px;
+    line-height: 1.5rem;
     font-weight: bold;
-    font-size: 27px;
+    font-size: 1.35rem;
 }
 
 
 /*Stats Modal*/
 
 #sharebuttonstat {
-    height: 30px;
-    max-height: 30px;
-    padding-top: 9px;
-    margin-top: 5px;
+    height: 1.5rem;
+    max-height: 1.5rem;
+    padding-top: 0.45rem;
+    margin-top: 0.25rem;
     margin-left: auto;
     margin-right: auto;
 }
 
 #sharetextstat {
-    line-height: 30px;
+    line-height: 1.5rem;
     font-weight: bold;
-    font-size: 23px;
+    font-size: 1.15rem;
 }
 
 
 /*Middle div*/
 
 #middlediv {
-    width: 150px;
+    width: 7.5rem;
     margin-right: auto;
     margin-left: auto;
 }
 
 #drnotiftext {
-    font-size: 17px;
+    font-size: 0.85rem;
     font-weight: bold;
-    letter-spacing: 2px;
+    letter-spacing: 0.1rem;
 }
 
 /*Zoom Flag Pictures Modal*/
@@ -925,7 +929,7 @@ input:checked+.slider:before {
     /* Stay in place */
     z-index: 1;
     /* Sit on top */
-    padding-top: 250px;
+    padding-top: 12.5rem;
     /* Location of the box */
     left: 0;
     top: 0;
@@ -949,12 +953,12 @@ input:checked+.slider:before {
 #zoomname {
     color: rgb(255, 255, 255);
     font-weight: bold;
-    letter-spacing: 2px;
-    text-shadow: 0 5px 5px black;
-    font-size: 40px;
-    margin-bottom: 0px;
+    letter-spacing: 0.1rem;
+    text-shadow: 0rem 0.25rem 0.25rem black;
+    font-size: 2rem;
+    margin-bottom: 0rem;
 }
 
 #flagglezoompic {
-    border: 1px solid grey;
+    border: 0.05rem solid grey;
 }
