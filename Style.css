@@ -51,15 +51,20 @@ body {
 }
 
 .dark .guessindicators {
-    border-color: rgb(117, 117, 117);
+    border-color: rgb(75, 75, 75);
+    background: rgb(70, 70, 70);
 }
 
-.dark .guessindicators.current,
 .dark .guessindicators.guessed,
 .dark .guessindicators.flag_guessed {
-    border-color: rgb(216, 216, 216);
+    border-color: rgb(75, 75, 75);
+    background: rgb(27, 27, 27);
 }
 
+.dark .guessindicators.current {
+    border-color: rgb(149, 149, 226);
+    background: rgb(70, 70, 70);
+}
 .dark .colors {
     box-shadow: 0 3px 5px rgba(149, 149, 226, 0.75);
 }
@@ -69,7 +74,17 @@ body {
 }
 
 .dark .guessindicators.flaggle {
-    border-color: rgb(149, 149, 226);
+    border: 2px solid;
+    border-radius: 2px;
+    border-color: rgb(75, 75, 75);
+    background: rgb(149, 149, 226);
+}
+
+.dark #guesses,
+.dark #randomflaggle,
+.dark #dailyflaggle,
+.dark #sharebutton {
+    box-shadow: 0 3px 5px rgba(149, 149, 226, 0.75);
 }
 
 
@@ -564,6 +579,16 @@ input:checked+.slider:before {
 #guesses {
     margin-left: auto;
     margin-right: auto;
+    border: 2px solid rgb(149, 149, 226);
+    background-color: rgb(149, 149, 226);;
+    height: 19px;
+    border-radius: 5px;
+    width: auto;
+    padding: 2px;
+    vertical-align: middle;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.75);
+    transition: border-width 150ms, box-shadow 150ms, opacity 150ms;
+    cursor: pointer;
 }
 
 .guessindicators {
@@ -573,23 +598,25 @@ input:checked+.slider:before {
     border-width: 1px;
     border-style: solid;
     border-color: rgb(143, 143, 143);
+    background-color: white;
     display: inline-block;
     margin-left: 2px;
     margin-right: 2px;
     box-sizing: border-box;
-    vertical-align: middle;
     transition: transform 150ms, scale 150ms, margin 150ms, background-color 150ms;
 }
 
 .guessindicators.flag_guessed {
-    border-radius: 0;
-    border-width: 8px;
+    border-radius: 2px;
+    border: 2px solid;
     border-color: black;
+    background: black;
 }
 
 .guessindicators.current {
     transform: scale(2);
-    border-color: black;
+    border-color: rgb(149, 149, 226);
+    background: white;
     margin-left: 10px;
     margin-right: 10px;
 }
@@ -600,7 +627,10 @@ input:checked+.slider:before {
 }
 
 .guessindicators.flaggle {
-    border-color: rgb(149, 149, 226);
+    border: 2px solid;
+    border-radius: 2px;
+    border-color: black;
+    background: rgb(149, 149, 226);
 }
 
 .guessindicators.guessed.green {
@@ -636,12 +666,16 @@ input:checked+.slider:before {
 }
 
 .displaybuttons {
-    border: 2px solid;
+    color: white;
     height: 20px;
     border-radius: 10px;
     width: 150px;
     padding: 5px;
     padding-bottom: 10px;
+    border: 2px solid rgb(149, 149, 226);
+    background-color: rgb(149, 149, 226);
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.75);
+    transition: border-width 150ms, box-shadow 150ms, opacity 150ms;
     cursor: pointer;
 }
 
@@ -712,15 +746,20 @@ input:checked+.slider:before {
 }
 
 #sharebutton {
+    color: white;
     margin-top: 10px;
     text-align: center;
     justify-content: center;
-    border: 2px solid;
     border-radius: 5px;
     height: 40px;
     width: 70%;
     margin-left: auto;
     margin-right: auto;
+    cursor: pointer;
+    border: 2px solid rgb(149, 149, 226);
+    background-color: rgb(149, 149, 226);
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.75);
+    transition: border-width 150ms, box-shadow 150ms, opacity 150ms;
     cursor: pointer;
 }
 

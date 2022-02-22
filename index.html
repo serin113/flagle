@@ -438,6 +438,12 @@
             var statsmodalheader = document.getElementById('statsmodalheader');
             var closestat = document.getElementById('closestat');
 
+            //Daily, Guesses, Random, and Share Buttons
+            var dailyflaggle = document.getElementById('dailyflaggle');
+            var randomflaggle = document.getElementById('randomflaggle');
+            var guesses = document.getElementById('guesses');
+            var sharebutton = document.getElementById('sharebutton');
+
             if (checkbox.checked) {
                 body.classList.add("dark");
 
@@ -468,7 +474,13 @@
                 statsmodalbody.classList.add("dark");
                 statsmodalheader.classList.add("dark");
                 closestat.classList.add("dark");
-            } else {
+
+                dailyflaggle.classList.add("dark");
+                randomflaggle.classList.add("dark");
+                guesses.classList.add("dark");
+                sharebutton.classList.add("dark");
+            } 
+            else {
                 body.classList.remove("dark");
 
                 mht.classList.remove("dark");
@@ -498,6 +510,11 @@
                 statsmodalbody.classList.remove("dark");
                 statsmodalheader.classList.remove("dark");
                 closestat.classList.remove("dark");
+
+                dailyflaggle.classList.remove("dark");
+                randomflaggle.classList.remove("dark");
+                guesses.classList.remove("dark");
+                sharebutton.classList.remove("dark");
             }
         }
 

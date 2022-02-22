@@ -7,7 +7,7 @@
 // configs
 let countryChoicesCount = 30
 let maxTries = 6
-let dailyMode = true
+let dailyMode = false
 let icons = {
     rightColor: "🟣",
     wrongColor: "⚫",
