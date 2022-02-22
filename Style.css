@@ -844,5 +844,20 @@ input:checked+.slider:before {
 #sharetext {
     line-height: 30px;
     font-weight: bold;
-    font-size: 25px;
+    font-size: 27px;
+}
+
+/*Stats Modal*/
+
+#sharebuttonstat {
+    height: 30px;
+    max-height: 30px;
+    padding-top: 9px;
+    margin-top: 5px;
+}
+
+#sharetextstat {
+    line-height: 30px;
+    font-weight: bold;
+    font-size: 23px;
 }
