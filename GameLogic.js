@@ -27,7 +27,8 @@ let icons = {
     wrongColor: "⚫",
     rightFlag: "🟪",
     wrongFlag: "⬛",
-    flaggle: "🏁"
+    flaggle: "🏁",
+    lose: "❌"
 }
 let resultMsgs_win = [ // least to most tries
     "Superb!",
@@ -273,7 +274,7 @@ function setGuessCounter(index, color = null) {
         guessIndicatorCurrent.classList.add(color)
     }
     if (hasFlaggle) {
-        guessIndicatorCurrent.classList.add("flaggle")
+        guessIndicatorCurrent.classList.add("purple")
     }
 }
 
@@ -409,6 +410,11 @@ function showResults() {
     document.getElementById("flagglenamedisplay").innerHTML = "The <b>FLAGGLE</b> is <b>" + countries[countryIndex].name + "</b>"
     let newGuesses = cloneGuesses()
     let newGuesses_parent = document.getElementById("flaggleresultsdata")
+    let resultsFlaggle = document.createElement("div")
+    resultsFlaggle.classList.add("flaggle")
+    if (isWin) resultsFlaggle.innerHTML = icons.flaggle
+    else resultsFlaggle.innerHTML = icons.lose
+    newGuesses.appendChild(resultsFlaggle)
     document.getElementById("resultguesses").id = "resultguesses_temp"
     newGuesses.id = "resultguesses"
     newGuesses_parent.insertBefore(newGuesses, document.getElementById("resultguesses_temp"))
@@ -510,7 +516,7 @@ function onClickButtons() {
             let guessList = document.getElementById("guesses")
                 .querySelectorAll(".guessed, .flag_guessed")
             if (clickedFlaggle) {
-                guessList[guessList.length - 1].classList.add("flaggle")
+                guessList[guessList.length - 1].classList.add("purple")
             }
         }
         let g = document.getElementById("guesses")
