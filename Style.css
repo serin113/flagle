@@ -474,14 +474,44 @@ input:checked+.slider:before {
 
 /*Flags List*/
 
-#searchbar {
-    padding: 6px;
-    border: 1px solid;
-    border-radius: 5px;
+#searchbarbox {
+    padding: 1px;
+    border: 2px solid grey;
+    border-radius: 5px 0px 0px 5px;
+    height: 33px;
     width: 350px;
     margin-top: 8px;
-    margin-right: 16px;
+    margin-right: 0px;
     font-size: 17px;
+}
+
+#searchbar {
+    border: none;
+    height: 31px;
+    width: 346px;
+    font-size: 17px;
+}
+
+#searchbutton {
+    margin-top: 8px;
+    max-height: 35px;
+    max-width: 33px;
+    border: 2px solid rgb(149, 149, 226);
+    border-radius: 0px 5px 5px 0px;
+    vertical-align: middle;
+    cursor: pointer;
+    background: rgb(149, 149, 226);
+}
+
+#searchicon {
+    line-height: 35px;
+    margin-left: 5px;
+    width: 100%;
+    color: white;
+}
+
+#searchbarcontents {
+    display: inline-flex;
 }
 
 
