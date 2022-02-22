@@ -628,7 +628,7 @@ input:checked+.slider:before {
 #guesses {
     border: 2px solid rgb(149, 149, 226);
     background-color: rgb(149, 149, 226);
-    height: 19px;
+    height: 16px;
     border-radius: 5px;
     width: auto;
     padding: 2px;
@@ -636,6 +636,17 @@ input:checked+.slider:before {
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.75);
     transition: border-width 150ms, box-shadow 150ms, opacity 150ms;
     cursor: pointer;
+    box-sizing: content-box;
+    cursor: pointer;
+    position: relative;
+}
+
+#guesses:active {
+    top: 2px;
+    background-color: rgb(119, 119, 175);
+    border: 2px solid rgb(119, 119, 175);
+    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.75);
+    opacity: 0.85;
 }
 
 .guessindicators {
