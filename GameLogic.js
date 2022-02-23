@@ -47,6 +47,7 @@ let resultMsgs_lose = [
     "Nice try",
 ];
 let seedOverride = null; // null if disabled, string if needed
+let debug = false;
 
 // global-ish variables
 let countryChoicesCount = defaultDifficulty; // number of flags to play with
@@ -65,6 +66,11 @@ let lastGame = null; // game state after win/lose
 let dailyMode = true; // daily/random mode
 
 // helper functions
+
+function logger(msg) {
+    if (debug==false) return
+    console.log(msg)
+}
 
 /* ranged integer randomizer */
 function getRandomInt(min, max) {
@@ -172,8 +178,8 @@ function initRandomizer(seedString = null) {
     }
     let seedBytes = Array.from(seedString, (x) => x.charCodeAt(0));
     let seedHash = MurmurHash3(seedBytes);
-    console.log('Seed: "' + seedString + '"');
-    console.log('Hash: "' + seedHash + '"');
+    logger('Seed: "' + seedString + '"');
+    logger('Hash: "' + seedHash + '"');
     randomizer = mulberry32(seedHash);
     for (let i = 0; i < 15; i++) randomizer();
 }
@@ -402,7 +408,7 @@ function fallbackCopyTextToClipboard(text) {
     try {
         var successful = document.execCommand("copy");
         var msg = successful ? "successful" : "unsuccessful";
-        console.log("Fallback: Copying text command was " + msg);
+        logger("Fallback: Copying text command was " + msg);
     } catch (err) {
         allGood = false;
         console.error("Fallback: Oops, unable to copy", err);
@@ -418,7 +424,7 @@ function copyTextToClipboard(text) {
     }
     navigator.clipboard.writeText(text).then(
         function () {
-            console.log("Async: Copying to clipboard was successful!");
+            logger("Async: Copying to clipboard was successful!");
         },
         function (err) {
             allGood = false;
@@ -451,7 +457,7 @@ function updateCountdown(interval) {
 
 /* start next daily flaggle countdowns */
 function startCountdown() {
-    console.log("start countdown");
+    logger("start countdown");
     let lastGameCookie = Cookies.get("lastGame");
     if (lastGameCookie != undefined) {
         updateCountdown();
@@ -534,7 +540,7 @@ function showResults() {
 
 /* handle clicks on flag and color buttons, check win status */
 function onClickButtons() {
-    console.log("current count: " + currentCountryChoicesCount);
+    logger("current count: " + currentCountryChoicesCount);
     this.removeEventListener("click", onClickButtons);
     tries += 1;
 
@@ -585,7 +591,7 @@ function onClickButtons() {
         } else {
             if (clickedFlaggle) {
                 // win by sudden death (directly picking flaggle)
-                console.log("sudden death");
+                logger("sudden death");
                 isWin = true;
             } else {
                 isWin = false;
@@ -667,9 +673,9 @@ function setGameMode() {
 
 /* save game state into lastGame cookie */
 function saveLastGame() {
-    console.log("saving game");
+    logger("saving game");
     if (isWin == null) {
-        console.log("skip");
+        logger("skip");
         return;
     }
     let lastGame_temp = {};
@@ -694,7 +700,7 @@ function loadLastGame() {
         }
         return;
     }
-    console.log("loading last game");
+    logger("loading last game");
     if (Cookies.get("dailyMode") === "false") {
         startCountdown();
         return;
@@ -745,7 +751,7 @@ document
     .addEventListener("input", function () {
         let difficultyCookie = Cookies.get("difficulty");
         document.getElementById("difficultyValue").innerHTML = this.value;
-        console.log("new difficulty: " + this.value);
+        logger("new difficulty: " + this.value);
         Cookies.set("difficulty", String(this.value), { sameSite: "strict" });
         if (this.value != countryChoicesCount) {
             window.onclick = function (event) {
@@ -766,7 +772,7 @@ if (Cookies.get("difficulty") == undefined) {
         sameSite: "strict",
     });
 } else {
-    console.log("loaded difficulty: " + Cookies.get("difficulty"));
+    logger("loaded difficulty: " + Cookies.get("difficulty"));
     document.getElementById("difficultySlider").value =
         Cookies.get("difficulty");
     document.getElementById("difficultyValue").innerHTML =
@@ -806,9 +812,9 @@ countryRandomizer(countryChoicesCount).then((data) => {
     country = data[1];
     countries = data[0];
     countryIndex = data[2];
-    console.log("RANDOMIZED: ");
-    console.log(country);
-    console.log(countries);
+    logger("RANDOMIZED: ");
+    logger(country);
+    logger(countries);
     displayCountries();
     enableButtons();
     loadLastGame();
