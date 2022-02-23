@@ -502,7 +502,7 @@ function showResults() {
     if (isWin) resultsFlaggle.innerHTML = icons.flaggle;
     else resultsFlaggle.innerHTML = icons.lose;
     newGuesses.appendChild(resultsFlaggle);
-    if (isWin && countryChoicesCount==maxDifficulty && !dailyMode) {
+    if (isWin && countryChoicesCount == maxDifficulty && !dailyMode) {
         let resultsFlaggle = document.createElement("div");
         resultsFlaggle.classList.add("flaggle");
         resultsFlaggle.innerHTML = icons.hard;
@@ -731,6 +731,10 @@ function loadLastGame() {
         if (i == tries - 1) hasFlaggle = lastGame.hasFlaggle;
         setGuessCounter(i, lastGame.guesses[i].type);
     }
+    document
+        .getElementById("guesses")
+        .querySelector(".current")
+        .classList.remove("current");
     disableButtons();
     showResults();
     startCountdown();
@@ -766,16 +770,28 @@ document
         document.getElementById("difficultyValue").innerHTML = this.value;
         logger("new difficulty: " + this.value);
         Cookies.set("difficulty", String(this.value), { sameSite: "strict" });
-        if (this.value != countryChoicesCount) {
+        if (this.value != countryChoicesCount && !dailyMode) {
             window.onclick = function (event) {
                 if (event.target == modalset) {
-                    modalset.style.display = "none";
+                    document.getElementById("settingstext").style.display =
+                        "none";
                     location.reload();
                 }
+            };
+            document.getElementById("closesettings").onclick = function (
+                event
+            ) {
+                document.getElementById("settingstext").style.display = "none";
+                location.reload();
             };
         } else {
             window.onclick = function (event) {
                 clickOutsideModal(event);
+            };
+            document.getElementById("closesettings").onclick = function (
+                event
+            ) {
+                document.getElementById("settingstext").style.display = "none";
             };
         }
     });
