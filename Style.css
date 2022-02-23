@@ -1177,8 +1177,8 @@ input:checked + .slider:before {
     display: inline-block;
     box-sizing: border-box;
     cursor: pointer;
-    box-shadow: 0 0.15rem 0.25rem rgba(0, 0, 0, 0.75);
-    transition: border-width 150ms, box-shadow 150ms, opacity 150ms;
+    box-shadow: 0 0.15rem 0.5rem rgba(0, 0, 0, 0.75);
+    transition: border-width 150ms, box-shadow 150ms, opacity 150ms, scale 150ms;
     /* flex-grow: 1; */
 }
 
@@ -1194,8 +1194,11 @@ input:checked + .slider:before {
 #demoorange {
     background: orange;
     opacity: 0.1;
-    border-width: 0.2rem;
+    transform: scale(0.90);
+    /* border-width: 0.2rem; */
+    border-width: 0.05rem;
     box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+    transform: scale(0.90);
 }
 
 #demoyellow {
@@ -1203,9 +1206,11 @@ input:checked + .slider:before {
 }
 
 #demogreen {
+    /* border-width: 0.2rem; */
     background: green;
-    border-width: 0.2rem;
+    border-width: 0.05rem;
     box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+    transform: scale(0.90);
 }
 
 .dark #demoorange {
@@ -1216,7 +1221,7 @@ input:checked + .slider:before {
 .dark #demoyellow {
     color: rgb(149, 149, 226);
     border-color: rgb(149, 149, 226);
-    box-shadow: 0 0.15rem 0.4rem rgba(149, 149, 226, 0.75);
+    box-shadow: 0 0.15rem 0.5rem rgba(149, 149, 226, 0.75);
 }
 
 .dark #demogreen {
