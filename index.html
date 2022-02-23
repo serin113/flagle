@@ -378,7 +378,7 @@
 
         var modalzoom = document.getElementById("zoommodalid");
 
-        window.onclick = function(event) {
+        function clickOutsideModal(event) {
             if (event.target == modalflag) {
                 modalflag.style.display = "none";
             } else if (event.target == modalhow) {
@@ -392,6 +392,10 @@
             } else if (event.target == modalzoom) {
                 modalzoom.style.display = "none";
             }
+        }
+
+        window.onclick = function(event) {
+            clickOutsideModal(event)
         }
     </script>
     <script>

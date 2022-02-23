@@ -1,7 +1,6 @@
 //TO DO:
 //Stats Display Change
 //Flag list
-//Hard mode
 
 /*
 Cookies:
@@ -23,9 +22,8 @@ SessionStorage:
 */
 
 // configs
-let countryChoicesCount = 30;
+let defaultDifficulty = 30;
 let maxTries = 6;
-let dailyMode = true;
 let icons = {
     rightColor: "🟣",
     wrongColor: "⚫",
@@ -51,6 +49,7 @@ let resultMsgs_lose = [
 let seedOverride = null; // null if disabled, string if needed
 
 // global-ish variables
+let countryChoicesCount = defaultDifficulty; // number of flags to play with
 let randomizer = null; // randomizer function for getRandomInt
 let countries = null; // <countryChoicesCount>-length list of countries w/ data
 let countryIndex = null; // <country>'s index in <countries>
@@ -63,6 +62,7 @@ let isWin = null; // game state variable: null/true/false
 let hasFlaggle = false; // flaggle is directly found
 let guesses = []; // list of guesses
 let lastGame = null; // game state after win/lose
+let dailyMode = true; // daily/random mode
 
 // helper functions
 
@@ -398,30 +398,34 @@ function fallbackCopyTextToClipboard(text) {
     textArea.focus();
     textArea.select();
 
+    var allGood = true;
     try {
         var successful = document.execCommand("copy");
         var msg = successful ? "successful" : "unsuccessful";
         console.log("Fallback: Copying text command was " + msg);
     } catch (err) {
+        allGood = false;
         console.error("Fallback: Oops, unable to copy", err);
     }
 
     document.body.removeChild(textArea);
+    return allGood;
 }
-
 function copyTextToClipboard(text) {
+    var allGood = true;
     if (!navigator.clipboard) {
-        fallbackCopyTextToClipboard(text);
-        return;
+        return fallbackCopyTextToClipboard(text);
     }
     navigator.clipboard.writeText(text).then(
         function () {
             console.log("Async: Copying to clipboard was successful!");
         },
         function (err) {
+            allGood = false;
             console.error("Async: Could not copy text: ", err);
         }
     );
+    return allGood;
 }
 
 /* set next daily flaggle countdowns, has to be repeated per second */
@@ -431,19 +435,15 @@ function updateCountdown(interval) {
     future.setDate(future.getDate() + 1);
     future.setHours(0, 0, 0);
     let diff = future - now;
-    let hours = Math.floor(
-        (diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-    );
+    let hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     let minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
     let seconds = Math.floor((diff % (1000 * 60)) / 1000);
     if (hours < 10) hours = "0" + hours;
     if (minutes < 10) minutes = "0" + minutes;
     if (seconds < 10) seconds = "0" + seconds;
     let timeText = hours + " : " + minutes + " : " + seconds;
-    document.getElementById("dailycountdowntext_stats").innerHTML =
-        timeText;
-    document.getElementById("dailycountdowntext_results").innerHTML =
-        timeText;
+    document.getElementById("dailycountdowntext_stats").innerHTML = timeText;
+    document.getElementById("dailycountdowntext_results").innerHTML = timeText;
     if (diff < 0 && !(interval == null || interval == undefined)) {
         clearInterval(interval);
     }
@@ -451,12 +451,12 @@ function updateCountdown(interval) {
 
 /* start next daily flaggle countdowns */
 function startCountdown() {
-    console.log("start countdown")
-    let lastGameCookie = Cookies.get("lastGame") 
+    console.log("start countdown");
+    let lastGameCookie = Cookies.get("lastGame");
     if (lastGameCookie != undefined) {
-        updateCountdown()
+        updateCountdown();
         let countdownDaily = setInterval(function () {
-            updateCountdown(countdownDaily)
+            updateCountdown(countdownDaily);
         }, 1000);
     }
 }
@@ -522,8 +522,11 @@ function showResults() {
 
             finalShareText += "\n\n" + resultText;
 
-            copyTextToClipboard(finalShareText);
-            this.querySelector("#sharetext").innerHTML = "Copied!";
+            if (copyTextToClipboard(finalShareText)) {
+                this.querySelector("#sharetext").innerHTML = "Copied!";
+            } else {
+                this.querySelector("#sharetext").innerHTML = "Failed";
+            }
         });
 
     document.getElementById("GameResults").style.display = "block";
@@ -678,40 +681,40 @@ function saveLastGame() {
     lastGame_temp.guesses = guesses;
     lastGame = lastGame_temp;
     Cookies.set("lastGame", JSON.stringify(lastGame), { sameSite: "strict" });
-    if (dailyMode) startCountdown() 
+    if (dailyMode) startCountdown();
 }
 
 /* load game state from lastGame cookie into globals */
 function loadLastGame() {
-    let lastGameCookie = Cookies.get("lastGame")
+    let lastGameCookie = Cookies.get("lastGame");
     if (lastGameCookie == undefined) {
-        if (!(window.sessionStorage.getItem("tutorialShown"))) {
-            modalhow.style.display = "block"
-            window.sessionStorage.setItem("tutorialShown", "true")
+        if (!window.sessionStorage.getItem("tutorialShown")) {
+            modalhow.style.display = "block";
+            window.sessionStorage.setItem("tutorialShown", "true");
         }
-        return
+        return;
     }
-    console.log("loading last game")
+    console.log("loading last game");
     if (Cookies.get("dailyMode") === "false") {
-        startCountdown()
-        return
+        startCountdown();
+        return;
     }
-    lastGame = JSON.parse(lastGameCookie)
+    lastGame = JSON.parse(lastGameCookie);
     if (currDate.toDateString() != lastGame.date) {
-        Cookies.remove("lastGame")
-        return
+        Cookies.remove("lastGame");
+        return;
     }
-    isWin = lastGame.isWin
-    countryIndex = lastGame.index
-    tries = lastGame.guesses.length
-    resultText = lastGame.resultText
+    isWin = lastGame.isWin;
+    countryIndex = lastGame.index;
+    tries = lastGame.guesses.length;
+    resultText = lastGame.resultText;
     for (let i = 0; i < tries; i++) {
-        if (i == tries - 1) hasFlaggle = lastGame.hasFlaggle
-        setGuessCounter(i, lastGame.guesses[i].type)
+        if (i == tries - 1) hasFlaggle = lastGame.hasFlaggle;
+        setGuessCounter(i, lastGame.guesses[i].type);
     }
-    disableButtons()
-    showResults()
-    startCountdown()
+    disableButtons();
+    showResults();
+    startCountdown();
 }
 
 /* reset lastGame cookie */
@@ -724,7 +727,6 @@ function resetGame() {
     location.reload();
 }
 
-
 // initializations
 
 /* initialize daily and random mode buttons */
@@ -735,14 +737,44 @@ document
     .getElementById("randomflaggle")
     .addEventListener("click", clickRandomModeButton);
 
-document.getElementById("difficultySlider").addEventListener("input", function(){
-    let difficultyCookie = Cookies.get("difficulty")
-    document.getElementById("difficultyValue").innerHTML = this.value
-    Cookies.set("difficulty", String(this.value), { sameSite: "strict" })
-})
-
 /* set game mode */
 setGameMode();
+
+document
+    .getElementById("difficultySlider")
+    .addEventListener("input", function () {
+        let difficultyCookie = Cookies.get("difficulty");
+        document.getElementById("difficultyValue").innerHTML = this.value;
+        console.log("new difficulty: " + this.value);
+        Cookies.set("difficulty", String(this.value), { sameSite: "strict" });
+        if (this.value != countryChoicesCount) {
+            window.onclick = function (event) {
+                if (event.target == modalset) {
+                    modalset.style.display = "none";
+                    location.reload();
+                }
+            };
+        } else {
+            window.onclick = function (event) {
+                clickOutsideModal(event);
+            };
+        }
+    });
+
+if (Cookies.get("difficulty") == undefined) {
+    Cookies.set("difficulty", String(countryChoicesCount), {
+        sameSite: "strict",
+    });
+} else {
+    console.log("loaded difficulty: " + Cookies.get("difficulty"));
+    document.getElementById("difficultySlider").value =
+        Cookies.get("difficulty");
+    document.getElementById("difficultyValue").innerHTML =
+        Cookies.get("difficulty");
+    if (dailyMode == false) {
+        countryChoicesCount = Number(Cookies.get("difficulty"));
+    }
+}
 
 /* initialize randomizer function */
 if (seedOverride == null) {
