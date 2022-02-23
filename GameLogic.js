@@ -499,6 +499,12 @@ function showResults() {
     if (isWin) resultsFlaggle.innerHTML = icons.flaggle;
     else resultsFlaggle.innerHTML = icons.lose;
     newGuesses.appendChild(resultsFlaggle);
+    if (isWin && countryChoicesCount==130 && !dailyMode) {
+        let resultsFlaggle = document.createElement("div");
+        resultsFlaggle.classList.add("flaggle");
+        resultsFlaggle.innerHTML = icons.hard;
+        newGuesses.appendChild(resultsFlaggle);
+    }
     document.getElementById("resultguesses").id = "resultguesses_temp";
     newGuesses.id = "resultguesses";
     newGuesses_parent.insertBefore(
