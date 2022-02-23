@@ -889,7 +889,8 @@ input:checked + .slider:before {
     border-radius: 0rem 0.5rem 0.5rem 0rem;
 }
 
-#drchoiceleft, #drchoiceright {
+#drchoiceleft,
+#drchoiceright {
     width: 50%;
     height: 2rem;
     cursor: pointer;
@@ -898,7 +899,8 @@ input:checked + .slider:before {
     border: 0.1rem solid rgb(121, 121, 121);
 }
 
-#drchoiceleft.selected, #drchoiceright.selected {
+#drchoiceleft.selected,
+#drchoiceright.selected {
     background-color: rgb(149, 149, 226);
     border: 0.1rem solid rgb(149, 149, 226);
     cursor: default;
