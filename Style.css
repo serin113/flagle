@@ -60,13 +60,13 @@ body {
 }
 
 .dark .guessindicators {
-    border-color: rgb(70, 70, 70);
+    border-color: rgb(75, 75, 75);
     background: rgb(70, 70, 70);
 }
 
 .dark .guessindicators.guessed,
 .dark .guessindicators.flag_guessed {
-    border-color: rgb(27, 27, 27);
+    border-color: rgb(75, 75, 75);
     background: rgb(27, 27, 27);
 }
 
@@ -776,8 +776,8 @@ input:checked + .slider:before {
 .guessindicators.flag_guessed {
     border-radius: 0.1rem;
     border: 0.1rem solid;
-    border-color: black;
-    background: black;
+    border-color: rgb(37, 37, 37);
+    background: rgb(37, 37, 37);
 }
 
 .guessindicators.current {
@@ -791,13 +791,13 @@ input:checked + .slider:before {
 
 .guessindicators.guessed {
     border-width: 0.1rem;
-    border-color: black;
+    border-color: rgb(37, 37, 37);
 }
 
 .guessindicators.purple {
     border: 0.1rem solid;
     border-radius: 0.1rem;
-    border-color: black;
+    border-color: rgb(37, 37, 37);
     background: rgb(132, 132, 220);
 }
 

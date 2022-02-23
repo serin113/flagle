@@ -78,6 +78,7 @@ let hasFlaggle = false; // flaggle is directly found
 let guesses = []; // list of guesses
 let lastGame = null; // game state after win/lose
 let dailyMode = true; // daily/random mode
+let clipboard = null; // ClipboardJS object
 
 // helper functions
 
@@ -405,50 +406,6 @@ function cloneGuesses() {
     return newGuesses;
 }
 
-/* Clipboard stuff: https://stackoverflow.com/a/30810322 */
-function fallbackCopyTextToClipboard(text) {
-    var textArea = document.createElement("textarea");
-    textArea.value = text;
-
-    // Avoid scrolling to bottom
-    textArea.style.top = "0";
-    textArea.style.left = "0";
-    textArea.style.position = "fixed";
-
-    document.body.appendChild(textArea);
-    textArea.focus();
-    textArea.select();
-
-    var allGood = true;
-    try {
-        var successful = document.execCommand("copy");
-        var msg = successful ? "successful" : "unsuccessful";
-        logger("Fallback: Copying text command was " + msg);
-    } catch (err) {
-        allGood = false;
-        console.error("Fallback: Oops, unable to copy", err);
-    }
-
-    document.body.removeChild(textArea);
-    return allGood;
-}
-function copyTextToClipboard(text) {
-    var allGood = true;
-    if (!navigator.clipboard) {
-        return fallbackCopyTextToClipboard(text);
-    }
-    navigator.clipboard.writeText(text).then(
-        function () {
-            logger("Async: Copying to clipboard was successful!");
-        },
-        function (err) {
-            allGood = false;
-            console.error("Async: Could not copy text: ", err);
-        }
-    );
-    return allGood;
-}
-
 /* set next daily flaggle countdowns, has to be repeated per second */
 function updateCountdown(interval) {
     let future = new Date(currDate.getTime());
@@ -537,29 +494,34 @@ function showResults() {
         document.getElementById("dailyflaggledate").innerHTML = "";
     }
 
-    document
-        .getElementById("sharebutton")
-        .addEventListener("click", function () {
-            let finalShareText = "Flagle ";
+    if (clipboard == null) {
+        clipboard = new ClipboardJS("#sharebutton", {
+            text: function () {
+                let finalShareText = "Flagle ";
 
-            if (dailyMode) finalShareText += "Daily  ";
-            else finalShareText += "Random  ";
+                if (dailyMode) finalShareText += "Daily  ";
+                else finalShareText += "Random  ";
 
-            finalShareText += tries + "/" + maxTries + "\n";
+                finalShareText += tries + "/" + maxTries + "\n";
 
-            if (dailyMode) finalShareText += currDate.toDateString().slice(4);
-            else finalShareText += countryChoicesCount;
+                if (dailyMode)
+                    finalShareText += currDate.toDateString().slice(4);
+                else finalShareText += countryChoicesCount;
 
-            finalShareText += "\n\n" + resultText;
-            if (!dailyMode && countryChoicesCount == maxDifficulty && isWin)
-                finalShareText += "  " + icons.hard;
+                finalShareText += "\n\n" + resultText;
+                if (!dailyMode && countryChoicesCount == maxDifficulty && isWin)
+                    finalShareText += "  " + icons.hard;
 
-            if (copyTextToClipboard(finalShareText)) {
-                this.querySelector("#sharetext").innerHTML = "Copied!";
-            } else {
-                this.querySelector("#sharetext").innerHTML = "Failed";
-            }
+                return finalShareText;
+            },
         });
+        clipboard.on("success", function (e) {
+            e.trigger.innerHTML = "Copied!";
+        });
+        clipboard.on("error", function (e) {
+            e.trigger.innerHTML = "Failed.";
+        });
+    }
 
     document.getElementById("GameResults").style.display = "block";
 }
