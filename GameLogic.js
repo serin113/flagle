@@ -19,6 +19,16 @@ Cookies:
             type (string=color, null=flag)
             index (int)
 
+    stats_d_totalWins (int)
+    stats_d_totalGames (int)
+    stats_d_currentStreak (int)
+    stats_d_bestStreak (int)
+
+    stats_r_totalWins (int)
+    stats_r_totalGames (int)
+    stats_r_currentStreak (int)
+    stats_r_bestStreak (int)
+
 SessionStorage:
     tutorialShown (bool, exists or doesn't)
 */
@@ -452,6 +462,8 @@ function updateCountdown(interval) {
     if (minutes < 10) minutes = "0" + minutes;
     if (seconds < 10) seconds = "0" + seconds;
     let timeText = hours + " : " + minutes + " : " + seconds;
+    document.getElementById("nextdailyresult").style.display = "inline"
+    document.getElementById("nextdailystats").style.display = "inline"
     document.getElementById("dailycountdowntext_stats").innerHTML = timeText;
     document.getElementById("dailycountdowntext_results").innerHTML = timeText;
     if (diff < 0 && !(interval == null || interval == undefined)) {
@@ -624,6 +636,8 @@ function onClickButtons() {
 
     // indicate win/lose, disable buttons
     if (isWin != null) {
+        saveGameStats()
+        displayGameStats(dailyMode)
         if (dailyMode) saveLastGame();
         if (isWin) {
             let guessList = document
@@ -656,6 +670,82 @@ function clickRandomModeButton() {
     location.reload();
 }
 
+function saveGameStats() {
+    let statsPrefix = dailyMode ? "stats_d_" : "stats_r_"
+
+    let totalGamesStr = statsPrefix + "totalGames"
+    let totalWinsStr = statsPrefix + "totalWins"
+    let currentStreakStr = statsPrefix + "currentStreak"
+    let bestStreakStr = statsPrefix + "bestStreak"
+    let totalGamesVal = Cookies.get(totalGamesStr)
+    let totalWinsVal = Cookies.get(totalWinsStr)
+    let currentStreakVal = Cookies.get(currentStreakStr)
+    let bestStreakVal = Cookies.get(bestStreakStr)
+
+    totalGamesVal = (totalGamesVal == undefined) ? 0 : Number(totalGamesVal)
+    totalWinsVal = (totalWinsVal == undefined) ? 0 : Number(totalWinsVal)
+    currentStreakVal = (currentStreakVal == undefined) ? 0 : Number(currentStreakVal)
+    bestStreakVal = (bestStreakVal == undefined) ? 0 : Number(bestStreakVal)
+
+    totalGamesVal += 1
+    Cookies.set(totalGamesStr, totalGamesVal, { sameSite: "strict" });
+
+    if (isWin) {
+        totalWinsVal += 1
+        Cookies.set(totalWinsStr, totalWinsVal, { sameSite: "strict" });
+
+        currentStreakVal += 1
+        Cookies.set(currentStreakStr, currentStreakVal, { sameSite: "strict" });
+
+        bestStreakVal = (currentStreakVal > bestStreakVal) ? currentStreakVal : bestStreakVal
+        Cookies.set(bestStreakStr, bestStreakVal, { sameSite: "strict" });
+    } else {
+        currentStreakVal = 0
+        Cookies.set(currentStreakStr, currentStreakVal, { sameSite: "strict" });
+    }
+}
+
+let fxn_displayDaily = function(){displayGameStats(true)}
+let fxn_displayRandom = function(){displayGameStats(false)}
+function displayGameStats(showDaily) {
+    if (showDaily) {
+        document.getElementById("drchoiceleft").classList.add("selected")
+        document.getElementById("drchoiceright").classList.remove("selected")
+        document.getElementById("drchoiceleft").removeEventListener("click", fxn_displayDaily)
+        document.getElementById("drchoiceright").addEventListener("click", fxn_displayRandom)
+    } else {
+        document.getElementById("drchoiceleft").classList.remove("selected")
+        document.getElementById("drchoiceright").classList.add("selected")
+        document.getElementById("drchoiceleft").addEventListener("click", fxn_displayDaily)
+        document.getElementById("drchoiceright").removeEventListener("click", fxn_displayRandom)
+    }
+
+    let statsPrefix = showDaily ? "stats_d_" : "stats_r_"
+    
+    let stats_totalWins_str = statsPrefix + "totalWins"
+    let stats_totalGames_str = statsPrefix + "totalGames"
+    let stats_currentStreak_str = statsPrefix + "currentStreak"
+    let stats_bestStreak_str = statsPrefix + "bestStreak"
+    
+    let stats_totalWins = Cookies.get(stats_totalWins_str)
+    let stats_totalGames = Cookies.get(stats_totalGames_str)
+    let stats_currentStreak = Cookies.get(stats_currentStreak_str)
+    let stats_bestStreak = Cookies.get(stats_bestStreak_str)
+
+    stats_totalWins = (stats_totalWins == undefined) ? 0 : Number(stats_totalWins)
+    stats_totalGames = (stats_totalGames == undefined) ? 0 : Number(stats_totalGames)
+    stats_currentStreak = (stats_currentStreak == undefined) ? 0 : Number(stats_currentStreak)
+    stats_bestStreak = (stats_bestStreak == undefined) ? 0 : Number(stats_bestStreak)
+
+    let stats_winPercent = (stats_totalGames != 0) ? Math.round((stats_totalWins / stats_totalGames) * 1000) / 10 : 0
+
+    document.getElementById("flagsguessedtext").innerHTML = stats_totalWins
+    document.getElementById("winpercenttext").innerHTML = stats_winPercent
+    document.getElementById("currentstreaktext").innerHTML = stats_currentStreak
+    document.getElementById("beststreaktext").innerHTML = stats_bestStreak
+}
+
+
 /* set game mode based on selection */
 function setGameMode() {
     let dailyModeCookie = Cookies.get("dailyMode");
@@ -666,7 +756,6 @@ function setGameMode() {
     if (dailyModeCookie === "true") {
         dailyMode = true;
         document.getElementById("drnotiftext").innerHTML = "DAILY";
-        // document.getElementById("randomflaggle").classList.remove("disabled")
         document.getElementById("dailyflaggle").classList.add("disabled");
         document.getElementById("dailyflaggle").disabled = true;
         document
@@ -675,13 +764,13 @@ function setGameMode() {
     } else {
         dailyMode = false;
         document.getElementById("drnotiftext").innerHTML = "RANDOM";
-        // document.getElementById("randomflaggle").classList.add("disabled")
         document.getElementById("dailyflaggle").classList.remove("disabled");
         document.getElementById("dailyflaggle").disabled = false;
         document
             .getElementById("dailyflaggle")
             .addEventListener("click", clickDailyModeButton);
     }
+    displayGameStats(dailyMode)
 }
 
 /* save game state into lastGame cookie */
@@ -746,13 +835,23 @@ function resetGame() {
     Cookies.remove("difficulty");
     Cookies.remove("dailyMode");
     Cookies.remove("darkMode");
+
+    Cookies.remove("stats_d_totalWins");
+    Cookies.remove("stats_d_totalGames");
+    Cookies.remove("stats_d_currentStreak");
+    Cookies.remove("stats_d_bestStreak");
+
+    Cookies.remove("stats_r_totalWins");
+    Cookies.remove("stats_r_totalGames");
+    Cookies.remove("stats_r_currentStreak");
+    Cookies.remove("stats_r_bestStreak");
     window.sessionStorage.clear();
     location.reload();
 }
 
 // initializations
 
-/* initialize daily and random mode buttons */
+/* daily and random mode buttons */
 document
     .getElementById("dailyflaggle")
     .addEventListener("click", clickDailyModeButton);
@@ -763,6 +862,7 @@ document
 /* set game mode */
 setGameMode();
 
+/* difficulty slider */
 document
     .getElementById("difficultySlider")
     .addEventListener("input", function () {
@@ -831,7 +931,8 @@ for (let i = 0; i < maxTries; i++) {
     if (i == 0) guessIndicator.classList.add("current");
     document.getElementById("guesses").appendChild(guessIndicator);
 }
-
+document.getElementById("nextdailyresult").style.display = "none"
+document.getElementById("nextdailystats").style.display = "none"
 document.getElementById("dailycountdowntext_stats").innerHTML = "";
 document.getElementById("dailycountdowntext_results").innerHTML = "";
 

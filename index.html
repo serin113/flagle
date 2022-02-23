@@ -6,17 +6,13 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
-
-    <link href="https://fonts.googleapis.com/css?family=Material+Icons+Outlined" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&family=Material+Icons+Outlined&display=swap" rel="stylesheet">
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
-
     <link rel="stylesheet" type="text/css" href="/Style.css">
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@3/dist/js.cookie.min.js"></script>
     <title>FLAGLE</title>
@@ -70,7 +66,7 @@
         <div id="gameresults-content" class="modal-content">
             <div class="modal-header" id="resultsmodalheader">
                 <span class="close" id="closeresults">&times;</span>
-                <h3 class="modalheadertext" id="gameoverresult">Correct!</h3>
+                <h3 class="modalheadertext" id="gameoverresult"></h3>
             </div>
             <div class="modal-body" id="resultsmodalbody">
                 <div id="flaggleresultsdata">
@@ -83,7 +79,7 @@
             </div>
             <div class="modalfooter">
                 <div class="footerhalf " id="footerleft">
-                    <text id="nextdaily">Next Daily</text>
+                    <text id="nextdailyresult">Next Daily</text>
                     <div class="dailycountdowndiv">
                         <text class="dailycountdowntext" id="dailycountdowntext_results">XX : XX : XX</text>
                     </div>
@@ -202,25 +198,25 @@
                 <div id="statsdisplay">
                     <div class="statstab" id="flagsguessed">
                         <text class="statstext" id="flagsguessedtext">0</text></br>
-                        <text class="statsdesc" id="flagsguesseddesc">FLAGLEs Guessed</text>
+                        <div class="statsdesc" id="flagsguesseddesc">FLAGLEs Guessed</div>
                     </div>
                     <div class="statstab" id="winpercent">
                         <text class="statstext" id="winpercenttext">0</text></br>
-                        <text class="statsdesc" id="winpercentdesc">Win %</text></br>
+                        <div class="statsdesc" id="winpercentdesc">Win %</div></br>
                     </div>
                     <div class="statstab" id="currentstreak">
                         <text class="statstext" id="currentstreaktext">0</text></br>
-                        <text class="statsdesc" id="currentstreakdesc">Current Streak</text>
+                        <div class="statsdesc" id="currentstreakdesc">Current Streak</div>
                     </div>
                     <div class="statstab" id="beststreak">
                         <text class="statstext" id="beststreaktext">0</text></br>
-                        <text class="statsdesc" id="beststreakdesc">Best Streak</text>
+                        <div class="statsdesc" id="beststreakdesc">Best Streak</div>
                     </div>
                 </div>
 
                 <div class="modalfooter">
                     <div class="footerhalf " id="footerleft">
-                        <text id="nextdaily">Next Daily</text>
+                        <text id="nextdailystats">Next Daily</text>
                         <div class="dailycountdowndiv">
                             <text class="dailycountdowntext" id="dailycountdowntext_stats"></text>
                         </div>
