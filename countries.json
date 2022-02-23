@@ -18,7 +18,7 @@
     },
     {
         "name": "Andorra",
-        "colors": ["red", "yellow", "blue"],
+        "colors": ["red", "yellow", "blue", "white"],
         "img": "https://www.worldometers.info/img/flags/an-flag.gif"
     },
     {
@@ -109,7 +109,7 @@
     },
     {
         "name": "Bolivia",
-        "colors": ["red", "yellow", "green"],
+        "colors": ["red", "yellow", "green","blue","white"],
         "img": "https://www.worldometers.info/img/flags/bl-flag.gif"
     },
     {
@@ -220,12 +220,12 @@
     },
     {
         "name": "Costa Rica",
-        "colors": ["red", "white", "blue"],
+        "colors": ["red", "white", "blue", "green", "yellow"],
         "img": "https://www.worldometers.info/img/flags/cs-flag.gif"
     },
     {
         "name": "Croatia",
-        "colors": ["red", "white", "blue"],
+        "colors": ["red", "white", "blue", "black"],
         "img": "https://www.worldometers.info/img/flags/hr-flag.gif"
     },
     {
@@ -257,13 +257,13 @@
     },
     {
         "name": "Dominica",
-        "colors": ["white", "red", "yellow", "black", "green"],
+        "colors": ["white", "red", "yellow", "black", "green", "blue"],
         "star": 10,
         "img": "https://www.worldometers.info/img/flags/do-flag.gif"
     },
     {
         "name": "Dominican Republic",
-        "colors": ["white", "red", "blue"],
+        "colors": ["white", "red", "blue", "green", "yellow"],
         "img": "https://www.worldometers.info/img/flags/dr-flag.gif"
     },
     {
@@ -280,7 +280,7 @@
     },
     {
         "name": "Ecuador",
-        "colors": ["yellow", "red", "blue"],
+        "colors": ["yellow", "red", "blue", "green", "white"],
         "img": "https://www.worldometers.info/img/flags/ec-flag.gif"
     },
     {
@@ -290,12 +290,12 @@
     },
     {
         "name": "El Salvador",
-        "colors": ["blue", "white"],
-        "img": "https://www.worldometers.info/img/flags/es-flag.gif"
+        "colors": ["blue", "white", "red", "green", "yellow"],
+        "img": "https://upload.wikimedia.org/wikipedia/commons/3/34/Flag_of_El_Salvador.svg"
     },
     {
         "name": "Equatorial Guinea",
-        "colors": ["blue", "white", "green", "red"],
+        "colors": ["blue", "white", "green", "red", "yellow"],
         "img": "https://www.worldometers.info/img/flags/ek-flag.gif"
     },
     {
@@ -373,7 +373,7 @@
     },
     {
         "name": "Guatemala",
-        "colors": ["green", "white", "yellow", "blue"],
+        "colors": ["green", "white", "yellow", "blue", "red"],
         "img": "https://www.worldometers.info/img/flags/gt-flag.gif"
     },
     {
@@ -584,8 +584,8 @@
     },
     {
         "name": "Mexico",
-        "colors": ["white", "green", "red"],
-        "img": "https://www.worldometers.info/img/flags/mx-flag.gif"
+        "colors": ["white", "green", "red", "blue", "yellow"],
+        "img": "https://upload.wikimedia.org/wikipedia/commons/f/fc/Flag_of_Mexico.svg"
     },
     {
         "name": "Micronesia",
@@ -594,7 +594,7 @@
     },
     {
         "name": "Moldova",
-        "colors": ["red", "blue", "yellow"],
+        "colors": ["red", "blue", "yellow", "green"],
         "img": "https://www.worldometers.info/img/flags/md-flag.gif"
     },
     {
@@ -609,7 +609,7 @@
     },
     {
         "name": "Montenegro",
-        "colors": ["red", "yellow"],
+        "colors": ["red", "orange", "blue", "green"],
         "img": "https://www.worldometers.info/img/flags/mj-flag.gif"
     },
     {
