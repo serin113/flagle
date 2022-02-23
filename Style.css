@@ -330,14 +330,30 @@ body {
     border-radius: 0rem 0rem 0.5rem 0.5rem;
 }
 
-#howtomodalbody,
-#flagsmodalbody,
-#settingsmodalbody {
+
+#flagsmodalbody {
     padding-left: 1rem;
     padding-right: 1rem;
     padding-top: 0.5rem;
     padding-bottom: 1.5rem;
     text-align: center;
+}
+
+#settingsmodalbody {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    text-align: center;
+}
+
+#howtomodalbody {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    font-size: 0.9rem;
+    text-align: left;
 }
 
 .colorchange,
@@ -1028,19 +1044,28 @@ input:checked + .slider:before {
     font-weight: bold;
 }
 
-/* F.A.Q. Contents */
+/* F.A.Q. and About Contents */
 
 #disclaimer {
     justify-content: left;
     text-align: left;
     margin-top: 1rem;
     font-size: 0.9rem;
+    padding-bottom: 1rem;
+    border-bottom: 0.05rem solid grey;
 }
 
-#sporcle {
+.textlink {
     font-style: none;
     color: rgb(149, 149, 226);
     font-weight: bold;
+}
+
+#about {
+    justify-content: center;
+    text-align: center;
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
 }
 
 /* Slider */
