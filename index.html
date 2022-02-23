@@ -289,24 +289,45 @@
             <div class="modal-body" id="settingsmodalbody">
 
                 <div class="settingsdivs" id="darktheme">
-                    <text class="settingsfont">Hard Mode</text>
-                    <!--Make it 120 countries instead of 30-->
-                    <!-- Toggle Switches -->
-                    <label class="switch">
-                            <input type="checkbox" id="explorer">
-                            <span class="slider round"></span>
-                        </label>
+                    <text class="settingsfont">Hard Mode</text></br>
+                </div>
+
+                <div class="hmslidecontainer">
+                    <input type="range" min="0" max="100" value="50" class="hmslider" id="myRange" step="10">
                 </div>
 
                 <div class="settingsdivs" id="darktheme">
                     <text class="settingsfont">Dark Theme</text>
                     <!-- Toggle Switches -->
                     <label class="switch">
-                            <input type="checkbox" id="darkthemeswitch">
-                            <span class="slider round"></span>
-                        </label>
+                        <input type="checkbox" id="darkthemeswitch">
+                        <span class="slider round"></span>
+                    </label>
                 </div>
 
+                <div id="faqcontents">
+                    <text id="faqtext">F.A.Q.</text></br>
+                    <div class="question">
+                        <div class="faqqa">                    
+                            <text class="qa">Q:</text>
+                        </div>
+                        <div class="qatext">
+                            <text>How many countries are in the game?</text>
+                        </div>
+                    </div>
+                    <div class="answer">
+                        <div class="faqqa">                    
+                            <text class="qa">A:</text>
+                        </div>
+                        <div class="qatext">
+                            <text>There are 197 flags currently in <b>FLAGLE</b>. All country names and flags are obtained from <a href="https://www.sporcle.com/">sporcle.com</a>.</text>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="about">
+
+                </div>
             </div>
         </div>
     </div>
