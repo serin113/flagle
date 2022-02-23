@@ -30,12 +30,12 @@
     },
     {
         "name": "Antigua & Barbuda",
-        "colors": ["red", "yellow", "black", "white", "lightblue"],
+        "colors": ["red", "yellow", "black", "white", "blue"],
         "img": "https://www.worldometers.info/img/flags/ac-flag.gif"
     },
     {
         "name": "Argentina",
-        "colors": ["yellow", "white", "lightblue"],
+        "colors": ["yellow", "white", "blue"],
         "sun": 1,
         "img": "https://www.worldometers.info/img/flags/ar-flag.gif"
     },
@@ -57,14 +57,14 @@
     },
     {
         "name": "Azerbaijan",
-        "colors": ["red", "white", "green", "lightblue"],
+        "colors": ["red", "white", "green", "blue"],
         "moon": 1,
         "star": 1,
         "img": "https://www.worldometers.info/img/flags/aj-flag.gif"
     },
     {
         "name": "Bahamas",
-        "colors": ["yellow", "black", "lightblue"],
+        "colors": ["yellow", "black", "blue"],
         "img": "https://www.worldometers.info/img/flags/bf-flag.gif"
     },
     {
@@ -120,7 +120,7 @@
     },
     {
         "name": "Botswana",
-        "colors": ["white", "black", "lightblue"],
+        "colors": ["white", "black", "blue"],
         "img": "https://www.worldometers.info/img/flags/bc-flag.gif"
     },
     {
@@ -214,7 +214,7 @@
     },
     {
         "name": "Congo",
-        "colors": ["red", "yellow", "lightblue"],
+        "colors": ["red", "yellow", "blue"],
         "star": 1,
         "img": "https://www.worldometers.info/img/flags/cg-flag.gif"
     },
@@ -251,7 +251,7 @@
     },
     {
         "name": "Djibouti",
-        "colors": ["white", "red", "lightblue", "green"],
+        "colors": ["white", "red", "blue", "green"],
         "star": 1,
         "img": "https://www.worldometers.info/img/flags/dj-flag.gif"
     },
@@ -290,17 +290,17 @@
     },
     {
         "name": "El Salvador",
-        "colors": ["lightblue", "white"],
+        "colors": ["blue", "white"],
         "img": "https://www.worldometers.info/img/flags/es-flag.gif"
     },
     {
         "name": "Equatorial Guinea",
-        "colors": ["lightblue", "white", "green", "red"],
+        "colors": ["blue", "white", "green", "red"],
         "img": "https://www.worldometers.info/img/flags/ek-flag.gif"
     },
     {
         "name": "Eritrea",
-        "colors": ["lightblue", "yellow", "green", "red"],
+        "colors": ["blue", "yellow", "green", "red"],
         "img": "https://www.worldometers.info/img/flags/er-flag.gif"
     },
     {
@@ -321,7 +321,7 @@
     },
     {
         "name": "Fiji",
-        "colors": ["lightblue", "blue", "white", "green", "red", "yellow"],
+        "colors": ["blue", "white", "green", "red", "yellow"],
         "img": "https://www.worldometers.info/img/flags/fj-flag.gif"
     },
     {
@@ -373,7 +373,7 @@
     },
     {
         "name": "Guatemala",
-        "colors": ["green", "white", "yellow", "lightblue"],
+        "colors": ["green", "white", "yellow", "blue"],
         "img": "https://www.worldometers.info/img/flags/gt-flag.gif"
     },
     {
@@ -464,7 +464,7 @@
     },
     {
         "name": "Kazakhstan",
-        "colors": ["lightblue", "yellow"],
+        "colors": ["blue", "yellow"],
         "img": "https://www.worldometers.info/img/flags/kz-flag.gif"
     },
     {
@@ -589,7 +589,7 @@
     },
     {
         "name": "Micronesia",
-        "colors": ["white", "lightblue"],
+        "colors": ["white", "blue"],
         "img": "https://www.worldometers.info/img/flags/fm-flag.gif"
     },
     {
