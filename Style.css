@@ -372,20 +372,17 @@ body {
     0% {
         color: red;
     }
-    15% {
+    20% {
         color: orange;
     }
-    32% {
+    40% {
         color: rgb(255, 209, 4);
     }
-    49% {
+    60% {
         color: green;
     }
-    66% {
+    80% {
         color: rgb(56, 56, 255);
-    }
-    83% {
-        color: rgb(102, 237, 255);
     }
     100% {
         color: red;
@@ -396,20 +393,17 @@ body {
     0% {
         color: red;
     }
-    15% {
+    20% {
         color: orange;
     }
-    32% {
+    40% {
         color: rgb(255, 209, 4);
     }
-    49% {
+    60% {
         color: green;
     }
-    66% {
+    80% {
         color: rgb(56, 56, 255);
-    }
-    83% {
-        color: rgb(102, 237, 255);
     }
     100% {
         color: red;
