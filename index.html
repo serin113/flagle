@@ -39,7 +39,6 @@
                     <span class="flaggletext" style="--i:4"><t id="ft4">G</t></span>
                     <span class="flaggletext" style="--i:5"><t id="ft5">L</t></span>
                     <span class="flaggletext" style="--i:6"><t id="ft6">E</t></span>
-                    <!-- <span class="flaggletext" style="--i:7"><t id="ft7">E</t></span> -->
                 </div>
             </div>
 
@@ -50,25 +49,6 @@
     </div>
 
     <div id="gamediv">
-        <!-- <div class="DisplayBody">
-            <div class="MainDisplay">
-                <button class="displaybuttons" id="dailyflaggle"><b>Daily</b></button>
-                <div id="middlediv">
-                    <div id="drnotif">
-                        <text id="drnotiftext">DAILY</text>
-                    </div>
-                    <button id="guesses">
-                        <div class="guessindicators" id="guess1"></div>
-                        <div class="guessindicators" id="guess2"></div>
-                        <div class="guessindicators" id="guess3"></div>
-                        <div class="guessindicators" id="guess4"></div>
-                        <div class="guessindicators" id="guess5"></div>
-                        <div class="guessindicators" id="guess6"></div>
-                    </button>
-                </div>
-                <button class="displaybuttons" id="randomflaggle"><b>Random</b></button>
-            </div>
-        </div> -->
 
         <button class="displaybuttons" id="dailyflaggle"><b>Daily</b></button>
         <div id="middlediv">
@@ -76,31 +56,11 @@
                 <text id="drnotiftext">DAILY</text>
             </div>
             <button id="guesses">
-                        <div class="guessindicators" id="guess1"></div>
-                        <div class="guessindicators" id="guess2"></div>
-                        <div class="guessindicators" id="guess3"></div>
-                        <div class="guessindicators" id="guess4"></div>
-                        <div class="guessindicators" id="guess5"></div>
-                        <div class="guessindicators" id="guess6"></div>
-                    </button>
+            </button>
         </div>
         <button class="displaybuttons" id="randomflaggle"><b>Random</b></button>
 
-        <!--Game Choices-->
-        <div id="choices">
-            <div class="flagpics" id="country1">
-
-            </div>
-            <div class="flagnames" id="country1">
-
-            </div>
-        </div>
-
-        <div id="results">
-            <div id="answer">
-
-            </div>
-        </div>
+        <div id="choices"></div>
 
     </div>
 
@@ -111,34 +71,20 @@
             <div class="modal-header" id="resultsmodalheader">
                 <span class="close" id="closeresults">&times;</span>
                 <h3 class="modalheadertext" id="gameoverresult">Correct!</h3>
-                <!--Changes if it's a win or not, and by how many tries (1=Excellent!,3=Great!,6=Phew,etc.)-->
             </div>
             <div class="modal-body" id="resultsmodalbody">
                 <div id="flaggleresultsdata">
-                    <img id="flagglepic" src="https://www.worldometers.info/img/flags/ja-flag.gif"></br>
-                    <!--Flaggle Pic-->
-                    <text id="flagglenamedisplay">The <b>FLAGLE</b> is <b>Japan</b></text></br>
-                    <!--if daily: The DAILY FLAGGLE ...-->
-
-                    <div id="resultguesses">
-                        <!--Redisplay Guess Indicators-->
-                        <div class="guessindicators" id="guess1"></div>
-                        <div class="guessindicators" id="guess2"></div>
-                        <div class="guessindicators" id="guess3"></div>
-                        <div class="guessindicators" id="guess4"></div>
-                        <div class="guessindicators" id="guess5"></div>
-                        <div class="guessindicators" id="guess6"></div>
-                    </div>
-
-                    <text id="dailyflaggledate">February 21, 2022</text>
-                    <!--ONLY if DAILY-->
+                    <img id="flagglepic"></br>
+                    <text id="flagglenamedisplay"></text></br>
+                    <div id="resultguesses"></div>
+                    <text id="dailyflaggledate"></text>
                 </div>
 
             </div>
             <div class="modalfooter">
                 <div class="footerhalf " id="footerleft">
                     <div class="dailycountdowndiv">
-                        <text class="dailycountdowntext" id="dailycountdowntext_results">12 : 34 : 56</text>
+                        <text class="dailycountdowntext" id="dailycountdowntext_results"></text>
                     </div>
                 </div>
                 <div class="footerhalf " id="footerright">
@@ -274,7 +220,7 @@
                 <div class="modalfooter">
                     <div class="footerhalf " id="footerleft">
                         <div class="dailycountdowndiv">
-                            <text class="dailycountdowntext" id="dailycountdowntext_stats">12 : 34 : 56</text>
+                            <text class="dailycountdowntext" id="dailycountdowntext_stats"></text>
                         </div>
                     </div>
                     <div class="footerhalf " id="footerright">
@@ -315,14 +261,12 @@
                     <text id="difficultyValue">30</text>
                 </div>
 
-                <!-- HMSlider -->
                 <div class="hmslidecontainer">
                     <input type="range" min="30" max="130" value="30" class="hmslider" id="difficultySlider" step="10">
                 </div>
 
                 <div class="settingsdivs" id="darktheme">
                     <text class="settingsfont">Dark Theme</text>
-                    <!-- Toggle Switches -->
                     <label class="switch">
                         <input type="checkbox" id="darkthemeswitch">
                         <span class="slider round"></span>

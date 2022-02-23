@@ -1,6 +1,8 @@
 //TO DO:
 //Stats Display Change
 //Flag list
+//Remove lightblue
+//Fix JSON
 
 /*
 Cookies:
@@ -49,7 +51,7 @@ let resultMsgs_lose = [
     "Nice try",
 ];
 let seedOverride = null; // null if disabled, string if needed
-let debug = false;
+let debug = true;
 
 // global-ish variables
 let countryChoicesCount = defaultDifficulty; // number of flags to play with
