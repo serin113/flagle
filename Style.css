@@ -535,7 +535,7 @@ input:checked + .slider:before {
     display: inline-block;
     width: 100%;
     height: 6.5rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
 }
 
 #flagsguessed,
@@ -931,7 +931,7 @@ input:checked + .slider:before {
 
 .statsmodetext {
     line-height: 1.75rem;
-    font-size: 1rem;
+    font-size: 0.9rem;
     color: white;
 }
 
@@ -993,8 +993,8 @@ input:checked + .slider:before {
     font-size: 1.5rem;
 }
 
-.dailycountdowndiv {
-    margin-top: 0.5rem;
+#nextdaily {
+    font-size: 0.9rem;
 }
 
 .footerhalf {
@@ -1007,11 +1007,13 @@ input:checked + .slider:before {
 
 #footerleft {
     border-right: 0.1rem solid grey;
+    height: 3.9rem;
 }
 
 #sharebutton {
     height: 2rem;
     max-height: 2rem;
+    margin-top: 0.45rem;
     /* padding-top: 0.45rem; */
 }
 
@@ -1024,12 +1026,13 @@ input:checked + .slider:before {
 /*Stats Modal*/
 
 #sharebuttonstat {
-    height: 1.5rem;
-    max-height: 1.5rem;
-    padding-top: 0.45rem;
-    margin-top: 0.25rem;
+    height: 2rem;
+    max-height: 2rem;
+    margin-top: 0.45rem;
+    /* padding-top: 0.45rem; */
     margin-left: auto;
     margin-right: auto;
+
 }
 
 #sharetextstat {
