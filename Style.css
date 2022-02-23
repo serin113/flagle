@@ -55,23 +55,23 @@ body {
 }
 
 .dark_colorkeys {
-    color: rgb(149, 149, 226);
-    border-color: rgb(149, 149, 226);
+    color: rgb(132, 132, 220);
+    border-color: rgb(132, 132, 220);
 }
 
 .dark .guessindicators {
-    border-color: rgb(75, 75, 75);
+    border-color: rgb(70, 70, 70);
     background: rgb(70, 70, 70);
 }
 
 .dark .guessindicators.guessed,
 .dark .guessindicators.flag_guessed {
-    border-color: rgb(75, 75, 75);
+    border-color: rgb(27, 27, 27);
     background: rgb(27, 27, 27);
 }
 
 .dark .guessindicators.current {
-    border-color: rgb(149, 149, 226);
+    border-color: rgb(132, 132, 220);
     background: rgb(70, 70, 70);
 }
 
@@ -87,7 +87,7 @@ body {
     border: 0.1rem solid;
     border-radius: 0.1rem;
     border-color: rgb(75, 75, 75);
-    background: rgb(149, 149, 226);
+    background: rgb(132, 132, 220);
 }
 
 .dark #guesses,
@@ -488,11 +488,11 @@ body {
 }
 
 input:checked + .slider {
-    background-color: rgb(149, 149, 226);
+    background-color: rgb(132, 132, 220);
 }
 
 input:focus + .slider {
-    box-shadow: 0 0 0.05rem rgb(149, 149, 226);
+    box-shadow: 0 0 0.05rem rgb(132, 132, 220);
 }
 
 input:checked + .slider:before {
@@ -586,11 +586,11 @@ input:checked + .slider:before {
     margin-top: 0.4rem;
     max-height: 1.75rem;
     max-width: 1.65rem;
-    border: 0.1rem solid rgb(149, 149, 226);
+    border: 0.1rem solid rgb(132, 132, 220);
     border-radius: 0rem 0.25rem 0.25rem 0rem;
     vertical-align: middle;
     cursor: pointer;
-    background: rgb(149, 149, 226);
+    background: rgb(132, 132, 220);
 }
 
 #searchbutton:active {
@@ -727,8 +727,8 @@ input:checked + .slider:before {
 }
 
 #guesses {
-    border: 0.1rem solid rgb(149, 149, 226);
-    background-color: rgb(149, 149, 226);
+    border: 0.1rem solid rgb(132, 132, 220);
+    background-color: rgb(132, 132, 220);
     height: 0.8rem;
     border-radius: 0.25rem;
     width: auto;
@@ -782,7 +782,7 @@ input:checked + .slider:before {
 
 .guessindicators.current {
     transform: scale(2);
-    border-color: rgb(149, 149, 226);
+    border-color: rgb(132, 132, 220);
     background: white;
     border-width: 0.1rem;
     margin-left: 0.5rem;
@@ -798,7 +798,7 @@ input:checked + .slider:before {
     border: 0.1rem solid;
     border-radius: 0.1rem;
     border-color: black;
-    background: rgb(149, 149, 226);
+    background: rgb(132, 132, 220);
 }
 
 .guessindicators.guessed.green {
@@ -843,8 +843,8 @@ input:checked + .slider:before {
     box-sizing: content-box;
     padding: 0.25rem;
     padding-bottom: 0.5rem;
-    border: 0.1rem solid rgb(149, 149, 226);
-    background-color: rgb(149, 149, 226);
+    border: 0.1rem solid rgb(132, 132, 220);
+    background-color: rgb(132, 132, 220);
     box-shadow: 0rem 0.15rem 0.25rem rgba(0, 0, 0, 0.75);
     transition: border-width 150ms, box-shadow 150ms, opacity 150ms;
     cursor: pointer;
@@ -901,8 +901,8 @@ input:checked + .slider:before {
 
 #drchoiceleft.selected,
 #drchoiceright.selected {
-    background-color: rgb(149, 149, 226);
-    border: 0.1rem solid rgb(149, 149, 226);
+    background-color: rgb(132, 132, 220);
+    border: 0.1rem solid rgb(132, 132, 220);
     cursor: default;
 }
 
@@ -1083,7 +1083,7 @@ input:checked + .slider:before {
 
 .textlink {
     font-style: none;
-    color: rgb(149, 149, 226);
+    color: rgb(132, 132, 220);
     font-weight: bold;
 }
 
@@ -1111,7 +1111,7 @@ input:checked + .slider:before {
     width: 100%;
     height: 0.5rem;
     border-radius: 0.25rem;
-    background: rgb(149, 149, 226);
+    background: rgb(132, 132, 220);
     outline: none;
     transition: opacity 0.2s;
 }
@@ -1212,19 +1212,19 @@ input:checked + .slider:before {
 }
 
 .dark #demoorange {
-    color: rgb(149, 149, 226);
-    border-color: rgb(149, 149, 226);
+    color: rgb(132, 132, 220);
+    border-color: rgb(132, 132, 220);
 }
 
 .dark #demoyellow {
-    color: rgb(149, 149, 226);
-    border-color: rgb(149, 149, 226);
+    color: rgb(132, 132, 220);
+    border-color: rgb(132, 132, 220);
     box-shadow: 0 0.15rem 0.5rem rgba(149, 149, 226, 0.75);
 }
 
 .dark #demogreen {
-    color: rgb(149, 149, 226);
-    border-color: rgb(149, 149, 226);
+    color: rgb(132, 132, 220);
+    border-color: rgb(132, 132, 220);
 }
 
 #textorange {

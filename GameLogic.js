@@ -259,12 +259,13 @@ function displayCountries() {
         flag_img.className = "flagpic";
         flag_img.dataset.index = i;
         flag_img.src = x.img;
+        flag_img.alt = x.name;
         div_flagpics.appendChild(flag_img);
 
         let flag_name_div = document.createElement("div");
         flag_name_div.className = "flagname";
         flag_name_div.dataset.index = i;
-        let flag_name_text_div = document.createElement("a");
+        let flag_name_text_div = document.createElement("span");
         flag_name_text_div.innerHTML = x.name;
         flag_name_div.appendChild(flag_name_text_div);
         div_flagnames.appendChild(flag_name_div);
