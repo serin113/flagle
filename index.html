@@ -27,8 +27,9 @@
     <div class="HeaderBody">
         <div class="MainHeader">
 
+            
+            <span class="material-icons-outlined" id="howto">help_outline</span>
             <span class="material-icons-outlined" id="flag">flag</span>
-            <span class="material-icons-outlined" id="stats">leaderboard</span>
 
             <div id="MainHeaderText">
                 <div class="wavy">
@@ -42,7 +43,8 @@
                 </div>
             </div>
 
-            <span class="material-icons-outlined" id="howto">help_outline</span>
+            
+            <span class="material-icons-outlined" id="stats">leaderboard</span>
             <span class="material-icons-outlined" id="settings">settings</span>
         </div>
     </div>
@@ -242,12 +244,12 @@
             <div class="modal-body" id="statsmodalbody">
 
                 <div id="drchoice">
-                    <div id="drchoiceleft">
-                        <text class="statsmodetext" id="dailytext">DAILY</text>
-                    </div>
-                    <div id="drchoiceright">
-                        <text class="statsmodetext" id="dailytext">RANDOM</text>
-                    </div>
+                    <button id="drchoiceleft">
+                        <text class="statsmodetext">DAILY</text>
+                    </button>
+                    <button id="drchoiceright">
+                        <text class="statsmodetext">RANDOM</text>
+                    </button>
                 </div>
 
                 <div id="statsdisplay">
@@ -356,52 +358,53 @@
         }
     </script>
 
-    <!--Flag List Modal-->
+    <!-- Flag List Modal
     <div id="flaglist" class="modal">
         <div class="modal-content">
             <div class="modal-header" id="flagsmodalheader">
                 <span class="close" id="closeflag">&times;</span>
                 <h3 class="modalheadertext">Flag List</h3>
             </div>
-            <div class="modal-body" id="flagsmodalbody">
+            <div class="modal-body" id="flagsmodalbody"> -->
                 <!-- Searchbar Removed for now -->
                 <!-- <div id="searchbarcontents">
                     <div id="searchbarbox"><input type="text" placeholder="Search Country" id="searchbar"></div>
                     <div id="searchbutton"><span id="searchicon" class="material-icons-outlined">search</span></div>
                 </div> -->
-                <h2 id="flaglistnotif" class="colorchange">Coming Soon!</h2>
+                <!-- <h2 id="flaglistnotif" class="colorchange">Coming Soon!</h2>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <script>
-        // Get the modal
-        var modalflag = document.getElementById("flaglist");
+        // // Get the modal
+        // var modalflag = document.getElementById("flaglist");
 
-        // Get the button that opens the modal
-        var btnflag = document.getElementById("flag");
+        // // Get the button that opens the modal
+        // var btnflag = document.getElementById("flag");
 
-        // Get the <span> element that closes the modal
-        var spanflag = document.getElementById("closeflag");
+        // // Get the <span> element that closes the modal
+        // var spanflag = document.getElementById("closeflag");
 
-        // When the user clicks the button, open the modal 
-        btnflag.onclick = function() {
-            modalflag.style.display = "block";
-        }
+        // // When the user clicks the button, open the modal 
+        // btnflag.onclick = function() {
+        //     modalflag.style.display = "block";
+        // }
 
-        // When the user clicks on <span> (x), close the modal
-        spanflag.onclick = function() {
-            modalflag.style.display = "none";
-        }
+        // // When the user clicks on <span> (x), close the modal
+        // spanflag.onclick = function() {
+        //     modalflag.style.display = "none";
+        // }
 
-        // When the user clicks anywhere outside of the modal, close it
+        // // When the user clicks anywhere outside of the modal, close it
 
         var modalzoom = document.getElementById("zoommodalid");
 
         function clickOutsideModal(event) {
-            if (event.target == modalflag) {
-                modalflag.style.display = "none";
-            } else if (event.target == modalhow) {
+            // if (event.target == modalflag) {
+            //     modalflag.style.display = "none";
+            // } else 
+            if (event.target == modalhow) {
                 modalhow.style.display = "none";
             } else if (event.target == modalstat) {
                 modalstat.style.display = "none";
@@ -454,9 +457,9 @@
             var closesettings = document.getElementById('closesettings');
 
             //Flags
-            var flagsmodalbody = document.getElementById('flagsmodalbody');
-            var flagsmodalheader = document.getElementById('flagsmodalheader');
-            var closeflag = document.getElementById('closeflag');
+            // var flagsmodalbody = document.getElementById('flagsmodalbody');
+            // var flagsmodalheader = document.getElementById('flagsmodalheader');
+            // var closeflag = document.getElementById('closeflag');
             // var searchbar = document.getElementById('searchbar');
 
             //HowTo
@@ -503,9 +506,9 @@
                 settingsmodalheader.classList.add("dark");
                 closesettings.classList.add("dark");
 
-                flagsmodalbody.classList.add("dark");
-                flagsmodalheader.classList.add("dark");
-                closeflag.classList.add("dark");
+                // flagsmodalbody.classList.add("dark");
+                // flagsmodalheader.classList.add("dark");
+                // closeflag.classList.add("dark");
                 // searchbar.classList.add("dark");
 
                 howtomodalbody.classList.add("dark");
@@ -547,9 +550,9 @@
                 settingsmodalheader.classList.remove("dark");
                 closesettings.classList.remove("dark");
 
-                flagsmodalbody.classList.remove("dark");
-                flagsmodalheader.classList.remove("dark");
-                closeflag.classList.remove("dark");
+                // flagsmodalbody.classList.remove("dark");
+                // flagsmodalheader.classList.remove("dark");
+                // closeflag.classList.remove("dark");
                 // searchbar.classList.remove("dark");
 
                 howtomodalbody.classList.remove("dark");
