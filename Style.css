@@ -178,7 +178,7 @@ body {
     border-radius: 0.4rem;
     text-align: center;
     /* width: 2.5rem; */
-    width: 2.85rem;
+    width: 3.5rem;
     height: 3.5rem;
     /* margin-left: 0.1rem;
     margin-right: 0.1rem; */
@@ -1151,7 +1151,7 @@ input:checked + .slider:before {
 /* DemoColorKeys */
 
 #demokeyscontainer {
-    width: 40%;
+    width: 48%;
 }
 
 #democolorkeys {
@@ -1171,7 +1171,7 @@ input:checked + .slider:before {
     border-radius: 0.4rem;
     text-align: center;
     /* width: 2.5rem; */
-    width: 2.85rem;
+    width: 3.5rem;
     height: 3.5rem;
     /* margin-left: 0.1rem;
     margin-right: 0.1rem; */
@@ -1189,7 +1189,7 @@ input:checked + .slider:before {
 }
 
 #demotext {
-    width: 60%;
+    width: 52%;
 }
 
 #demoorange {
