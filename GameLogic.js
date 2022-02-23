@@ -23,6 +23,7 @@ SessionStorage:
 
 // configs
 let defaultDifficulty = 30;
+let maxDifficulty = 130;
 let maxTries = 6;
 let icons = {
     rightColor: "🟣",
@@ -499,7 +500,7 @@ function showResults() {
     if (isWin) resultsFlaggle.innerHTML = icons.flaggle;
     else resultsFlaggle.innerHTML = icons.lose;
     newGuesses.appendChild(resultsFlaggle);
-    if (isWin && countryChoicesCount==130 && !dailyMode) {
+    if (isWin && countryChoicesCount==maxDifficulty && !dailyMode) {
         let resultsFlaggle = document.createElement("div");
         resultsFlaggle.classList.add("flaggle");
         resultsFlaggle.innerHTML = icons.hard;
@@ -535,7 +536,7 @@ function showResults() {
             else finalShareText += countryChoicesCount;
 
             finalShareText += "\n\n" + resultText;
-            if (!dailyMode && countryChoicesCount == 130 && isWin)
+            if (!dailyMode && countryChoicesCount == maxDifficulty && isWin)
                 finalShareText += "  " + icons.hard;
 
             if (copyTextToClipboard(finalShareText)) {
