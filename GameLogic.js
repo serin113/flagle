@@ -462,7 +462,7 @@ function showResults() {
 
     document.getElementById("gameoverresult").innerHTML = resultMsg;
     document.getElementById("flagglepic").src = countries[countryIndex].img;
-    let dailyModeText = "FLAGGLE";
+    let dailyModeText = "FLAGLE";
     if (dailyMode) {
         dailyModeText = "DAILY " + dailyModeText;
     }
@@ -498,7 +498,7 @@ function showResults() {
     document
         .getElementById("sharebutton")
         .addEventListener("click", function () {
-            let finalShareText = "Flaggle ";
+            let finalShareText = "Flagle ";
 
             if (dailyMode) finalShareText += "Daily  ";
             else finalShareText += "Random  ";
