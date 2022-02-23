@@ -832,7 +832,7 @@ input:checked + .slider:before {
 
 .displaybuttons {
     font-family: "Poppins", sans-serif;
-    font-size: 0.9rem;
+    font-size: 1.1rem;
     color: white;
     height: 1.75rem;
     border-radius: 0.5rem;
