@@ -194,7 +194,7 @@ body {
     opacity: 0.1;
 }
 
-#green {
+#green, #demogreen {
     background: green;
 }
 
@@ -1108,4 +1108,89 @@ input:checked + .slider:before {
     justify-content: space-between;
     vertical-align: baseline;
     padding-bottom: 1rem;
+}
+
+/* DemoColorKeys */
+
+#demokeyscontainer {
+    width: 40%;
+}
+
+#democolorkeys {
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+    gap: 0.2rem;
+}
+
+.democolors {
+    border-style: solid;
+    border-width: 0.1rem;
+    border-radius: 0.4rem;
+    text-align: center;
+    /* width: 2.5rem; */
+    width: 2.85rem;
+    height: 3.5rem;
+    /* margin-left: 0.1rem;
+    margin-right: 0.1rem; */
+    display: inline-block;
+    box-sizing: border-box;
+    cursor: pointer;
+    box-shadow: 0 0.15rem 0.25rem rgba(0, 0, 0, 0.75);
+    transition: border-width 150ms, box-shadow 150ms, opacity 150ms;
+    /* flex-grow: 1; */
+}
+
+#demodiv {
+    display: flex;
+    width: 100%;
+}
+
+#demotext {
+    width: 60%;
+}
+
+#demoorange {
+    background: orange;
+    opacity: 0.1;
+    border-width: 0.2rem;
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+}
+
+#demoyellow {
+    background: yellow;
+}
+
+#demogreen {
+    background: green;
+    border-width: 0.2rem;
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+}
+
+.dark #demoorange {
+    color: rgb(149, 149, 226);
+    border-color: rgb(149, 149, 226);
+}
+
+.dark #demoyellow {
+    color: rgb(149, 149, 226);
+    border-color: rgb(149, 149, 226);
+    box-shadow: 0 0.15rem 0.4rem rgba(149, 149, 226, 0.75);
+}
+
+.dark #demogreen {
+    color: rgb(149, 149, 226);
+    border-color: rgb(149, 149, 226);
+}
+
+#textorange {
+    color: orange;
+}
+
+#textgreen {
+    color: green;
 }

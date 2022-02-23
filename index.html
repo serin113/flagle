@@ -186,10 +186,30 @@
             </div>
             <div class="modal-body" id="howtomodalbody">
                 <p>Guess the <b>FLAGLE</b> in 6 tries.</p>
-                <p>You choose from 30 flags.</p>
-                <p>Use the
-                    <t class="colorchange">color buttons</t> to filter whether or not the <b>FLAGLE</b> contains the color.</p>
-                <p>You win by:</p>
+                <p>Use the <t class="colorchange">color buttons</t> to filter whether or not the <b>FLAGLE</b> contains the color.</p>
+
+                <b>Example:</b>
+                <div id="demodiv">
+                    <div id="demokeyscontainer">
+                        <div id="democolorkeys">
+                            <div class="democolors" id="demoorange" data-color="orange">
+                            </div>
+                            <div class="democolors" id="demoyellow" data-color="yellow">
+                            </div>
+                            <div class="democolors" id="demogreen" data-color="green">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="demotext">
+                        <ul>
+                            <li>The <b>FLAGLE</b> does <b>NOT</b> contain <text id="textorange">orange</text></li>
+                            <li>The <b>FLAGLE</b> contains <text id="textgreen">green</text></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <text>You win by:</text>
                 <ul>
                     <li>Clicking on the correct flag <b>OR</b></li>
                     <li>Only the <b>FLAGLE</b> remains unfiltered</li>
@@ -457,6 +477,11 @@
 
             var middlediv = document.getElementById('middlediv');
 
+            //democolors
+            var demoorange = document.getElementById('demoorange');
+            var demoyellow = document.getElementById('demoyellow');
+            var demogreen = document.getElementById('demogreen');
+
             if (checkbox.checked) {
                 Cookies.set("darkMode", "true", {
                     sameSite: 'strict'
@@ -497,6 +522,10 @@
                 sharebutton.classList.add("dark");
 
                 middlediv.classList.add("dark");
+
+                demoorange.classList.add("dark");
+                demoyellow.classList.add("dark");
+                demogreen.classList.add("dark");
             } else {
                 Cookies.set("darkMode", "false", {
                     sameSite: 'strict'
@@ -537,6 +566,10 @@
                 sharebutton.classList.remove("dark");
 
                 middlediv.classList.remove("dark");
+
+                demoorange.classList.remove("dark");
+                demoyellow.classList.remove("dark");
+                demogreen.classList.remove("dark");
             }
         }
 
