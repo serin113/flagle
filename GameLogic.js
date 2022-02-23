@@ -1,8 +1,8 @@
 //TO DO:
-//Stats Display Change
+//Stats share
 //Flag list
-//Remove lightblue
 //Fix JSON
+//User links
 
 /*
 Cookies:
@@ -61,7 +61,7 @@ let resultMsgs_lose = [
     "Nice try",
 ];
 let seedOverride = null; // null if disabled, string if needed
-let debug = true;
+let debug = false;
 
 // global-ish variables
 let countryChoicesCount = defaultDifficulty; // number of flags to play with
@@ -565,6 +565,7 @@ function showResults() {
 
 /* handle clicks on flag and color buttons, check win status */
 function onClickButtons() {
+    logger("max count: " + countryChoicesCount);
     logger("current count: " + currentCountryChoicesCount);
     this.removeEventListener("click", onClickButtons);
     tries += 1;
@@ -921,6 +922,7 @@ document
         }
     });
 
+/* load difficulty slider values */
 if (Cookies.get("difficulty") == undefined) {
     Cookies.set("difficulty", String(countryChoicesCount), {
         sameSite: "strict",
@@ -933,6 +935,7 @@ if (Cookies.get("difficulty") == undefined) {
         Cookies.get("difficulty");
     if (dailyMode == false) {
         countryChoicesCount = Number(Cookies.get("difficulty"));
+        currentCountryChoicesCount = countryChoicesCount;
     }
 }
 

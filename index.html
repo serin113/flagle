@@ -91,16 +91,6 @@
         </div>
     </div>
 
-    <script>
-        var modalresults = document.getElementById("GameResults");
-
-        var spanresults = document.getElementById("closeresults");
-
-        spanresults.onclick = function() {
-            modalresults.style.display = "none";
-        }
-    </script>
-
     <div id="keyscontainer">
         <div id="colorkeys">
             <div class="colors" id="white" data-color="white">
@@ -163,21 +153,6 @@
         </div>
     </div>
 
-    <script>
-        var modalhow = document.getElementById("howtotext");
-
-        var btnhow = document.getElementById("howto");
-
-        var spanhow = document.getElementById("closehowto");
-
-        btnhow.onclick = function() {
-            modalhow.style.display = "block";
-        }
-        spanhow.onclick = function() {
-            modalhow.style.display = "none";
-        }
-    </script>
-
     <div id="statstext" class="modal">
         <div class="modal-content">
             <div class="modal-header" id="statsmodalheader">
@@ -229,22 +204,6 @@
         </div>
     </div>
 
-    <script>
-        var modalstat = document.getElementById("statstext");
-
-        var btnstat = document.getElementById("stats");
-
-        var spanstat = document.getElementById("closestat");
-
-        btnstat.onclick = function() {
-            modalstat.style.display = "block";
-        }
-
-        spanstat.onclick = function() {
-            modalstat.style.display = "none";
-        }
-    </script>
-
     <!-- Settings -->
     <div id="settingstext" class="modal">
         <div class="modal-content" id="settingsmodal">
@@ -272,9 +231,9 @@
                 </div>
 
                 <div id="disclaimer">
-                    <text id="disctext">There are 197 flags currently in <b>FLAGLE</b>. All countries are based on the classification from <a class="textlink" href="https://www.sporcle.com/blog/2013/01/what-is-a-country/" target="_blank">sporcle.com</a>.</text></br></br>
-                    <text id="disctext">All flags are the most recent versions used in <a class="textlink" href="https://www.worldometers.info/geography/flags-of-the-world/" target="_blank">worldometers.info</a> and <a class="textlink" href="https://www.wikipedia.org/" target="_blank">wikipedia.org</a>.</text></br>
-                    <text id="disctextnosue">Please don't sue us.</text>
+                    <text id="disctext">There are 197 flags currently in <b>FLAGLE</b>. Displayed countries are based on the classification from <a class="textlink" href="https://www.sporcle.com/blog/2013/01/what-is-a-country/" target="_blank">sporcle.com</a>.</text></br></br>
+                    <text id="disctext">All flag pictures from <a class="textlink" href="https://www.worldometers.info/geography/flags-of-the-world/" target="_blank">worldometers.info</a> and <a class="textlink" href="https://www.wikipedia.org/" target="_blank">wikipedia.org</a>.</text></br>
+                    <text id="disctextnosue">please don't sue us</text>
                 </div>
 
                 <div id="about">
@@ -287,16 +246,38 @@
     </div>
 
     <script>
+        var modalresults = document.getElementById("GameResults");
+        var spanresults = document.getElementById("closeresults");
+        spanresults.onclick = function() {
+            modalresults.style.display = "none";
+        }
+
+        var modalhow = document.getElementById("howtotext");
+        var btnhow = document.getElementById("howto");
+        var spanhow = document.getElementById("closehowto");
+        btnhow.onclick = function() {
+            modalhow.style.display = "block";
+        }
+        spanhow.onclick = function() {
+            modalhow.style.display = "none";
+        }
+
+        var modalstat = document.getElementById("statstext");
+        var btnstat = document.getElementById("stats");
+        var spanstat = document.getElementById("closestat");
+        btnstat.onclick = function() {
+            modalstat.style.display = "block";
+        }
+        spanstat.onclick = function() {
+            modalstat.style.display = "none";
+        }
+
         var modalset = document.getElementById("settingstext");
-
         var btnset = document.getElementById("settings");
-
         var spanset = document.getElementById("closesettings");
-
         btnset.onclick = function() {
             modalset.style.display = "block";
         }
-
         spanset.onclick = function() {
             modalset.style.display = "none";
         }

@@ -1101,7 +1101,7 @@ input:checked + .slider:before {
 
 #disctextnosue {
     font-size: 0.6rem;
-    opacity: 0.6;
+    opacity: 0.5;
 }
 
 /* Slider */
