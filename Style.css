@@ -1030,27 +1030,14 @@ input:checked + .slider:before {
 
 /* F.A.Q. Contents */
 
-#faqcontents {
-
+#disclaimer {
+    justify-content: left;
 }
 
-.question {
-
+#sporcle {
+    font-style: none;
+    color: rgb(149, 149, 226);
 }
-
-.answer {
-
-}
-.faqqa {
- 
-    border: 0.05rem solid;
-}
-
-.qatext {
-
-    border: 0.05rem solid;
-}
-
 
 /* Slider */
 
@@ -1073,6 +1060,8 @@ input:checked + .slider:before {
     border-radius: 50%; 
     background: white;
     cursor: pointer;
+    border: 0.05rem solid rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 0.4rem 0 rgba(0, 0, 0, 0.2);
   }
 
   .hmslider::-moz-range-thumb {
@@ -1081,6 +1070,8 @@ input:checked + .slider:before {
     border-radius: 50%;
     background: white;
     cursor: pointer;
+    border: 0.05rem solid rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 0.4rem 0 rgba(0, 0, 0, 0.2);
   }
 
 .settingsdivsdiff {
