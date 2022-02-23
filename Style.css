@@ -1176,7 +1176,7 @@ input:checked + .slider:before {
     margin-right: 0.1rem; */
     display: inline-block;
     box-sizing: border-box;
-    cursor: pointer;
+    cursor: default;
     box-shadow: 0 0.15rem 0.5rem rgba(0, 0, 0, 0.75);
     transition: border-width 150ms, box-shadow 150ms, opacity 150ms, scale 150ms;
     /* flex-grow: 1; */
