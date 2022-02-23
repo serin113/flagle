@@ -1083,9 +1083,12 @@ input:checked + .slider:before {
     justify-content: left;
     text-align: left;
     margin-top: 1rem;
-    font-size: 0.9rem;
     padding-bottom: 1rem;
     border-bottom: 0.05rem solid grey;
+}
+
+#disctext {
+    font-size: 0.8rem;
 }
 
 .textlink {
@@ -1097,13 +1100,18 @@ input:checked + .slider:before {
 #about {
     justify-content: center;
     text-align: center;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     margin-top: 0.5rem;
 }
 
 #minidiff {
     font-size: 0.75rem;
     opacity: 0.8;
+}
+
+#disctextnosue {
+    font-size: 0.6rem;
+    opacity: 0.6;
 }
 
 /* Slider */
