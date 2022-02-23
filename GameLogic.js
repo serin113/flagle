@@ -1,5 +1,4 @@
 //TO DO:
-//Daily countdown timer on both stats and GameResult timer
 //Stats Display Change
 //Flag list
 //Hard mode
@@ -421,6 +420,31 @@ function copyTextToClipboard(text) {
     );
 }
 
+/* set next daily flaggle countdowns, has to be repeated per second */
+function updateCountdown() {
+    let future = new Date(currDate.getTime());
+    let now = new Date();
+    future.setDate(future.getDate() + 1);
+    future.setHours(0, 0, 0);
+    let diff = future - now;
+    let hours = Math.floor(
+        (diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+    );
+    let minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    let seconds = Math.floor((diff % (1000 * 60)) / 1000);
+    if (hours < 10) hours = "0" + hours;
+    if (minutes < 10) minutes = "0" + minutes;
+    if (seconds < 10) seconds = "0" + seconds;
+    let timeText = hours + " : " + minutes + " : " + seconds;
+    document.getElementById("dailycountdowntext_stats").innerHTML =
+        timeText;
+    document.getElementById("dailycountdowntext_results").innerHTML =
+        timeText;
+    if (diff < 0) {
+        clearInterval(countdownDaily);
+    }
+}
+
 /* update & display results in the GameResults modal */
 function showResults() {
     let resultMsg = "";
@@ -434,29 +458,10 @@ function showResults() {
         }
     }
 
-    if (dailyMode) {
+    if (Cookies.get("lastGame") != undefined) {
+        updateCountdown()
         let countdownDaily = setInterval(function () {
-            let future = new Date(currDate.getTime());
-            let now = new Date();
-            future.setDate(future.getDate() + 1);
-            future.setHours(0, 0, 0);
-            let diff = future - now;
-            let hours = Math.floor(
-                (diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-            );
-            let minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            let seconds = Math.floor((diff % (1000 * 60)) / 1000);
-            if (hours < 10) hours = "0" + hours;
-            if (minutes < 10) minutes = "0" + minutes;
-            if (seconds < 10) seconds = "0" + seconds;
-            let timeText = hours + " : " + minutes + " : " + seconds;
-            document.getElementById("dailycountdowntext_stats").innerHTML =
-                timeText;
-            document.getElementById("dailycountdowntext_results").innerHTML =
-                timeText;
-            if (diff < 0) {
-                clearInterval(countdownDaily);
-            }
+            updateCountdown()
         }, 1000);
     }
 
