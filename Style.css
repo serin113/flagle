@@ -1082,3 +1082,10 @@ input:checked + .slider:before {
     background: white;
     cursor: pointer;
   }
+
+.settingsdivsdiff {
+    display: flex;
+    justify-content: space-between;
+    vertical-align: baseline;
+    padding-bottom: 1rem;
+}
