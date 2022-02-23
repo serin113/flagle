@@ -2,11 +2,12 @@
 //Stats Display Change
 //Flag list
 //Hard mode
+
 /*
 Cookies:
     darkMode (bool)
     dailyMode (bool)
-    hardMode (bool)
+    difficulty (int)
     lastGame (json)
         date (string)
         isWin (bool)
@@ -16,6 +17,9 @@ Cookies:
         guesses (list of dicts)
             type (string=color, null=flag)
             index (int)
+
+SessionStorage:
+    tutorialShown (bool, exists or doesn't)
 */
 
 // configs
@@ -421,7 +425,7 @@ function copyTextToClipboard(text) {
 }
 
 /* set next daily flaggle countdowns, has to be repeated per second */
-function updateCountdown() {
+function updateCountdown(interval) {
     let future = new Date(currDate.getTime());
     let now = new Date();
     future.setDate(future.getDate() + 1);
@@ -440,8 +444,20 @@ function updateCountdown() {
         timeText;
     document.getElementById("dailycountdowntext_results").innerHTML =
         timeText;
-    if (diff < 0) {
-        clearInterval(countdownDaily);
+    if (diff < 0 && !(interval == null || interval == undefined)) {
+        clearInterval(interval);
+    }
+}
+
+/* start next daily flaggle countdowns */
+function startCountdown() {
+    console.log("start countdown")
+    let lastGameCookie = Cookies.get("lastGame") 
+    if (lastGameCookie != undefined) {
+        updateCountdown()
+        let countdownDaily = setInterval(function () {
+            updateCountdown(countdownDaily)
+        }, 1000);
     }
 }
 
@@ -457,14 +473,6 @@ function showResults() {
             resultMsg = resultMsgs_lose[1];
         }
     }
-
-    if (Cookies.get("lastGame") != undefined) {
-        updateCountdown()
-        let countdownDaily = setInterval(function () {
-            updateCountdown()
-        }, 1000);
-    }
-
     document.getElementById("gameoverresult").innerHTML = resultMsg;
     document.getElementById("flagglepic").src = countries[countryIndex].img;
     let dailyModeText = "FLAGLE";
@@ -615,19 +623,19 @@ function onClickButtons() {
 /* click handler for daily mode button */
 function clickDailyModeButton() {
     Cookies.set("dailyMode", "true", { sameSite: "strict" });
-    setDailyMode();
+    setGameMode();
     location.reload();
 }
 
 /* click handler for random mode button */
 function clickRandomModeButton() {
     Cookies.set("dailyMode", "false", { sameSite: "strict" });
-    setDailyMode();
+    setGameMode();
     location.reload();
 }
 
 /* set game mode based on selection */
-function setDailyMode() {
+function setGameMode() {
     let dailyModeCookie = Cookies.get("dailyMode");
     if (dailyModeCookie === undefined) {
         Cookies.set("dailyMode", String(dailyMode), { sameSite: "strict" });
@@ -670,33 +678,52 @@ function saveLastGame() {
     lastGame_temp.guesses = guesses;
     lastGame = lastGame_temp;
     Cookies.set("lastGame", JSON.stringify(lastGame), { sameSite: "strict" });
+    if (dailyMode) startCountdown() 
 }
 
 /* load game state from lastGame cookie into globals */
 function loadLastGame() {
-    if (Cookies.get("dailyMode") === "false") return;
-    console.log("loading last game");
-    let lastGameCookie = Cookies.get("lastGame");
-    if (lastGameCookie == undefined) return;
-    lastGame = JSON.parse(lastGameCookie);
-    if (currDate.toDateString() != lastGame.date) return;
-    isWin = lastGame.isWin;
-    countryIndex = lastGame.index;
-    tries = lastGame.guesses.length;
-    resultText = lastGame.resultText;
-    for (let i = 0; i < tries; i++) {
-        if (i == tries - 1) hasFlaggle = lastGame.hasFlaggle;
-        setGuessCounter(i, lastGame.guesses[i].type);
+    let lastGameCookie = Cookies.get("lastGame")
+    if (lastGameCookie == undefined) {
+        if (!(window.sessionStorage.getItem("tutorialShown"))) {
+            modalhow.style.display = "block"
+            window.sessionStorage.setItem("tutorialShown", "true")
+        }
+        return
     }
-    disableButtons();
-    showResults();
+    console.log("loading last game")
+    if (Cookies.get("dailyMode") === "false") {
+        startCountdown()
+        return
+    }
+    lastGame = JSON.parse(lastGameCookie)
+    if (currDate.toDateString() != lastGame.date) {
+        Cookies.remove("lastGame")
+        return
+    }
+    isWin = lastGame.isWin
+    countryIndex = lastGame.index
+    tries = lastGame.guesses.length
+    resultText = lastGame.resultText
+    for (let i = 0; i < tries; i++) {
+        if (i == tries - 1) hasFlaggle = lastGame.hasFlaggle
+        setGuessCounter(i, lastGame.guesses[i].type)
+    }
+    disableButtons()
+    showResults()
+    startCountdown()
 }
 
 /* reset lastGame cookie */
-function resetLastGame() {
+function resetGame() {
     Cookies.remove("lastGame");
+    Cookies.remove("difficulty");
+    Cookies.remove("dailyMode");
+    Cookies.remove("darkMode");
+    window.sessionStorage.clear();
     location.reload();
 }
+
 
 // initializations
 
@@ -708,8 +735,14 @@ document
     .getElementById("randomflaggle")
     .addEventListener("click", clickRandomModeButton);
 
+document.getElementById("difficultySlider").addEventListener("input", function(){
+    let difficultyCookie = Cookies.get("difficulty")
+    document.getElementById("difficultyValue").innerHTML = this.value
+    Cookies.set("difficulty", String(this.value), { sameSite: "strict" })
+})
+
 /* set game mode */
-setDailyMode();
+setGameMode();
 
 /* initialize randomizer function */
 if (seedOverride == null) {
