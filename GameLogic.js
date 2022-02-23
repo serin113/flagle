@@ -31,6 +31,7 @@ let icons = {
     wrongFlag: "⬛",
     flaggle: "🏁",
     lose: "❌",
+    hard: "💪",
 };
 let resultMsgs_win = [
     // least to most tries
@@ -68,8 +69,8 @@ let dailyMode = true; // daily/random mode
 // helper functions
 
 function logger(msg) {
-    if (debug==false) return
-    console.log(msg)
+    if (debug == false) return;
+    console.log(msg);
 }
 
 /* ranged integer randomizer */
@@ -525,8 +526,11 @@ function showResults() {
             finalShareText += tries + "/" + maxTries + "\n";
 
             if (dailyMode) finalShareText += currDate.toDateString().slice(4);
+            else finalShareText += countryChoicesCount;
 
             finalShareText += "\n\n" + resultText;
+            if (!dailyMode && countryChoicesCount == 130 && isWin)
+                finalShareText += "  " + icons.hard;
 
             if (copyTextToClipboard(finalShareText)) {
                 this.querySelector("#sharetext").innerHTML = "Copied!";
