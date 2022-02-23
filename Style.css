@@ -1032,11 +1032,15 @@ input:checked + .slider:before {
 
 #disclaimer {
     justify-content: left;
+    text-align: left;
+    margin-top: 1rem;
+    font-size: 0.9rem;
 }
 
 #sporcle {
     font-style: none;
     color: rgb(149, 149, 226);
+    font-weight: bold;
 }
 
 /* Slider */
