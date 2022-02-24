@@ -82,8 +82,8 @@ let clipboard = null; // ClipboardJS object
 let CookiesAPI = Cookies.withAttributes({
     sameSite: "strict",
     expires: 365,
-    path: "/"
-})
+    path: "/",
+});
 
 // helper functions
 
@@ -814,10 +814,10 @@ function loadLastGame() {
         if (i == tries - 1) hasFlaggle = lastGame.hasFlaggle;
         setGuessCounter(i, lastGame.guesses[i].type);
     }
-    document
+    let currentGuess = document
         .getElementById("guesses")
-        .querySelector(".current")
-        .classList.remove("current");
+        .querySelector(".current");
+    if (currentGuess) currentGuess.classList.remove("current");
     disableButtons();
     showResults();
     startCountdown();
@@ -857,11 +857,11 @@ function refreshCookies() {
         "stats_r_totalWins",
         "stats_r_totalGames",
         "stats_r_currentStreak",
-        "stats_r_bestStreak"
-    ]
+        "stats_r_bestStreak",
+    ];
     for (let s of cookieStrs) {
         if (CookiesAPI.get(s) != undefined) {
-            CookiesAPI.set(s, CookiesAPI.get(s))
+            CookiesAPI.set(s, CookiesAPI.get(s));
         }
     }
 }
@@ -869,7 +869,7 @@ function refreshCookies() {
 // initializations
 
 /* refresh any existing cookies */
-refreshCookies()
+refreshCookies();
 
 /* daily and random mode buttons */
 document
