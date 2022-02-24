@@ -21,7 +21,6 @@ let CookiesAPI = Cookies.withAttributes({
     path: "/",
 }); // Cookies object with default cookie attributes
 
-
 // helper functions
 
 /* ranged integer randomizer */
@@ -393,7 +392,9 @@ function showResults() {
         }
     }
     document.getElementById("gameoverresult").innerHTML = resultMsg;
-    document.getElementById("flagglepic").src = countries[countryIndex].img;
+    document.getElementById("flagglepic").src = countries[
+        countryIndex
+    ].img.replace("w160", "h240");
     let dailyModeText = "FLAGLE";
     if (dailyMode) {
         dailyModeText = "DAILY " + dailyModeText;
