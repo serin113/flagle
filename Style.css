@@ -1062,12 +1062,19 @@ input:checked + .slider:before {
     font-style: none;
     color: rgb(132, 132, 220);
     font-weight: bold;
+    -webkit-text-decoration: none;
+    text-decoration: none;
+}
+
+.textlink:hover {
+    -webkit-text-decoration: underline;
+    text-decoration: underline;
 }
 
 #about {
     justify-content: center;
     text-align: center;
-    font-size: 0.75rem;
+    font-size: 0.65rem;
     margin-top: 0.5rem;
 }
 
