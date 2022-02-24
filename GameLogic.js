@@ -3,6 +3,7 @@
 //Flag list
 //Fix JSON
 //User links
+//Contact info
 
 /*
 Cookies:
@@ -78,7 +79,8 @@ let hasFlaggle = false; // flaggle is directly found
 let guesses = []; // list of guesses
 let lastGame = null; // game state after win/lose
 let dailyMode = true; // daily/random mode
-let clipboard = null; // ClipboardJS object
+let clipboard_share = null; // ClipboardJS object for results sharetext
+let clipboard_stats = null; // ClipboardJS object for stats sharetext
 let CookiesAPI = Cookies.withAttributes({
     sameSite: "strict",
     expires: 365,
@@ -499,8 +501,8 @@ function showResults() {
         document.getElementById("dailyflaggledate").innerHTML = "";
     }
 
-    if (clipboard == null) {
-        clipboard = new ClipboardJS("#sharebutton", {
+    if (clipboard_share == null) {
+        clipboard_share = new ClipboardJS("#sharebutton", {
             text: function () {
                 let finalShareText = "Flagle ";
 
@@ -520,11 +522,17 @@ function showResults() {
                 return finalShareText;
             },
         });
-        clipboard.on("success", function (e) {
+        clipboard_share.on("success", function (e) {
             e.trigger.innerHTML = "Copied!";
+            setTimeout(function(){
+                e.trigger.innerHTML = "Share";
+            }, 1000);
         });
-        clipboard.on("error", function (e) {
+        clipboard_share.on("error", function (e) {
             e.trigger.innerHTML = "Failed.";
+            setTimeout(function(){
+                e.trigger.innerHTML = "Share";
+            }, 1000);
         });
     }
 
@@ -739,6 +747,40 @@ function displayGameStats(showDaily) {
         stats_currentStreak;
     document.getElementById("beststreaktext").innerHTML = stats_bestStreak;
     document.getElementById("totalgamestext").innerHTML = stats_totalGames;
+
+    if (clipboard_stats != null) {
+        clipboard_stats.destroy();
+        clipboard_stats = null;
+    }
+    clipboard_stats = new ClipboardJS("#sharebuttonstat", {
+        text: function () {
+            let finalShareText = "Flagle ";
+
+            if (showDaily) finalShareText += "Daily ";
+            else finalShareText += "Random ";
+
+            finalShareText += "Stats  📈" + "\n\n";
+            finalShareText += "Flagles Guessed: " + stats_totalWins + "  " + icons.flaggle + "\n"
+            finalShareText += "Win %: " + stats_winPercent + "  ✅\n"
+            finalShareText += "Best Streak: " + stats_bestStreak + "  👏"
+
+            return finalShareText;
+        },
+    });
+    clipboard_stats.on("success", function (e) {
+        let temp_text = e.trigger.innerHTML;
+        e.trigger.innerHTML = "Copied!";
+        setTimeout(function(){
+            e.trigger.innerHTML = "Share";
+        }, 1000);
+    });
+    clipboard_stats.on("error", function (e) {
+        let temp_text = e.trigger.innerHTML;
+        e.trigger.innerHTML = "Failed!";
+        setTimeout(function(){
+            e.trigger.innerHTML = "Share";
+        }, 1000);
+    });
 }
 
 /* set game mode based on selection */
@@ -956,6 +998,10 @@ document.getElementById("nextdailyresult").style.display = "none";
 document.getElementById("nextdailystats").style.display = "none";
 document.getElementById("dailycountdowntext_stats").innerHTML = "";
 document.getElementById("dailycountdowntext_results").innerHTML = "";
+
+/*  */
+
+
 
 // main program
 

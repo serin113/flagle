@@ -998,34 +998,13 @@ input:checked + .slider:before {
     height: 3.9rem;
 }
 
-#sharebutton {
+#sharebutton, #sharebuttonstat {
     height: 2rem;
     max-height: 2rem;
     margin-top: 0.45rem;
-    /* padding-top: 0.45rem; */
-}
-
-#sharetext {
-    line-height: 1.5rem;
+    /* line-height: 1.5rem; */
     font-weight: bold;
     font-size: 1.25rem;
-}
-
-/*Stats Modal*/
-
-#sharebuttonstat {
-    height: 2rem;
-    max-height: 2rem;
-    margin-top: 0.45rem;
-    /* padding-top: 0.45rem; */
-    margin-left: auto;
-    margin-right: auto;
-}
-
-#sharetextstat {
-    line-height: 1.5rem;
-    font-weight: bold;
-    font-size: 1.15rem;
 }
 
 /*Middle div*/
