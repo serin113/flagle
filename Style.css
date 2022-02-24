@@ -998,7 +998,8 @@ input:checked + .slider:before {
     height: 3.9rem;
 }
 
-#sharebutton, #sharebuttonstat {
+#sharebutton,
+#sharebuttonstat {
     height: 2rem;
     max-height: 2rem;
     margin-top: 0.45rem;
@@ -1077,7 +1078,7 @@ input:checked + .slider:before {
 
 #disctextnosue {
     font-size: 0.6rem;
-    opacity: 0.5;
+    opacity: 0.2;
 }
 
 /* Slider */

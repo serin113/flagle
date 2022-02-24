@@ -3,10 +3,10 @@
 <html lang="en">
 
 <head>
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="preconnect" href="https://flagcdn.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&family=Material+Icons+Outlined&display=swap" rel="stylesheet">
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
@@ -19,18 +19,23 @@
     <link rel="stylesheet" type="text/css" href="/Style.css">
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@3/dist/js.cookie.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+    <script src="/Defaults.js"></script>
     <title>FLAGLE</title>
 </head>
 
 <body>
     <div id="loading"></div>
+    <script>
+        window.addEventListener("load", function() {
+            let loading = document.getElementById("loading")
+            loading.style.opacity = "0"
+            loading.style.visibility = "hidden"
+        })
+    </script>
     <div class="HeaderBody">
         <div class="MainHeader">
-
-            
             <span class="material-icons-outlined" id="howto">help_outline</span>
             <span class="material-icons-outlined" id="flag">flag</span>
-
             <div id="MainHeaderText">
                 <div class="wavy">
                     <span class="flaggletext" style="--i:1"><t id="ft1">F</t></span>
@@ -41,15 +46,12 @@
                     <span class="flaggletext" style="--i:6"><t id="ft6">E</t></span>
                 </div>
             </div>
-
-            
             <span class="material-icons-outlined" id="stats">leaderboard</span>
             <span class="material-icons-outlined" id="settings">settings</span>
         </div>
     </div>
 
     <div id="gamediv">
-
         <button class="displaybuttons" id="dailyflaggle"><b>DAILY</b></button>
         <div id="middlediv">
             <div id="drnotif">
@@ -59,9 +61,7 @@
             </button>
         </div>
         <button class="displaybuttons" id="randomflaggle"><b>RANDOM</b></button>
-
         <div id="choices"></div>
-
     </div>
 
 
@@ -241,7 +241,7 @@
 
                 <div id="disclaimer">
                     <text id="disctext">There are 197 flags currently in <b>FLAGLE</b>. Displayed countries are based on the classification from <a class="textlink" href="https://www.sporcle.com/blog/2013/01/what-is-a-country/" target="_blank">sporcle.com</a>.</text></br></br>
-                    <text id="disctext">All flag pictures from <a class="textlink" href="https://www.worldometers.info/geography/flags-of-the-world/" target="_blank">worldometers.info</a> and <a class="textlink" href="https://www.wikipedia.org/" target="_blank">wikipedia.org</a>.</text></br>
+                    <text id="disctext">All flag pictures from <a class="textlink" href="https://flagpedia.net" target="_blank">flagpedia.net</a>.</text></br>
                     <text id="disctextnosue">please don't sue us</text>
                 </div>
 
@@ -253,44 +253,6 @@
             </div>
         </div>
     </div>
-
-    <script>
-        var modalresults = document.getElementById("GameResults");
-        var spanresults = document.getElementById("closeresults");
-        spanresults.onclick = function() {
-            modalresults.style.display = "none";
-        }
-
-        var modalhow = document.getElementById("howtotext");
-        var btnhow = document.getElementById("howto");
-        var spanhow = document.getElementById("closehowto");
-        btnhow.onclick = function() {
-            modalhow.style.display = "block";
-        }
-        spanhow.onclick = function() {
-            modalhow.style.display = "none";
-        }
-
-        var modalstat = document.getElementById("statstext");
-        var btnstat = document.getElementById("stats");
-        var spanstat = document.getElementById("closestat");
-        btnstat.onclick = function() {
-            modalstat.style.display = "block";
-        }
-        spanstat.onclick = function() {
-            modalstat.style.display = "none";
-        }
-
-        var modalset = document.getElementById("settingstext");
-        var btnset = document.getElementById("settings");
-        var spanset = document.getElementById("closesettings");
-        btnset.onclick = function() {
-            modalset.style.display = "block";
-        }
-        spanset.onclick = function() {
-            modalset.style.display = "none";
-        }
-    </script>
 
     <!-- Flag List Modal
     <div id="flaglist" class="modal">
@@ -309,218 +271,9 @@
             </div>
         </div>
     </div> -->
-
-    <script>
-        // // Get the modal
-        // var modalflag = document.getElementById("flaglist");
-
-        // // Get the button that opens the modal
-        // var btnflag = document.getElementById("flag");
-
-        // // Get the <span> element that closes the modal
-        // var spanflag = document.getElementById("closeflag");
-
-        // // When the user clicks the button, open the modal 
-        // btnflag.onclick = function() {
-        //     modalflag.style.display = "block";
-        // }
-
-        // // When the user clicks on <span> (x), close the modal
-        // spanflag.onclick = function() {
-        //     modalflag.style.display = "none";
-        // }
-
-        // // When the user clicks anywhere outside of the modal, close it
-
-        var modalzoom = document.getElementById("zoommodalid");
-
-        function clickOutsideModal(event) {
-            // if (event.target == modalflag) {
-            //     modalflag.style.display = "none";
-            // } else 
-            if (event.target == modalhow) {
-                modalhow.style.display = "none";
-            } else if (event.target == modalstat) {
-                modalstat.style.display = "none";
-            } else if (event.target == modalset) {
-                modalset.style.display = "none";
-            } else if (event.target == modalresults) {
-                modalresults.style.display = "none";
-            } else if (event.target == modalzoom) {
-                modalzoom.style.display = "none";
-            }
-        }
-
-        window.onclick = function(event) {
-            clickOutsideModal(event)
-        }
-    </script>
-    <script>
-        let darkModeCookie = Cookies.get("darkMode")
-        if (darkModeCookie === "true") {
-            document.getElementById('darkthemeswitch').checked = true;
-            console.log("dark mode")
-        } else if (darkModeCookie === "false") {
-            document.getElementById('darkthemeswitch').checked = false;
-            console.log("light mode")
-        }
-
-        //Dark Theme
-        const checkbox = document.getElementById('darkthemeswitch');
-
-        function setTheme() {
-            var body = document.body;
-
-            //FLAGGLE Letters
-            var mht = document.getElementById('MainHeaderText');
-            var ft1 = document.getElementById('ft1');
-            var ft2 = document.getElementById('ft2');
-            var ft3 = document.getElementById('ft3');
-            var ft4 = document.getElementById('ft4');
-            var ft5 = document.getElementById('ft5');
-            var ft6 = document.getElementById('ft6');
-            // var ft7 = document.getElementById('ft7');
-
-            //Color Keys
-            var colorkeys = document.getElementById('colorkeys');
-
-            //All Modals
-            //Settings                
-            var settingsmodalbody = document.getElementById('settingsmodalbody');
-            var settingsmodalheader = document.getElementById('settingsmodalheader');
-            var closesettings = document.getElementById('closesettings');
-
-            //Flags
-            // var flagsmodalbody = document.getElementById('flagsmodalbody');
-            // var flagsmodalheader = document.getElementById('flagsmodalheader');
-            // var closeflag = document.getElementById('closeflag');
-            // var searchbar = document.getElementById('searchbar');
-
-            //HowTo
-            var howtomodalbody = document.getElementById('howtomodalbody');
-            var howtomodalheader = document.getElementById('howtomodalheader');
-            var closehowto = document.getElementById('closehowto');
-
-            //Stats
-            var statsmodalbody = document.getElementById('statsmodalbody');
-            var statsmodalheader = document.getElementById('statsmodalheader');
-            var closestat = document.getElementById('closestat');
-
-            //Daily, Guesses, Random, and Share Buttons
-            var dailyflaggle = document.getElementById('dailyflaggle');
-            var randomflaggle = document.getElementById('randomflaggle');
-            var guesses = document.getElementById('guesses');
-            var sharebutton = document.getElementById('sharebutton');
-
-            var middlediv = document.getElementById('middlediv');
-
-            //democolors
-            var demoorange = document.getElementById('demoorange');
-            var demoyellow = document.getElementById('demoyellow');
-            var demogreen = document.getElementById('demogreen');
-
-            if (checkbox.checked) {
-                Cookies.set("darkMode", "true", {
-                    sameSite: 'strict'
-                })
-                body.classList.add("dark");
-
-                mht.classList.add("dark");
-                ft1.classList.add("dark_flaggletext");
-                ft2.classList.add("dark_flaggletext");
-                ft3.classList.add("dark_flaggletext");
-                ft4.classList.add("dark_flaggletext");
-                ft5.classList.add("dark_flaggletext");
-                ft6.classList.add("dark_flaggletext");
-                // ft7.classList.add("dark_flaggletext");
-
-                colorkeys.classList.add("dark_colorkeys");
-
-                settingsmodalbody.classList.add("dark");
-                settingsmodalheader.classList.add("dark");
-                closesettings.classList.add("dark");
-
-                // flagsmodalbody.classList.add("dark");
-                // flagsmodalheader.classList.add("dark");
-                // closeflag.classList.add("dark");
-                // searchbar.classList.add("dark");
-
-                howtomodalbody.classList.add("dark");
-                howtomodalheader.classList.add("dark");
-                closehowto.classList.add("dark");
-
-                statsmodalbody.classList.add("dark");
-                statsmodalheader.classList.add("dark");
-                closestat.classList.add("dark");
-
-                dailyflaggle.classList.add("dark");
-                randomflaggle.classList.add("dark");
-                guesses.classList.add("dark");
-                sharebutton.classList.add("dark");
-
-                middlediv.classList.add("dark");
-
-                demoorange.classList.add("dark");
-                demoyellow.classList.add("dark");
-                demogreen.classList.add("dark");
-            } else {
-                Cookies.set("darkMode", "false", {
-                    sameSite: 'strict'
-                })
-                body.classList.remove("dark");
-
-                mht.classList.remove("dark");
-                ft1.classList.remove("dark_flaggletext");
-                ft2.classList.remove("dark_flaggletext");
-                ft3.classList.remove("dark_flaggletext");
-                ft4.classList.remove("dark_flaggletext");
-                ft5.classList.remove("dark_flaggletext");
-                ft6.classList.remove("dark_flaggletext");
-                // ft7.classList.remove("dark_flaggletext");
-
-                colorkeys.classList.remove("dark_colorkeys");
-
-                settingsmodalbody.classList.remove("dark");
-                settingsmodalheader.classList.remove("dark");
-                closesettings.classList.remove("dark");
-
-                // flagsmodalbody.classList.remove("dark");
-                // flagsmodalheader.classList.remove("dark");
-                // closeflag.classList.remove("dark");
-                // searchbar.classList.remove("dark");
-
-                howtomodalbody.classList.remove("dark");
-                howtomodalheader.classList.remove("dark");
-                closehowto.classList.remove("dark");
-
-                statsmodalbody.classList.remove("dark");
-                statsmodalheader.classList.remove("dark");
-                closestat.classList.remove("dark");
-
-                dailyflaggle.classList.remove("dark");
-                randomflaggle.classList.remove("dark");
-                guesses.classList.remove("dark");
-                sharebutton.classList.remove("dark");
-
-                middlediv.classList.remove("dark");
-
-                demoorange.classList.remove("dark");
-                demoyellow.classList.remove("dark");
-                demogreen.classList.remove("dark");
-            }
-        }
-
-        setTheme()
-        checkbox.addEventListener('change', setTheme)
-    </script>
-    <script src="GameLogic.js"></script>
-    <script>
-        window.onload = function() {
-            let loading = document.getElementById("loading")
-            loading.style.opacity = "0"
-            loading.style.visibility = "hidden"
-        }
-    </script>
+    
+    <script src="/UILogic.js"></script>
+    <script src="/GameLogic.js"></script>
 </body>
 
 </html>

@@ -1,69 +1,3 @@
-//TO DO:
-//Stats share
-//Flag list
-//Fix JSON
-//User links
-//Contact info
-
-/*
-Cookies:
-    darkMode (bool)
-    dailyMode (bool)
-    difficulty (int)
-    lastGame (json)
-        date (string)
-        isWin (bool)
-        index (int)
-        hasFlaggle (bool)
-        resultText (string)
-        guesses (list of dicts)
-            type (string=color, null=flag)
-            index (int)
-
-    stats_d_totalWins (int)
-    stats_d_totalGames (int)
-    stats_d_currentStreak (int)
-    stats_d_bestStreak (int)
-
-    stats_r_totalWins (int)
-    stats_r_totalGames (int)
-    stats_r_currentStreak (int)
-    stats_r_bestStreak (int)
-
-SessionStorage:
-    tutorialShown (bool, exists or doesn't)
-*/
-
-// configs
-let defaultDifficulty = 30;
-let maxDifficulty = 130;
-let maxTries = 6;
-let icons = {
-    rightColor: "🟣",
-    wrongColor: "⚫",
-    rightFlag: "🟪",
-    wrongFlag: "⬛",
-    flaggle: "🏁",
-    lose: "❌",
-    hard: "💪",
-};
-let resultMsgs_win = [
-    // least to most tries
-    "Superb!",
-    "Amazing!",
-    "Bravo!",
-    "Great!",
-    "Nice!",
-    "Phew...",
-];
-let resultMsgs_lose = [
-    // least to most tries
-    "So close!",
-    "Nice try",
-];
-let seedOverride = null; // null if disabled, string if needed
-let debug = false;
-
 // global-ish variables
 let countryChoicesCount = defaultDifficulty; // number of flags to play with
 let randomizer = null; // randomizer function for getRandomInt
@@ -85,14 +19,10 @@ let CookiesAPI = Cookies.withAttributes({
     sameSite: "strict",
     expires: 365,
     path: "/",
-});
+}); // Cookies object with default cookie attributes
+
 
 // helper functions
-
-function logger(msg) {
-    if (debug == false) return;
-    console.log(msg);
-}
 
 /* ranged integer randomizer */
 function getRandomInt(min, max) {
@@ -267,13 +197,15 @@ function displayCountries() {
         flag_img.className = "flagpic";
         flag_img.dataset.index = i;
         flag_img.src = x.img;
-        flag_img.alt = x.name;
+        flag_img.alt = "fullname" in x ? x.fullname : x.name;
+        flag_img.title = "fullname" in x ? x.fullname : x.name;
         div_flagpics.appendChild(flag_img);
 
         let flag_name_div = document.createElement("div");
         flag_name_div.className = "flagname";
         flag_name_div.dataset.index = i;
         let flag_name_text_div = document.createElement("span");
+        flag_name_text_div.title = "fullname" in x ? x.fullname : x.name;
         flag_name_text_div.innerHTML = x.name;
         flag_name_div.appendChild(flag_name_text_div);
         div_flagnames.appendChild(flag_name_div);
@@ -524,13 +456,13 @@ function showResults() {
         });
         clipboard_share.on("success", function (e) {
             e.trigger.innerHTML = "Copied!";
-            setTimeout(function(){
+            setTimeout(function () {
                 e.trigger.innerHTML = "Share";
             }, 1000);
         });
         clipboard_share.on("error", function (e) {
             e.trigger.innerHTML = "Failed.";
-            setTimeout(function(){
+            setTimeout(function () {
                 e.trigger.innerHTML = "Share";
             }, 1000);
         });
@@ -760,9 +692,14 @@ function displayGameStats(showDaily) {
             else finalShareText += "Random ";
 
             finalShareText += "Stats  📈" + "\n\n";
-            finalShareText += "Flagles Guessed: " + stats_totalWins + "  " + icons.flaggle + "\n"
-            finalShareText += "Win %: " + stats_winPercent + "  ✅\n"
-            finalShareText += "Best Streak: " + stats_bestStreak + "  👏"
+            finalShareText +=
+                "Flagles Guessed: " +
+                stats_totalWins +
+                "  " +
+                icons.flaggle +
+                "\n";
+            finalShareText += "Win %: " + stats_winPercent + "  ✅\n";
+            finalShareText += "Best Streak: " + stats_bestStreak + "  👏";
 
             return finalShareText;
         },
@@ -770,14 +707,14 @@ function displayGameStats(showDaily) {
     clipboard_stats.on("success", function (e) {
         let temp_text = e.trigger.innerHTML;
         e.trigger.innerHTML = "Copied!";
-        setTimeout(function(){
+        setTimeout(function () {
             e.trigger.innerHTML = "Share";
         }, 1000);
     });
     clipboard_stats.on("error", function (e) {
         let temp_text = e.trigger.innerHTML;
         e.trigger.innerHTML = "Failed!";
-        setTimeout(function(){
+        setTimeout(function () {
             e.trigger.innerHTML = "Share";
         }, 1000);
     });
@@ -909,110 +846,109 @@ function refreshCookies() {
     }
 }
 
-// initializations
+document.addEventListener("DOMContentLoaded", function () {
+    // initializations
 
-/* refresh any existing cookies */
-refreshCookies();
+    /* refresh any existing cookies */
+    refreshCookies();
 
-/* daily and random mode buttons */
-document
-    .getElementById("dailyflaggle")
-    .addEventListener("click", clickDailyModeButton);
-document
-    .getElementById("randomflaggle")
-    .addEventListener("click", clickRandomModeButton);
+    /* daily and random mode buttons */
+    document
+        .getElementById("dailyflaggle")
+        .addEventListener("click", clickDailyModeButton);
+    document
+        .getElementById("randomflaggle")
+        .addEventListener("click", clickRandomModeButton);
 
-/* set game mode */
-setGameMode();
+    /* set game mode */
+    setGameMode();
 
-/* difficulty slider */
-document
-    .getElementById("difficultySlider")
-    .addEventListener("input", function () {
-        let difficultyCookie = CookiesAPI.get("difficulty");
-        document.getElementById("difficultyValue").innerHTML = this.value;
-        logger("new difficulty: " + this.value);
-        CookiesAPI.set("difficulty", String(this.value));
-        if (this.value != countryChoicesCount && !dailyMode) {
-            window.onclick = function (event) {
-                if (event.target == modalset) {
+    /* difficulty slider */
+    document
+        .getElementById("difficultySlider")
+        .addEventListener("input", function () {
+            let difficultyCookie = CookiesAPI.get("difficulty");
+            document.getElementById("difficultyValue").innerHTML = this.value;
+            logger("new difficulty: " + this.value);
+            CookiesAPI.set("difficulty", String(this.value));
+            if (this.value != countryChoicesCount && !dailyMode) {
+                window.onclick = function (event) {
+                    if (event.target == modalset) {
+                        document.getElementById("settingstext").style.display =
+                            "none";
+                        location.reload();
+                    }
+                };
+                document.getElementById("closesettings").onclick = function (
+                    event
+                ) {
                     document.getElementById("settingstext").style.display =
                         "none";
                     location.reload();
-                }
-            };
-            document.getElementById("closesettings").onclick = function (
-                event
-            ) {
-                document.getElementById("settingstext").style.display = "none";
-                location.reload();
-            };
-        } else {
-            window.onclick = function (event) {
-                clickOutsideModal(event);
-            };
-            document.getElementById("closesettings").onclick = function (
-                event
-            ) {
-                document.getElementById("settingstext").style.display = "none";
-            };
-        }
-    });
+                };
+            } else {
+                window.onclick = function (event) {
+                    clickOutsideModal(event);
+                };
+                document.getElementById("closesettings").onclick = function (
+                    event
+                ) {
+                    document.getElementById("settingstext").style.display =
+                        "none";
+                };
+            }
+        });
 
-/* load difficulty slider values */
-if (CookiesAPI.get("difficulty") == undefined) {
-    CookiesAPI.set("difficulty", String(countryChoicesCount));
-} else {
-    logger("loaded difficulty: " + CookiesAPI.get("difficulty"));
-    document.getElementById("difficultySlider").value =
-        CookiesAPI.get("difficulty");
-    document.getElementById("difficultyValue").innerHTML =
-        CookiesAPI.get("difficulty");
-    if (dailyMode == false) {
-        countryChoicesCount = Number(CookiesAPI.get("difficulty"));
-        currentCountryChoicesCount = countryChoicesCount;
-    }
-}
-
-/* initialize randomizer function */
-if (seedOverride == null) {
-    if (dailyMode) {
-        initRandomizer();
+    /* load difficulty slider values */
+    if (CookiesAPI.get("difficulty") == undefined) {
+        CookiesAPI.set("difficulty", String(countryChoicesCount));
     } else {
-        initRandomizer(String(Math.random()));
+        logger("loaded difficulty: " + CookiesAPI.get("difficulty"));
+        document.getElementById("difficultySlider").value =
+            CookiesAPI.get("difficulty");
+        document.getElementById("difficultyValue").innerHTML =
+            CookiesAPI.get("difficulty");
+        if (dailyMode == false) {
+            countryChoicesCount = Number(CookiesAPI.get("difficulty"));
+            currentCountryChoicesCount = countryChoicesCount;
+        }
     }
-} else {
-    initRandomizer(seedOverride);
-}
 
-/* create and initialize the guess counter based on <maxTries> */
-document.getElementById("guesses").innerHTML = "";
-for (let i = 0; i < maxTries; i++) {
-    let guessIndicator = document.createElement("div");
-    guessIndicator.dataset.index = i;
-    guessIndicator.classList.add("guessindicators");
-    if (i == 0) guessIndicator.classList.add("current");
-    document.getElementById("guesses").appendChild(guessIndicator);
-}
-document.getElementById("nextdailyresult").style.display = "none";
-document.getElementById("nextdailystats").style.display = "none";
-document.getElementById("dailycountdowntext_stats").innerHTML = "";
-document.getElementById("dailycountdowntext_results").innerHTML = "";
+    /* initialize randomizer function */
+    if (seedOverride == null) {
+        if (dailyMode) {
+            initRandomizer();
+        } else {
+            initRandomizer(String(Math.random()));
+        }
+    } else {
+        initRandomizer(seedOverride);
+    }
 
-/*  */
+    /* create and initialize the guess counter based on <maxTries> */
+    document.getElementById("guesses").innerHTML = "";
+    for (let i = 0; i < maxTries; i++) {
+        let guessIndicator = document.createElement("div");
+        guessIndicator.dataset.index = i;
+        guessIndicator.classList.add("guessindicators");
+        if (i == 0) guessIndicator.classList.add("current");
+        document.getElementById("guesses").appendChild(guessIndicator);
+    }
+    document.getElementById("nextdailyresult").style.display = "none";
+    document.getElementById("nextdailystats").style.display = "none";
+    document.getElementById("dailycountdowntext_stats").innerHTML = "";
+    document.getElementById("dailycountdowntext_results").innerHTML = "";
 
-
-
-// main program
-
-countryRandomizer(countryChoicesCount).then((data) => {
-    country = data[1];
-    countries = data[0];
-    countryIndex = data[2];
-    logger("RANDOMIZED: ");
-    logger(country);
-    logger(countries);
-    displayCountries();
-    enableButtons();
-    loadLastGame();
+    // main program
+    countryRandomizer(countryChoicesCount).then((data) => {
+        country = data[1];
+        countries = data[0];
+        countryIndex = data[2];
+        logger("RANDOMIZED: ");
+        logger(country);
+        logger(countries);
+        displayCountries();
+        enableButtons();
+        loadLastGame();
+    });
 });
