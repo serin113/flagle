@@ -540,10 +540,7 @@ input:checked + .slider:before {
     margin-bottom: 0.75rem;
 }
 
-#flagsguessed,
-#currentstreak,
-#beststreak,
-#winpercent {
+.statstab {
     display: inline-table;
     width: 3.5rem;
     text-align: center;

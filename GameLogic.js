@@ -738,6 +738,7 @@ function displayGameStats(showDaily) {
     document.getElementById("currentstreaktext").innerHTML =
         stats_currentStreak;
     document.getElementById("beststreaktext").innerHTML = stats_bestStreak;
+    document.getElementById("totalgamestext").innerHTML = stats_totalGames;
 }
 
 /* set game mode based on selection */
