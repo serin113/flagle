@@ -696,6 +696,11 @@
         "img": "/flags/w160/pw.jpg"
     },
     {
+        "name": "Palestine",
+        "colors": ["black", "white", "green", "red"],
+        "img": "/flags/w160/ps.jpg"
+    },
+    {
         "name": "Panama",
         "colors": ["blue", "white", "red"],
         "img": "/flags/w160/pa.jpg"
@@ -851,17 +856,6 @@
         "img": "/flags/w160/lk.jpg"
     },
     {
-        "name": "S.V. & G.",
-        "fullname": "Saint Vincent & The Grenadines",
-        "colors": ["blue", "yellow", "green"],
-        "img": "/flags/w160/vc.jpg"
-    },
-    {
-        "name": "Palestine",
-        "colors": ["black", "white", "green", "red"],
-        "img": "/flags/w160/ps.jpg"
-    },
-    {
         "name": "Sudan",
         "colors": ["black", "white", "green", "red"],
         "img": "/flags/w160/sd.jpg"
@@ -870,6 +864,12 @@
         "name": "Suriname",
         "colors": ["yellow", "white", "green", "red"],
         "img": "/flags/w160/sr.jpg"
+    },
+    {
+        "name": "S.V. & G.",
+        "fullname": "Saint Vincent & The Grenadines",
+        "colors": ["blue", "yellow", "green"],
+        "img": "/flags/w160/vc.jpg"
     },
     {
         "name": "Sweden",
@@ -997,7 +997,7 @@
     },
     {
         "name": "Venezuela",
-        "colors": ["blue", "red", "yellow", "green", "white"],
+        "colors": ["blue", "red", "yellow", "white"],
         "img": "/flags/w160/ve.jpg"
     },
     {
