@@ -2,1022 +2,1022 @@
     {
         "name": "Afghanistan",
         "colors": ["red", "white", "black", "green"],
-        "img": "https://flagcdn.com/w160/af.jpg"
+        "img": "/flags/w160/af.jpg"
     },
     {
         "name": "Albania",
         "colors": ["red", "black"],
-        "img": "https://flagcdn.com/w160/al.jpg"
+        "img": "/flags/w160/al.jpg"
     },
     {
         "name": "Algeria",
         "colors": ["red", "white", "green"],
         "star": 1,
         "moon": 1,
-        "img": "https://flagcdn.com/w160/dz.jpg"
+        "img": "/flags/w160/dz.jpg"
     },
     {
         "name": "Andorra",
         "colors": ["red", "yellow", "blue", "white"],
-        "img": "https://flagcdn.com/w160/ad.jpg"
+        "img": "/flags/w160/ad.jpg"
     },
     {
         "name": "Angola",
         "colors": ["red", "yellow", "black"],
         "star": 1,
         "sun": 1,
-        "img": "https://flagcdn.com/w160/ao.jpg"
+        "img": "/flags/w160/ao.jpg"
     },
     {
         "name": "Antigua & Barbuda",
         "colors": ["red", "yellow", "black", "white", "blue"],
-        "img": "https://flagcdn.com/w160/ag.jpg"
+        "img": "/flags/w160/ag.jpg"
     },
     {
         "name": "Argentina",
         "colors": ["yellow", "white", "blue"],
         "sun": 1,
-        "img": "https://flagcdn.com/w160/ar.jpg"
+        "img": "/flags/w160/ar.jpg"
     },
     {
         "name": "Armenia",
         "colors": ["red", "blue", "orange"],
-        "img": "https://flagcdn.com/w160/am.jpg"
+        "img": "/flags/w160/am.jpg"
     },
     {
         "name": "Australia",
         "colors": ["red", "blue", "white"],
         "star": 6,
-        "img": "https://flagcdn.com/w160/au.jpg"
+        "img": "/flags/w160/au.jpg"
     },
     {
         "name": "Austria",
         "colors": ["red", "white"],
-        "img": "https://flagcdn.com/w160/at.jpg"
+        "img": "/flags/w160/at.jpg"
     },
     {
         "name": "Azerbaijan",
         "colors": ["red", "white", "green", "blue"],
         "moon": 1,
         "star": 1,
-        "img": "https://flagcdn.com/w160/az.jpg"
+        "img": "/flags/w160/az.jpg"
     },
     {
         "name": "Bahamas",
         "colors": ["yellow", "black", "blue"],
-        "img": "https://flagcdn.com/w160/bs.jpg"
+        "img": "/flags/w160/bs.jpg"
     },
     {
         "name": "Bahrain",
         "colors": ["red", "white"],
-        "img": "https://flagcdn.com/w160/bh.jpg"
+        "img": "/flags/w160/bh.jpg"
     },
     {
         "name": "Bangladesh",
         "colors": ["red", "green"],
-        "img": "https://flagcdn.com/w160/bd.jpg"
+        "img": "/flags/w160/bd.jpg"
     },
     {
         "name": "Barbados",
         "colors": ["blue", "black", "yellow"],
-        "img": "https://flagcdn.com/w160/bb.jpg"
+        "img": "/flags/w160/bb.jpg"
     },
     {
         "name": "Belarus",
         "colors": ["red", "white", "green"],
-        "img": "https://flagcdn.com/w160/by.jpg"
+        "img": "/flags/w160/by.jpg"
     },
     {
         "name": "Belgium",
         "colors": ["red", "yellow", "black"],
-        "img": "https://flagcdn.com/w160/be.jpg"
+        "img": "/flags/w160/be.jpg"
     },
     {
         "name": "Belize",
         "colors": ["red", "yellow", "blue", "green", "white"],
-        "img": "https://flagcdn.com/w160/bz.jpg"
+        "img": "/flags/w160/bz.jpg"
     },
     {
         "name": "Benin",
         "colors": ["green", "yellow", "red"],
-        "img": "https://flagcdn.com/w160/bj.jpg"
+        "img": "/flags/w160/bj.jpg"
     },
     {
         "name": "Bhutan",
         "colors": ["white", "yellow", "orange"],
-        "img": "https://flagcdn.com/w160/bt.jpg"
+        "img": "/flags/w160/bt.jpg"
     },
     {
         "name": "Bolivia",
         "colors": ["red", "yellow", "green", "blue", "white"],
-        "img": "https://flagcdn.com/w160/bo.jpg"
+        "img": "/flags/w160/bo.jpg"
     },
     {
         "name": "Bosnia & Herzegovina",
         "colors": ["white", "yellow", "blue"],
         "star": 8,
-        "img": "https://flagcdn.com/w160/ba.jpg"
+        "img": "/flags/w160/ba.jpg"
     },
     {
         "name": "Botswana",
         "colors": ["white", "black", "blue"],
-        "img": "https://flagcdn.com/w160/bw.jpg"
+        "img": "/flags/w160/bw.jpg"
     },
     {
         "name": "Brazil",
         "colors": ["white", "blue", "green", "yellow"],
-        "img": "https://flagcdn.com/w160/br.jpg"
+        "img": "/flags/w160/br.jpg"
     },
     {
         "name": "Brunei",
         "colors": ["white", "red", "black", "yellow"],
-        "img": "https://flagcdn.com/w160/bn.jpg"
+        "img": "/flags/w160/bn.jpg"
     },
     {
         "name": "Bulgaria",
         "colors": ["white", "red", "green"],
-        "img": "https://flagcdn.com/w160/bg.jpg"
+        "img": "/flags/w160/bg.jpg"
     },
     {
         "name": "Burkina Faso",
         "colors": ["yellow", "red", "green"],
         "star": 1,
-        "img": "https://flagcdn.com/w160/bf.jpg"
+        "img": "/flags/w160/bf.jpg"
     },
     {
         "name": "Burundi",
         "colors": ["white", "red", "green"],
         "star": 3,
-        "img": "https://flagcdn.com/w160/bi.jpg"
+        "img": "/flags/w160/bi.jpg"
     },
     {
         "name": "Côte d'Ivoire",
         "colors": ["white", "orange", "green"],
-        "img": "https://flagcdn.com/w160/ci.jpg"
+        "img": "/flags/w160/ci.jpg"
     },
     {
         "name": "Cabo Verde",
         "colors": ["white", "yellow", "red", "blue"],
         "star": 10,
-        "img": "https://flagcdn.com/w160/cv.jpg"
+        "img": "/flags/w160/cv.jpg"
     },
     {
         "name": "Cambodia",
         "colors": ["white", "red", "blue"],
-        "img": "https://flagcdn.com/w160/kh.jpg"
+        "img": "/flags/w160/kh.jpg"
     },
     {
         "name": "Cameroon",
         "colors": ["yellow", "red", "green"],
         "star": 1,
-        "img": "https://flagcdn.com/w160/cm.jpg"
+        "img": "/flags/w160/cm.jpg"
     },
     {
         "name": "Canada",
         "colors": ["white", "red"],
-        "img": "https://flagcdn.com/w160/ca.jpg"
+        "img": "/flags/w160/ca.jpg"
     },
     {
         "name": "C.A.R.",
         "fullname": "Central African Republic",
         "colors": ["white", "red", "blue", "yellow", "green"],
         "star": 1,
-        "img": "https://flagcdn.com/w160/cf.jpg"
+        "img": "/flags/w160/cf.jpg"
     },
     {
         "name": "Chad",
         "colors": ["red", "blue", "yellow"],
-        "img": "https://flagcdn.com/w160/td.jpg"
+        "img": "/flags/w160/td.jpg"
     },
     {
         "name": "Chile",
         "colors": ["red", "blue", "white"],
         "star": 1,
-        "img": "https://flagcdn.com/w160/cl.jpg"
+        "img": "/flags/w160/cl.jpg"
     },
     {
         "name": "China (P.R.C)",
         "fullname": "China (People's Republic of China)",
         "colors": ["red", "yellow"],
         "star": 5,
-        "img": "https://flagcdn.com/w160/cn.jpg"
+        "img": "/flags/w160/cn.jpg"
     },
     {
         "name": "Colombia",
         "colors": ["red", "yellow", "blue"],
-        "img": "https://flagcdn.com/w160/co.jpg"
+        "img": "/flags/w160/co.jpg"
     },
     {
         "name": "Comoros",
         "colors": ["red", "yellow", "blue", "white", "green"],
         "star": 4,
         "moon": 1,
-        "img": "https://flagcdn.com/w160/km.jpg"
+        "img": "/flags/w160/km.jpg"
     },
     {
         "name": "Congo",
         "colors": ["red", "yellow", "blue"],
         "star": 1,
-        "img": "https://flagcdn.com/w160/cg.jpg"
+        "img": "/flags/w160/cg.jpg"
     },
     {
         "name": "Costa Rica",
         "colors": ["red", "white", "blue", "green", "yellow"],
-        "img": "https://flagcdn.com/w160/cr.jpg"
+        "img": "/flags/w160/cr.jpg"
     },
     {
         "name": "Croatia",
         "colors": ["red", "white", "blue", "black"],
-        "img": "https://flagcdn.com/w160/hr.jpg"
+        "img": "/flags/w160/hr.jpg"
     },
     {
         "name": "Cuba",
         "colors": ["red", "white", "blue"],
         "star": 1,
-        "img": "https://flagcdn.com/w160/cu.jpg"
+        "img": "/flags/w160/cu.jpg"
     },
     {
         "name": "Cyprus",
         "colors": ["yellow", "white", "green"],
-        "img": "https://flagcdn.com/w160/cy.jpg"
+        "img": "/flags/w160/cy.jpg"
     },
     {
         "name": "Czechia",
         "colors": ["blue", "white", "red"],
-        "img": "https://flagcdn.com/w160/cz.jpg"
+        "img": "/flags/w160/cz.jpg"
     },
     {
         "name": "Denmark",
         "colors": ["white", "red"],
-        "img": "https://flagcdn.com/w160/dk.jpg"
+        "img": "/flags/w160/dk.jpg"
     },
     {
         "name": "Djibouti",
         "colors": ["white", "red", "blue", "green"],
         "star": 1,
-        "img": "https://flagcdn.com/w160/dj.jpg"
+        "img": "/flags/w160/dj.jpg"
     },
     {
         "name": "Dominica",
         "colors": ["white", "red", "yellow", "black", "green", "blue"],
         "star": 10,
-        "img": "https://flagcdn.com/w160/dm.jpg"
+        "img": "/flags/w160/dm.jpg"
     },
     {
         "name": "Dominican Republic",
         "colors": ["white", "red", "blue", "green", "yellow"],
-        "img": "https://flagcdn.com/w160/do.jpg"
+        "img": "/flags/w160/do.jpg"
     },
     {
         "name": "D.R.C.",
         "fullname": "Democratic Republic of Congo",
         "colors": ["yellow", "red", "blue"],
         "star": 1,
-        "img": "https://flagcdn.com/w160/cd.jpg"
+        "img": "/flags/w160/cd.jpg"
     },
     {
         "name": "Ecuador",
         "colors": ["yellow", "red", "blue", "green", "white"],
-        "img": "https://flagcdn.com/w160/ec.jpg"
+        "img": "/flags/w160/ec.jpg"
     },
     {
         "name": "Egypt",
         "colors": ["yellow", "red", "black", "white"],
-        "img": "https://flagcdn.com/w160/eg.jpg"
+        "img": "/flags/w160/eg.jpg"
     },
     {
         "name": "El Salvador",
         "colors": ["blue", "white", "red", "green", "yellow"],
-        "img": "https://flagcdn.com/w160/sv.jpg"
+        "img": "/flags/w160/sv.jpg"
     },
     {
         "name": "Equatorial Guinea",
         "colors": ["blue", "white", "green", "red", "yellow"],
-        "img": "https://flagcdn.com/w160/gq.jpg"
+        "img": "/flags/w160/gq.jpg"
     },
     {
         "name": "Eritrea",
         "colors": ["blue", "yellow", "green", "red"],
-        "img": "https://flagcdn.com/w160/er.jpg"
+        "img": "/flags/w160/er.jpg"
     },
     {
         "name": "Estonia",
         "colors": ["blue", "black", "white"],
-        "img": "https://flagcdn.com/w160/ee.jpg"
+        "img": "/flags/w160/ee.jpg"
     },
     {
         "name": "Eswatini",
         "colors": ["blue", "black", "white", "red", "yellow"],
-        "img": "https://flagcdn.com/w160/sz.jpg"
+        "img": "/flags/w160/sz.jpg"
     },
     {
         "name": "Ethiopia",
         "colors": ["blue", "green", "red", "yellow"],
         "star": 1,
-        "img": "https://flagcdn.com/w160/et.jpg"
+        "img": "/flags/w160/et.jpg"
     },
     {
         "name": "Fiji",
         "colors": ["blue", "white", "green", "red", "yellow"],
-        "img": "https://flagcdn.com/w160/fj.jpg"
+        "img": "/flags/w160/fj.jpg"
     },
     {
         "name": "Finland",
         "colors": ["blue", "white"],
-        "img": "https://flagcdn.com/w160/fi.jpg"
+        "img": "/flags/w160/fi.jpg"
     },
     {
         "name": "France",
         "colors": ["blue", "white", "red"],
-        "img": "https://flagcdn.com/w160/fr.jpg"
+        "img": "/flags/w160/fr.jpg"
     },
     {
         "name": "Gabon",
         "colors": ["blue", "yellow", "green"],
-        "img": "https://flagcdn.com/w160/ga.jpg"
+        "img": "/flags/w160/ga.jpg"
     },
     {
         "name": "Gambia",
         "colors": ["blue", "white", "red", "green"],
-        "img": "https://flagcdn.com/w160/gm.jpg"
+        "img": "/flags/w160/gm.jpg"
     },
     {
         "name": "Georgia",
         "colors": ["white", "red"],
-        "img": "https://flagcdn.com/w160/ge.jpg"
+        "img": "/flags/w160/ge.jpg"
     },
     {
         "name": "Germany",
         "colors": ["black", "red", "yellow"],
-        "img": "https://flagcdn.com/w160/de.jpg"
+        "img": "/flags/w160/de.jpg"
     },
     {
         "name": "Ghana",
         "colors": ["black", "green", "red", "yellow"],
         "star": 1,
-        "img": "https://flagcdn.com/w160/gh.jpg"
+        "img": "/flags/w160/gh.jpg"
     },
     {
         "name": "Greece",
         "colors": ["blue", "white"],
-        "img": "https://flagcdn.com/w160/gr.jpg"
+        "img": "/flags/w160/gr.jpg"
     },
     {
         "name": "Grenada",
         "colors": ["green", "red", "yellow"],
         "star": 7,
-        "img": "https://flagcdn.com/w160/gd.jpg"
+        "img": "/flags/w160/gd.jpg"
     },
     {
         "name": "Guatemala",
         "colors": ["green", "white", "yellow", "blue", "red"],
-        "img": "https://flagcdn.com/w160/gt.jpg"
+        "img": "/flags/w160/gt.jpg"
     },
     {
         "name": "Guinea",
         "colors": ["green", "yellow", "red"],
-        "img": "https://flagcdn.com/w160/gn.jpg"
+        "img": "/flags/w160/gn.jpg"
     },
     {
         "name": "Guinea-Bissau",
         "colors": ["green", "yellow", "red", "black"],
         "star": 1,
-        "img": "https://flagcdn.com/w160/gw.jpg"
+        "img": "/flags/w160/gw.jpg"
     },
     {
         "name": "Guyana",
         "colors": ["green", "yellow", "red", "black", "white"],
-        "img": "https://flagcdn.com/w160/gy.jpg"
+        "img": "/flags/w160/gy.jpg"
     },
     {
         "name": "Haiti",
         "colors": ["green", "red", "blue", "white"],
-        "img": "https://flagcdn.com/w160/ht.jpg"
+        "img": "/flags/w160/ht.jpg"
     },
     {
         "name": "Honduras",
         "colors": ["blue", "white"],
-        "img": "https://flagcdn.com/w160/hn.jpg"
+        "img": "/flags/w160/hn.jpg"
     },
     {
         "name": "Hungary",
         "colors": ["red", "white", "green"],
-        "img": "https://flagcdn.com/w160/hu.jpg"
+        "img": "/flags/w160/hu.jpg"
     },
     {
         "name": "Iceland",
         "colors": ["red", "white", "blue"],
-        "img": "https://flagcdn.com/w160/is.jpg"
+        "img": "/flags/w160/is.jpg"
     },
     {
         "name": "India",
         "colors": ["orange", "white", "green"],
-        "img": "https://flagcdn.com/w160/in.jpg"
+        "img": "/flags/w160/in.jpg"
     },
     {
         "name": "Indonesia",
         "colors": ["red", "white"],
-        "img": "https://flagcdn.com/w160/id.jpg"
+        "img": "/flags/w160/id.jpg"
     },
     {
         "name": "Iran",
         "colors": ["red", "white", "green"],
-        "img": "https://flagcdn.com/w160/ir.jpg"
+        "img": "/flags/w160/ir.jpg"
     },
     {
         "name": "Iraq",
         "colors": ["red", "white", "green", "black"],
-        "img": "https://flagcdn.com/w160/iq.jpg"
+        "img": "/flags/w160/iq.jpg"
     },
     {
         "name": "Ireland",
         "colors": ["orange", "white", "green"],
-        "img": "https://flagcdn.com/w160/ie.jpg"
+        "img": "/flags/w160/ie.jpg"
     },
     {
         "name": "Israel",
         "colors": ["blue", "white"],
-        "img": "https://flagcdn.com/w160/il.jpg"
+        "img": "/flags/w160/il.jpg"
     },
     {
         "name": "Italy",
         "colors": ["green", "white", "red"],
-        "img": "https://flagcdn.com/w160/it.jpg"
+        "img": "/flags/w160/it.jpg"
     },
     {
         "name": "Jamaica",
         "colors": ["yellow", "green", "black"],
-        "img": "https://flagcdn.com/w160/jm.jpg"
+        "img": "/flags/w160/jm.jpg"
     },
     {
         "name": "Japan",
         "colors": ["red", "white"],
-        "img": "https://flagcdn.com/w160/jp.jpg"
+        "img": "/flags/w160/jp.jpg"
     },
     {
         "name": "Jordan",
         "colors": ["red", "white", "black", "green"],
-        "img": "https://flagcdn.com/w160/jo.jpg"
+        "img": "/flags/w160/jo.jpg"
     },
     {
         "name": "Kazakhstan",
         "colors": ["blue", "yellow"],
-        "img": "https://flagcdn.com/w160/kz.jpg"
+        "img": "/flags/w160/kz.jpg"
     },
     {
         "name": "Kenya",
         "colors": ["red", "black", "white", "green"],
-        "img": "https://flagcdn.com/w160/ke.jpg"
+        "img": "/flags/w160/ke.jpg"
     },
     {
         "name": "Kiribati",
         "colors": ["red", "blue", "white", "yellow"],
-        "img": "https://flagcdn.com/w160/ki.jpg"
+        "img": "/flags/w160/ki.jpg"
     },
     {
         "name": "Kosovo",
         "colors": ["white", "yellow", "blue"],
-        "img": "https://flagcdn.com/w160/xk.jpg"
+        "img": "/flags/w160/xk.jpg"
     },
     {
         "name": "Kuwait",
         "colors": ["red", "black", "white", "green"],
-        "img": "https://flagcdn.com/w160/kw.jpg"
+        "img": "/flags/w160/kw.jpg"
     },
     {
         "name": "Kyrgyzstan",
         "colors": ["red", "yellow"],
-        "img": "https://flagcdn.com/w160/kg.jpg"
+        "img": "/flags/w160/kg.jpg"
     },
     {
         "name": "Laos",
         "colors": ["red", "white", "blue"],
-        "img": "https://flagcdn.com/w160/la.jpg"
+        "img": "/flags/w160/la.jpg"
     },
     {
         "name": "Latvia",
         "colors": ["red", "white"],
-        "img": "https://flagcdn.com/w160/lv.jpg"
+        "img": "/flags/w160/lv.jpg"
     },
     {
         "name": "Lebanon",
         "colors": ["red", "white", "green"],
-        "img": "https://flagcdn.com/w160/lb.jpg"
+        "img": "/flags/w160/lb.jpg"
     },
     {
         "name": "Lesotho",
         "colors": ["blue", "white", "green", "black"],
-        "img": "https://flagcdn.com/w160/ls.jpg"
+        "img": "/flags/w160/ls.jpg"
     },
     {
         "name": "Liberia",
         "colors": ["blue", "white", "red"],
-        "img": "https://flagcdn.com/w160/lr.jpg"
+        "img": "/flags/w160/lr.jpg"
     },
     {
         "name": "Libya",
         "colors": ["black", "white", "red", "green"],
-        "img": "https://flagcdn.com/w160/ly.jpg"
+        "img": "/flags/w160/ly.jpg"
     },
     {
         "name": "Liechtenstein",
         "colors": ["blue", "yellow", "red"],
-        "img": "https://flagcdn.com/w160/li.jpg"
+        "img": "/flags/w160/li.jpg"
     },
     {
         "name": "Lithuania",
         "colors": ["green", "yellow", "red"],
-        "img": "https://flagcdn.com/w160/lt.jpg"
+        "img": "/flags/w160/lt.jpg"
     },
     {
         "name": "Luxembourg",
         "colors": ["blue", "white", "red"],
-        "img": "https://flagcdn.com/w160/lu.jpg"
+        "img": "/flags/w160/lu.jpg"
     },
     {
         "name": "Madagascar",
         "colors": ["green", "white", "red"],
-        "img": "https://flagcdn.com/w160/mg.jpg"
+        "img": "/flags/w160/mg.jpg"
     },
     {
         "name": "Malawi",
         "colors": ["green", "black", "red"],
-        "img": "https://flagcdn.com/w160/mw.jpg"
+        "img": "/flags/w160/mw.jpg"
     },
     {
         "name": "Malaysia",
         "colors": ["white", "blue", "red", "yellow"],
-        "img": "https://flagcdn.com/w160/my.jpg"
+        "img": "/flags/w160/my.jpg"
     },
     {
         "name": "Maldives",
         "colors": ["white", "green", "red"],
-        "img": "https://flagcdn.com/w160/mv.jpg"
+        "img": "/flags/w160/mv.jpg"
     },
     {
         "name": "Mali",
         "colors": ["yellow", "green", "red"],
-        "img": "https://flagcdn.com/w160/ml.jpg"
+        "img": "/flags/w160/ml.jpg"
     },
     {
         "name": "Malta",
         "colors": ["white", "red"],
-        "img": "https://flagcdn.com/w160/mt.jpg"
+        "img": "/flags/w160/mt.jpg"
     },
     {
         "name": "Marshall Islands",
         "colors": ["white", "orange", "blue"],
-        "img": "https://flagcdn.com/w160/mh.jpg"
+        "img": "/flags/w160/mh.jpg"
     },
     {
         "name": "Mauritania",
         "colors": ["yellow", "green", "red"],
-        "img": "https://flagcdn.com/w160/mr.jpg"
+        "img": "/flags/w160/mr.jpg"
     },
     {
         "name": "Mauritius",
         "colors": ["yellow", "green", "red", "blue"],
-        "img": "https://flagcdn.com/w160/mu.jpg"
+        "img": "/flags/w160/mu.jpg"
     },
     {
         "name": "Mexico",
         "colors": ["white", "green", "red", "blue", "yellow"],
-        "img": "https://flagcdn.com/w160/mx.jpg"
+        "img": "/flags/w160/mx.jpg"
     },
     {
         "name": "Micronesia",
         "colors": ["white", "blue"],
-        "img": "https://flagcdn.com/w160/fm.jpg"
+        "img": "/flags/w160/fm.jpg"
     },
     {
         "name": "Moldova",
         "colors": ["red", "blue", "yellow", "green"],
-        "img": "https://flagcdn.com/w160/md.jpg"
+        "img": "/flags/w160/md.jpg"
     },
     {
         "name": "Monaco",
         "colors": ["red", "white"],
-        "img": "https://flagcdn.com/w160/mc.jpg"
+        "img": "/flags/w160/mc.jpg"
     },
     {
         "name": "Mongolia",
         "colors": ["red", "blue", "yellow"],
-        "img": "https://flagcdn.com/w160/mn.jpg"
+        "img": "/flags/w160/mn.jpg"
     },
     {
         "name": "Montenegro",
         "colors": ["red", "orange", "blue", "green"],
-        "img": "https://flagcdn.com/w160/me.jpg"
+        "img": "/flags/w160/me.jpg"
     },
     {
         "name": "Morocco",
         "colors": ["red", "green"],
-        "img": "https://flagcdn.com/w160/ma.jpg"
+        "img": "/flags/w160/ma.jpg"
     },
     {
         "name": "Mozambique",
         "colors": ["red", "white", "yellow", "black", "green"],
-        "img": "https://flagcdn.com/w160/mz.jpg"
+        "img": "/flags/w160/mz.jpg"
     },
     {
         "name": "Myanmar",
         "colors": ["red", "white", "yellow", "green"],
-        "img": "https://flagcdn.com/w160/mm.jpg"
+        "img": "/flags/w160/mm.jpg"
     },
     {
         "name": "Namibia",
         "colors": ["red", "white", "yellow", "green", "blue"],
-        "img": "https://flagcdn.com/w160/na.jpg"
+        "img": "/flags/w160/na.jpg"
     },
     {
         "name": "Nauru",
         "colors": ["white", "yellow", "blue"],
-        "img": "https://flagcdn.com/w160/nr.jpg"
+        "img": "/flags/w160/nr.jpg"
     },
     {
         "name": "Nepal",
         "colors": ["white", "red", "blue"],
-        "img": "https://flagcdn.com/w160/np.jpg"
+        "img": "/flags/w160/np.jpg"
     },
     {
         "name": "Netherlands",
         "colors": ["white", "red", "blue"],
-        "img": "https://flagcdn.com/w160/nl.jpg"
+        "img": "/flags/w160/nl.jpg"
     },
     {
         "name": "New Zealand",
         "colors": ["white", "red", "blue"],
-        "img": "https://flagcdn.com/w160/nz.jpg"
+        "img": "/flags/w160/nz.jpg"
     },
     {
         "name": "Nicaragua",
         "colors": ["white", "red", "orange", "yellow", "green", "blue"],
-        "img": "https://flagcdn.com/w160/ni.jpg"
+        "img": "/flags/w160/ni.jpg"
     },
     {
         "name": "Niger",
         "colors": ["white", "orange", "green"],
-        "img": "https://flagcdn.com/w160/ne.jpg"
+        "img": "/flags/w160/ne.jpg"
     },
     {
         "name": "Nigeria",
         "colors": ["white", "green"],
-        "img": "https://flagcdn.com/w160/ng.jpg"
+        "img": "/flags/w160/ng.jpg"
     },
     {
         "name": "North Korea",
         "colors": ["white", "red", "blue"],
         "star": 1,
-        "img": "https://flagcdn.com/w160/kp.jpg"
+        "img": "/flags/w160/kp.jpg"
     },
     {
         "name": "North Macedonia",
         "colors": ["red", "yellow"],
-        "img": "https://flagcdn.com/w160/mk.jpg"
+        "img": "/flags/w160/mk.jpg"
     },
     {
         "name": "Norway",
         "colors": ["red", "blue", "white"],
-        "img": "https://flagcdn.com/w160/no.jpg"
+        "img": "/flags/w160/no.jpg"
     },
     {
         "name": "Oman",
         "colors": ["red", "green", "white"],
-        "img": "https://flagcdn.com/w160/om.jpg"
+        "img": "/flags/w160/om.jpg"
     },
     {
         "name": "Pakistan",
         "colors": ["green", "white"],
-        "img": "https://flagcdn.com/w160/pk.jpg"
+        "img": "/flags/w160/pk.jpg"
     },
     {
         "name": "Palau",
         "colors": ["blue", "yellow"],
-        "img": "https://flagcdn.com/w160/pw.jpg"
+        "img": "/flags/w160/pw.jpg"
     },
     {
         "name": "Panama",
         "colors": ["blue", "white", "red"],
-        "img": "https://flagcdn.com/w160/pa.jpg"
+        "img": "/flags/w160/pa.jpg"
     },
     {
         "name": "Papua New Guinea",
         "colors": ["black", "white", "red", "yellow"],
-        "img": "https://flagcdn.com/w160/pg.jpg"
+        "img": "/flags/w160/pg.jpg"
     },
     {
         "name": "Paraguay",
         "colors": ["blue", "white", "red", "green", "yellow", "black"],
-        "img": "https://flagcdn.com/w160/py.jpg"
+        "img": "/flags/w160/py.jpg"
     },
     {
         "name": "Peru",
-        "colors": ["blue", "white", "red", "green", "yellow", "orange"],
-        "img": "https://flagcdn.com/w160/pe.jpg"
+        "colors": ["white", "red"],
+        "img": "/flags/w160/pe.jpg"
     },
     {
         "name": "Philippines",
         "colors": ["blue", "white", "red", "yellow"],
-        "img": "https://flagcdn.com/w160/ph.jpg"
+        "img": "/flags/w160/ph.jpg"
     },
     {
         "name": "Poland",
         "colors": ["white", "red"],
-        "img": "https://flagcdn.com/w160/pl.jpg"
+        "img": "/flags/w160/pl.jpg"
     },
     {
         "name": "Portugal",
         "colors": ["blue", "white", "red", "yellow", "green"],
-        "img": "https://flagcdn.com/w160/pt.jpg"
+        "img": "/flags/w160/pt.jpg"
     },
     {
         "name": "Qatar",
         "colors": ["white", "red"],
-        "img": "https://flagcdn.com/w160/qa.jpg"
+        "img": "/flags/w160/qa.jpg"
     },
     {
         "name": "Romania",
         "colors": ["blue", "red", "yellow"],
-        "img": "https://flagcdn.com/w160/ro.jpg"
+        "img": "/flags/w160/ro.jpg"
     },
     {
         "name": "Russia",
         "colors": ["blue", "red", "white"],
-        "img": "https://flagcdn.com/w160/ru.jpg"
+        "img": "/flags/w160/ru.jpg"
     },
     {
         "name": "Rwanda",
         "colors": ["green", "yellow", "blue"],
-        "img": "https://flagcdn.com/w160/rw.jpg"
+        "img": "/flags/w160/rw.jpg"
     },
     {
         "name": "Saint Kitts & Nevis",
         "colors": ["green", "yellow", "black", "white", "red"],
-        "img": "https://flagcdn.com/w160/kn.jpg"
+        "img": "/flags/w160/kn.jpg"
     },
     {
         "name": "Saint Lucia",
         "colors": ["blue", "yellow", "black", "white"],
-        "img": "https://flagcdn.com/w160/lc.jpg"
+        "img": "/flags/w160/lc.jpg"
     },
     {
         "name": "Samoa",
         "colors": ["blue", "red", "white"],
-        "img": "https://flagcdn.com/w160/ws.jpg"
+        "img": "/flags/w160/ws.jpg"
     },
     {
         "name": "San Marino",
         "colors": ["blue", "yellow", "white", "green"],
-        "img": "https://flagcdn.com/w160/sm.jpg"
+        "img": "/flags/w160/sm.jpg"
     },
     {
         "name": "Sao Tome & Principe",
         "colors": ["black", "yellow", "red", "green"],
-        "img": "https://flagcdn.com/w160/st.jpg"
+        "img": "/flags/w160/st.jpg"
     },
     {
         "name": "Saudi Arabia",
         "colors": ["white", "green"],
-        "img": "https://flagcdn.com/w160/sa.jpg"
+        "img": "/flags/w160/sa.jpg"
     },
     {
         "name": "Senegal",
         "colors": ["yellow", "green", "red"],
-        "img": "https://flagcdn.com/w160/sn.jpg"
+        "img": "/flags/w160/sn.jpg"
     },
     {
         "name": "Serbia",
         "colors": ["yellow", "blue", "red", "white"],
-        "img": "https://flagcdn.com/w160/rs.jpg"
+        "img": "/flags/w160/rs.jpg"
     },
     {
         "name": "Seychelles",
         "colors": ["yellow", "blue", "red", "white", "green"],
-        "img": "https://flagcdn.com/w160/sc.jpg"
+        "img": "/flags/w160/sc.jpg"
     },
     {
         "name": "Sierra Leone",
         "colors": ["blue", "white", "green"],
-        "img": "https://flagcdn.com/w160/sl.jpg"
+        "img": "/flags/w160/sl.jpg"
     },
     {
         "name": "Singapore",
         "colors": ["red", "white"],
-        "img": "https://flagcdn.com/w160/sg.jpg"
+        "img": "/flags/w160/sg.jpg"
     },
     {
         "name": "Slovakia",
         "colors": ["red", "white", "blue"],
-        "img": "https://flagcdn.com/w160/sk.jpg"
+        "img": "/flags/w160/sk.jpg"
     },
     {
         "name": "Slovenia",
         "colors": ["red", "white", "blue", "yellow"],
-        "img": "https://flagcdn.com/w160/si.jpg"
+        "img": "/flags/w160/si.jpg"
     },
     {
         "name": "Solomon Islands",
         "colors": ["green", "white", "blue", "yellow"],
-        "img": "https://flagcdn.com/w160/sb.jpg"
+        "img": "/flags/w160/sb.jpg"
     },
     {
         "name": "Somalia",
         "colors": ["white", "blue"],
-        "img": "https://flagcdn.com/w160/so.jpg"
+        "img": "/flags/w160/so.jpg"
     },
     {
         "name": "South Africa",
         "colors": ["white", "blue", "black", "yellow", "green", "red"],
-        "img": "https://flagcdn.com/w160/za.jpg"
+        "img": "/flags/w160/za.jpg"
     },
     {
         "name": "South Korea",
         "colors": ["white", "blue", "black", "red"],
-        "img": "https://flagcdn.com/w160/kr.jpg"
+        "img": "/flags/w160/kr.jpg"
     },
     {
         "name": "South Sudan",
         "colors": ["white", "blue", "black", "red", "yellow", "green"],
-        "img": "https://flagcdn.com/w160/ss.jpg"
+        "img": "/flags/w160/ss.jpg"
     },
     {
         "name": "Spain",
         "colors": ["white", "blue", "red", "yellow", "green"],
-        "img": "https://flagcdn.com/w160/es.jpg"
+        "img": "/flags/w160/es.jpg"
     },
     {
         "name": "Sri Lanka",
         "colors": ["orange", "red", "yellow", "green"],
-        "img": "https://flagcdn.com/w160/lk.jpg"
+        "img": "/flags/w160/lk.jpg"
     },
     {
         "name": "S.V. & G.",
         "fullname": "Saint Vincent & The Grenadines",
         "colors": ["blue", "yellow", "green"],
-        "img": "https://flagcdn.com/w160/vc.jpg"
+        "img": "/flags/w160/vc.jpg"
     },
     {
         "name": "Palestine",
         "colors": ["black", "white", "green", "red"],
-        "img": "https://flagcdn.com/w160/ps.jpg"
+        "img": "/flags/w160/ps.jpg"
     },
     {
         "name": "Sudan",
         "colors": ["black", "white", "green", "red"],
-        "img": "https://flagcdn.com/w160/sd.jpg"
+        "img": "/flags/w160/sd.jpg"
     },
     {
         "name": "Suriname",
         "colors": ["yellow", "white", "green", "red"],
-        "img": "https://flagcdn.com/w160/sr.jpg"
+        "img": "/flags/w160/sr.jpg"
     },
     {
         "name": "Sweden",
         "colors": ["yellow", "blue"],
-        "img": "https://flagcdn.com/w160/se.jpg"
+        "img": "/flags/w160/se.jpg"
     },
     {
         "name": "Switzerland",
         "colors": ["white", "red"],
-        "img": "https://flagcdn.com/w160/ch.jpg"
+        "img": "/flags/w160/ch.jpg"
     },
     {
         "name": "Syria",
         "colors": ["white", "red", "black", "green"],
-        "img": "https://flagcdn.com/w160/sy.jpg"
+        "img": "/flags/w160/sy.jpg"
     },
     {
         "name": "Taiwan (R.O.C.)",
         "fullname": "Taiwan (Republic of China)",
         "colors": ["white", "red", "blue"],
-        "img": "https://flagcdn.com/w160/tw.jpg"
+        "img": "/flags/w160/tw.jpg"
     },
     {
         "name": "Tajikistan",
         "colors": ["white", "red", "yellow", "green"],
-        "img": "https://flagcdn.com/w160/tj.jpg"
+        "img": "/flags/w160/tj.jpg"
     },
     {
         "name": "Tanzania",
         "colors": ["black", "blue", "yellow", "green"],
-        "img": "https://flagcdn.com/w160/tz.jpg"
+        "img": "/flags/w160/tz.jpg"
     },
     {
         "name": "Thailand",
         "colors": ["white", "blue", "red"],
-        "img": "https://flagcdn.com/w160/th.jpg"
+        "img": "/flags/w160/th.jpg"
     },
     {
         "name": "Timor-Leste",
         "colors": ["white", "black", "yellow", "red"],
-        "img": "https://flagcdn.com/w160/tl.jpg"
+        "img": "/flags/w160/tl.jpg"
     },
     {
         "name": "Togo",
         "colors": ["white", "green", "yellow", "red"],
-        "img": "https://flagcdn.com/w160/tg.jpg"
+        "img": "/flags/w160/tg.jpg"
     },
     {
         "name": "Tonga",
         "colors": ["white", "red"],
-        "img": "https://flagcdn.com/w160/to.jpg"
+        "img": "/flags/w160/to.jpg"
     },
     {
         "name": "Trinidad & Tobago",
         "colors": ["white", "red", "black"],
-        "img": "https://flagcdn.com/w160/tt.jpg"
+        "img": "/flags/w160/tt.jpg"
     },
     {
         "name": "Tunisia",
         "colors": ["white", "red"],
-        "img": "https://flagcdn.com/w160/tn.jpg"
+        "img": "/flags/w160/tn.jpg"
     },
     {
         "name": "Turkey",
         "colors": ["white", "red"],
-        "img": "https://flagcdn.com/w160/tr.jpg"
+        "img": "/flags/w160/tr.jpg"
     },
     {
         "name": "Turkmenistan",
         "colors": ["white", "red", "yellow", "green"],
-        "img": "https://flagcdn.com/w160/tm.jpg"
+        "img": "/flags/w160/tm.jpg"
     },
     {
         "name": "Tuvalu",
         "colors": ["white", "red", "yellow", "blue"],
-        "img": "https://flagcdn.com/w160/tv.jpg"
+        "img": "/flags/w160/tv.jpg"
     },
     {
         "name": "U.A.E.",
         "fullname": "United Arab Emirates",
         "colors": ["white", "red", "green", "black"],
-        "img": "https://flagcdn.com/w160/ae.jpg"
+        "img": "/flags/w160/ae.jpg"
     },
     {
         "name": "U.K.",
         "fullname": "United Kingdom of Great Britain & Northern Ireland",
         "colors": ["white", "red", "blue"],
-        "img": "https://flagcdn.com/w160/gb.jpg"
+        "img": "/flags/w160/gb.jpg"
     },
     {
         "name": "U.S.A.",
         "fullname": "United States of America",
         "colors": ["white", "red", "blue"],
-        "img": "https://flagcdn.com/w160/us.jpg"
+        "img": "/flags/w160/us.jpg"
     },
     {
         "name": "Uganda",
         "colors": ["white", "red", "black", "yellow"],
-        "img": "https://flagcdn.com/w160/ug.jpg"
+        "img": "/flags/w160/ug.jpg"
     },
     {
         "name": "Ukraine",
         "colors": ["blue", "yellow"],
-        "img": "https://flagcdn.com/w160/ua.jpg"
+        "img": "/flags/w160/ua.jpg"
     },
     {
         "name": "Uruguay",
         "colors": ["blue", "yellow", "white"],
-        "img": "https://flagcdn.com/w160/uy.jpg"
+        "img": "/flags/w160/uy.jpg"
     },
     {
         "name": "Uzbekistan",
         "colors": ["blue", "red", "white", "green"],
-        "img": "https://flagcdn.com/w160/uz.jpg"
+        "img": "/flags/w160/uz.jpg"
     },
     {
         "name": "Vanuatu",
         "colors": ["black", "red", "yellow", "green"],
-        "img": "https://flagcdn.com/w160/vu.jpg"
+        "img": "/flags/w160/vu.jpg"
     },
     {
         "name": "Vatican City",
         "colors": ["yellow", "red", "white"],
-        "img": "https://flagcdn.com/w160/va.jpg"
+        "img": "/flags/w160/va.jpg"
     },
     {
         "name": "Venezuela",
         "colors": ["blue", "red", "yellow", "green", "white"],
-        "img": "https://flagcdn.com/w160/ve.jpg"
+        "img": "/flags/w160/ve.jpg"
     },
     {
         "name": "Vietnam",
         "colors": ["red", "yellow"],
-        "img": "https://flagcdn.com/w160/vn.jpg"
+        "img": "/flags/w160/vn.jpg"
     },
     {
         "name": "Yemen",
         "colors": ["red", "black", "white"],
-        "img": "https://flagcdn.com/w160/ye.jpg"
+        "img": "/flags/w160/ye.jpg"
     },
     {
         "name": "Zambia",
         "colors": ["red", "black", "green", "orange"],
-        "img": "https://flagcdn.com/w160/zm.jpg"
+        "img": "/flags/w160/zm.jpg"
     },
     {
         "name": "Zimbabwe",
         "colors": ["red", "black", "green", "yellow", "white"],
-        "img": "https://flagcdn.com/w160/zw.jpg"
+        "img": "/flags/w160/zw.jpg"
     }
 ]

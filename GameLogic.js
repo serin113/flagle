@@ -20,6 +20,8 @@ let CookiesAPI = Cookies.withAttributes({
     expires: 365,
     path: "/",
 }); // Cookies object with default cookie attributes
+let flagImages = [];
+
 
 // helper functions
 
@@ -192,12 +194,15 @@ function displayCountries() {
             div_flagnames.classList.add("flagnames");
         }
 
-        let flag_img = document.createElement("img");
+        let flag_img = new Image();
         flag_img.className = "flagpic";
         flag_img.dataset.index = i;
         flag_img.src = x.img;
         flag_img.alt = "fullname" in x ? x.fullname : x.name;
         flag_img.title = "fullname" in x ? x.fullname : x.name;
+        // flag_img.onload = function() {
+            
+        // }
         div_flagpics.appendChild(flag_img);
 
         let flag_name_div = document.createElement("div");
