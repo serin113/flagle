@@ -216,7 +216,7 @@
     },
     {
         "name": "Congo",
-        "colors": ["red", "yellow", "blue"],
+        "colors": ["red", "yellow", "green"],
         "star": 1,
         "img": "/flags/w160/cg.jpg"
     },
