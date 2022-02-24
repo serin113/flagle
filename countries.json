@@ -109,7 +109,7 @@
     },
     {
         "name": "Bolivia",
-        "colors": ["red", "yellow", "green", "blue", "white"],
+        "colors": ["red", "yellow", "green"],
         "img": "/flags/w160/bo.jpg"
     },
     {
