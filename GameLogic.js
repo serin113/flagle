@@ -79,6 +79,11 @@ let guesses = []; // list of guesses
 let lastGame = null; // game state after win/lose
 let dailyMode = true; // daily/random mode
 let clipboard = null; // ClipboardJS object
+let CookiesAPI = Cookies.withAttributes({
+    sameSite: "strict",
+    expires: 365,
+    path: "/"
+})
 
 // helper functions
 
@@ -432,7 +437,7 @@ function updateCountdown(interval) {
 /* start next daily flaggle countdowns */
 function startCountdown() {
     logger("start countdown");
-    let lastGameCookie = Cookies.get("lastGame");
+    let lastGameCookie = CookiesAPI.get("lastGame");
     if (lastGameCookie != undefined) {
         updateCountdown();
         let countdownDaily = setInterval(function () {
@@ -622,14 +627,14 @@ function onClickButtons() {
 
 /* click handler for daily mode button */
 function clickDailyModeButton() {
-    Cookies.set("dailyMode", "true", { sameSite: "strict" });
+    CookiesAPI.set("dailyMode", "true");
     setGameMode();
     location.reload();
 }
 
 /* click handler for random mode button */
 function clickRandomModeButton() {
-    Cookies.set("dailyMode", "false", { sameSite: "strict" });
+    CookiesAPI.set("dailyMode", "false");
     setGameMode();
     location.reload();
 }
@@ -642,10 +647,10 @@ function saveGameStats() {
     let totalWinsStr = statsPrefix + "totalWins";
     let currentStreakStr = statsPrefix + "currentStreak";
     let bestStreakStr = statsPrefix + "bestStreak";
-    let totalGamesVal = Cookies.get(totalGamesStr);
-    let totalWinsVal = Cookies.get(totalWinsStr);
-    let currentStreakVal = Cookies.get(currentStreakStr);
-    let bestStreakVal = Cookies.get(bestStreakStr);
+    let totalGamesVal = CookiesAPI.get(totalGamesStr);
+    let totalWinsVal = CookiesAPI.get(totalWinsStr);
+    let currentStreakVal = CookiesAPI.get(currentStreakStr);
+    let bestStreakVal = CookiesAPI.get(bestStreakStr);
 
     totalGamesVal = totalGamesVal == undefined ? 0 : Number(totalGamesVal);
     totalWinsVal = totalWinsVal == undefined ? 0 : Number(totalWinsVal);
@@ -654,21 +659,21 @@ function saveGameStats() {
     bestStreakVal = bestStreakVal == undefined ? 0 : Number(bestStreakVal);
 
     totalGamesVal += 1;
-    Cookies.set(totalGamesStr, totalGamesVal, { sameSite: "strict" });
+    CookiesAPI.set(totalGamesStr, totalGamesVal);
 
     if (isWin) {
         totalWinsVal += 1;
-        Cookies.set(totalWinsStr, totalWinsVal, { sameSite: "strict" });
+        CookiesAPI.set(totalWinsStr, totalWinsVal);
 
         currentStreakVal += 1;
-        Cookies.set(currentStreakStr, currentStreakVal, { sameSite: "strict" });
+        CookiesAPI.set(currentStreakStr, currentStreakVal);
 
         bestStreakVal =
             currentStreakVal > bestStreakVal ? currentStreakVal : bestStreakVal;
-        Cookies.set(bestStreakStr, bestStreakVal, { sameSite: "strict" });
+        CookiesAPI.set(bestStreakStr, bestStreakVal);
     } else {
         currentStreakVal = 0;
-        Cookies.set(currentStreakStr, currentStreakVal, { sameSite: "strict" });
+        CookiesAPI.set(currentStreakStr, currentStreakVal);
     }
 }
 
@@ -709,10 +714,10 @@ function displayGameStats(showDaily) {
     let stats_currentStreak_str = statsPrefix + "currentStreak";
     let stats_bestStreak_str = statsPrefix + "bestStreak";
 
-    let stats_totalWins = Cookies.get(stats_totalWins_str);
-    let stats_totalGames = Cookies.get(stats_totalGames_str);
-    let stats_currentStreak = Cookies.get(stats_currentStreak_str);
-    let stats_bestStreak = Cookies.get(stats_bestStreak_str);
+    let stats_totalWins = CookiesAPI.get(stats_totalWins_str);
+    let stats_totalGames = CookiesAPI.get(stats_totalGames_str);
+    let stats_currentStreak = CookiesAPI.get(stats_currentStreak_str);
+    let stats_bestStreak = CookiesAPI.get(stats_bestStreak_str);
 
     stats_totalWins =
         stats_totalWins == undefined ? 0 : Number(stats_totalWins);
@@ -737,10 +742,10 @@ function displayGameStats(showDaily) {
 
 /* set game mode based on selection */
 function setGameMode() {
-    let dailyModeCookie = Cookies.get("dailyMode");
+    let dailyModeCookie = CookiesAPI.get("dailyMode");
     if (dailyModeCookie === undefined) {
-        Cookies.set("dailyMode", String(dailyMode), { sameSite: "strict" });
-        dailyModeCookie = Cookies.get("dailyMode");
+        CookiesAPI.set("dailyMode", String(dailyMode));
+        dailyModeCookie = CookiesAPI.get("dailyMode");
     }
     if (dailyModeCookie === "true") {
         dailyMode = true;
@@ -777,13 +782,13 @@ function saveLastGame() {
     lastGame_temp.resultText = resultText;
     lastGame_temp.guesses = guesses;
     lastGame = lastGame_temp;
-    Cookies.set("lastGame", JSON.stringify(lastGame), { sameSite: "strict" });
+    CookiesAPI.set("lastGame", JSON.stringify(lastGame));
     if (dailyMode) startCountdown();
 }
 
 /* load game state from lastGame cookie into globals */
 function loadLastGame() {
-    let lastGameCookie = Cookies.get("lastGame");
+    let lastGameCookie = CookiesAPI.get("lastGame");
     if (lastGameCookie == undefined) {
         if (!window.sessionStorage.getItem("tutorialShown")) {
             modalhow.style.display = "block";
@@ -792,13 +797,13 @@ function loadLastGame() {
         return;
     }
     logger("loading last game");
-    if (Cookies.get("dailyMode") === "false") {
+    if (CookiesAPI.get("dailyMode") === "false") {
         startCountdown();
         return;
     }
     lastGame = JSON.parse(lastGameCookie);
     if (currDate.toDateString() != lastGame.date) {
-        Cookies.remove("lastGame");
+        CookiesAPI.remove("lastGame");
         return;
     }
     isWin = lastGame.isWin;
@@ -820,25 +825,51 @@ function loadLastGame() {
 
 /* reset game cookies */
 function resetGame() {
-    Cookies.remove("lastGame");
-    Cookies.remove("difficulty");
-    Cookies.remove("dailyMode");
-    Cookies.remove("darkMode");
+    CookiesAPI.remove("lastGame");
+    CookiesAPI.remove("difficulty");
+    CookiesAPI.remove("dailyMode");
+    CookiesAPI.remove("darkMode");
 
-    Cookies.remove("stats_d_totalWins");
-    Cookies.remove("stats_d_totalGames");
-    Cookies.remove("stats_d_currentStreak");
-    Cookies.remove("stats_d_bestStreak");
+    CookiesAPI.remove("stats_d_totalWins");
+    CookiesAPI.remove("stats_d_totalGames");
+    CookiesAPI.remove("stats_d_currentStreak");
+    CookiesAPI.remove("stats_d_bestStreak");
 
-    Cookies.remove("stats_r_totalWins");
-    Cookies.remove("stats_r_totalGames");
-    Cookies.remove("stats_r_currentStreak");
-    Cookies.remove("stats_r_bestStreak");
+    CookiesAPI.remove("stats_r_totalWins");
+    CookiesAPI.remove("stats_r_totalGames");
+    CookiesAPI.remove("stats_r_currentStreak");
+    CookiesAPI.remove("stats_r_bestStreak");
     window.sessionStorage.clear();
     location.reload();
 }
 
+/* refresh cookies to extend expiry dates */
+function refreshCookies() {
+    let cookieStrs = [
+        "lastGame",
+        "difficulty",
+        "dailyMode",
+        "darkMode",
+        "stats_d_totalWins",
+        "stats_d_totalGames",
+        "stats_d_currentStreak",
+        "stats_d_bestStreak",
+        "stats_r_totalWins",
+        "stats_r_totalGames",
+        "stats_r_currentStreak",
+        "stats_r_bestStreak"
+    ]
+    for (let s of cookieStrs) {
+        if (CookiesAPI.get(s) != undefined) {
+            CookiesAPI.set(s, CookiesAPI.get(s))
+        }
+    }
+}
+
 // initializations
+
+/* refresh any existing cookies */
+refreshCookies()
 
 /* daily and random mode buttons */
 document
@@ -855,10 +886,10 @@ setGameMode();
 document
     .getElementById("difficultySlider")
     .addEventListener("input", function () {
-        let difficultyCookie = Cookies.get("difficulty");
+        let difficultyCookie = CookiesAPI.get("difficulty");
         document.getElementById("difficultyValue").innerHTML = this.value;
         logger("new difficulty: " + this.value);
-        Cookies.set("difficulty", String(this.value), { sameSite: "strict" });
+        CookiesAPI.set("difficulty", String(this.value));
         if (this.value != countryChoicesCount && !dailyMode) {
             window.onclick = function (event) {
                 if (event.target == modalset) {
@@ -886,18 +917,16 @@ document
     });
 
 /* load difficulty slider values */
-if (Cookies.get("difficulty") == undefined) {
-    Cookies.set("difficulty", String(countryChoicesCount), {
-        sameSite: "strict",
-    });
+if (CookiesAPI.get("difficulty") == undefined) {
+    CookiesAPI.set("difficulty", String(countryChoicesCount));
 } else {
-    logger("loaded difficulty: " + Cookies.get("difficulty"));
+    logger("loaded difficulty: " + CookiesAPI.get("difficulty"));
     document.getElementById("difficultySlider").value =
-        Cookies.get("difficulty");
+        CookiesAPI.get("difficulty");
     document.getElementById("difficultyValue").innerHTML =
-        Cookies.get("difficulty");
+        CookiesAPI.get("difficulty");
     if (dailyMode == false) {
-        countryChoicesCount = Number(Cookies.get("difficulty"));
+        countryChoicesCount = Number(CookiesAPI.get("difficulty"));
         currentCountryChoicesCount = countryChoicesCount;
     }
 }
