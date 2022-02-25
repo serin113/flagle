@@ -1,0 +1,61 @@
+<html>
+<head>
+    <style>
+        .inline {
+            display: inline-block;
+            border: 3px solid purple;
+        }
+    </style>
+</head>
+<body>
+    <div id="countries">
+    </div>
+
+
+    <script>
+        async function fetchCountries() {
+            var fetchHeaders = new Headers();
+            fetchHeaders.append("pragma", "no-cache");
+            fetchHeaders.append("cache-control", "no-cache");
+            var fetchInit = {
+                method: "GET",
+                headers: fetchHeaders,
+            };
+            var fetchRequest = new Request("countries.json");
+            const response = await fetch(fetchRequest, fetchInit);
+            const countries = await response.json();
+            return countries;
+        }
+        async function showCountries() {
+            let countries = await fetchCountries();
+            let cont = document.getElementById("countries")
+            for (let c of countries) {
+                let d = new Image();
+                let cols = c.colors;
+                let colsDiv = document.createElement("div");
+                colsDiv.classList.add("inline")
+                for (let cl of cols) {
+                    let clDiv = document.createElement("div");
+                    clDiv.classList.add("inline")
+                    clDiv.style.height = "50px";
+                    clDiv.style.width = "50px";
+                    clDiv.style.backgroundColor = cl;
+                    colsDiv.appendChild(clDiv);
+                }
+                d.width = 100;
+                d.height = 75;
+                d.classList.add("inline")
+                d.src = c.img;
+                cont.appendChild(d)
+                cont.appendChild(colsDiv)
+                let t = c.name;
+                let txt = document.createElement("span");
+                txt.innerHTML = t;
+                cont.appendChild(txt);
+                cont.appendChild(document.createElement("br"))
+            }
+        }
+        showCountries()
+    </script>
+</body>
+</html>
