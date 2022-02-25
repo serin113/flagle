@@ -1,17 +1,28 @@
 {
   "name": "flaggle",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "description": "A flag-guessing elimination-by-color game; a *Guess Who!* for flags.",
+  "main": "Main.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/serin113/flagle.git"
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "express": "^4.17.2"
+  "bugs": {
+    "url": "https://github.com/serin113/flagle/issues"
   },
-  "devDependencies": {
-    "autoprefixer": "^10.4.2"
+  "homepage": "https://github.com/serin113/flagle#readme",
+  "dependencies": {
+    "grunt": "^1.4.1",
+    "grunt-cli": "^1.4.3",
+    "grunt-contrib-connect": "^3.0.0",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-cssmin": "^4.0.0",
+    "grunt-contrib-htmlmin": "^3.1.0",
+    "grunt-contrib-uglify": "^5.0.1",
+    "grunt-contrib-watch": "^1.1.0",
+    "grunt-minjson": "^0.4.0"
   }
 }
