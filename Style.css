@@ -27,7 +27,9 @@ body {
     background-color: white;
     color: black;
     z-index: 101;
-    transition: visibility 2000ms, opacity 2000ms;
+    transition: 
+        visibility 1000ms cubic-bezier(.88,.04,.92,.02),
+        opacity 1000ms cubic-bezier(.88,.04,.92,.02);
 }
 
 #GameResults {
@@ -700,7 +702,8 @@ input:checked + .slider:before {
 }
 
 .flagbutton[data-disabled] .flagpic {
-    filter: grayscale(1);
+    -webkit-filter: grayscale(1);
+            filter: grayscale(1);
 }
 
 .flagbutton[data-disabled]:hover {

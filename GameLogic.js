@@ -189,6 +189,8 @@ function displayCountries() {
 
         let flag_img = new Image();
         flag_img.className = "flagpic";
+        flag_img.height = "50px";
+        flag_img.width = "85px";
         flag_img.src = x.img;
         flag_img.alt = "fullname" in x ? x.fullname : x.name;
         flag_button.appendChild(flag_img);
