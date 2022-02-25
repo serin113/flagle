@@ -1217,3 +1217,10 @@ input:checked + .slider:before {
 #textgreen {
     color: green;
 }
+
+.buildinfo {
+    opacity: 0.5;
+    margin-top: 0.5rem;
+    display: inline-block;
+    font: 0.5rem;
+}

@@ -1,7 +1,29 @@
+var git = require('git-rev-sync')
+
 module.exports = function (grunt) {
     grunt.initConfig({
-
-        // define source files and their destinations
+        replace: {
+            dist: {
+                options: {
+                    patterns: [
+                        {
+                            match: 'GITCOMMITHASH',
+                            replacement: git.short(),
+                        },
+                        {
+                            match: 'GITCOMMITDATE',
+                            replacement: git.date().toDateString(),
+                        },
+                    ],
+                },
+                files: [{
+                    src: 'publish/index.html',
+                    dest: 'publish/',
+                    expand: true,
+                    flatten: true,
+                }],
+            },
+        },
         uglify: {
             options: {
                 mangle: {
@@ -75,27 +97,31 @@ module.exports = function (grunt) {
                     },
                 ],
             },
-        },
-        watch: {
-            js:  { 
-                files: ['*.js'],
-                tasks: [ 'uglify' ], 
-                options: {
-                    debounceDelay: 1000,
-                },
-            },
-            css:  { files: '*.css', tasks: [ 'cssmin' ] },
-            json:  { files: 'countries.json', tasks: [ 'minjson' ] },
-            misc: {
+            all: {
                 files: [
-                    '*.html',
-                    'loading.svg',
-                    '*.png',
-                    'favicon.ico',
-                    'site.webmanifest',
-                    'flags/**',
+                    {
+                        src: [
+                            'loading.svg',
+                            '*.png',
+                            'favicon.ico',
+                            'site.webmanifest',
+                            '*.css',
+                            'countries.json',
+                            '*.html',
+                            '*.js',
+                            '!gruntfile.js',
+                        ],
+                        dest: 'publish/',
+                        expand: true,
+                        flatten: true,
+                    },
+                    {
+                        src: 'flags/**',
+                        dest: 'publish/',
+                        expand: true,
+                        flatten: false,
+                    },
                 ],
-                tasks: [ 'copy' ],
             },
         },
         connect: {
@@ -106,11 +132,12 @@ module.exports = function (grunt) {
                     keepalive: true,
                 }
             }
-        }
+        },
     });
 
     // load plugins
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-replace');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-contrib-uglify');
@@ -119,9 +146,9 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-minjson');
 
     // register at least this one task
-    grunt.registerTask('default', [ 'uglify' , 'htmlmin' , 'cssmin' , 'minjson' , 'copy' ]);
+    grunt.registerTask('default', [ 'uglify' , 'htmlmin' , 'replace' , 'cssmin' , 'minjson' , 'copy:main' ]);
 
-    grunt.registerTask('go', [ 'uglify' , 'htmlmin' , 'cssmin' , 'minjson' , 'copy' , 'connect' ]);
+    grunt.registerTask('go', [ 'uglify' , 'htmlmin' , 'replace' , 'cssmin' , 'minjson' , 'copy:main' , 'connect' ]);
 
-
+    grunt.registerTask('go-dev', [ 'copy:all' , 'replace' , 'connect' ]);
 };
