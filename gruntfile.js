@@ -45,7 +45,6 @@ module.exports = function (grunt) {
             dist: {
                 options: {
                     removeComments: true,
-                    collapseWhitespace: true,
                     collapseBooleanAttributes: true,
                     minifyCSS: true,
                     minifyJS: true,
