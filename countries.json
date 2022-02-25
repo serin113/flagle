@@ -196,7 +196,7 @@
         "img": "/flags/w160/cl.jpg"
     },
     {
-        "name": "China (P.R.C)",
+        "name": "China (P.R.C.)",
         "fullname": "China (People's Republic of China)",
         "colors": ["red", "yellow"],
         "star": 5,
@@ -411,7 +411,7 @@
     },
     {
         "name": "India",
-        "colors": ["orange", "white", "green"],
+        "colors": ["orange", "white", "green", "blue"],
         "img": "/flags/w160/in.jpg"
     },
     {

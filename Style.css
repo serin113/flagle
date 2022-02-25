@@ -9,8 +9,10 @@ html {
 }
 
 body {
-    font-family: "Poppins", sans-serif;
+    /* font-family: "Poppins", sans-serif; */
+    font-family: "Source Sans Pro", sans-serif;
     transition: background-color 250ms;
+    margin: 0;
 }
 
 #loading {
@@ -24,8 +26,10 @@ body {
     left: 0;
     background-color: white;
     color: black;
-    z-index: 99;
-    transition: visibility 2000ms, opacity 2000ms;
+    z-index: 101;
+    transition: 
+        visibility 1000ms cubic-bezier(.88,.04,.92,.02),
+        opacity 1000ms cubic-bezier(.88,.04,.92,.02);
 }
 
 #GameResults {
@@ -48,6 +52,10 @@ body {
 
 .dark .flagpic {
     opacity: 0.75;
+}
+
+.dark .flagbutton:hover .flagpic {
+    opacity: 1;
 }
 
 .dark_flaggletext {
@@ -84,8 +92,6 @@ body {
 }
 
 .dark .guessindicators.purple {
-    border: 0.1rem solid;
-    border-radius: 0.1rem;
     border-color: rgb(75, 75, 75);
     background: rgb(132, 132, 220);
 }
@@ -95,11 +101,11 @@ body {
 .dark #dailyflaggle,
 .dark #sharebutton,
 .dark .displaybuttons {
-    box-shadow: 0 0.15rem 0.25rem rgba(149, 149, 226, 0.75);
+    box-shadow: 0 0.15rem 0.25rem rgba(149, 149, 226, 0.5);
 }
 
 .dark .displaybuttons:active:not([disabled]) {
-    box-shadow: 0 0 0 rgba(0, 0, 0, 0.75);
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0.5);
 }
 
 .dark .displaybuttons.disabled {
@@ -110,6 +116,19 @@ body {
     background: rgb(27, 27, 27);
     border: 0.05rem solid rgb(27, 27, 27);
     color: white;
+}
+
+.dark #keyscontainer {
+    background: rgb(27, 27, 27);
+    background: linear-gradient(180deg, rgba(27, 27, 27, 0) 0%, rgb(27, 27, 27) 75%);
+}
+
+.dark .flagbutton {
+    box-shadow: 0 0 0.3rem rgba(0, 0, 0, 0.5);
+}
+
+.dark .flagbutton:hover {
+    border: 0.1rem solid rgba(149, 149, 226, 0.5);
 }
 
 /*End of Dark Theme*/
@@ -158,9 +177,14 @@ body {
 #keyscontainer {
     width: 100%;
     text-align: center;
-    position: -webkit-sticky;
-    position: sticky;
-    bottom: 0.5rem;
+    /* position: -webkit-sticky;
+    position: sticky; */
+    position: fixed;
+    box-sizing: border-box;
+    bottom: 0;
+    padding: 0.5rem;
+    background: rgb(255, 255, 255);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 5%, rgb(255, 255, 255) 100%);
 }
 
 #colorkeys {
@@ -170,38 +194,36 @@ body {
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
-    margin-top: 1rem;
+    /* margin-top: 1rem; */
     gap: 0.2rem;
 }
 
 .colors {
     border-style: solid;
-    border-width: 0.1rem;
-    border-radius: 0.4rem;
+    border-width: 0.05rem;
+    /* border-radius: 0.4rem; */
     text-align: center;
     /* width: 2.5rem; */
     width: 3.5rem;
     height: 3.5rem;
-    /* margin-left: 0.1rem;
-    margin-right: 0.1rem; */
     display: inline-block;
     box-sizing: border-box;
     cursor: pointer;
-    box-shadow: 0 0.15rem 0.5rem rgba(0, 0, 0, 0.75);
-    transition: border-width 150ms, box-shadow 150ms, opacity 150ms, scale 150ms;
+    /* box-shadow: 0 0.15rem 0.5rem rgba(0, 0, 0, 0.75); */
+    box-shadow: 0 0.15rem 0.5rem rgba(0, 0, 0, 1);
+    transition: border-width 150ms, box-shadow 150ms, opacity 150ms, visibility 150ms, scale 150ms;
     /* flex-grow: 1; */
 }
 
 .colors[data-disabled] {
-    /* border-width: 0.2rem; */
-    border-width: 0.05rem;
-    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
-    transform: scale(0.9);
+    /* border-width: 0.05rem; */
+    box-shadow: 0 0 0.1rem rgba(0, 0, 0, 0.5) inset;
+    transform: scale(0.875);
 }
 
 .colors[data-disabled][data-wrong] {
     opacity: 0.1;
-    transform: scale(0.9);
+    /* transform: scale(0.9); */
 }
 
 #green,
@@ -214,7 +236,7 @@ body {
 }
 
 #black {
-    background: rgb(51, 51, 51);
+    background: rgb(29, 29, 29);
 }
 
 #yellow {
@@ -277,8 +299,8 @@ body {
     -webkit-animation-duration: 0.4s;
     animation-name: animatetop;
     animation-duration: 0.4s;
-    font-family: "Poppins", sans-serif;
-    border-radius: 0.5rem;
+    /* font-family: "Poppins", sans-serif; */
+    /* border-radius: 0.5rem; */
 }
 
 /* Add Animation */
@@ -324,10 +346,10 @@ body {
 }
 
 .modal-header {
-    border-radius: 0.5rem 0.5rem 0rem 0rem;
-    padding: 0.1rem 0.25rem;
+    /* border-radius: 0.5rem 0.5rem 0rem 0rem; */
+    /* padding: 0.1rem 0.25rem; */
     text-align: center;
-    font-family: "Poppins", sans-serif;
+    /* font-family: "Poppins", sans-serif; */
     font-weight: bold;
 }
 
@@ -338,7 +360,7 @@ body {
 .modal-body {
     border-top: 0.05rem solid grey;
     padding-bottom: 1rem;
-    border-radius: 0rem 0rem 0.5rem 0.5rem;
+    /* border-radius: 0rem 0rem 0.5rem 0.5rem; */
 }
 
 #flagsmodalbody {
@@ -561,7 +583,7 @@ input:checked + .slider:before {
 
 /*Flags List*/
 
-#searchbarbox {
+/*#searchbarbox {
     padding: 0.05rem;
     border: 0.1rem solid grey;
     border-radius: 0.25rem 0rem 0rem 0.25rem;
@@ -603,13 +625,14 @@ input:checked + .slider:before {
 
 #searchbarcontents {
     display: inline-flex;
-}
+}*/
 
 /*Game Choices*/
 
 #gamediv {
     margin: 0 auto;
     margin-top: 0.5rem;
+    padding-bottom: 4.5rem;
     /* width: 100%; */
     width: 26rem;
     text-align: center;
@@ -626,108 +649,115 @@ input:checked + .slider:before {
     /* display: inline-block; */
     display: flex;
     flex-grow: 1;
-    flex-direction: column;
-    /* width: 26rem; */
-    margin: 0.5rem auto auto;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0.5rem auto;
     padding: 0.1rem;
+    gap: 0.35rem 0.25rem;
+}
+
+.flagbutton {
+    /* width: 4.75rem; */
+    width: 4.95rem;
+    /* height: 2.5rem; */
+    height: 5rem;
+    background-color: rgba(0,0,0,0.05);
+    /* flex-grow: 1; */
+    cursor: pointer;
+    box-sizing: border-box;
+    border: 0.1rem solid rgba(0, 0, 0, 0);
+    box-shadow: 0 0 0.3rem rgba(0, 0, 0, 0.35);
+    transition: opacity 150ms, box-shadow 150ms, border 150ms;
+    position: relative;
+    transform: scale(1);
+}
+
+.flagbutton:hover {
+    /* transform: scale(1.1); */
+    border: 0.1rem solid rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0.15rem 0.5rem rgba(0, 0, 0, 0.35);
 }
 
 .flagpic {
-    width: 4.75rem;
+    /* width: 4.75rem; */
+    width: 4.25rem;
     height: 2.5rem;
-    /* margin-left: 0.1rem;
-    margin-right: 0.1rem; */
-    border: 0.1rem solid;
     cursor: pointer;
-    background-color: rgba(255, 255, 255, 0.5);
-    transition: opacity 150ms, filter 150ms, transform 150ms,
-        -webkit-filter 150ms;
-    -o-object-fit: cover;
-    object-fit: cover;
+    box-sizing: border-box;
+    border: ;
+    -o-object-fit: scale-down;
+    object-fit: scale-down;
+    margin: 0.25rem auto -0.1rem;
+    transition: opacity 150ms;
 }
 
-.flagpic:hover {
-    transform: scale(1.05);
-    -o-object-fit: contain;
-    object-fit: contain;
-    opacity: 1;
-}
-
-.flagpic[data-disabled] {
-    opacity: 0.1;
-    -webkit-filter: grayscale(100%);
-    filter: grayscale(100%);
+.flagbutton[data-disabled] {
     cursor: default;
+    box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.15) inset;
+    background-color: rgba(0,0,0,0.025);
 }
 
-.flagpic[data-disabled]:hover {
-    transform: none;
+.flagbutton[data-disabled] > * {
     opacity: 0.1;
+}
+
+.flagbutton[data-disabled] .flagpic {
+    -webkit-filter: grayscale(1);
+            filter: grayscale(1);
+}
+
+.flagbutton[data-disabled]:hover {
+    transform: none;
 }
 
 .flagname {
-    width: 5rem;
-    /* margin-left: 0.1rem;
-    margin-right: 0.1rem; */
-    font-size: 0.85rem;
+    /* width: 5rem; */
+    font-size: 0.75rem;
     font-weight: bold;
     transition: opacity 150ms;
-    transform: scale(0.8, 1);
+    line-height: 0.85rem;
+    height: 1.7rem;
+    display: block;
+    transition: opacity 150ms;
+    /* transform: scale(0.8, 1); */
 }
 
-.flagname a {
+/* .flagname a {
     text-align: center;
-}
+} */
 
-.flagname[data-disabled] {
-    opacity: 0.1;
-}
-
-.flagpics,
+/* .flagpics,
 .flagnames {
     display: inline-flex;
     justify-content: space-evenly;
     align-content: stretch;
-}
+} */
 
-.flagpics {
+/* .flagpics {
     display: inline-flex;
-    font-family: "Poppins", sans-serif;
     font-weight: bold;
     margin-bottom: 0.5rem;
     gap: 0.2rem;
-}
+} */
 
-.flagnames {
+/* .flagnames {
     display: inline-flex;
-    font-family: "Poppins", sans-serif;
     font-weight: bold;
     height: 1.7rem;
     line-height: 0.85rem;
     margin-bottom: 0.5rem;
-    gap: 0.2rem;
-}
+    gap: 0.2rem; */
 
 .DisplayBody {
     align-items: center;
     justify-content: center;
 }
 
-.MainDisplay {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 26rem;
-    margin: 0.5rem auto 0;
-    /* background-color: rgb(149, 149, 226); */
-    border-radius: 0.5rem;
-}
-
 #guesses {
     border: 0.1rem solid rgb(132, 132, 220);
     background-color: rgb(132, 132, 220);
     height: 0.8rem;
-    border-radius: 0.25rem;
+    /* border-radius: 0.25rem; */
     width: auto;
     padding: 0.1rem;
     vertical-align: middle;
@@ -757,9 +787,8 @@ input:checked + .slider:before {
 .guessindicators {
     height: 0.8rem;
     width: 0.8rem;
-    border-radius: 0.8rem;
-    border-width: 0.05rem;
-    border-style: solid;
+    border-radius: 50%;
+    border: 0.05rem solid;
     border-color: rgb(143, 143, 143);
     background-color: white;
     display: inline-block;
@@ -771,7 +800,7 @@ input:checked + .slider:before {
 }
 
 .guessindicators.flag_guessed {
-    border-radius: 0.1rem;
+    /* border-radius: 0.1rem; */
     border: 0.1rem solid;
     border-color: rgb(37, 37, 37);
     background: rgb(37, 37, 37);
@@ -793,7 +822,7 @@ input:checked + .slider:before {
 
 .guessindicators.purple {
     border: 0.1rem solid;
-    border-radius: 0.1rem;
+    /* border-radius: 0.1rem; */
     border-color: rgb(37, 37, 37);
     background: rgb(132, 132, 220);
 }
@@ -835,13 +864,13 @@ input:checked + .slider:before {
     font-size: 1.1rem;
     color: white;
     height: 1.75rem;
-    border-radius: 0.5rem;
+    /* border-radius: 0.5rem; */
     width: 6rem;
     box-sizing: content-box;
     padding: 0.375rem;
     border: 0.1rem solid rgb(132, 132, 220);
     background-color: rgb(132, 132, 220);
-    box-shadow: 0rem 0.15rem 0.25rem rgba(0, 0, 0, 0.75);
+    box-shadow: 0rem 0.15rem 0.25rem rgba(0, 0, 0, 0.5);
     transition: border-width 150ms, box-shadow 150ms, opacity 150ms;
     cursor: pointer;
     position: relative;
@@ -855,7 +884,7 @@ input:checked + .slider:before {
     top: 0.1rem;
     background-color: rgb(119, 119, 175);
     border: 0.1rem solid rgb(119, 119, 175);
-    box-shadow: 0rem 0rem 0rem rgba(0, 0, 0, 0.75);
+    box-shadow: 0rem 0rem 0rem rgba(0, 0, 0, 0.5);
     opacity: 0.85;
 }
 
@@ -873,16 +902,17 @@ input:checked + .slider:before {
     display: inline-flex;
     margin-top: 1.5rem;
     margin-bottom: 0.5rem;
+    font-family: "Poppins", sans-serif;
 }
 
 #drchoiceleft {
     border-right-width: 0.05rem;
-    border-radius: 0.5rem 0rem 0rem 0.5rem;
+    /* border-radius: 0.5rem 0rem 0rem 0.5rem; */
 }
 
 #drchoiceright {
     border-left-width: 0.05rem;
-    border-radius: 0rem 0.5rem 0.5rem 0rem;
+    /* border-radius: 0rem 0.5rem 0.5rem 0rem; */
 }
 
 #drchoiceleft,
@@ -890,7 +920,7 @@ input:checked + .slider:before {
     width: 50%;
     height: 2rem;
     cursor: pointer;
-    transition: border-width 150ms, box-shadow 150ms, opacity 150ms;
+    transition: border 150ms, box-shadow 150ms;
     background-color: rgb(133, 133, 133);
     border: 0.1rem solid rgb(121, 121, 121);
 }
@@ -899,6 +929,7 @@ input:checked + .slider:before {
 #drchoiceright.selected {
     background-color: rgb(132, 132, 220);
     border: 0.1rem solid rgb(132, 132, 220);
+    border-bottom: 0.2rem solid rgb(100, 100, 153);
     cursor: default;
 }
 
@@ -1020,7 +1051,7 @@ input:checked + .slider:before {
     background: white;
     border: 0.05rem solid white;
     color: black;
-    border-radius: 0.5rem;
+    /* border-radius: 0.5rem; */
     padding-bottom: 0.25rem;
 }
 
@@ -1028,6 +1059,7 @@ input:checked + .slider:before {
     font-size: 0.85rem;
     font-weight: bold;
     letter-spacing: 0.1rem;
+    font-family: "Poppins", sans-serif;
 }
 
 #dailyflaggle {
@@ -1148,7 +1180,7 @@ input:checked + .slider:before {
 .democolors {
     border-style: solid;
     border-width: 0.1rem;
-    border-radius: 0.4rem;
+    /* border-radius: 0.4rem; */
     text-align: center;
     /* width: 2.5rem; */
     width: 3.5rem;
@@ -1223,4 +1255,5 @@ input:checked + .slider:before {
     margin-top: 0.5rem;
     display: inline-block;
     font: 0.5rem;
+}
 }

@@ -6,7 +6,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&family=Material+Icons+Outlined&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap&text=FLAGLEDIYRNOMSHCP!." rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <meta name="description" content="A flag-guessing elimination game.">
@@ -24,7 +26,7 @@
 
 <body>
     <div id="loading">
-        <img src="/loading.svg" alt="Loading" title="loading">
+        <img src="/loading.svg" alt="Loading" title="loading" width="64px" height="64px">
     </div>
     <script>
         window.addEventListener("load", function() {
@@ -86,11 +88,11 @@
                 <div class="footerhalf " id="footerleft">
                     <text id="nextdailyresult">Next Daily</text>
                     <div class="dailycountdowndiv">
-                        <text class="dailycountdowntext" id="dailycountdowntext_results">XX : XX : XX</text>
+                        <text class="dailycountdowntext" id="dailycountdowntext_results"></text>
                     </div>
                 </div>
                 <div class="footerhalf " id="footerright">
-                    <button class="displaybuttons" id="sharebutton">Share</button>
+                    <button class="displaybuttons" id="sharebutton">SHARE</button>
                 </div>
             </div>
         </div>
@@ -110,11 +112,10 @@
             </div>
             <div class="colors" id="blue" data-color="blue">
             </div>
-            <!-- <div class="colors" id="lightblue" data-color="lightblue">
-            </div> -->
             <div class="colors" id="black" data-color="black">
             </div>
         </div>
+        <span id="colorkeysmsg"></span>
     </div>
 
     <!--How to Modal-->
@@ -210,7 +211,7 @@
                         </div>
                     </div>
                     <div class="footerhalf " id="footerright">
-                        <button class="displaybuttons" id="sharebuttonstat">Share</button>
+                        <button class="displaybuttons" id="sharebuttonstat">SHARE</button>
                     </div>
                 </div>
             </div>

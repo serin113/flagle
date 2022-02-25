@@ -45,7 +45,6 @@ module.exports = function (grunt) {
             dist: {
                 options: {
                     removeComments: true,
-                    collapseWhitespace: true,
                     collapseBooleanAttributes: true,
                     minifyCSS: true,
                     minifyJS: true,
@@ -131,7 +130,14 @@ module.exports = function (grunt) {
                     base: 'publish',
                     keepalive: true,
                 }
-            }
+            },
+            rawserver: {
+                options: {
+                    port: 8000,
+                    base: '.',
+                    keepalive: true,
+                }
+            },
         },
     });
 
@@ -148,7 +154,7 @@ module.exports = function (grunt) {
     // register at least this one task
     grunt.registerTask('default', [ 'uglify' , 'htmlmin' , 'replace' , 'cssmin' , 'minjson' , 'copy:main' ]);
 
-    grunt.registerTask('go', [ 'uglify' , 'htmlmin' , 'replace' , 'cssmin' , 'minjson' , 'copy:main' , 'connect' ]);
+    grunt.registerTask('go', [ 'uglify' , 'htmlmin' , 'replace' , 'cssmin' , 'minjson' , 'copy:main' , 'connect:server' ]);
 
-    grunt.registerTask('go-dev', [ 'copy:all' , 'replace' , 'connect' ]);
+    grunt.registerTask('go-dev', [ 'connect:rawserver' ]);
 };
