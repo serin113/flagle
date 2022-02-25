@@ -227,7 +227,7 @@
     },
     {
         "name": "Croatia",
-        "colors": ["red", "white", "blue", "black"],
+        "colors": ["red", "white", "blue", "black", "yellow"],
         "img": "/flags/w160/hr.jpg"
     },
     {
@@ -391,7 +391,7 @@
     },
     {
         "name": "Haiti",
-        "colors": ["green", "red", "blue", "white"],
+        "colors": ["green", "red", "blue", "white", "yellow"],
         "img": "/flags/w160/ht.jpg"
     },
     {
@@ -606,7 +606,7 @@
     },
     {
         "name": "Montenegro",
-        "colors": ["red", "orange", "blue", "green"],
+        "colors": ["red", "yellow", "blue", "green"],
         "img": "/flags/w160/me.jpg"
     },
     {
