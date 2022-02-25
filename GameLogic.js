@@ -401,11 +401,12 @@ function showResults() {
     if (dailyMode) {
         dailyModeText = "DAILY " + dailyModeText;
     }
+    let flaggleName = ("fullname" in countries[countryIndex]) ? countries[countryIndex].fullname : countries[countryIndex].name
     document.getElementById("flagglenamedisplay").innerHTML =
         "The <b>" +
         dailyModeText +
         "</b> is <b>" +
-        countries[countryIndex].name +
+        flaggleName +
         "</b>";
     let newGuesses = cloneGuesses();
     let newGuesses_parent = document.getElementById("flaggleresultsdata");

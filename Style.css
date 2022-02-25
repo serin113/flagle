@@ -676,7 +676,7 @@ input:checked + .slider:before {
     width: 5rem;
     /* margin-left: 0.1rem;
     margin-right: 0.1rem; */
-    font-size: 0.85rem;
+    font-size: 0.80rem;
     font-weight: bold;
     transition: opacity 150ms;
     /* transform: scale(0.8, 1); */
