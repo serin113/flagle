@@ -22,7 +22,6 @@ let CookiesAPI = Cookies.withAttributes({
 }); // Cookies object with default cookie attributes
 let flagImages = [];
 
-
 // helper functions
 
 /* ranged integer randomizer */
@@ -179,54 +178,30 @@ async function countryRandomizer(count) {
 function displayCountries() {
     let choices = document.getElementById("choices");
     choices.innerHTML = "";
-    let div_flagpics = null;
-    let div_flagnames = null;
-    let counter = 0;
     for (let i = 0; i < countries.length; i++) {
         let x = countries[i];
 
-        if (div_flagpics == null) {
-            div_flagpics = document.createElement("div");
-            div_flagpics.classList.add("flagpics");
-        }
-        if (div_flagnames == null) {
-            div_flagnames = document.createElement("div");
-            div_flagnames.classList.add("flagnames");
-        }
+        let flag_button = document.createElement("div");
+        flag_button.classList.add("flagbutton");
+        flag_button.dataset.index = i;
+        flag_button.title = "fullname" in x ? x.fullname : x.name;
+        flag_button.tabIndex = 0;
 
         let flag_img = new Image();
         flag_img.className = "flagpic";
-        flag_img.dataset.index = i;
         flag_img.src = x.img;
         flag_img.alt = "fullname" in x ? x.fullname : x.name;
-        flag_img.title = "fullname" in x ? x.fullname : x.name;
-        div_flagpics.appendChild(flag_img);
+        flag_button.appendChild(flag_img);
 
-        let flag_name_div = document.createElement("div");
-        flag_name_div.className = "flagname";
-        flag_name_div.dataset.index = i;
-        let flag_name_text_div = document.createElement("span");
-        flag_name_text_div.title = "fullname" in x ? x.fullname : x.name;
-        flag_name_text_div.innerHTML = x.name;
-        flag_name_div.appendChild(flag_name_text_div);
-        div_flagnames.appendChild(flag_name_div);
+        let flag_name_box = document.createElement("div");
+        flag_name_box.className = "flagnamebox";
+        let flag_name = document.createElement("span");
+        flag_name.className = "flagname";
+        flag_name.innerHTML = x.name;
+        flag_name_box.appendChild(flag_name);
+        flag_button.appendChild(flag_name_box);
 
-        if (div_flagpics.childElementCount == 5 || i == countries.length - 1) {
-            if (
-                i == countries.length - 1 &&
-                div_flagpics.childElementCount < 5
-            ) {
-                for (let j = 0; j < 5 - div_flagpics.childElementCount; j++) {
-                    let blankdiv = document.createElement("div");
-                    div_flagpics.appendChild(blankdiv);
-                    div_flagnames.appendChild(blankdiv);
-                }
-            }
-            choices.appendChild(div_flagpics);
-            choices.appendChild(div_flagnames);
-            div_flagpics = null;
-            div_flagnames = null;
-        }
+        choices.appendChild(flag_button);
     }
 }
 
@@ -261,17 +236,8 @@ function colorCheck(color) {
     return countries[countryIndex].colors.includes(color);
 }
 
-/* set country name at <index> as disabled */
-function fadeCountryName(index) {
-    let elem = document
-        .getElementById("choices")
-        .querySelector(".flagname[data-index='" + index + "']");
-    elem.dataset.disabled = true;
-}
-
 /* set country flag element as disabled, tally remaining countries */
 function fadeFlagPic(elem) {
-    fadeCountryName(elem.dataset.index);
     elem.dataset.disabled = true;
     elem.removeEventListener("click", onClickButtons);
     currentCountryChoicesCount--;
@@ -281,7 +247,7 @@ function fadeFlagPic(elem) {
 function filterFlags(color) {
     let choices = document
         .getElementById("choices")
-        .querySelectorAll(".flagpic:not([data-disabled])");
+        .querySelectorAll(".flagbutton:not([data-disabled])");
     for (let x of choices) {
         let x_colors = countries[x.dataset.index].colors;
         if (colorCheck(color)) {
@@ -303,7 +269,7 @@ function enableButtons() {
     }
     for (let f of document
         .getElementById("choices")
-        .querySelectorAll(".flagpic")) {
+        .querySelectorAll(".flagbutton")) {
         f.addEventListener("click", onClickButtons);
     }
     document
@@ -322,10 +288,9 @@ function disableButtons() {
     }
     for (let f of document
         .getElementById("choices")
-        .querySelectorAll(".flagpic")) {
+        .querySelectorAll(".flagbutton")) {
         f.removeEventListener("click", onClickButtons);
         if (f.dataset.index != countryIndex) {
-            fadeCountryName(f.dataset.index);
             f.dataset.disabled = true;
         }
     }
@@ -401,13 +366,12 @@ function showResults() {
     if (dailyMode) {
         dailyModeText = "DAILY " + dailyModeText;
     }
-    let flaggleName = ("fullname" in countries[countryIndex]) ? countries[countryIndex].fullname : countries[countryIndex].name
+    let flaggleName =
+        "fullname" in countries[countryIndex]
+            ? countries[countryIndex].fullname
+            : countries[countryIndex].name;
     document.getElementById("flagglenamedisplay").innerHTML =
-        "The <b>" +
-        dailyModeText +
-        "</b> is <b>" +
-        flaggleName +
-        "</b>";
+        "The <b>" + dailyModeText + "</b> is <b>" + flaggleName + "</b>";
     let newGuesses = cloneGuesses();
     let newGuesses_parent = document.getElementById("flaggleresultsdata");
     let resultsFlaggle = document.createElement("div");
