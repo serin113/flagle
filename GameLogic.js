@@ -458,15 +458,15 @@ function showResults() {
             },
         });
         clipboard_share.on("success", function (e) {
-            e.trigger.innerHTML = "Copied!";
+            e.trigger.innerHTML = "COPIED!";
             setTimeout(function () {
-                e.trigger.innerHTML = "Share";
+                e.trigger.innerHTML = "SHARE";
             }, 1000);
         });
         clipboard_share.on("error", function (e) {
-            e.trigger.innerHTML = "Failed.";
+            e.trigger.innerHTML = "FAILED.";
             setTimeout(function () {
-                e.trigger.innerHTML = "Share";
+                e.trigger.innerHTML = "SHARE";
             }, 1000);
         });
     }
@@ -709,16 +709,16 @@ function displayGameStats(showDaily) {
     });
     clipboard_stats.on("success", function (e) {
         let temp_text = e.trigger.innerHTML;
-        e.trigger.innerHTML = "Copied!";
+        e.trigger.innerHTML = "COPIED!";
         setTimeout(function () {
-            e.trigger.innerHTML = "Share";
+            e.trigger.innerHTML = "SHARE";
         }, 1000);
     });
     clipboard_stats.on("error", function (e) {
         let temp_text = e.trigger.innerHTML;
-        e.trigger.innerHTML = "Failed!";
+        e.trigger.innerHTML = "FAILED.";
         setTimeout(function () {
-            e.trigger.innerHTML = "Share";
+            e.trigger.innerHTML = "SHARE";
         }, 1000);
     });
 }
