@@ -179,6 +179,7 @@ function setTheme() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
+    /* dark mode stuff */
     let darkModeCookie = Cookies.get("darkMode");
     if (darkModeCookie === "true") {
         document.getElementById("darkthemeswitch").checked = true;
@@ -191,12 +192,28 @@ document.addEventListener("DOMContentLoaded", function () {
     checkbox.addEventListener("change", setTheme);
 });
 
-window.addEventListener("load", function () {
+
+function hideLoadingScreen() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
     let loading = document.getElementById("loading");
+    loading.dataset.remove = true;
     loading.style.opacity = "0";
     loading.style.visibility = "hidden";
-});
+}
 
+function showLoadingScreen() {
+    let loading = document.getElementById("loading");
+    loading.removeAttribute("data-remove");
+    loading.style.opacity = "1";
+    loading.style.visibility = "visible";
+}
+
+window.addEventListener("load", hideLoadingScreen);
+
+/* scroll to top on load */
 if (history.scrollRestoration) {
     history.scrollRestoration = "manual";
 } else {

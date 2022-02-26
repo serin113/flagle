@@ -3,6 +3,7 @@ Cookies:
     darkMode (bool)
     dailyMode (bool)
     difficulty (int)
+    algoGenVersion (int)        // changes when daily mode would change
     lastGame (json)
         date (string)
         isWin (bool)
@@ -29,6 +30,8 @@ SessionStorage:
 */
 
 // configs
+const algoGenVersion = 1;
+
 const defaultDifficulty = 30;
 const maxDifficulty = 130;
 const maxTries = 6;
@@ -57,6 +60,12 @@ const resultMsgs_lose = [
 ];
 const seedOverride = null;
 const showResultsDelay = 1250;
+
+const refreshOnNewGame = false;
+
+const biasRandomGen = true; // bias the generator?
+const doofyThreshold = 3;   // # of same-color-set flags before applying bias
+
 const debug = false;
 
 function logger(msg) {

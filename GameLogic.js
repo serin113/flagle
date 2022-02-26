@@ -11,7 +11,6 @@ let resultText = ""; // game's share text
 let isWin = null; // game state variable: null/true/false
 let hasFlaggle = false; // flaggle is directly found
 let guesses = []; // list of guesses
-let lastGame = null; // game state after win/lose
 let dailyMode = true; // daily/random mode
 let clipboard_share = null; // ClipboardJS object for results sharetext
 let clipboard_stats = null; // ClipboardJS object for stats sharetext
@@ -20,7 +19,6 @@ let CookiesAPI = Cookies.withAttributes({
     expires: 365,
     path: "/",
 }); // Cookies object with default cookie attributes
-let flagImages = [];
 
 // helper functions
 
@@ -155,13 +153,60 @@ async function fetchCountries() {
 async function countryRandomizerArray(count) {
     let countries = await fetchCountries();
     let chosenCountries = [];
-    currCount = 0;
+    let colorCombos = {};
+    let currCount = 0;
+    let colorToNum = {
+        white: 1,
+        red: 2,
+        orange: 4,
+        yellow: 8,
+        green: 16,
+        blue: 32,
+        black: 64,
+    };
+    let doofyDump = [];
     while (currCount < count) {
+        if (countries.length == 0) break;
         let randIndex = getRandomInt(0, countries.length);
-        chosenCountries.push(countries[randIndex]);
+        let currCountry = countries[randIndex];
+
+        /* if biasing generator */
+        if (biasRandomGen) {
+            /* turn color list into unique combo number */
+            let total = 0;
+            for (let c of currCountry.colors) {
+                total += colorToNum[c];
+            }
+            let totalString = total.toString();
+
+            /* check if adding current country exceeds a combo's threshold */
+            let tempScore =
+                totalString in colorCombos ? colorCombos[totalString] + 1 : 1;
+            if (tempScore > doofyThreshold) {
+                /* add country to a bin for later and skip to the next */
+                logger("doofy");
+                doofyDump.push(currCountry);
+                countries.splice(randIndex, 1);
+                continue;
+            }
+            /* count country into combo */
+            colorCombos[totalString] = tempScore;
+        }
+
+        chosenCountries.push(currCountry);
         countries.splice(randIndex, 1);
         currCount += 1;
     }
+
+    /* insert remaining needed to reach <count> */
+    while (currCount < count) {
+        chosenCountries.push(doofyDump[0]);
+        doofyDump.splice(0, 1);
+        currCount += 1;
+        logger("readd doofy");
+    }
+
+    logger(colorCombos);
     chosenCountries = mergeSort(chosenCountries);
     return chosenCountries;
 }
@@ -192,7 +237,7 @@ function displayCountries() {
         flag_img.height = 50;
         flag_img.width = 92;
         flag_img.src = x.img;
-        // flag_img.loading = "lazy";
+        flag_img.loading = "lazy";
         flag_img.alt = "fullname" in x ? x.fullname : x.name;
         flag_button.appendChild(flag_img);
 
@@ -269,11 +314,15 @@ function filterFlags(color) {
 function enableButtons() {
     for (let c of document.getElementById("colorkeys").children) {
         c.addEventListener("click", onClickButtons);
+        c.removeAttribute("data-disabled");
+        c.removeAttribute("data-wrong");
     }
     for (let f of document
         .getElementById("choices")
         .querySelectorAll(".flagbutton")) {
         f.addEventListener("click", onClickButtons);
+        f.removeAttribute("data-disabled");
+        f.classList.remove("flagbutton_flaggle");
     }
     document.getElementById("middlediv").classList.remove("enabled");
     document
@@ -362,6 +411,11 @@ function startCountdown() {
 /* update & display results in the GameResults modal */
 function showResults() {
     let resultMsg = "";
+    if (!dailyMode) {
+        document.getElementById("randomflaggle").classList.add("sticky");
+    } else {
+        document.getElementById("randomflaggle").classList.remove("sticky");
+    }
     if (isWin) {
         resultMsg = resultMsgs_win[tries - 1];
     } else {
@@ -574,14 +628,14 @@ function onClickButtons() {
 function clickDailyModeButton() {
     CookiesAPI.set("dailyMode", "true");
     setGameMode();
-    location.reload();
+    reloadGame();
 }
 
 /* click handler for random mode button */
 function clickRandomModeButton() {
     CookiesAPI.set("dailyMode", "false");
     setGameMode();
-    location.reload();
+    reloadGame();
 }
 
 /* save gave statistics to cookies */
@@ -766,8 +820,7 @@ function saveLastGame() {
     lastGame_temp.hasFlaggle = hasFlaggle;
     lastGame_temp.resultText = resultText;
     lastGame_temp.guesses = guesses;
-    lastGame = lastGame_temp;
-    CookiesAPI.set("lastGame", JSON.stringify(lastGame));
+    CookiesAPI.set("lastGame", JSON.stringify(lastGame_temp));
 }
 
 /* load game state from lastGame cookie into globals */
@@ -786,7 +839,7 @@ function loadLastGame() {
         startCountdown();
         return;
     }
-    lastGame = JSON.parse(lastGameCookie);
+    let lastGame = JSON.parse(lastGameCookie);
     if (currDate.toDateString() != lastGame.date) {
         CookiesAPI.remove("lastGame");
         return;
@@ -812,8 +865,93 @@ function loadLastGame() {
     startCountdown();
 }
 
-/* reset game cookies */
-function resetGame() {
+/* handle changes on difficulty slider */
+function onInputSlider() {
+    let difficultyCookie = CookiesAPI.get("difficulty");
+    document.getElementById("difficultyValue").innerHTML = this.value;
+    logger("new difficulty: " + this.value);
+    CookiesAPI.set("difficulty", String(this.value));
+    if (this.value != countryChoicesCount && !dailyMode) {
+        window.onclick = function (event) {
+            if (event.target == modalset) {
+                document.getElementById("settingstext").style.display = "none";
+                reloadGame();
+            }
+        };
+        document.getElementById("closesettings").onclick = function (event) {
+            document.getElementById("settingstext").style.display = "none";
+            reloadGame();
+        };
+    } else {
+        window.onclick = function (event) {
+            clickOutsideModal(event);
+        };
+        document.getElementById("closesettings").onclick = function (event) {
+            document.getElementById("settingstext").style.display = "none";
+        };
+    }
+}
+
+/* refresh cookies to extend expiry dates */
+function refreshCookies() {
+    let cookieStrs = [
+        "lastGame",
+        "difficulty",
+        "dailyMode",
+        "darkMode",
+        "algoGenVersion",
+        "stats_d_totalWins",
+        "stats_d_totalGames",
+        "stats_d_currentStreak",
+        "stats_d_bestStreak",
+        "stats_r_totalWins",
+        "stats_r_totalGames",
+        "stats_r_currentStreak",
+        "stats_r_bestStreak",
+    ];
+    for (let s of cookieStrs) {
+        if (CookiesAPI.get(s) != undefined) {
+            CookiesAPI.set(s, CookiesAPI.get(s));
+        }
+    }
+    let algoGenVersionCookie = CookiesAPI.get("algoGenVersion");
+    let resetLastGame = false;
+    if (algoGenVersionCookie == undefined) {
+        resetLastGame = true;
+    } else if (parseInt(algoGenVersionCookie) != algoGenVersion) {
+        resetLastGame = true;
+    }
+    if (resetLastGame) {
+        logger(
+            "resetting lastGame, new algoGenVersion: " +
+                algoGenVersion +
+                ", curr: " +
+                algoGenVersionCookie
+        );
+        CookiesAPI.remove("lastGame");
+    }
+}
+
+/* reset global variables to default values */
+function resetGlobalVars() {
+    countryChoicesCount = defaultDifficulty; // number of flags to play with
+    randomizer = null; // randomizer function for getRandomInt
+    countries = null; // <countryChoicesCount>-length list of countries w/ data
+    countryIndex = null; // <country>'s index in <countries>
+    currentCountryChoicesCount = countryChoicesCount;
+    // number of enabled country buttons
+    tries = 0; // number of tries (button pushes) so far
+    resultText = ""; // game's share text
+    isWin = null; // game state variable: null/true/false
+    hasFlaggle = false; // flaggle is directly found
+    guesses = []; // list of guesses
+    dailyMode = true; // daily/random mode
+    clipboard_share = null; // ClipboardJS object for results sharetext
+    clipboard_stats = null; // ClipboardJS object for stats sharetext
+}
+
+/* reset game cookies, only for debugging */
+function avadaKedavra() {
     CookiesAPI.remove("lastGame");
     CookiesAPI.remove("difficulty");
     CookiesAPI.remove("dailyMode");
@@ -832,31 +970,11 @@ function resetGame() {
     location.reload();
 }
 
-/* refresh cookies to extend expiry dates */
-function refreshCookies() {
-    let cookieStrs = [
-        "lastGame",
-        "difficulty",
-        "dailyMode",
-        "darkMode",
-        "stats_d_totalWins",
-        "stats_d_totalGames",
-        "stats_d_currentStreak",
-        "stats_d_bestStreak",
-        "stats_r_totalWins",
-        "stats_r_totalGames",
-        "stats_r_currentStreak",
-        "stats_r_bestStreak",
-    ];
-    for (let s of cookieStrs) {
-        if (CookiesAPI.get(s) != undefined) {
-            CookiesAPI.set(s, CookiesAPI.get(s));
-        }
-    }
-}
-
-document.addEventListener("DOMContentLoaded", function () {
+/* various game initializations */
+function init() {
     // initializations
+    
+    currDate = new Date(); // current date on page load
 
     /* refresh any existing cookies */
     refreshCookies();
@@ -875,40 +993,9 @@ document.addEventListener("DOMContentLoaded", function () {
     /* difficulty slider */
     document
         .getElementById("difficultySlider")
-        .addEventListener("input", function () {
-            let difficultyCookie = CookiesAPI.get("difficulty");
-            document.getElementById("difficultyValue").innerHTML = this.value;
-            logger("new difficulty: " + this.value);
-            CookiesAPI.set("difficulty", String(this.value));
-            if (this.value != countryChoicesCount && !dailyMode) {
-                window.onclick = function (event) {
-                    if (event.target == modalset) {
-                        document.getElementById("settingstext").style.display =
-                            "none";
-                        location.reload();
-                    }
-                };
-                document.getElementById("closesettings").onclick = function (
-                    event
-                ) {
-                    document.getElementById("settingstext").style.display =
-                        "none";
-                    location.reload();
-                };
-            } else {
-                window.onclick = function (event) {
-                    clickOutsideModal(event);
-                };
-                document.getElementById("closesettings").onclick = function (
-                    event
-                ) {
-                    document.getElementById("settingstext").style.display =
-                        "none";
-                };
-            }
-        });
+        .addEventListener("input", onInputSlider);
 
-    /* load difficulty slider values */
+    /* load difficulty values into slider */
     if (CookiesAPI.get("difficulty") == undefined) {
         CookiesAPI.set("difficulty", String(countryChoicesCount));
     } else {
@@ -934,7 +1021,7 @@ document.addEventListener("DOMContentLoaded", function () {
         initRandomizer(seedOverride);
     }
 
-    /* create and initialize the guess counter based on <maxTries> */
+    /* create and initialize guess counter based on <maxTries> */
     document.getElementById("guesses").innerHTML = "";
     for (let i = 0; i < maxTries; i++) {
         let guessIndicator = document.createElement("div");
@@ -947,6 +1034,35 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("nextdailystats").style.display = "none";
     document.getElementById("dailycountdowntext_stats").innerHTML = "";
     document.getElementById("dailycountdowntext_results").innerHTML = "";
+}
+
+/* reload game */
+function reloadGame() {
+    logger("NEW GAME\n\n\n\n");
+    if (refreshOnNewGame) location.reload();
+    else {
+        showLoadingScreen();
+        // setTimeout(showLoadingScreen, 1000);
+        resetGlobalVars();
+        enableButtons();
+        init();
+        countryRandomizer(countryChoicesCount).then((data) => {
+            country = data[1];
+            countries = data[0];
+            countryIndex = data[2];
+            logger("RANDOMIZED: ");
+            logger(country);
+            logger(countries);
+            displayCountries();
+            enableButtons();
+            loadLastGame();
+            hideLoadingScreen();
+        });
+    }
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    init();
 
     // main program
     countryRandomizer(countryChoicesCount).then((data) => {
