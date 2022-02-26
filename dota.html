@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap&text=FLAGLEDIYRNOMSHCP!." rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta property="description" content="A flag-guessing elimination game. Clear flags by color and guess the daily flag with the least tries.">
+    <meta name="theme-color" content="#8484dc">
+    <meta name="apple-mobile-web-app-title" content="Flagle">
+    <meta name="aapplication=name" content="Flagle">
+    <meta name="msapplication-TileColor" content="#8484dc">
+    <meta property="og:title" content="Flagle - A daily flag game">
+    <meta property="og:url" content="https://flagle.felren.xyz">
+    <meta property="og:description" content="A flag-guessing elimination game. Clear flags by color and guess the daily flag with the least tries.">
+    <meta property="twitter:domain" content="flagle.felren.xyz">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="canonical" href="https://flagle.felren.xyz">
+    <link rel="stylesheet" type="text/css" href="/Style.css">
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3/dist/js.cookie.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+    <script src="/Defaults.js"></script>
+    <title>Flagle - A daily flag game</title>
+</head>
+
+<body>
+    <div id="loading">
+        <img src="/loading.svg" alt="Loading" title="loading" width="64px" height="64px">
+    </div>
+    <script>
+        window.addEventListener("load", function() {
+            let loading = document.getElementById("loading")
+            loading.style.opacity = "0"
+            loading.style.visibility = "hidden"
+        })
+    </script>
+    <div class="HeaderBody">
+        <div class="MainHeader">
+            <span class="material-icons-outlined" id="howto">help_outline</span>
+            <span class="material-icons-outlined" id="flag">flag</span>
+            <div id="MainHeaderText">
+                <div class="wavy">
+                    <span class="flaggletext" attribute="F" style="--i:1"><t id="ft1">F</t></span>
+                    <span class="flaggletext" attribute="L" style="--i:2"><t id="ft2">L</t></span>
+                    <span class="flaggletext" attribute="A" style="--i:3"><t id="ft3">A</t></span>
+                    <span class="flaggletext" attribute="G" style="--i:4"><t id="ft4">G</t></span>
+                    <span class="flaggletext" attribute="L" style="--i:5"><t id="ft5">L</t></span>
+                    <span class="flaggletext" attribute="E" style="--i:6"><t id="ft6">E</t></span>
+                </div>
+            </div>
+            <span class="material-icons-outlined" id="stats">leaderboard</span>
+            <span class="material-icons-outlined" id="settings">settings</span>
+        </div>
+    </div>
+
+    <div id="gamediv">
+        <button class="displaybuttons" id="dailyflaggle"><b>DAILY</b></button>
+        <div id="middlediv">
+            <div id="drnotif">
+                <text id="drnotiftext">DAILY</text>
+            </div>
+            <button id="guesses" aria-label="guesses">
+            </button>
+        </div>
+        <button class="displaybuttons" id="randomflaggle"><b>RANDOM</b></button>
+        <div id="choices"></div>
+    </div>
+
+
+    <!--Game Result Popup-->
+    <div id="GameResults" class="modal">
+        <div id="gameresults-content" class="modal-content">
+            <div class="modal-header" id="resultsmodalheader">
+                <span class="close" id="closeresults">&times;</span>
+                <h3 class="modalheadertext" id="gameoverresult"></h3>
+            </div>
+            <div class="modal-body" id="resultsmodalbody">
+                <div id="flaggleresultsdata">
+                    <img id="flagglepic"></br>
+                    <text id="flagglenamedisplay"></text></br>
+                    <div id="resultguesses"></div>
+                    <text id="dailyflaggledate"></text>
+                </div>
+
+            </div>
+            <div class="modalfooter">
+                <div class="footerhalf " id="footerleft">
+                    <text id="nextdailyresult">Next Daily</text>
+                    <div class="dailycountdowndiv">
+                        <text class="dailycountdowntext" id="dailycountdowntext_results"></text>
+                    </div>
+                </div>
+                <div class="footerhalf " id="footerright">
+                    <button class="displaybuttons" id="sharebutton">SHARE</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="keyscontainer">
+        <div id="colorkeys">
+            <div class="colors" id="white" data-color="white">
+            </div>
+            <div class="colors" id="red" data-color="red">
+            </div>
+            <div class="colors" id="orange" data-color="orange">
+            </div>
+            <div class="colors" id="yellow" data-color="yellow">
+            </div>
+            <div class="colors" id="green" data-color="green">
+            </div>
+            <div class="colors" id="blue" data-color="blue">
+            </div>
+            <div class="colors" id="black" data-color="black">
+            </div>
+        </div>
+        <span id="colorkeysmsg"></span>
+    </div>
+
+    <!--How to Modal-->
+    <div id="howtotext" class="modal">
+        <div class="modal-content">
+            <div class="modal-header" id="howtomodalheader">
+                <span class="close" id="closehowto">&times;</span>
+                <h3 class="modalheadertext">How to Play</h3>
+            </div>
+            <div class="modal-body" id="howtomodalbody">
+                <p>Guess the <b>FLAGLE</b> in 6 tries.</p>
+                <p>A guess is when you click on a color button or a flag.</p>
+                <p>Press the <t class="colorchange">color buttons</t> to filter whether or not the <b>FLAGLE</b> contains the colors.</p>
+
+                <b>Example:</b>
+
+                <div id="demokeyscontainer">
+                    <div id="democolorkeys">
+                        <div class="democolors" id="demoorange" data-color="orange">
+                        </div>
+                        <div class="democolors" id="demoyellow" data-color="yellow">
+                        </div>
+                        <div class="democolors" id="demogreen" data-color="green">
+                        </div>
+                    </div>
+                </div>
+
+                <div id="demodiv">
+
+                    <div class="demotext">
+                        <ul>
+                            <li>The <b>FLAGLE</b> does <b>NOT</b> contain <text id="textorange">orange</text>.</br>All flags with <text id="textorange">orange</text> will be <b>REMOVED</b>.</li>
+                        </ul>
+                    </div>
+
+                    <div class="demotext">
+                        <ul>
+                            <li>The <b>FLAGLE</b> contains <text id="textgreen">green</text>.</br>All flags with <text id="textgreen">green</text> will <b>REMAIN</b>.</li>
+                        </ul>
+                    </div>
+
+                </div>
+
+                <text>You win by:</text>
+                <ul>
+                    <li>Clicking on the correct flag <b>OR</b></li>
+                    <li>Only the <b>FLAGLE</b> remains unfiltered</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="statstext" class="modal">
+        <div class="modal-content">
+            <div class="modal-header" id="statsmodalheader">
+                <span class="close" id="closestat">&times;</span>
+                <h3 class="modalheadertext">Statistics</h3>
+            </div>
+            <div class="modal-body" id="statsmodalbody">
+
+                <div id="drchoice">
+                    <button id="drchoiceleft">
+                        <text class="statsmodetext">DAILY</text>
+                    </button>
+                    <button id="drchoiceright">
+                        <text class="statsmodetext">RANDOM</text>
+                    </button>
+                </div>
+
+                <div id="statsdisplay">
+                    <div class="statstab" id="totalgames">
+                        <text class="statstext" id="totalgamestext">0</text></br>
+                        <div class="statsdesc" id="totalgamesdesc">Total<br>Games</div>
+                    </div>
+                    <div class="statstab" id="flagsguessed">
+                        <text class="statstext" id="flagsguessedtext">0</text></br>
+                        <div class="statsdesc" id="flagsguesseddesc">FLAGLEs<br>Guessed</div>
+                    </div>
+                    <div class="statstab" id="winpercent">
+                        <text class="statstext" id="winpercenttext">0</text></br>
+                        <div class="statsdesc" id="winpercentdesc">Win %</div></br>
+                    </div>
+                    <div class="statstab" id="currentstreak">
+                        <text class="statstext" id="currentstreaktext">0</text></br>
+                        <div class="statsdesc" id="currentstreakdesc">Current<br>Streak</div>
+                    </div>
+                    <div class="statstab" id="beststreak">
+                        <text class="statstext" id="beststreaktext">0</text></br>
+                        <div class="statsdesc" id="beststreakdesc">Best<br>Streak</div>
+                    </div>
+
+                </div>
+
+                <div class="modalfooter">
+                    <div class="footerhalf " id="footerleft">
+                        <text id="nextdailystats">Next Daily</text>
+                        <div class="dailycountdowndiv">
+                            <text class="dailycountdowntext" id="dailycountdowntext_stats"></text>
+                        </div>
+                    </div>
+                    <div class="footerhalf " id="footerright">
+                        <button class="displaybuttons" id="sharebuttonstat">SHARE</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings -->
+    <div id="settingstext" class="modal">
+        <div class="modal-content" id="settingsmodal">
+            <div class="modal-header" id="settingsmodalheader">
+                <span class="close" id="closesettings">&times;</span>
+                <h3 class="modalheadertext">Settings</h3>
+            </div>
+            <div class="modal-body" id="settingsmodalbody">
+
+                <div class="settingsdivsdiff" id="darktheme">
+                    <text class="settingsfont">Difficulty    <t id="minidiff"># of flags (Random only)</t></text></br>
+                    <text id="difficultyValue">30</text>
+                </div>
+
+                <div class="hmslidecontainer">
+                    <input type="range" min="30" max="130" value="30" class="hmslider" id="difficultySlider" step="10">
+                </div>
+
+                <div class="settingsdivs" id="darktheme">
+                    <text class="settingsfont">Dark Theme</text>
+                    <label class="switch">
+                        <input type="checkbox" id="darkthemeswitch">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+
+                <div id="disclaimer">
+                    <text id="disctext">There are 197 flags currently in <b>FLAGLE</b>. Displayed countries are based on the classification from <a class="textlink" href="https://www.sporcle.com/blog/2013/01/what-is-a-country/" target="_blank">sporcle.com</a>.</text></br></br>
+                    <text id="disctext">All flag pictures from <a class="textlink" href="https://flagpedia.net" target="_blank">flagpedia.net</a>.</text></br>
+                    <text id="disctextnosue">please don't sue us</text>
+                </div>
+
+                <div id="about">
+                    <text>
+                        Created by <a class="textlink" href="https://github.com/serin113" target="_blank">@serin113</a> and <a class="textlink" href="#" target="_blank">@LilRuii</a>.</br>
+                        Contact us at <a class="textlink" href="mailto:flagle.help@gmail.com" target="_blank">flagle.help@gmail.com</a> for support.</br>
+                        Launched February 2022.<br>
+                        <span class="buildinfo">last updated <b>@@GITCOMMITDATE</b>, build <b>@@GITCOMMITHASH</b></span></text>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Flag List Modal
+    <div id="flaglist" class="modal">
+        <div class="modal-content">
+            <div class="modal-header" id="flagsmodalheader">
+                <span class="close" id="closeflag">&times;</span>
+                <h3 class="modalheadertext">Flag List</h3>
+            </div>
+            <div class="modal-body" id="flagsmodalbody"> -->
+                <!-- Searchbar Removed for now -->
+                <!-- <div id="searchbarcontents">
+                    <div id="searchbarbox"><input type="text" placeholder="Search Country" id="searchbar"></div>
+                    <div id="searchbutton"><span id="searchicon" class="material-icons-outlined">search</span></div>
+                </div> -->
+                <!-- <h2 id="flaglistnotif" class="colorchange">Coming Soon!</h2>
+            </div>
+        </div>
+    </div> -->
+    
+    <script src="/UILogic.js"></script>
+    <script src="/dotaGameLogic.js"></script>
+</body>
+
+</html>

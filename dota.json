@@ -1,0 +1,24 @@
+[
+    {
+        "name": "Abaddon",
+        "colors": ["red", "white", "black", "green"],
+        "img": "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/abaddon.png"
+    },
+    {
+        "name": "Alchemist",
+        "colors": ["red", "black"],
+        "img": "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/alchemist.png"
+    },
+    {
+        "name": "Ancient Apparition",
+        "colors": ["red", "white", "green"],
+        "star": 1,
+        "moon": 1,
+        "img": "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/ancient_apparition.png"
+    },
+    {
+        "name": "Antimage",
+        "colors": ["red", "yellow", "blue", "white"],
+        "img": "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/antimage.png"
+    }
+]
