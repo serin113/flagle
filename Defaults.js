@@ -58,6 +58,7 @@ const resultMsgs_lose = [
 const seedOverride = null;
 const showResultsDelay = 1250;
 const debug = false;
+const refreshOnNewGame = false;
 
 function logger(msg) {
     if (debug == false) return;

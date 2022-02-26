@@ -3,6 +3,8 @@ TO DO:
 - Test game reset without refresh
 
 Low Prio:
+- Reduce high-chance-low-guessability combos
+- Guess distribution graph
 - Win as custom event
 
 Probably not:
