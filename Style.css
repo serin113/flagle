@@ -58,9 +58,9 @@ body {
     opacity: 1;
 }
 
-.dark_flaggletext {
+/* .dark_flaggletext {
     color: rgb(216, 216, 216);
-}
+} */
 
 .dark_colorkeys {
     color: rgb(132, 132, 220);
@@ -146,6 +146,7 @@ body {
     width: 26rem;
     padding-top: 0.5rem;
     margin: 0 auto;
+
 }
 
 #MainHeaderText {
@@ -437,10 +438,27 @@ body {
     }
 }
 
+/* color example */
+.flaggletext {
+	position:;
+	position:relative;
+	display:inline-block;
+ 	color:#ffcc00;
+}
+.flaggletext:before{
+	content: attr(attribute);
+	color:#0066cc;
+	position:absolute;
+	top:0;
+	left:0;
+	height:50%;
+	overflow:hidden;
+}
+/* end */
+
 .wavy span {
     position: relative;
     display: inline-block;
-    color: black;
     font-size: 2em;
     -webkit-animation: animate 2s ease-in-out;
     animation: animate 2s ease-in-out;
