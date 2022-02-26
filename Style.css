@@ -291,27 +291,22 @@ body {
 /* The Modal (background) */
 
 .modal {
+    justify-content: center;
+    align-items: center;
+    
+    /* display: flex; */
     display: none;
-    /* Hidden by default */
     position: fixed;
-    /* Stay in place */
     z-index: 100;
-    /* Sit on top */
     padding-top: 1rem;
     padding-bottom: 1rem;
-    /* Location of the box */
     left: 0;
     top: 0;
     width: 100%;
-    /* Full width */
     height: 100%;
-    /* Full height */
     overflow: auto;
-    /* Enable scroll if needed */
     background-color: rgb(0, 0, 0);
-    /* Fallback color */
     background-color: rgba(0, 0, 0, 0.4);
-    /* Black w/ opacity */
 }
 
 /* Modal Content */
@@ -385,6 +380,8 @@ body {
 
 .modalheadertext {
     letter-spacing: 0.05rem;
+    margin: 0;
+    padding: 0.75rem;
 }
 
 .modal-body {
@@ -720,6 +717,7 @@ input:checked + .slider:before {
 #middlediv.enabled {
     background-color: rgba(132, 132, 220, 1);
     color: white;
+    cursor: pointer;
 }
 
 .flagbutton_flaggle .flagpic {
@@ -736,7 +734,7 @@ input:checked + .slider:before {
     /* width: 4.25rem; */
     width: 4.6rem;
     height: 2.5rem;
-    cursor: pointer;
+    /* cursor: pointer; */
     -o-object-fit: scale-down;
     object-fit: scale-down;
     /* margin: 0.25rem auto -0.1rem; */
@@ -820,7 +818,7 @@ input:checked + .slider:before {
     vertical-align: middle;
     box-shadow: 0 0.15rem 0.25rem rgba(0, 0, 0, 0);
     transition: box-shadow 150ms, opacity 150ms, background-color 150ms;
-    cursor: pointer;
+    /* cursor: pointer; */
     position: relative;
 }
 

@@ -1,3 +1,5 @@
+let modalDisplayType = "flex";
+
 let modalresults = document.getElementById("GameResults");
 let spanresults = document.getElementById("closeresults");
 spanresults.addEventListener("click", function () {
@@ -8,7 +10,7 @@ let modalhow = document.getElementById("howtotext");
 let btnhow = document.getElementById("howto");
 let spanhow = document.getElementById("closehowto");
 btnhow.addEventListener("click", function () {
-    modalhow.style.display = "block";
+    modalhow.style.display = modalDisplayType;
 });
 spanhow.addEventListener("click", function () {
     modalhow.style.display = "none";
@@ -18,7 +20,7 @@ let modalstat = document.getElementById("statstext");
 let btnstat = document.getElementById("stats");
 let spanstat = document.getElementById("closestat");
 btnstat.addEventListener("click", function () {
-    modalstat.style.display = "block";
+    modalstat.style.display = modalDisplayType;
 });
 spanstat.addEventListener("click", function () {
     modalstat.style.display = "none";
@@ -28,7 +30,7 @@ let modalset = document.getElementById("settingstext");
 let btnset = document.getElementById("settings");
 let spanset = document.getElementById("closesettings");
 btnset.addEventListener("click", function () {
-    modalset.style.display = "block";
+    modalset.style.display = modalDisplayType;
 });
 spanset.addEventListener("click", function () {
     modalset.style.display = "none";

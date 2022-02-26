@@ -372,9 +372,20 @@ function showResults() {
         }
     }
     document.getElementById("gameoverresult").innerHTML = resultMsg;
-    document.getElementById("flagglepic").src = countries[
-        countryIndex
-    ].img.replace("w160", "h240");
+    document.getElementById("flagglepic").src = countries[countryIndex].img;
+    let bigFlagglePic = new Image();
+    bigFlagglePic.width = 460;
+    bigFlagglePic.height = 240;
+    bigFlagglePic.src = countries[countryIndex].img.replace("w160", "h240");
+    bigFlagglePic.onload = function () {
+        document
+            .getElementById("flagglepic")
+            .parentNode.replaceChild(
+                bigFlagglePic,
+                document.getElementById("flagglepic")
+            );
+        bigFlagglePic.id = "flagglepic";
+    };
     let dailyModeText = "FLAGLE";
     if (dailyMode) {
         dailyModeText = "DAILY " + dailyModeText;
@@ -449,7 +460,7 @@ function showResults() {
         });
     }
 
-    document.getElementById("GameResults").style.display = "block";
+    document.getElementById("GameResults").style.display = modalDisplayType;
 }
 
 /* handle clicks on flag and color buttons, check win status */
@@ -762,7 +773,7 @@ function loadLastGame() {
     let lastGameCookie = CookiesAPI.get("lastGame");
     if (lastGameCookie == undefined) {
         if (!window.sessionStorage.getItem("tutorialShown")) {
-            modalhow.style.display = "block";
+            document.getElementById("howtotext").style.display = modalDisplayType;
             window.sessionStorage.setItem("tutorialShown", "true");
         }
         return;
