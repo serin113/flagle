@@ -188,3 +188,17 @@ document.addEventListener("DOMContentLoaded", function () {
     setTheme();
     checkbox.addEventListener("change", setTheme);
 });
+
+window.addEventListener("load", function () {
+    let loading = document.getElementById("loading");
+    loading.style.opacity = "0";
+    loading.style.visibility = "hidden";
+});
+
+if (history.scrollRestoration) {
+    history.scrollRestoration = "manual";
+} else {
+    window.onbeforeunload = function () {
+        window.scrollTo(0, 0);
+    };
+}
