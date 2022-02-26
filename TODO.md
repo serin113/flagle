@@ -1,7 +1,3 @@
-Testing:
-- Test game reset without refresh
-- Reduce high-chance-low-guessability ("doofy") combos
-
 TO DO:
 - User links
 
