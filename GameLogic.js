@@ -922,6 +922,7 @@ function refreshCookies() {
         resetLastGame = true;
     }
     if (resetLastGame) {
+        CookiesAPI.set("algoGenVersion", algoGenVersion);
         logger(
             "resetting lastGame, new algoGenVersion: " +
                 algoGenVersion +
