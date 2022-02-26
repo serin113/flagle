@@ -2,1022 +2,1022 @@
     {
         "name": "Afghanistan",
         "colors": ["red", "white", "black", "green"],
-        "img": "/flags/w160/af.jpg"
+        "img": "/flags/w160/af.png"
     },
     {
         "name": "Albania",
         "colors": ["red", "black"],
-        "img": "/flags/w160/al.jpg"
+        "img": "/flags/w160/al.png"
     },
     {
         "name": "Algeria",
         "colors": ["red", "white", "green"],
         "star": 1,
         "moon": 1,
-        "img": "/flags/w160/dz.jpg"
+        "img": "/flags/w160/dz.png"
     },
     {
         "name": "Andorra",
         "colors": ["red", "yellow", "blue", "white"],
-        "img": "/flags/w160/ad.jpg"
+        "img": "/flags/w160/ad.png"
     },
     {
         "name": "Angola",
         "colors": ["red", "yellow", "black"],
         "star": 1,
         "sun": 1,
-        "img": "/flags/w160/ao.jpg"
+        "img": "/flags/w160/ao.png"
     },
     {
         "name": "Antigua & Barbuda",
         "colors": ["red", "yellow", "black", "white", "blue"],
-        "img": "/flags/w160/ag.jpg"
+        "img": "/flags/w160/ag.png"
     },
     {
         "name": "Argentina",
         "colors": ["yellow", "white", "blue"],
         "sun": 1,
-        "img": "/flags/w160/ar.jpg"
+        "img": "/flags/w160/ar.png"
     },
     {
         "name": "Armenia",
         "colors": ["red", "blue", "orange"],
-        "img": "/flags/w160/am.jpg"
+        "img": "/flags/w160/am.png"
     },
     {
         "name": "Australia",
         "colors": ["red", "blue", "white"],
         "star": 6,
-        "img": "/flags/w160/au.jpg"
+        "img": "/flags/w160/au.png"
     },
     {
         "name": "Austria",
         "colors": ["red", "white"],
-        "img": "/flags/w160/at.jpg"
+        "img": "/flags/w160/at.png"
     },
     {
         "name": "Azerbaijan",
         "colors": ["red", "white", "green", "blue"],
         "moon": 1,
         "star": 1,
-        "img": "/flags/w160/az.jpg"
+        "img": "/flags/w160/az.png"
     },
     {
         "name": "Bahamas",
         "colors": ["yellow", "black", "blue"],
-        "img": "/flags/w160/bs.jpg"
+        "img": "/flags/w160/bs.png"
     },
     {
         "name": "Bahrain",
         "colors": ["red", "white"],
-        "img": "/flags/w160/bh.jpg"
+        "img": "/flags/w160/bh.png"
     },
     {
         "name": "Bangladesh",
         "colors": ["red", "green"],
-        "img": "/flags/w160/bd.jpg"
+        "img": "/flags/w160/bd.png"
     },
     {
         "name": "Barbados",
         "colors": ["blue", "black", "yellow"],
-        "img": "/flags/w160/bb.jpg"
+        "img": "/flags/w160/bb.png"
     },
     {
         "name": "Belarus",
         "colors": ["red", "white", "green"],
-        "img": "/flags/w160/by.jpg"
+        "img": "/flags/w160/by.png"
     },
     {
         "name": "Belgium",
         "colors": ["red", "yellow", "black"],
-        "img": "/flags/w160/be.jpg"
+        "img": "/flags/w160/be.png"
     },
     {
         "name": "Belize",
         "colors": ["red", "yellow", "blue", "green", "white"],
-        "img": "/flags/w160/bz.jpg"
+        "img": "/flags/w160/bz.png"
     },
     {
         "name": "Benin",
         "colors": ["green", "yellow", "red"],
-        "img": "/flags/w160/bj.jpg"
+        "img": "/flags/w160/bj.png"
     },
     {
         "name": "Bhutan",
         "colors": ["white", "yellow", "orange"],
-        "img": "/flags/w160/bt.jpg"
+        "img": "/flags/w160/bt.png"
     },
     {
         "name": "Bolivia",
         "colors": ["red", "yellow", "green"],
-        "img": "/flags/w160/bo.jpg"
+        "img": "/flags/w160/bo.png"
     },
     {
         "name": "Bosnia & Herzegovina",
         "colors": ["white", "yellow", "blue"],
         "star": 8,
-        "img": "/flags/w160/ba.jpg"
+        "img": "/flags/w160/ba.png"
     },
     {
         "name": "Botswana",
         "colors": ["white", "black", "blue"],
-        "img": "/flags/w160/bw.jpg"
+        "img": "/flags/w160/bw.png"
     },
     {
         "name": "Brazil",
         "colors": ["white", "blue", "green", "yellow"],
-        "img": "/flags/w160/br.jpg"
+        "img": "/flags/w160/br.png"
     },
     {
         "name": "Brunei",
         "colors": ["white", "red", "black", "yellow"],
-        "img": "/flags/w160/bn.jpg"
+        "img": "/flags/w160/bn.png"
     },
     {
         "name": "Bulgaria",
         "colors": ["white", "red", "green"],
-        "img": "/flags/w160/bg.jpg"
+        "img": "/flags/w160/bg.png"
     },
     {
         "name": "Burkina Faso",
         "colors": ["yellow", "red", "green"],
         "star": 1,
-        "img": "/flags/w160/bf.jpg"
+        "img": "/flags/w160/bf.png"
     },
     {
         "name": "Burundi",
         "colors": ["white", "red", "green"],
         "star": 3,
-        "img": "/flags/w160/bi.jpg"
+        "img": "/flags/w160/bi.png"
     },
     {
         "name": "Côte d'Ivoire",
         "colors": ["white", "orange", "green"],
-        "img": "/flags/w160/ci.jpg"
+        "img": "/flags/w160/ci.png"
     },
     {
         "name": "Cabo Verde",
         "colors": ["white", "yellow", "red", "blue"],
         "star": 10,
-        "img": "/flags/w160/cv.jpg"
+        "img": "/flags/w160/cv.png"
     },
     {
         "name": "Cambodia",
         "colors": ["white", "red", "blue"],
-        "img": "/flags/w160/kh.jpg"
+        "img": "/flags/w160/kh.png"
     },
     {
         "name": "Cameroon",
         "colors": ["yellow", "red", "green"],
         "star": 1,
-        "img": "/flags/w160/cm.jpg"
+        "img": "/flags/w160/cm.png"
     },
     {
         "name": "Canada",
         "colors": ["white", "red"],
-        "img": "/flags/w160/ca.jpg"
+        "img": "/flags/w160/ca.png"
     },
     {
         "name": "C.A.R.",
         "fullname": "Central African Republic",
         "colors": ["white", "red", "blue", "yellow", "green"],
         "star": 1,
-        "img": "/flags/w160/cf.jpg"
+        "img": "/flags/w160/cf.png"
     },
     {
         "name": "Chad",
         "colors": ["red", "blue", "yellow"],
-        "img": "/flags/w160/td.jpg"
+        "img": "/flags/w160/td.png"
     },
     {
         "name": "Chile",
         "colors": ["red", "blue", "white"],
         "star": 1,
-        "img": "/flags/w160/cl.jpg"
+        "img": "/flags/w160/cl.png"
     },
     {
         "name": "China (P.R.C.)",
         "fullname": "China (People's Republic of China)",
         "colors": ["red", "yellow"],
         "star": 5,
-        "img": "/flags/w160/cn.jpg"
+        "img": "/flags/w160/cn.png"
     },
     {
         "name": "Colombia",
         "colors": ["red", "yellow", "blue"],
-        "img": "/flags/w160/co.jpg"
+        "img": "/flags/w160/co.png"
     },
     {
         "name": "Comoros",
         "colors": ["red", "yellow", "blue", "white", "green"],
         "star": 4,
         "moon": 1,
-        "img": "/flags/w160/km.jpg"
+        "img": "/flags/w160/km.png"
     },
     {
         "name": "Congo",
         "colors": ["red", "yellow", "green"],
         "star": 1,
-        "img": "/flags/w160/cg.jpg"
+        "img": "/flags/w160/cg.png"
     },
     {
         "name": "Costa Rica",
         "colors": ["red", "white", "blue", "green", "yellow"],
-        "img": "/flags/w160/cr.jpg"
+        "img": "/flags/w160/cr.png"
     },
     {
         "name": "Croatia",
         "colors": ["red", "white", "blue", "black", "yellow"],
-        "img": "/flags/w160/hr.jpg"
+        "img": "/flags/w160/hr.png"
     },
     {
         "name": "Cuba",
         "colors": ["red", "white", "blue"],
         "star": 1,
-        "img": "/flags/w160/cu.jpg"
+        "img": "/flags/w160/cu.png"
     },
     {
         "name": "Cyprus",
         "colors": ["yellow", "white", "green"],
-        "img": "/flags/w160/cy.jpg"
+        "img": "/flags/w160/cy.png"
     },
     {
         "name": "Czechia",
         "colors": ["blue", "white", "red"],
-        "img": "/flags/w160/cz.jpg"
+        "img": "/flags/w160/cz.png"
     },
     {
         "name": "Denmark",
         "colors": ["white", "red"],
-        "img": "/flags/w160/dk.jpg"
+        "img": "/flags/w160/dk.png"
     },
     {
         "name": "Djibouti",
         "colors": ["white", "red", "blue", "green"],
         "star": 1,
-        "img": "/flags/w160/dj.jpg"
+        "img": "/flags/w160/dj.png"
     },
     {
         "name": "Dominica",
         "colors": ["white", "red", "yellow", "black", "green", "blue"],
         "star": 10,
-        "img": "/flags/w160/dm.jpg"
+        "img": "/flags/w160/dm.png"
     },
     {
         "name": "Dominican Republic",
         "colors": ["white", "red", "blue", "green", "yellow"],
-        "img": "/flags/w160/do.jpg"
+        "img": "/flags/w160/do.png"
     },
     {
         "name": "D.R.C.",
         "fullname": "Democratic Republic of Congo",
         "colors": ["yellow", "red", "blue"],
         "star": 1,
-        "img": "/flags/w160/cd.jpg"
+        "img": "/flags/w160/cd.png"
     },
     {
         "name": "Ecuador",
         "colors": ["yellow", "red", "blue", "green", "white"],
-        "img": "/flags/w160/ec.jpg"
+        "img": "/flags/w160/ec.png"
     },
     {
         "name": "Egypt",
         "colors": ["yellow", "red", "black", "white"],
-        "img": "/flags/w160/eg.jpg"
+        "img": "/flags/w160/eg.png"
     },
     {
         "name": "El Salvador",
         "colors": ["blue", "white", "red", "green", "yellow"],
-        "img": "/flags/w160/sv.jpg"
+        "img": "/flags/w160/sv.png"
     },
     {
         "name": "Equatorial Guinea",
         "colors": ["blue", "white", "green", "red", "yellow"],
-        "img": "/flags/w160/gq.jpg"
+        "img": "/flags/w160/gq.png"
     },
     {
         "name": "Eritrea",
         "colors": ["blue", "yellow", "green", "red"],
-        "img": "/flags/w160/er.jpg"
+        "img": "/flags/w160/er.png"
     },
     {
         "name": "Estonia",
         "colors": ["blue", "black", "white"],
-        "img": "/flags/w160/ee.jpg"
+        "img": "/flags/w160/ee.png"
     },
     {
         "name": "Eswatini",
         "colors": ["blue", "black", "white", "red", "yellow"],
-        "img": "/flags/w160/sz.jpg"
+        "img": "/flags/w160/sz.png"
     },
     {
         "name": "Ethiopia",
         "colors": ["blue", "green", "red", "yellow"],
         "star": 1,
-        "img": "/flags/w160/et.jpg"
+        "img": "/flags/w160/et.png"
     },
     {
         "name": "Fiji",
         "colors": ["blue", "white", "green", "red", "yellow"],
-        "img": "/flags/w160/fj.jpg"
+        "img": "/flags/w160/fj.png"
     },
     {
         "name": "Finland",
         "colors": ["blue", "white"],
-        "img": "/flags/w160/fi.jpg"
+        "img": "/flags/w160/fi.png"
     },
     {
         "name": "France",
         "colors": ["blue", "white", "red"],
-        "img": "/flags/w160/fr.jpg"
+        "img": "/flags/w160/fr.png"
     },
     {
         "name": "Gabon",
         "colors": ["blue", "yellow", "green"],
-        "img": "/flags/w160/ga.jpg"
+        "img": "/flags/w160/ga.png"
     },
     {
         "name": "Gambia",
         "colors": ["blue", "white", "red", "green"],
-        "img": "/flags/w160/gm.jpg"
+        "img": "/flags/w160/gm.png"
     },
     {
         "name": "Georgia",
         "colors": ["white", "red"],
-        "img": "/flags/w160/ge.jpg"
+        "img": "/flags/w160/ge.png"
     },
     {
         "name": "Germany",
         "colors": ["black", "red", "yellow"],
-        "img": "/flags/w160/de.jpg"
+        "img": "/flags/w160/de.png"
     },
     {
         "name": "Ghana",
         "colors": ["black", "green", "red", "yellow"],
         "star": 1,
-        "img": "/flags/w160/gh.jpg"
+        "img": "/flags/w160/gh.png"
     },
     {
         "name": "Greece",
         "colors": ["blue", "white"],
-        "img": "/flags/w160/gr.jpg"
+        "img": "/flags/w160/gr.png"
     },
     {
         "name": "Grenada",
         "colors": ["green", "red", "yellow"],
         "star": 7,
-        "img": "/flags/w160/gd.jpg"
+        "img": "/flags/w160/gd.png"
     },
     {
         "name": "Guatemala",
         "colors": ["green", "white", "yellow", "blue", "red"],
-        "img": "/flags/w160/gt.jpg"
+        "img": "/flags/w160/gt.png"
     },
     {
         "name": "Guinea",
         "colors": ["green", "yellow", "red"],
-        "img": "/flags/w160/gn.jpg"
+        "img": "/flags/w160/gn.png"
     },
     {
         "name": "Guinea-Bissau",
         "colors": ["green", "yellow", "red", "black"],
         "star": 1,
-        "img": "/flags/w160/gw.jpg"
+        "img": "/flags/w160/gw.png"
     },
     {
         "name": "Guyana",
         "colors": ["green", "yellow", "red", "black", "white"],
-        "img": "/flags/w160/gy.jpg"
+        "img": "/flags/w160/gy.png"
     },
     {
         "name": "Haiti",
         "colors": ["green", "red", "blue", "white", "yellow"],
-        "img": "/flags/w160/ht.jpg"
+        "img": "/flags/w160/ht.png"
     },
     {
         "name": "Honduras",
         "colors": ["blue", "white"],
-        "img": "/flags/w160/hn.jpg"
+        "img": "/flags/w160/hn.png"
     },
     {
         "name": "Hungary",
         "colors": ["red", "white", "green"],
-        "img": "/flags/w160/hu.jpg"
+        "img": "/flags/w160/hu.png"
     },
     {
         "name": "Iceland",
         "colors": ["red", "white", "blue"],
-        "img": "/flags/w160/is.jpg"
+        "img": "/flags/w160/is.png"
     },
     {
         "name": "India",
         "colors": ["orange", "white", "green", "blue"],
-        "img": "/flags/w160/in.jpg"
+        "img": "/flags/w160/in.png"
     },
     {
         "name": "Indonesia",
         "colors": ["red", "white"],
-        "img": "/flags/w160/id.jpg"
+        "img": "/flags/w160/id.png"
     },
     {
         "name": "Iran",
         "colors": ["red", "white", "green"],
-        "img": "/flags/w160/ir.jpg"
+        "img": "/flags/w160/ir.png"
     },
     {
         "name": "Iraq",
         "colors": ["red", "white", "green", "black"],
-        "img": "/flags/w160/iq.jpg"
+        "img": "/flags/w160/iq.png"
     },
     {
         "name": "Ireland",
         "colors": ["orange", "white", "green"],
-        "img": "/flags/w160/ie.jpg"
+        "img": "/flags/w160/ie.png"
     },
     {
         "name": "Israel",
         "colors": ["blue", "white"],
-        "img": "/flags/w160/il.jpg"
+        "img": "/flags/w160/il.png"
     },
     {
         "name": "Italy",
         "colors": ["green", "white", "red"],
-        "img": "/flags/w160/it.jpg"
+        "img": "/flags/w160/it.png"
     },
     {
         "name": "Jamaica",
         "colors": ["yellow", "green", "black"],
-        "img": "/flags/w160/jm.jpg"
+        "img": "/flags/w160/jm.png"
     },
     {
         "name": "Japan",
         "colors": ["red", "white"],
-        "img": "/flags/w160/jp.jpg"
+        "img": "/flags/w160/jp.png"
     },
     {
         "name": "Jordan",
         "colors": ["red", "white", "black", "green"],
-        "img": "/flags/w160/jo.jpg"
+        "img": "/flags/w160/jo.png"
     },
     {
         "name": "Kazakhstan",
         "colors": ["blue", "yellow"],
-        "img": "/flags/w160/kz.jpg"
+        "img": "/flags/w160/kz.png"
     },
     {
         "name": "Kenya",
         "colors": ["red", "black", "white", "green"],
-        "img": "/flags/w160/ke.jpg"
+        "img": "/flags/w160/ke.png"
     },
     {
         "name": "Kiribati",
         "colors": ["red", "blue", "white", "yellow"],
-        "img": "/flags/w160/ki.jpg"
+        "img": "/flags/w160/ki.png"
     },
     {
         "name": "Kosovo",
         "colors": ["white", "yellow", "blue"],
-        "img": "/flags/w160/xk.jpg"
+        "img": "/flags/w160/xk.png"
     },
     {
         "name": "Kuwait",
         "colors": ["red", "black", "white", "green"],
-        "img": "/flags/w160/kw.jpg"
+        "img": "/flags/w160/kw.png"
     },
     {
         "name": "Kyrgyzstan",
         "colors": ["red", "yellow"],
-        "img": "/flags/w160/kg.jpg"
+        "img": "/flags/w160/kg.png"
     },
     {
         "name": "Laos",
         "colors": ["red", "white", "blue"],
-        "img": "/flags/w160/la.jpg"
+        "img": "/flags/w160/la.png"
     },
     {
         "name": "Latvia",
         "colors": ["red", "white"],
-        "img": "/flags/w160/lv.jpg"
+        "img": "/flags/w160/lv.png"
     },
     {
         "name": "Lebanon",
         "colors": ["red", "white", "green"],
-        "img": "/flags/w160/lb.jpg"
+        "img": "/flags/w160/lb.png"
     },
     {
         "name": "Lesotho",
         "colors": ["blue", "white", "green", "black"],
-        "img": "/flags/w160/ls.jpg"
+        "img": "/flags/w160/ls.png"
     },
     {
         "name": "Liberia",
         "colors": ["blue", "white", "red"],
-        "img": "/flags/w160/lr.jpg"
+        "img": "/flags/w160/lr.png"
     },
     {
         "name": "Libya",
         "colors": ["black", "white", "red", "green"],
-        "img": "/flags/w160/ly.jpg"
+        "img": "/flags/w160/ly.png"
     },
     {
         "name": "Liechtenstein",
         "colors": ["blue", "yellow", "red"],
-        "img": "/flags/w160/li.jpg"
+        "img": "/flags/w160/li.png"
     },
     {
         "name": "Lithuania",
         "colors": ["green", "yellow", "red"],
-        "img": "/flags/w160/lt.jpg"
+        "img": "/flags/w160/lt.png"
     },
     {
         "name": "Luxembourg",
         "colors": ["blue", "white", "red"],
-        "img": "/flags/w160/lu.jpg"
+        "img": "/flags/w160/lu.png"
     },
     {
         "name": "Madagascar",
         "colors": ["green", "white", "red"],
-        "img": "/flags/w160/mg.jpg"
+        "img": "/flags/w160/mg.png"
     },
     {
         "name": "Malawi",
         "colors": ["green", "black", "red"],
-        "img": "/flags/w160/mw.jpg"
+        "img": "/flags/w160/mw.png"
     },
     {
         "name": "Malaysia",
         "colors": ["white", "blue", "red", "yellow"],
-        "img": "/flags/w160/my.jpg"
+        "img": "/flags/w160/my.png"
     },
     {
         "name": "Maldives",
         "colors": ["white", "green", "red"],
-        "img": "/flags/w160/mv.jpg"
+        "img": "/flags/w160/mv.png"
     },
     {
         "name": "Mali",
         "colors": ["yellow", "green", "red"],
-        "img": "/flags/w160/ml.jpg"
+        "img": "/flags/w160/ml.png"
     },
     {
         "name": "Malta",
         "colors": ["white", "red"],
-        "img": "/flags/w160/mt.jpg"
+        "img": "/flags/w160/mt.png"
     },
     {
         "name": "Marshall Islands",
         "colors": ["white", "orange", "blue"],
-        "img": "/flags/w160/mh.jpg"
+        "img": "/flags/w160/mh.png"
     },
     {
         "name": "Mauritania",
         "colors": ["yellow", "green", "red"],
-        "img": "/flags/w160/mr.jpg"
+        "img": "/flags/w160/mr.png"
     },
     {
         "name": "Mauritius",
         "colors": ["yellow", "green", "red", "blue"],
-        "img": "/flags/w160/mu.jpg"
+        "img": "/flags/w160/mu.png"
     },
     {
         "name": "Mexico",
         "colors": ["white", "green", "red", "blue", "yellow"],
-        "img": "/flags/w160/mx.jpg"
+        "img": "/flags/w160/mx.png"
     },
     {
         "name": "Micronesia",
         "colors": ["white", "blue"],
-        "img": "/flags/w160/fm.jpg"
+        "img": "/flags/w160/fm.png"
     },
     {
         "name": "Moldova",
         "colors": ["red", "blue", "yellow", "green"],
-        "img": "/flags/w160/md.jpg"
+        "img": "/flags/w160/md.png"
     },
     {
         "name": "Monaco",
         "colors": ["red", "white"],
-        "img": "/flags/w160/mc.jpg"
+        "img": "/flags/w160/mc.png"
     },
     {
         "name": "Mongolia",
         "colors": ["red", "blue", "yellow"],
-        "img": "/flags/w160/mn.jpg"
+        "img": "/flags/w160/mn.png"
     },
     {
         "name": "Montenegro",
         "colors": ["red", "yellow", "blue", "green"],
-        "img": "/flags/w160/me.jpg"
+        "img": "/flags/w160/me.png"
     },
     {
         "name": "Morocco",
         "colors": ["red", "green"],
-        "img": "/flags/w160/ma.jpg"
+        "img": "/flags/w160/ma.png"
     },
     {
         "name": "Mozambique",
         "colors": ["red", "white", "yellow", "black", "green"],
-        "img": "/flags/w160/mz.jpg"
+        "img": "/flags/w160/mz.png"
     },
     {
         "name": "Myanmar",
         "colors": ["red", "white", "yellow", "green"],
-        "img": "/flags/w160/mm.jpg"
+        "img": "/flags/w160/mm.png"
     },
     {
         "name": "Namibia",
         "colors": ["red", "white", "yellow", "green", "blue"],
-        "img": "/flags/w160/na.jpg"
+        "img": "/flags/w160/na.png"
     },
     {
         "name": "Nauru",
         "colors": ["white", "yellow", "blue"],
-        "img": "/flags/w160/nr.jpg"
+        "img": "/flags/w160/nr.png"
     },
     {
         "name": "Nepal",
         "colors": ["white", "red", "blue"],
-        "img": "/flags/w160/np.jpg"
+        "img": "/flags/w160/np.png"
     },
     {
         "name": "Netherlands",
         "colors": ["white", "red", "blue"],
-        "img": "/flags/w160/nl.jpg"
+        "img": "/flags/w160/nl.png"
     },
     {
         "name": "New Zealand",
         "colors": ["white", "red", "blue"],
-        "img": "/flags/w160/nz.jpg"
+        "img": "/flags/w160/nz.png"
     },
     {
         "name": "Nicaragua",
         "colors": ["white", "red", "orange", "yellow", "green", "blue"],
-        "img": "/flags/w160/ni.jpg"
+        "img": "/flags/w160/ni.png"
     },
     {
         "name": "Niger",
         "colors": ["white", "orange", "green"],
-        "img": "/flags/w160/ne.jpg"
+        "img": "/flags/w160/ne.png"
     },
     {
         "name": "Nigeria",
         "colors": ["white", "green"],
-        "img": "/flags/w160/ng.jpg"
+        "img": "/flags/w160/ng.png"
     },
     {
         "name": "North Korea",
         "colors": ["white", "red", "blue"],
         "star": 1,
-        "img": "/flags/w160/kp.jpg"
+        "img": "/flags/w160/kp.png"
     },
     {
         "name": "North Macedonia",
         "colors": ["red", "yellow"],
-        "img": "/flags/w160/mk.jpg"
+        "img": "/flags/w160/mk.png"
     },
     {
         "name": "Norway",
         "colors": ["red", "blue", "white"],
-        "img": "/flags/w160/no.jpg"
+        "img": "/flags/w160/no.png"
     },
     {
         "name": "Oman",
         "colors": ["red", "green", "white"],
-        "img": "/flags/w160/om.jpg"
+        "img": "/flags/w160/om.png"
     },
     {
         "name": "Pakistan",
         "colors": ["green", "white"],
-        "img": "/flags/w160/pk.jpg"
+        "img": "/flags/w160/pk.png"
     },
     {
         "name": "Palau",
         "colors": ["blue", "yellow"],
-        "img": "/flags/w160/pw.jpg"
+        "img": "/flags/w160/pw.png"
     },
     {
         "name": "Palestine",
         "colors": ["black", "white", "green", "red"],
-        "img": "/flags/w160/ps.jpg"
+        "img": "/flags/w160/ps.png"
     },
     {
         "name": "Panama",
         "colors": ["blue", "white", "red"],
-        "img": "/flags/w160/pa.jpg"
+        "img": "/flags/w160/pa.png"
     },
     {
         "name": "Papua New Guinea",
         "colors": ["black", "white", "red", "yellow"],
-        "img": "/flags/w160/pg.jpg"
+        "img": "/flags/w160/pg.png"
     },
     {
         "name": "Paraguay",
         "colors": ["blue", "white", "red", "green", "yellow", "black"],
-        "img": "/flags/w160/py.jpg"
+        "img": "/flags/w160/py.png"
     },
     {
         "name": "Peru",
         "colors": ["white", "red"],
-        "img": "/flags/w160/pe.jpg"
+        "img": "/flags/w160/pe.png"
     },
     {
         "name": "Philippines",
         "colors": ["blue", "white", "red", "yellow"],
-        "img": "/flags/w160/ph.jpg"
+        "img": "/flags/w160/ph.png"
     },
     {
         "name": "Poland",
         "colors": ["white", "red"],
-        "img": "/flags/w160/pl.jpg"
+        "img": "/flags/w160/pl.png"
     },
     {
         "name": "Portugal",
         "colors": ["blue", "white", "red", "yellow", "green"],
-        "img": "/flags/w160/pt.jpg"
+        "img": "/flags/w160/pt.png"
     },
     {
         "name": "Qatar",
         "colors": ["white", "red"],
-        "img": "/flags/w160/qa.jpg"
+        "img": "/flags/w160/qa.png"
     },
     {
         "name": "Romania",
         "colors": ["blue", "red", "yellow"],
-        "img": "/flags/w160/ro.jpg"
+        "img": "/flags/w160/ro.png"
     },
     {
         "name": "Russia",
         "colors": ["blue", "red", "white"],
-        "img": "/flags/w160/ru.jpg"
+        "img": "/flags/w160/ru.png"
     },
     {
         "name": "Rwanda",
         "colors": ["green", "yellow", "blue"],
-        "img": "/flags/w160/rw.jpg"
+        "img": "/flags/w160/rw.png"
     },
     {
         "name": "Saint Kitts & Nevis",
         "colors": ["green", "yellow", "black", "white", "red"],
-        "img": "/flags/w160/kn.jpg"
+        "img": "/flags/w160/kn.png"
     },
     {
         "name": "Saint Lucia",
         "colors": ["blue", "yellow", "black", "white"],
-        "img": "/flags/w160/lc.jpg"
+        "img": "/flags/w160/lc.png"
     },
     {
         "name": "Samoa",
         "colors": ["blue", "red", "white"],
-        "img": "/flags/w160/ws.jpg"
+        "img": "/flags/w160/ws.png"
     },
     {
         "name": "San Marino",
         "colors": ["blue", "yellow", "white", "green"],
-        "img": "/flags/w160/sm.jpg"
+        "img": "/flags/w160/sm.png"
     },
     {
         "name": "Sao Tome & Principe",
         "colors": ["black", "yellow", "red", "green"],
-        "img": "/flags/w160/st.jpg"
+        "img": "/flags/w160/st.png"
     },
     {
         "name": "Saudi Arabia",
         "colors": ["white", "green"],
-        "img": "/flags/w160/sa.jpg"
+        "img": "/flags/w160/sa.png"
     },
     {
         "name": "Senegal",
         "colors": ["yellow", "green", "red"],
-        "img": "/flags/w160/sn.jpg"
+        "img": "/flags/w160/sn.png"
     },
     {
         "name": "Serbia",
         "colors": ["yellow", "blue", "red", "white"],
-        "img": "/flags/w160/rs.jpg"
+        "img": "/flags/w160/rs.png"
     },
     {
         "name": "Seychelles",
         "colors": ["yellow", "blue", "red", "white", "green"],
-        "img": "/flags/w160/sc.jpg"
+        "img": "/flags/w160/sc.png"
     },
     {
         "name": "Sierra Leone",
         "colors": ["blue", "white", "green"],
-        "img": "/flags/w160/sl.jpg"
+        "img": "/flags/w160/sl.png"
     },
     {
         "name": "Singapore",
         "colors": ["red", "white"],
-        "img": "/flags/w160/sg.jpg"
+        "img": "/flags/w160/sg.png"
     },
     {
         "name": "Slovakia",
         "colors": ["red", "white", "blue"],
-        "img": "/flags/w160/sk.jpg"
+        "img": "/flags/w160/sk.png"
     },
     {
         "name": "Slovenia",
         "colors": ["red", "white", "blue", "yellow"],
-        "img": "/flags/w160/si.jpg"
+        "img": "/flags/w160/si.png"
     },
     {
         "name": "Solomon Islands",
         "colors": ["green", "white", "blue", "yellow"],
-        "img": "/flags/w160/sb.jpg"
+        "img": "/flags/w160/sb.png"
     },
     {
         "name": "Somalia",
         "colors": ["white", "blue"],
-        "img": "/flags/w160/so.jpg"
+        "img": "/flags/w160/so.png"
     },
     {
         "name": "South Africa",
         "colors": ["white", "blue", "black", "yellow", "green", "red"],
-        "img": "/flags/w160/za.jpg"
+        "img": "/flags/w160/za.png"
     },
     {
         "name": "South Korea",
         "colors": ["white", "blue", "black", "red"],
-        "img": "/flags/w160/kr.jpg"
+        "img": "/flags/w160/kr.png"
     },
     {
         "name": "South Sudan",
         "colors": ["white", "blue", "black", "red", "yellow", "green"],
-        "img": "/flags/w160/ss.jpg"
+        "img": "/flags/w160/ss.png"
     },
     {
         "name": "Spain",
         "colors": ["white", "blue", "red", "yellow", "green"],
-        "img": "/flags/w160/es.jpg"
+        "img": "/flags/w160/es.png"
     },
     {
         "name": "Sri Lanka",
         "colors": ["orange", "red", "yellow", "green"],
-        "img": "/flags/w160/lk.jpg"
+        "img": "/flags/w160/lk.png"
     },
     {
         "name": "Sudan",
         "colors": ["black", "white", "green", "red"],
-        "img": "/flags/w160/sd.jpg"
+        "img": "/flags/w160/sd.png"
     },
     {
         "name": "Suriname",
         "colors": ["yellow", "white", "green", "red"],
-        "img": "/flags/w160/sr.jpg"
+        "img": "/flags/w160/sr.png"
     },
     {
         "name": "S.V. & G.",
         "fullname": "Saint Vincent & The Grenadines",
         "colors": ["blue", "yellow", "green"],
-        "img": "/flags/w160/vc.jpg"
+        "img": "/flags/w160/vc.png"
     },
     {
         "name": "Sweden",
         "colors": ["yellow", "blue"],
-        "img": "/flags/w160/se.jpg"
+        "img": "/flags/w160/se.png"
     },
     {
         "name": "Switzerland",
         "colors": ["white", "red"],
-        "img": "/flags/w160/ch.jpg"
+        "img": "/flags/w160/ch.png"
     },
     {
         "name": "Syria",
         "colors": ["white", "red", "black", "green"],
-        "img": "/flags/w160/sy.jpg"
+        "img": "/flags/w160/sy.png"
     },
     {
         "name": "Taiwan (R.O.C.)",
         "fullname": "Taiwan (Republic of China)",
         "colors": ["white", "red", "blue"],
-        "img": "/flags/w160/tw.jpg"
+        "img": "/flags/w160/tw.png"
     },
     {
         "name": "Tajikistan",
         "colors": ["white", "red", "yellow", "green"],
-        "img": "/flags/w160/tj.jpg"
+        "img": "/flags/w160/tj.png"
     },
     {
         "name": "Tanzania",
         "colors": ["black", "blue", "yellow", "green"],
-        "img": "/flags/w160/tz.jpg"
+        "img": "/flags/w160/tz.png"
     },
     {
         "name": "Thailand",
         "colors": ["white", "blue", "red"],
-        "img": "/flags/w160/th.jpg"
+        "img": "/flags/w160/th.png"
     },
     {
         "name": "Timor-Leste",
         "colors": ["white", "black", "yellow", "red"],
-        "img": "/flags/w160/tl.jpg"
+        "img": "/flags/w160/tl.png"
     },
     {
         "name": "Togo",
         "colors": ["white", "green", "yellow", "red"],
-        "img": "/flags/w160/tg.jpg"
+        "img": "/flags/w160/tg.png"
     },
     {
         "name": "Tonga",
         "colors": ["white", "red"],
-        "img": "/flags/w160/to.jpg"
+        "img": "/flags/w160/to.png"
     },
     {
         "name": "Trinidad & Tobago",
         "colors": ["white", "red", "black"],
-        "img": "/flags/w160/tt.jpg"
+        "img": "/flags/w160/tt.png"
     },
     {
         "name": "Tunisia",
         "colors": ["white", "red"],
-        "img": "/flags/w160/tn.jpg"
+        "img": "/flags/w160/tn.png"
     },
     {
         "name": "Turkey",
         "colors": ["white", "red"],
-        "img": "/flags/w160/tr.jpg"
+        "img": "/flags/w160/tr.png"
     },
     {
         "name": "Turkmenistan",
         "colors": ["white", "red", "yellow", "green"],
-        "img": "/flags/w160/tm.jpg"
+        "img": "/flags/w160/tm.png"
     },
     {
         "name": "Tuvalu",
         "colors": ["white", "red", "yellow", "blue"],
-        "img": "/flags/w160/tv.jpg"
+        "img": "/flags/w160/tv.png"
     },
     {
         "name": "U.A.E.",
         "fullname": "United Arab Emirates",
         "colors": ["white", "red", "green", "black"],
-        "img": "/flags/w160/ae.jpg"
+        "img": "/flags/w160/ae.png"
     },
     {
         "name": "U.K.",
         "fullname": "United Kingdom of Great Britain & Northern Ireland",
         "colors": ["white", "red", "blue"],
-        "img": "/flags/w160/gb.jpg"
+        "img": "/flags/w160/gb.png"
     },
     {
         "name": "U.S.A.",
         "fullname": "United States of America",
         "colors": ["white", "red", "blue"],
-        "img": "/flags/w160/us.jpg"
+        "img": "/flags/w160/us.png"
     },
     {
         "name": "Uganda",
         "colors": ["white", "red", "black", "yellow"],
-        "img": "/flags/w160/ug.jpg"
+        "img": "/flags/w160/ug.png"
     },
     {
         "name": "Ukraine",
         "colors": ["blue", "yellow"],
-        "img": "/flags/w160/ua.jpg"
+        "img": "/flags/w160/ua.png"
     },
     {
         "name": "Uruguay",
         "colors": ["blue", "yellow", "white"],
-        "img": "/flags/w160/uy.jpg"
+        "img": "/flags/w160/uy.png"
     },
     {
         "name": "Uzbekistan",
         "colors": ["blue", "red", "white", "green"],
-        "img": "/flags/w160/uz.jpg"
+        "img": "/flags/w160/uz.png"
     },
     {
         "name": "Vanuatu",
         "colors": ["black", "red", "yellow", "green"],
-        "img": "/flags/w160/vu.jpg"
+        "img": "/flags/w160/vu.png"
     },
     {
         "name": "Vatican City",
         "colors": ["yellow", "red", "white"],
-        "img": "/flags/w160/va.jpg"
+        "img": "/flags/w160/va.png"
     },
     {
         "name": "Venezuela",
         "colors": ["blue", "red", "yellow", "white"],
-        "img": "/flags/w160/ve.jpg"
+        "img": "/flags/w160/ve.png"
     },
     {
         "name": "Vietnam",
         "colors": ["red", "yellow"],
-        "img": "/flags/w160/vn.jpg"
+        "img": "/flags/w160/vn.png"
     },
     {
         "name": "Yemen",
         "colors": ["red", "black", "white"],
-        "img": "/flags/w160/ye.jpg"
+        "img": "/flags/w160/ye.png"
     },
     {
         "name": "Zambia",
         "colors": ["red", "black", "green", "orange"],
-        "img": "/flags/w160/zm.jpg"
+        "img": "/flags/w160/zm.png"
     },
     {
         "name": "Zimbabwe",
         "colors": ["red", "black", "green", "yellow", "white"],
-        "img": "/flags/w160/zw.jpg"
+        "img": "/flags/w160/zw.png"
     }
 ]
