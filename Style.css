@@ -293,7 +293,7 @@ body {
 .modal {
     justify-content: center;
     align-items: center;
-    
+
     /* display: flex; */
     display: none;
     position: fixed;
@@ -735,8 +735,8 @@ input:checked + .slider:before {
     width: 4.6rem;
     height: 2.5rem;
     /* cursor: pointer; */
-    -o-object-fit: scale-down;
-    object-fit: scale-down;
+    -o-object-fit: contain;
+    object-fit: contain;
     /* margin: 0.25rem auto -0.1rem; */
     margin: 0.25rem auto -0.2rem;
     transition: opacity 150ms;
@@ -1042,8 +1042,8 @@ input:checked + .slider:before {
 #flagglepic {
     width: 23rem;
     height: 12rem;
-    -o-object-fit: scale-down;
-    object-fit: scale-down;
+    -o-object-fit: contain;
+    object-fit: contain;
     /* border: 0.05rem solid grey; */
     -webkit-filter: drop-shadow(0 0 0.2rem rgba(0, 0, 0, 0.5));
     filter: drop-shadow(0 0 0.2rem rgba(0, 0, 0, 0.5));

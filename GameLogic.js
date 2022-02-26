@@ -372,6 +372,8 @@ function showResults() {
         }
     }
     document.getElementById("gameoverresult").innerHTML = resultMsg;
+    document.getElementById("flagglepic").width = 460;
+    document.getElementById("flagglepic").height = 240;
     document.getElementById("flagglepic").src = countries[countryIndex].img;
     let bigFlagglePic = new Image();
     bigFlagglePic.width = 460;
@@ -773,7 +775,8 @@ function loadLastGame() {
     let lastGameCookie = CookiesAPI.get("lastGame");
     if (lastGameCookie == undefined) {
         if (!window.sessionStorage.getItem("tutorialShown")) {
-            document.getElementById("howtotext").style.display = modalDisplayType;
+            document.getElementById("howtotext").style.display =
+                modalDisplayType;
             window.sessionStorage.setItem("tutorialShown", "true");
         }
         return;
