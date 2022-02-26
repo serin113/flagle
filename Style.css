@@ -438,23 +438,14 @@ body {
     }
 }
 
-/* color example */
 .flaggletext {
-	position:;
 	position:relative;
 	display:inline-block;
- 	color:#ffcc00;
+    background: linear-gradient(to bottom, #0066cc 0%,#0066cc 50%,#ffcc00 50%,#ffcc00 100%);
+    -webkit-background-clip: text;
+            background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
-.flaggletext:before{
-	content: attr(attribute);
-	color:#0066cc;
-	position:absolute;
-	top:0;
-	left:0;
-	height:50%;
-	overflow:hidden;
-}
-/* end */
 
 .wavy span {
     position: relative;
