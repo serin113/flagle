@@ -12,6 +12,7 @@ Cookies:
         guesses (list of dicts)
             type (string=color, null=flag)
             index (int)
+            correct (bool)
 
     stats_d_totalWins (int)
     stats_d_totalGames (int)
@@ -55,6 +56,7 @@ const resultMsgs_lose = [
     "Nice try",
 ];
 const seedOverride = null;
+const showResultsDelay = 1250;
 const debug = false;
 
 function logger(msg) {

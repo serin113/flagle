@@ -27,9 +27,8 @@ body {
     background-color: white;
     color: black;
     z-index: 101;
-    transition: 
-        visibility 1000ms cubic-bezier(.88,.04,.92,.02),
-        opacity 1000ms cubic-bezier(.88,.04,.92,.02);
+    transition: visibility 1000ms cubic-bezier(0.88, 0.04, 0.92, 0.02),
+        opacity 1000ms cubic-bezier(0.88, 0.04, 0.92, 0.02);
 }
 
 #GameResults {
@@ -50,12 +49,21 @@ body {
     background: rgb(27, 27, 27);
 }
 
-.dark .flagpic {
+.dark .flagbutton .flagpic {
     opacity: 0.75;
 }
 
-.dark .flagbutton:hover .flagpic {
+.dark .flagbutton[data-disabled] > * {
+    opacity: 0.1;
+}
+
+.dark .flagbutton:hover .flagpic,
+.dark .flagbutton_flaggle .flagpic {
     opacity: 1;
+}
+
+.dark .flagbutton[data-disabled]:hover > * {
+    opacity: 0.1;
 }
 
 /* .dark_flaggletext {
@@ -92,16 +100,22 @@ body {
 }
 
 .dark .guessindicators.purple {
-    border-color: rgb(75, 75, 75);
-    background: rgb(132, 132, 220);
+    /* border-color: rgb(75, 75, 75); */
+    border-color: rgb(112, 112, 184);
+    background: rgb(112, 112, 184);
 }
 
-.dark #guesses,
+.dark #middlediv:active,
 .dark #randomflaggle,
 .dark #dailyflaggle,
 .dark #sharebutton,
-.dark .displaybuttons {
+.dark .displaybuttons,
+.dark #middlediv {
     box-shadow: 0 0.15rem 0.25rem rgba(149, 149, 226, 0.5);
+}
+
+.dark #guesses {
+    box-shadow: 0 0 0 rgba(149, 149, 226, 0);
 }
 
 .dark .displaybuttons:active:not([disabled]) {
@@ -113,14 +127,21 @@ body {
 }
 
 .dark #middlediv {
-    background: rgb(27, 27, 27);
-    border: 0.05rem solid rgb(27, 27, 27);
+    /* background: rgb(37, 37, 37); */
+    background: rgb(43, 43, 43);
+    /* border: 0.05rem solid rgb(27, 27, 27); */
+    /* border: 0.05rem solid rgb(37, 37, 37); */
+    border: 0.05rem solid rgb(43, 43, 43);
     color: white;
 }
 
 .dark #keyscontainer {
     background: rgb(27, 27, 27);
-    background: linear-gradient(180deg, rgba(27, 27, 27, 0) 0%, rgb(27, 27, 27) 75%);
+    background: linear-gradient(
+        180deg,
+        rgba(27, 27, 27, 0) 0%,
+        rgb(27, 27, 27) 75%
+    );
 }
 
 .dark .flagbutton {
@@ -146,7 +167,6 @@ body {
     width: 26rem;
     padding-top: 0.5rem;
     margin: 0 auto;
-
 }
 
 #MainHeaderText {
@@ -185,7 +205,11 @@ body {
     bottom: 0;
     padding: 0.5rem;
     background: rgb(255, 255, 255);
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 5%, rgb(255, 255, 255) 100%);
+    background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0) 5%,
+        rgb(255, 255, 255) 100%
+    );
 }
 
 #colorkeys {
@@ -212,7 +236,8 @@ body {
     cursor: pointer;
     /* box-shadow: 0 0.15rem 0.5rem rgba(0, 0, 0, 0.75); */
     box-shadow: 0 0.15rem 0.5rem rgba(0, 0, 0, 1);
-    transition: border-width 150ms, box-shadow 150ms, opacity 150ms, visibility 150ms, scale 150ms;
+    transition: border-width 150ms, box-shadow 150ms, opacity 150ms,
+        visibility 150ms, scale 150ms;
     /* flex-grow: 1; */
 }
 
@@ -257,7 +282,7 @@ body {
 }
 
 #orange {
-    background: orange;
+    background: rgb(255, 123, 0);
 }
 
 /* The Modal (background) */
@@ -401,7 +426,7 @@ body {
         color: red;
     }
     20% {
-        color: orange;
+        color: rgb(255, 123, 0);
     }
     40% {
         color: rgb(255, 209, 4);
@@ -422,7 +447,7 @@ body {
         color: red;
     }
     20% {
-        color: orange;
+        color: rgb(255, 123, 0);
     }
     40% {
         color: rgb(255, 209, 4);
@@ -439,11 +464,17 @@ body {
 }
 
 .flaggletext {
-	position:relative;
-	display:inline-block;
-    background: linear-gradient(to bottom, #0066cc 0%,#0066cc 50%,#ffcc00 50%,#ffcc00 100%);
+    position: relative;
+    display: inline-block;
+    background: linear-gradient(
+        to bottom,
+        #0066cc 0%,
+        #0066cc 50%,
+        #ffcc00 50%,
+        #ffcc00 100%
+    );
     -webkit-background-clip: text;
-            background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
@@ -670,15 +701,24 @@ input:checked + .slider:before {
     width: 4.95rem;
     /* height: 2.5rem; */
     height: 5rem;
-    background-color: rgba(0,0,0,0.05);
+    background-color: rgba(0, 0, 0, 0.05);
     /* flex-grow: 1; */
     cursor: pointer;
     box-sizing: border-box;
     border: 0.1rem solid rgba(0, 0, 0, 0);
     box-shadow: 0 0 0.3rem rgba(0, 0, 0, 0.35);
-    transition: opacity 150ms, box-shadow 150ms, border 150ms;
+    transition: opacity 150ms, box-shadow 150ms, border 150ms, background-color 150ms;
     position: relative;
     transform: scale(1);
+}
+
+.flagbutton_flaggle {
+    background-color: rgba(132, 132, 220, 1);
+    color: white;
+}
+
+.flagbutton_flaggle .flagpic {
+    opacity: 1;
 }
 
 .flagbutton:hover {
@@ -688,22 +728,22 @@ input:checked + .slider:before {
 }
 
 .flagpic {
-    /* width: 4.75rem; */
-    width: 4.25rem;
+    /* width: 4.25rem; */
+    width: 4.6rem;
     height: 2.5rem;
     cursor: pointer;
     box-sizing: border-box;
-    border: ;
     -o-object-fit: scale-down;
     object-fit: scale-down;
-    margin: 0.25rem auto -0.1rem;
+    /* margin: 0.25rem auto -0.1rem; */
+    margin: 0.25rem auto -0.2rem;
     transition: opacity 150ms;
 }
 
 .flagbutton[data-disabled] {
     cursor: default;
     box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.15) inset;
-    background-color: rgba(0,0,0,0.025);
+    background-color: rgba(0, 0, 0, 0.025);
 }
 
 .flagbutton[data-disabled] > * {
@@ -712,7 +752,7 @@ input:checked + .slider:before {
 
 .flagbutton[data-disabled] .flagpic {
     -webkit-filter: grayscale(1);
-            filter: grayscale(1);
+    filter: grayscale(1);
 }
 
 .flagbutton[data-disabled]:hover {
@@ -763,26 +803,32 @@ input:checked + .slider:before {
 }
 
 #guesses {
-    border: 0.1rem solid rgb(132, 132, 220);
-    background-color: rgb(132, 132, 220);
-    height: 0.8rem;
+    /* border: 0.1rem solid rgb(132, 132, 220); */
+    border: none;
+    /* background-color: rgb(132, 132, 220); */
+    background-color: rgba(216, 216, 216, 0);
+    /* height: 0.8rem; */
+    height: 1.2rem;
     /* border-radius: 0.25rem; */
     width: auto;
+    margin: 0.3rem 0 0;
     padding: 0.1rem;
     vertical-align: middle;
-    box-shadow: 0 0.15rem 0.25rem rgba(0, 0, 0, 0.75);
-    transition: border-width 150ms, box-shadow 150ms, opacity 150ms;
+    box-shadow: 0 0.15rem 0.25rem rgba(0, 0, 0, 0);
+    transition: box-shadow 150ms, opacity 150ms, background-color 150ms;
     cursor: pointer;
-    box-sizing: content-box;
+    /* box-sizing: content-box; */
+    box-sizing: border-box;
     cursor: pointer;
     position: relative;
 }
 
-#guesses:active {
+#middlediv:active {
     top: 0.1rem;
-    background-color: rgb(119, 119, 175);
-    border: 0.1rem solid rgb(119, 119, 175);
-    box-shadow: 0rem 0rem 0rem rgba(0, 0, 0, 0.75);
+    /* background-color: rgb(119, 119, 175); */
+    /* border: 0.1rem solid rgb(119, 119, 175); */
+    /* box-shadow: 0rem 0rem 0rem rgba(0, 0, 0, 0.75); */
+    box-shadow: 0rem 0rem 0rem rgba(0, 0, 0, 0.5);
     opacity: 0.85;
 }
 
@@ -794,8 +840,8 @@ input:checked + .slider:before {
 }
 
 .guessindicators {
-    height: 0.8rem;
-    width: 0.8rem;
+    height: 0.9rem;
+    width: 0.9rem;
     border-radius: 50%;
     border: 0.05rem solid;
     border-color: rgb(143, 143, 143);
@@ -809,7 +855,8 @@ input:checked + .slider:before {
 }
 
 .guessindicators.flag_guessed {
-    border-radius: 0.15rem;
+    /* border-radius: 0.1rem; */
+    border-radius: 0;
     border: 0.1rem solid;
     border-color: rgb(37, 37, 37);
     background: rgb(37, 37, 37);
@@ -825,15 +872,16 @@ input:checked + .slider:before {
 }
 
 .guessindicators.guessed {
-    border-width: 0.1rem;
+    border-width: 0.3rem;
     border-color: rgb(37, 37, 37);
 }
 
 .guessindicators.purple {
-    border: 0.1rem solid;
+    border: 0.25rem solid;
     /* border-radius: 0.1rem; */
-    border-color: rgb(37, 37, 37);
-    background: rgb(132, 132, 220);
+    /* border-color: rgb(37, 37, 37); */
+    background: rgb(112, 112, 184);
+    border-color: rgb(112, 112, 184);
 }
 
 .guessindicators.guessed.green {
@@ -865,7 +913,7 @@ input:checked + .slider:before {
 }
 
 .guessindicators.guessed.orange {
-    background: orange;
+    background: rgb(255, 123, 0);
 }
 
 .displaybuttons {
@@ -993,9 +1041,13 @@ input:checked + .slider:before {
 }
 
 #flagglepic {
-    width: 15rem;
-    max-height: 12rem;
-    border: 0.05rem solid grey;
+    width: 23rem;
+    height: 12rem;
+    -o-object-fit: scale-down;
+    object-fit: scale-down;
+    /* border: 0.05rem solid grey; */
+    -webkit-filter: drop-shadow(0 0 0.2rem rgba(0, 0, 0, 0.5));
+    filter: drop-shadow(0 0 0.2rem rgba(0, 0, 0, 0.5));
     margin-top: 1rem;
 }
 
@@ -1050,18 +1102,20 @@ input:checked + .slider:before {
 /*Middle div*/
 
 #middlediv {
-    width: 7.5rem;
+    width: 8rem;
     /* margin-right: auto;
     margin-left: auto; */
     position: -webkit-sticky;
     position: sticky;
     top: 0.5rem;
     z-index: 5;
-    background: white;
-    border: 0.05rem solid white;
+    background: rgb(245, 245, 245);
+    border: 0.05rem solid rgb(245, 245, 245);
     color: black;
+    box-shadow: 0 0.15rem 0.35rem rgba(0, 0, 0, 0.25);
     /* border-radius: 0.5rem; */
-    padding-bottom: 0.25rem;
+    /* padding-bottom: 0.4rem; */
+    padding: 0 0 0.4rem;
 }
 
 #drnotiftext {
@@ -1216,7 +1270,7 @@ input:checked + .slider:before {
 }
 
 #demoorange {
-    background: orange;
+    background: rgb(255, 123, 0);
     opacity: 0.1;
     transform: scale(0.9);
     /* border-width: 0.2rem; */
@@ -1254,7 +1308,7 @@ input:checked + .slider:before {
 }
 
 #textorange {
-    color: orange;
+    color: rgb(255, 123, 0);
 }
 
 #textgreen {
@@ -1266,5 +1320,4 @@ input:checked + .slider:before {
     margin-top: 0.5rem;
     display: inline-block;
     font: 0.5rem;
-}
 }
