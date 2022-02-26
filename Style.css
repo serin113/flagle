@@ -800,7 +800,7 @@ input:checked + .slider:before {
 }
 
 .guessindicators.flag_guessed {
-    /* border-radius: 0.1rem; */
+    border-radius: 0.15rem;
     border: 0.1rem solid;
     border-color: rgb(37, 37, 37);
     background: rgb(37, 37, 37);
