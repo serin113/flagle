@@ -1163,11 +1163,13 @@ input:checked + .slider:before {
 /* DemoColorKeys */
 
 #demokeyscontainer {
-    width: 48%;
+    width: 100%;
+    text-align: center;
+    align-content: center;
 }
 
 #democolorkeys {
-    width: 100%;
+    width: 47%;
     align-items: center;
     justify-content: center;
     margin: 0 auto;
@@ -1195,13 +1197,13 @@ input:checked + .slider:before {
     /* flex-grow: 1; */
 }
 
+.demotext {
+    width: 50%;
+}
+
 #demodiv {
     display: flex;
     width: 100%;
-}
-
-#demotext {
-    width: 52%;
 }
 
 #demoorange {
