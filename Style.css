@@ -123,6 +123,7 @@ body {
 }
 
 .dark .displaybuttons.disabled {
+    border: 0.1rem solid rgba(149, 149, 226, 0.425);
     background-color: rgba(149, 149, 226, 0.425);
 }
 
@@ -131,7 +132,7 @@ body {
     background: rgb(43, 43, 43);
     /* border: 0.05rem solid rgb(27, 27, 27); */
     /* border: 0.05rem solid rgb(37, 37, 37); */
-    border: 0.05rem solid rgb(43, 43, 43);
+    /* border: 0.05rem solid rgb(43, 43, 43); */
     color: white;
 }
 
@@ -712,7 +713,7 @@ input:checked + .slider:before {
     transform: scale(1);
 }
 
-.flagbutton_flaggle {
+.flagbutton_flaggle, #middlediv.enabled {
     background-color: rgba(132, 132, 220, 1);
     color: white;
 }
@@ -1110,7 +1111,8 @@ input:checked + .slider:before {
     top: 0.5rem;
     z-index: 5;
     background: rgb(245, 245, 245);
-    border: 0.05rem solid rgb(245, 245, 245);
+    /* border: 0.05rem solid rgb(245, 245, 245); */
+    border: none;
     color: black;
     box-shadow: 0 0.15rem 0.35rem rgba(0, 0, 0, 0.25);
     /* border-radius: 0.5rem; */
