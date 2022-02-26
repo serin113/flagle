@@ -1,3 +1,8 @@
+/* colors */
+/* darker: #6b1010 */
+/* main: #7E1212 */
+/*  */
+
 html {
     font-size: 20px;
 }
@@ -63,8 +68,8 @@ body {
 } */
 
 .dark_colorkeys {
-    color: rgb(132, 132, 220);
-    border-color: rgb(132, 132, 220);
+    color: #7E1212;
+    border-color: #7E1212;
 }
 
 .dark .guessindicators {
@@ -79,12 +84,12 @@ body {
 }
 
 .dark .guessindicators.current {
-    border-color: rgb(132, 132, 220);
+    border-color: #7E1212;
     background: rgb(70, 70, 70);
 }
 
 .dark .colors {
-    box-shadow: 0 0.15rem 0.5rem rgba(149, 149, 226, 0.75);
+    box-shadow: 0 0.15rem 0.5rem #7E1212;
 }
 
 .dark .colors[data-disabled] {
@@ -93,7 +98,7 @@ body {
 
 .dark .guessindicators.purple {
     border-color: rgb(75, 75, 75);
-    background: rgb(132, 132, 220);
+    background: #7E1212;
 }
 
 .dark #guesses,
@@ -519,11 +524,11 @@ body {
 }
 
 input:checked + .slider {
-    background-color: rgb(132, 132, 220);
+    background-color: #7E1212;
 }
 
 input:focus + .slider {
-    box-shadow: 0 0 0.05rem rgb(132, 132, 220);
+    box-shadow: 0 0 0.05rem #7E1212;
 }
 
 input:checked + .slider:before {
@@ -763,8 +768,8 @@ input:checked + .slider:before {
 }
 
 #guesses {
-    border: 0.1rem solid rgb(132, 132, 220);
-    background-color: rgb(132, 132, 220);
+    border: 0.1rem solid #7E1212;
+    background-color: #7E1212;
     height: 0.8rem;
     /* border-radius: 0.25rem; */
     width: auto;
@@ -780,8 +785,8 @@ input:checked + .slider:before {
 
 #guesses:active {
     top: 0.1rem;
-    background-color: rgb(119, 119, 175);
-    border: 0.1rem solid rgb(119, 119, 175);
+    background-color: #7E1212;
+    border: 0.1rem solid #7E1212;
     box-shadow: 0rem 0rem 0rem rgba(0, 0, 0, 0.75);
     opacity: 0.85;
 }
@@ -817,7 +822,7 @@ input:checked + .slider:before {
 
 .guessindicators.current {
     transform: scale(2);
-    border-color: rgb(132, 132, 220);
+    border-color: #7E1212;
     background: white;
     border-width: 0.1rem;
     margin-left: 0.5rem;
@@ -833,7 +838,7 @@ input:checked + .slider:before {
     border: 0.1rem solid;
     /* border-radius: 0.1rem; */
     border-color: rgb(37, 37, 37);
-    background: rgb(132, 132, 220);
+    background: #7E1212;
 }
 
 .guessindicators.guessed.green {
@@ -891,8 +896,8 @@ input:checked + .slider:before {
 
 .displaybuttons:active:not([disabled]) {
     top: 0.1rem;
-    background-color: rgb(119, 119, 175);
-    border: 0.1rem solid rgb(119, 119, 175);
+    background-color: #6b1010;
+    border: 0.1rem solid #6b1010;
     box-shadow: 0rem 0rem 0rem rgba(0, 0, 0, 0.5);
     opacity: 0.85;
 }
@@ -936,9 +941,9 @@ input:checked + .slider:before {
 
 #drchoiceleft.selected,
 #drchoiceright.selected {
-    background-color: rgb(132, 132, 220);
-    border: 0.1rem solid rgb(132, 132, 220);
-    border-bottom: 0.2rem solid rgb(100, 100, 153);
+    background-color: #7E1212;
+    border: 0.1rem solid #7E1212;
+    border-bottom: 0.2rem solid #6b1010;
     cursor: default;
 }
 
@@ -1100,7 +1105,7 @@ input:checked + .slider:before {
 
 .textlink {
     font-style: none;
-    color: rgb(132, 132, 220);
+    color: #7E1212;
     font-weight: bold;
     -webkit-text-decoration: none;
     text-decoration: none;
@@ -1135,7 +1140,7 @@ input:checked + .slider:before {
     width: 100%;
     height: 0.5rem;
     border-radius: 0.25rem;
-    background: rgb(132, 132, 220);
+    background: #7E1212;
     outline: none;
     transition: opacity 0.2s;
 }
@@ -1238,19 +1243,19 @@ input:checked + .slider:before {
 }
 
 .dark #demoorange {
-    color: rgb(132, 132, 220);
-    border-color: rgb(132, 132, 220);
+    color: #7E1212;
+    border-color: #7E1212;
 }
 
 .dark #demoyellow {
-    color: rgb(132, 132, 220);
-    border-color: rgb(132, 132, 220);
+    color: #7E1212;
+    border-color: #7E1212;
     box-shadow: 0 0.15rem 0.5rem rgba(149, 149, 226, 0.75);
 }
 
 .dark #demogreen {
-    color: rgb(132, 132, 220);
-    border-color: rgb(132, 132, 220);
+    color: #7E1212;
+    border-color: #7E1212);
 }
 
 #textorange {
