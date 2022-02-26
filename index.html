@@ -126,33 +126,39 @@
                 <h3 class="modalheadertext">How to Play</h3>
             </div>
             <div class="modal-body" id="howtomodalbody">
-                <p>It's a game of Guess Who for flags!</p>
                 <p>Guess the <b>FLAGLE</b> in 6 tries.</p>
                 <p>A guess is when you click on a color button or a flag.</p>
-            
                 <p>Press the <t class="colorchange">color buttons</t> to filter whether or not the <b>FLAGLE</b> contains the colors.</p>
 
                 <b>Example:</b>
-                <div id="demodiv">
-                    <div id="demokeyscontainer">
-                        <div id="democolorkeys">
-                            <div class="democolors" id="demoorange" data-color="orange">
-                            </div>
-                            <div class="democolors" id="demoyellow" data-color="yellow">
-                            </div>
-                            <div class="democolors" id="demogreen" data-color="green">
-                            </div>
+
+                <div id="demokeyscontainer">
+                    <div id="democolorkeys">
+                        <div class="democolors" id="demoorange" data-color="orange">
+                        </div>
+                        <div class="democolors" id="demoyellow" data-color="yellow">
+                        </div>
+                        <div class="democolors" id="demogreen" data-color="green">
                         </div>
                     </div>
+                </div>
 
-                    <div id="demotext">
+                <div id="demodiv">
+
+                    <div class="demotext">
                         <ul>
-                            <li>The <b>FLAGLE</b> does <b>NOT</b> contain <text id="textorange">orange</text></li>
-                            <li>The <b>FLAGLE</b> contains <text id="textgreen">green</text></li>
+                            <li>The <b>FLAGLE</b> does <b>NOT</b> contain <text id="textorange">orange</text>.</br>All flags with <text id="textorange">orange</text> will be <b>REMOVED</b>.</li>
                         </ul>
                     </div>
+
+                    <div class="demotext">
+                        <ul>
+                            <li>The <b>FLAGLE</b> contains <text id="textgreen">green</text>.</br>All flags with <text id="textgreen">green</text> will <b>REMAIN</b>.</li>
+                        </ul>
+                    </div>
+
                 </div>
-                
+
                 <text>You win by:</text>
                 <ul>
                     <li>Clicking on the correct flag <b>OR</b></li>
