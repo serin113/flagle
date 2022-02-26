@@ -189,9 +189,10 @@ function displayCountries() {
 
         let flag_img = new Image();
         flag_img.className = "flagpic";
-        flag_img.height = "50px";
-        flag_img.width = "85px";
+        flag_img.height = 50;
+        flag_img.width = 92;
         flag_img.src = x.img;
+        flag_img.loading = "lazy";
         flag_img.alt = "fullname" in x ? x.fullname : x.name;
         flag_button.appendChild(flag_img);
 
@@ -209,8 +210,8 @@ function displayCountries() {
 
 /* set the appearance for the guess counter at <index> */
 // zero-indexed
-// if color==null, country
-function setGuessCounter(index, color = null) {
+// if color==null, country type
+function setGuessCounter(index, color, correct) {
     let guessIndicator = document.getElementById("guesses");
     let guessIndicatorCurrent = guessIndicator.querySelector(
         ".guessindicators[data-index='" + index + "']"
@@ -228,7 +229,7 @@ function setGuessCounter(index, color = null) {
         guessIndicatorCurrent.classList.add("guessed");
         guessIndicatorCurrent.classList.add(color);
     }
-    if (hasFlaggle) {
+    if (correct) {
         guessIndicatorCurrent.classList.add("purple");
     }
 }
@@ -274,8 +275,9 @@ function enableButtons() {
         .querySelectorAll(".flagbutton")) {
         f.addEventListener("click", onClickButtons);
     }
+    document.getElementById("middlediv").classList.remove("enabled");
     document
-        .getElementById("guesses")
+        .getElementById("middlediv")
         .removeEventListener("click", showResults);
 }
 
@@ -293,10 +295,15 @@ function disableButtons() {
         .querySelectorAll(".flagbutton")) {
         f.removeEventListener("click", onClickButtons);
         if (f.dataset.index != countryIndex) {
+            f.classList.remove("flagbutton_flaggle")
             f.dataset.disabled = true;
         }
+        else {
+            f.classList.add("flagbutton_flaggle")
+        }
     }
-    document.getElementById("guesses").addEventListener("click", showResults);
+    document.getElementById("middlediv").classList.add("enabled");
+    document.getElementById("middlediv").addEventListener("click", showResults);
 }
 
 /* create a new element containing the guesses so far */
@@ -456,26 +463,32 @@ function onClickButtons() {
     if (isColorButton) {
         // color buttons
         currGuess.type = this.dataset.color;
-        setGuessCounter(tries - 1, this.dataset.color);
         filterFlags(this.dataset.color);
         this.dataset.disabled = true;
         if (!colorCheck(this.dataset.color)) {
+            currGuess.correct = false;
             this.dataset.wrong = true;
             resultText += icons.wrongColor;
+            setGuessCounter(tries - 1, this.dataset.color, false);
         } else {
+            currGuess.correct = true;
             resultText += icons.rightColor;
+            setGuessCounter(tries - 1, this.dataset.color, true);
         }
     } else {
         // flag buttons
         currGuess.type = null;
-        setGuessCounter(tries - 1);
         if (this.dataset.index != countryIndex) {
+            currGuess.correct = false;
             fadeFlagPic(this);
             resultText += icons.wrongFlag;
+            setGuessCounter(tries - 1, null, false);
         } else {
+            currGuess.correct = true;
             clickedFlaggle = true;
             hasFlaggle = true;
             resultText += icons.rightFlag;
+            setGuessCounter(tries - 1, null, true);
         }
     }
 
@@ -531,7 +544,9 @@ function onClickButtons() {
             g[0].classList.remove("current");
         }
         disableButtons();
-        showResults();
+        setTimeout(function(){
+            showResults()
+        }, showResultsDelay);
     }
 }
 
@@ -762,7 +777,7 @@ function loadLastGame() {
     resultText = lastGame.resultText;
     for (let i = 0; i < tries; i++) {
         if (i == tries - 1) hasFlaggle = lastGame.hasFlaggle;
-        setGuessCounter(i, lastGame.guesses[i].type);
+        setGuessCounter(i, lastGame.guesses[i].type, lastGame.guesses[i].correct);
     }
     let currentGuess = document
         .getElementById("guesses")
