@@ -153,13 +153,60 @@ async function fetchCountries() {
 async function countryRandomizerArray(count) {
     let countries = await fetchCountries();
     let chosenCountries = [];
-    currCount = 0;
+    let colorCombos = {};
+    let currCount = 0;
+    let colorToNum = {
+        white: 1,
+        red: 2,
+        orange: 4,
+        yellow: 8,
+        green: 16,
+        blue: 32,
+        black: 64,
+    };
+    let doofyDump = [];
     while (currCount < count) {
+        if (countries.length == 0) break;
         let randIndex = getRandomInt(0, countries.length);
-        chosenCountries.push(countries[randIndex]);
+        let currCountry = countries[randIndex];
+
+        /* if biasing generator */
+        if (biasRandomGen) {
+            /* turn color list into unique combo number */
+            let total = 0;
+            for (let c of currCountry.colors) {
+                total += colorToNum[c];
+            }
+            let totalString = total.toString();
+
+            /* check if adding current country exceeds a combo's threshold */
+            let tempScore =
+                totalString in colorCombos ? colorCombos[totalString] + 1 : 1;
+            if (tempScore > doofyThreshold) {
+                /* add country to a bin for later and skip to the next */
+                logger("doofy");
+                doofyDump.push(currCountry);
+                countries.splice(randIndex, 1);
+                continue;
+            }
+            /* count country into combo */
+            colorCombos[totalString] = tempScore;
+        }
+
+        chosenCountries.push(currCountry);
         countries.splice(randIndex, 1);
         currCount += 1;
     }
+
+    /* insert remaining needed to reach <count> */
+    while (currCount < count) {
+        chosenCountries.push(doofyDump[0]);
+        doofyDump.splice(0, 1);
+        currCount += 1;
+        logger("readd doofy");
+    }
+
+    logger(colorCombos);
     chosenCountries = mergeSort(chosenCountries);
     return chosenCountries;
 }
@@ -852,6 +899,7 @@ function refreshCookies() {
         "difficulty",
         "dailyMode",
         "darkMode",
+        "algoGenVersion",
         "stats_d_totalWins",
         "stats_d_totalGames",
         "stats_d_currentStreak",
@@ -866,6 +914,22 @@ function refreshCookies() {
             CookiesAPI.set(s, CookiesAPI.get(s));
         }
     }
+    let algoGenVersionCookie = CookiesAPI.get("algoGenVersion");
+    let resetLastGame = false;
+    if (algoGenVersionCookie == undefined) {
+        resetLastGame = true;
+    } else if (parseInt(algoGenVersionCookie) != algoGenVersion) {
+        resetLastGame = true;
+    }
+    if (resetLastGame) {
+        logger(
+            "resetting lastGame, new algoGenVersion: " +
+                algoGenVersion +
+                ", curr: " +
+                algoGenVersionCookie
+        );
+        CookiesAPI.remove("lastGame");
+    }
 }
 
 /* reset global variables to default values */
@@ -877,7 +941,6 @@ function resetGlobalVars() {
     currentCountryChoicesCount = countryChoicesCount;
     // number of enabled country buttons
     tries = 0; // number of tries (button pushes) so far
-    currDate = new Date(); // current date on page load
     resultText = ""; // game's share text
     isWin = null; // game state variable: null/true/false
     hasFlaggle = false; // flaggle is directly found
@@ -910,6 +973,8 @@ function avadaKedavra() {
 /* various game initializations */
 function init() {
     // initializations
+    
+    currDate = new Date(); // current date on page load
 
     /* refresh any existing cookies */
     refreshCookies();
@@ -973,6 +1038,7 @@ function init() {
 
 /* reload game */
 function reloadGame() {
+    logger("NEW GAME\n\n\n\n");
     if (refreshOnNewGame) location.reload();
     else {
         showLoadingScreen();
