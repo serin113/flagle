@@ -192,7 +192,7 @@ function displayCountries() {
         flag_img.height = 50;
         flag_img.width = 92;
         flag_img.src = x.img;
-        // flag_img.loading = "lazy";
+        flag_img.loading = "lazy";
         flag_img.alt = "fullname" in x ? x.fullname : x.name;
         flag_button.appendChild(flag_img);
 
@@ -362,6 +362,11 @@ function startCountdown() {
 /* update & display results in the GameResults modal */
 function showResults() {
     let resultMsg = "";
+    if (!dailyMode) {
+        document.getElementById("randomflaggle").classList.add("sticky");
+    } else {
+        document.getElementById("randomflaggle").classList.remove("sticky");
+    }
     if (isWin) {
         resultMsg = resultMsgs_win[tries - 1];
     } else {

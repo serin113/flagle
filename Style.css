@@ -1135,6 +1135,14 @@ input:checked + .slider:before {
     margin-right: 0.5rem;
 }
 
+#dailyflaggle.sticky,
+#randomflaggle.sticky {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0.75rem;
+    z-index: 5;
+}
+
 #flaglistnotif {
     text-align: center;
     font-weight: bold;
