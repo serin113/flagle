@@ -1,7 +1,13 @@
 TO DO:
-- Flag list
 - User links
-- Make modals scrollable
-- Implement new win logic
 - Test game reset without refresh
-- Preload flaggle
+
+Low Prio:
+- Win as custom event
+- Offline support
+
+Probably not:
+- Implement new win logic
+    - Win only on clicking flagle
+    - +1 guess
+- Flag list
