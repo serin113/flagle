@@ -1,6 +1,8 @@
 TO DO:
 - User links
 - Save game state for all difficulties
+- Offline mode
+    - Service workers
 
 Low Prio:
 - Guess distribution graph
