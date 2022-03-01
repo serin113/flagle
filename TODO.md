@@ -1,5 +1,6 @@
 TO DO:
 - User links
+- Save game state for all difficulties
 
 Low Prio:
 - Guess distribution graph

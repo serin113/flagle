@@ -190,13 +190,16 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     setTheme();
     checkbox.addEventListener("change", setTheme);
-});
 
+    /* slider stuff */
+    document.getElementById("difficultySlider").min = defaultDifficulty;
+    document.getElementById("difficultySlider").max = maxDifficulty;
+});
 
 function hideLoadingScreen() {
     window.scrollTo({
         top: 0,
-        behavior: 'smooth'
+        behavior: "smooth",
     });
     let loading = document.getElementById("loading");
     loading.dataset.remove = true;

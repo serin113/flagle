@@ -2,10 +2,22 @@
 Cookies:
     darkMode (bool)
     dailyMode (bool)
-    difficulty (int)
-    algoGenVersion (int)        // changes when daily mode would change
-    lastGame (json)
-        date (string)
+    difficulty (int)            // only for random mode
+    algoGenVersion (int)        // change to refresh user cookies
+    randomSeed (string)         // random mode's seed
+                                // see init() and onChangeMode()
+    lastGame_d (json)
+        seed (string)
+        isWin (bool)
+        index (int)
+        hasFlaggle (bool)
+        resultText (string)
+        guesses (list of dicts)
+            type (string=color, null=flag)
+            index (int)
+            correct (bool)
+    lastGame_r (json)
+        seed (string)
         isWin (bool)
         index (int)
         hasFlaggle (bool)
@@ -30,7 +42,13 @@ SessionStorage:
 */
 
 // configs
-const algoGenVersion = 1;
+let CookiesAPI = Cookies.withAttributes({
+    sameSite: "strict",
+    expires: 365,
+    path: "/",
+}); // Cookies object with default cookie attributes
+
+const algoGenVersion = 2;
 
 const defaultDifficulty = 30;
 const maxDifficulty = 130;
@@ -46,19 +64,19 @@ const icons = {
 };
 const resultMsgs_win = [
     // least to most tries
-    "Superb!",
-    "Amazing!",
-    "Bravo!",
-    "Great!",
-    "Nice!",
-    "Phew...",
+    icons.flaggle + "  Superb!  " + icons.flaggle,
+    icons.flaggle + "  Amazing!  " + icons.flaggle,
+    icons.flaggle + "  Bravo!  " + icons.flaggle,
+    icons.flaggle + "  Great!  " + icons.flaggle,
+    icons.flaggle + "  Nice!  " + icons.flaggle,
+    icons.flaggle + "  Phew...  " + icons.flaggle,
 ];
 const resultMsgs_lose = [
     // least to most tries
-    "So close!",
-    "Nice try",
+    icons.lose + "  So close!  " + icons.lose,
+    icons.lose + "  Nice try  " + icons.lose,
 ];
-const seedOverride = null;
+const soCloseThreshold = 4;
 const showResultsDelay = 1250;
 
 const refreshOnNewGame = false;

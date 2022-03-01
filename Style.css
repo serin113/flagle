@@ -31,8 +31,7 @@ body {
     background-color: white;
     color: black;
     z-index: 101;
-    transition: visibility 150ms,
-        opacity 150ms;
+    transition: none;
 }
 
 #loading[data-remove] {
@@ -252,7 +251,8 @@ body {
 .colors[data-disabled] {
     /* border-width: 0.05rem; */
     box-shadow: 0 0 0.1rem rgba(0, 0, 0, 0.5) inset;
-    transform: scale(0.875);
+    /* transform: scale(0.875); */
+    transform: scale(0.825);
 }
 
 .colors[data-disabled][data-wrong] {

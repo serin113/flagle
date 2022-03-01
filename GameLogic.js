@@ -14,11 +14,8 @@ let guesses = []; // list of guesses
 let dailyMode = true; // daily/random mode
 let clipboard_share = null; // ClipboardJS object for results sharetext
 let clipboard_stats = null; // ClipboardJS object for stats sharetext
-let CookiesAPI = Cookies.withAttributes({
-    sameSite: "strict",
-    expires: 365,
-    path: "/",
-}); // Cookies object with default cookie attributes
+let randomizerSeed = null; // seed for randomizer function
+let countdownDaily = null; // countdown timer for next daily flagle
 
 // helper functions
 
@@ -122,7 +119,7 @@ function MurmurHash3(key, seed = 0) {
 }
 
 /* initialize the randomizer function, default seed as date if <seed> is null */
-function initRandomizer(seedString = null) {
+function createRandomizer(seedString = null) {
     if (seedString == null) {
         seedString = currDate.toDateString();
     }
@@ -184,7 +181,7 @@ async function countryRandomizerArray(count) {
                 totalString in colorCombos ? colorCombos[totalString] + 1 : 1;
             if (tempScore > doofyThreshold) {
                 /* add country to a bin for later and skip to the next */
-                logger("doofy");
+                logger("doofy color combo, skipping " + currCountry.name);
                 doofyDump.push(currCountry);
                 countries.splice(randIndex, 1);
                 continue;
@@ -261,21 +258,24 @@ function setGuessCounter(index, color, correct) {
     let guessIndicatorCurrent = guessIndicator.querySelector(
         ".guessindicators[data-index='" + index + "']"
     );
-    guessIndicatorCurrent.classList.remove("current");
+    if (guessIndicatorCurrent)
+        guessIndicatorCurrent.classList.remove("current");
     if (index < maxTries - 1) {
         let guessIndicatorNext = guessIndicator.querySelector(
             ".guessindicators[data-index='" + (index + 1) + "']"
         );
         guessIndicatorNext.classList.add("current");
     }
-    if (color == null) {
-        guessIndicatorCurrent.classList.add("flag_guessed");
-    } else {
-        guessIndicatorCurrent.classList.add("guessed");
-        guessIndicatorCurrent.classList.add(color);
-    }
-    if (correct) {
-        guessIndicatorCurrent.classList.add("purple");
+    if (guessIndicatorCurrent) {
+        if (color == null) {
+            guessIndicatorCurrent.classList.add("flag_guessed");
+        } else {
+            guessIndicatorCurrent.classList.add("guessed");
+            guessIndicatorCurrent.classList.add(color);
+        }
+        if (correct) {
+            guessIndicatorCurrent.classList.add("purple");
+        }
     }
 }
 
@@ -285,14 +285,21 @@ function colorCheck(color) {
 }
 
 /* set country flag element as disabled, tally remaining countries */
-function fadeFlagPic(elem) {
+function fadeFlag(index) {
+    let elem = document
+        .getElementById("choices")
+        .querySelector(".flagbutton[data-index='" + index + "']");
+    if (!elem) return;
     elem.dataset.disabled = true;
-    elem.removeEventListener("click", onClickButtons);
+    elem.removeEventListener("click", onClickGameButtons);
+}
+function fadeFlag_updateVars(index) {
+    fadeFlag(index);
     currentCountryChoicesCount--;
 }
 
 /* remove flags not containing "color" */
-function filterFlags(color) {
+function fadeFlagsByColor(color) {
     let choices = document
         .getElementById("choices")
         .querySelectorAll(".flagbutton:not([data-disabled])");
@@ -300,11 +307,11 @@ function filterFlags(color) {
         let x_colors = countries[x.dataset.index].colors;
         if (colorCheck(color)) {
             if (!x_colors.includes(color)) {
-                fadeFlagPic(x);
+                fadeFlag_updateVars(x.dataset.index);
             }
         } else {
             if (x_colors.includes(color)) {
-                fadeFlagPic(x);
+                fadeFlag_updateVars(x.dataset.index);
             }
         }
     }
@@ -313,14 +320,14 @@ function filterFlags(color) {
 /* enable all flag & color buttons */
 function enableButtons() {
     for (let c of document.getElementById("colorkeys").children) {
-        c.addEventListener("click", onClickButtons);
+        c.addEventListener("click", onClickGameButtons);
         c.removeAttribute("data-disabled");
         c.removeAttribute("data-wrong");
     }
     for (let f of document
         .getElementById("choices")
         .querySelectorAll(".flagbutton")) {
-        f.addEventListener("click", onClickButtons);
+        f.addEventListener("click", onClickGameButtons);
         f.removeAttribute("data-disabled");
         f.classList.remove("flagbutton_flaggle");
     }
@@ -333,7 +340,7 @@ function enableButtons() {
 /* disable all flag & color buttons except the flaggle */
 function disableButtons() {
     for (let c of document.getElementById("colorkeys").children) {
-        c.removeEventListener("click", onClickButtons);
+        c.removeEventListener("click", onClickGameButtons);
         c.dataset.disabled = true;
         if (!colorCheck(c.dataset.color)) {
             c.dataset.wrong = true;
@@ -342,7 +349,7 @@ function disableButtons() {
     for (let f of document
         .getElementById("choices")
         .querySelectorAll(".flagbutton")) {
-        f.removeEventListener("click", onClickButtons);
+        f.removeEventListener("click", onClickGameButtons);
         if (f.dataset.index != countryIndex) {
             f.classList.remove("flagbutton_flaggle");
             f.dataset.disabled = true;
@@ -395,16 +402,28 @@ function updateCountdown(interval) {
         clearInterval(interval);
     }
 }
-
 /* start next daily flaggle countdowns */
 function startCountdown() {
-    logger("start countdown");
-    let lastGameCookie = CookiesAPI.get("lastGame");
-    if (lastGameCookie != undefined) {
-        updateCountdown();
-        let countdownDaily = setInterval(function () {
-            updateCountdown(countdownDaily);
-        }, 1000);
+    logger("trying to start countdown");
+    if (countdownDaily == null) {
+        let lastGameCookie = CookiesAPI.get("lastGame_d");
+        if (lastGameCookie != undefined) {
+            logger("saved daily game found, checking if out of date");
+            let lgdcObj = JSON.parse(lastGameCookie);
+            if (lgdcObj.seed == currDate.toDateString()) {
+                logger("within same date, starting countdown");
+                updateCountdown();
+                countdownDaily = setInterval(function () {
+                    updateCountdown(countdownDaily);
+                }, 1000);
+            } else {
+                logger("saved daily game out of date");
+            }
+        } else {
+            logger("daily mode not yet finished");
+        }
+    } else {
+        logger("countdown already started");
     }
 }
 
@@ -413,13 +432,18 @@ function showResults() {
     let resultMsg = "";
     if (!dailyMode) {
         document.getElementById("randomflaggle").classList.add("sticky");
+        document.getElementById("randomflaggle").classList.remove("disabled");
+        document.getElementById("randomflaggle").disabled = false;
+        document
+            .getElementById("randomflaggle")
+            .addEventListener("click", onClickRandomModeButton);
     } else {
         document.getElementById("randomflaggle").classList.remove("sticky");
     }
     if (isWin) {
         resultMsg = resultMsgs_win[tries - 1];
     } else {
-        if (currentCountryChoicesCount <= 4) {
+        if (currentCountryChoicesCount <= soCloseThreshold) {
             resultMsg = resultMsgs_lose[0];
         } else {
             resultMsg = resultMsgs_lose[1];
@@ -520,10 +544,8 @@ function showResults() {
 }
 
 /* handle clicks on flag and color buttons, check win status */
-function onClickButtons() {
-    logger("max count: " + countryChoicesCount);
-    logger("current count: " + currentCountryChoicesCount);
-    this.removeEventListener("click", onClickButtons);
+function onClickGameButtons() {
+    this.removeEventListener("click", onClickGameButtons);
     tries += 1;
 
     let isColorButton = "color" in this.dataset;
@@ -534,7 +556,7 @@ function onClickButtons() {
     if (isColorButton) {
         // color buttons
         currGuess.type = this.dataset.color;
-        filterFlags(this.dataset.color);
+        fadeFlagsByColor(this.dataset.color);
         this.dataset.disabled = true;
         if (!colorCheck(this.dataset.color)) {
             currGuess.correct = false;
@@ -551,7 +573,7 @@ function onClickButtons() {
         currGuess.type = null;
         if (this.dataset.index != countryIndex) {
             currGuess.correct = false;
-            fadeFlagPic(this);
+            fadeFlag_updateVars(this.dataset.index);
             resultText += icons.wrongFlag;
             setGuessCounter(tries - 1, null, false);
         } else {
@@ -562,6 +584,9 @@ function onClickButtons() {
             setGuessCounter(tries - 1, null, true);
         }
     }
+
+    logger("max count: " + countryChoicesCount);
+    logger("current count: " + currentCountryChoicesCount);
 
     // win/lose state checker
     if (clickedFlaggle) {
@@ -597,12 +622,13 @@ function onClickButtons() {
 
     guesses.push(currGuess);
 
+    saveLastGame();
+
     // indicate win/lose, disable buttons
     if (isWin != null) {
         saveGameStats();
         displayGameStats(dailyMode);
         if (dailyMode) {
-            saveLastGame();
             startCountdown();
         }
         if (isWin) {
@@ -625,16 +651,34 @@ function onClickButtons() {
 }
 
 /* click handler for daily mode button */
-function clickDailyModeButton() {
+function onClickDailyModeButton() {
+    // if (dailyMode) return;
     CookiesAPI.set("dailyMode", "true");
-    setGameMode();
-    reloadGame();
+    onChangeMode();
 }
-
 /* click handler for random mode button */
-function clickRandomModeButton() {
+function onClickRandomModeButton() {
+    // if (!dailyMode) return;
     CookiesAPI.set("dailyMode", "false");
-    setGameMode();
+    onChangeMode();
+}
+/* create randomSeed cookie when game mode is changed */
+function onChangeMode() {
+    let randomSeedCookie = CookiesAPI.get("randomSeed");
+    let lastGameRandomCookie = CookiesAPI.get("lastGame_r");
+    if (randomSeedCookie == undefined || isWin != null) {
+        logger("setting randomizer seed");
+        randomizerSeed = Math.random().toString();
+        if (lastGameRandomCookie != undefined) {
+            let lgrcObj = JSON.parse(lastGameRandomCookie);
+            if (lgrcObj.isWin == null) {
+                logger("seed loaded from last game");
+                randomizerSeed = lgrcObj.seed;
+            }
+        }
+        CookiesAPI.set("randomSeed", randomizerSeed);
+    }
+    loadGameMode();
     reloadGame();
 }
 
@@ -780,11 +824,11 @@ function displayGameStats(showDaily) {
 }
 
 /* set game mode based on selection */
-function setGameMode() {
+function loadGameMode() {
     let dailyModeCookie = CookiesAPI.get("dailyMode");
     if (dailyModeCookie === undefined) {
         CookiesAPI.set("dailyMode", String(dailyMode));
-        dailyModeCookie = CookiesAPI.get("dailyMode");
+        dailyModeCookie = String(dailyMode);
     }
     if (dailyModeCookie === "true") {
         dailyMode = true;
@@ -793,7 +837,13 @@ function setGameMode() {
         document.getElementById("dailyflaggle").disabled = true;
         document
             .getElementById("dailyflaggle")
-            .removeEventListener("click", clickDailyModeButton);
+            .removeEventListener("click", onClickDailyModeButton);
+
+        document.getElementById("randomflaggle").classList.remove("disabled");
+        document.getElementById("randomflaggle").disabled = false;
+        document
+            .getElementById("randomflaggle")
+            .addEventListener("click", onClickRandomModeButton);
     } else {
         dailyMode = false;
         document.getElementById("drnotiftext").innerHTML = "RANDOM";
@@ -801,31 +851,56 @@ function setGameMode() {
         document.getElementById("dailyflaggle").disabled = false;
         document
             .getElementById("dailyflaggle")
-            .addEventListener("click", clickDailyModeButton);
+            .addEventListener("click", onClickDailyModeButton);
+
+        document.getElementById("randomflaggle").classList.add("disabled");
+        document.getElementById("randomflaggle").classList.remove("sticky");
+        document.getElementById("randomflaggle").disabled = true;
+        document
+            .getElementById("randomflaggle")
+            .removeEventListener("click", onClickRandomModeButton);
     }
     displayGameStats(dailyMode);
 }
 
 /* save game state into lastGame cookie */
 function saveLastGame() {
-    logger("saving game");
-    if (isWin == null) {
-        logger("skip");
+    if (!dailyMode && isWin != null) {
+        logger("removing random last game");
+        CookiesAPI.remove("randomSeed");
+        CookiesAPI.remove("lastGame_r");
         return;
     }
+    logger("saving game");
     let lastGame_temp = {};
-    lastGame_temp.date = currDate.toDateString();
+    if (dailyMode) {
+        lastGame_temp.seed = currDate.toDateString();
+    } else {
+        lastGame_temp.seed = randomizerSeed;
+    }
     lastGame_temp.isWin = isWin;
     lastGame_temp.index = countryIndex;
     lastGame_temp.hasFlaggle = hasFlaggle;
     lastGame_temp.resultText = resultText;
     lastGame_temp.guesses = guesses;
-    CookiesAPI.set("lastGame", JSON.stringify(lastGame_temp));
+    if (isWin == null) {
+        logger("unfinished game, saving");
+        // return;
+    }
+    let lastGameCookiePrefix = dailyMode ? "_d" : "_r";
+    CookiesAPI.set(
+        "lastGame" + lastGameCookiePrefix,
+        JSON.stringify(lastGame_temp)
+    );
 }
 
 /* load game state from lastGame cookie into globals */
 function loadLastGame() {
-    let lastGameCookie = CookiesAPI.get("lastGame");
+    logger("loading last game");
+    startCountdown();
+    let dailyModeCookieBool = !(CookiesAPI.get("dailyMode") == "false");
+    let lastGameCookiePrefix = dailyModeCookieBool ? "_d" : "_r";
+    let lastGameCookie = CookiesAPI.get("lastGame" + lastGameCookiePrefix);
     if (lastGameCookie == undefined) {
         if (!window.sessionStorage.getItem("tutorialShown")) {
             document.getElementById("howtotext").style.display =
@@ -834,16 +909,20 @@ function loadLastGame() {
         }
         return;
     }
-    logger("loading last game");
-    if (CookiesAPI.get("dailyMode") === "false") {
-        startCountdown();
-        return;
-    }
+    // if (CookiesAPI.get("dailyMode") === "false") {
+    //     startCountdown();
+    //     return;
+    // }
     let lastGame = JSON.parse(lastGameCookie);
-    if (currDate.toDateString() != lastGame.date) {
-        CookiesAPI.remove("lastGame");
-        return;
+    logger("loading last game");
+    logger(lastGame);
+    if (dailyModeCookieBool) {
+        if (currDate.toDateString() != lastGame.seed) {
+            CookiesAPI.remove("lastGame_d");
+            return;
+        }
     }
+    randomizerSeed = lastGame.seed;
     isWin = lastGame.isWin;
     countryIndex = lastGame.index;
     tries = lastGame.guesses.length;
@@ -856,13 +935,31 @@ function loadLastGame() {
             lastGame.guesses[i].correct
         );
     }
-    let currentGuess = document
-        .getElementById("guesses")
-        .querySelector(".current");
-    if (currentGuess) currentGuess.classList.remove("current");
-    disableButtons();
-    showResults();
-    startCountdown();
+    guesses = lastGame.guesses;
+    if (isWin != null) {
+        let currentGuess = document
+            .getElementById("guesses")
+            .querySelector(".current");
+        if (currentGuess) currentGuess.classList.remove("current");
+        disableButtons();
+        showResults();
+    } else {
+        for (let g of guesses) {
+            if (g.type == null) {
+                fadeFlag_updateVars(g.index);
+            } else {
+                let colorButton = document.querySelector(
+                    "#colorkeys > .colors[data-color='" + g.type + "']"
+                );
+                colorButton.dataset.disabled = true;
+                if (!g.correct) {
+                    colorButton.dataset.wrong = true;
+                }
+                fadeFlagsByColor(g.type);
+            }
+            setGuessCounter(g.index, g.type, g.correct);
+        }
+    }
 }
 
 /* handle changes on difficulty slider */
@@ -875,12 +972,18 @@ function onInputSlider() {
         window.onclick = function (event) {
             if (event.target == modalset) {
                 document.getElementById("settingstext").style.display = "none";
-                reloadGame();
+                // CookiesAPI.remove("randomSeed");
+                CookiesAPI.remove("lastGame_r");
+                // reloadGame();
+                onChangeMode();
             }
         };
         document.getElementById("closesettings").onclick = function (event) {
             document.getElementById("settingstext").style.display = "none";
-            reloadGame();
+            // CookiesAPI.remove("randomSeed");
+            CookiesAPI.remove("lastGame_r");
+            // reloadGame();
+            onChangeMode();
         };
     } else {
         window.onclick = function (event) {
@@ -895,11 +998,12 @@ function onInputSlider() {
 /* refresh cookies to extend expiry dates */
 function refreshCookies() {
     let cookieStrs = [
-        "lastGame",
         "difficulty",
         "dailyMode",
         "darkMode",
-        "algoGenVersion",
+        "randomSeed",
+        "lastGame_d",
+        "lastGame_r",
         "stats_d_totalWins",
         "stats_d_totalGames",
         "stats_d_currentStreak",
@@ -921,15 +1025,16 @@ function refreshCookies() {
     } else if (parseInt(algoGenVersionCookie) != algoGenVersion) {
         resetLastGame = true;
     }
+    CookiesAPI.set("algoGenVersion", algoGenVersion);
     if (resetLastGame) {
-        CookiesAPI.set("algoGenVersion", algoGenVersion);
         logger(
             "resetting lastGame, new algoGenVersion: " +
                 algoGenVersion +
                 ", curr: " +
                 algoGenVersionCookie
         );
-        CookiesAPI.remove("lastGame");
+        CookiesAPI.remove("lastGame_r");
+        CookiesAPI.remove("lastGame_d");
     }
 }
 
@@ -947,16 +1052,21 @@ function resetGlobalVars() {
     hasFlaggle = false; // flaggle is directly found
     guesses = []; // list of guesses
     dailyMode = true; // daily/random mode
-    clipboard_share = null; // ClipboardJS object for results sharetext
-    clipboard_stats = null; // ClipboardJS object for stats sharetext
+    randomizerSeed = null; // seed for randomizer function
+    /*clipboard_share = null; // ClipboardJS object for results sharetext
+    clipboard_stats = null; // ClipboardJS object for stats sharetext */
 }
 
 /* reset game cookies, only for debugging */
 function avadaKedavra() {
-    CookiesAPI.remove("lastGame");
     CookiesAPI.remove("difficulty");
     CookiesAPI.remove("dailyMode");
     CookiesAPI.remove("darkMode");
+    CookiesAPI.remove("algoGenVersion");
+    CookiesAPI.remove("randomSeed");
+
+    CookiesAPI.remove("lastGame_r");
+    CookiesAPI.remove("lastGame_d");
 
     CookiesAPI.remove("stats_d_totalWins");
     CookiesAPI.remove("stats_d_totalGames");
@@ -974,7 +1084,7 @@ function avadaKedavra() {
 /* various game initializations */
 function init() {
     // initializations
-    
+
     currDate = new Date(); // current date on page load
 
     /* refresh any existing cookies */
@@ -983,13 +1093,13 @@ function init() {
     /* daily and random mode buttons */
     document
         .getElementById("dailyflaggle")
-        .addEventListener("click", clickDailyModeButton);
+        .addEventListener("click", onClickDailyModeButton);
     document
         .getElementById("randomflaggle")
-        .addEventListener("click", clickRandomModeButton);
+        .addEventListener("click", onClickRandomModeButton);
 
     /* set game mode */
-    setGameMode();
+    loadGameMode();
 
     /* difficulty slider */
     document
@@ -1011,17 +1121,6 @@ function init() {
         }
     }
 
-    /* initialize randomizer function */
-    if (seedOverride == null) {
-        if (dailyMode) {
-            initRandomizer();
-        } else {
-            initRandomizer(String(Math.random()));
-        }
-    } else {
-        initRandomizer(seedOverride);
-    }
-
     /* create and initialize guess counter based on <maxTries> */
     document.getElementById("guesses").innerHTML = "";
     for (let i = 0; i < maxTries; i++) {
@@ -1035,6 +1134,22 @@ function init() {
     document.getElementById("nextdailystats").style.display = "none";
     document.getElementById("dailycountdowntext_stats").innerHTML = "";
     document.getElementById("dailycountdowntext_results").innerHTML = "";
+
+    /* initizalize randomizer */
+    if (CookiesAPI.get("dailyMode") == "true") {
+        createRandomizer();
+    } else {
+        let randomSeedCookie = CookiesAPI.get("randomSeed");
+        if (randomSeedCookie == undefined) {
+            logger("creating randomSeed cookie");
+            randomizerSeed = Math.random().toString();
+            CookiesAPI.set("randomSeed", randomizerSeed);
+        } else {
+            logger("loading existing randomSeed cookie");
+            randomizerSeed = randomSeedCookie;
+        }
+        createRandomizer(randomizerSeed);
+    }
 }
 
 /* reload game */
@@ -1064,8 +1179,6 @@ function reloadGame() {
 
 document.addEventListener("DOMContentLoaded", function () {
     init();
-
-    // main program
     countryRandomizer(countryChoicesCount).then((data) => {
         country = data[1];
         countries = data[0];
