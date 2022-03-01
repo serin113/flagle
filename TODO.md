@@ -3,6 +3,7 @@ TO DO:
 - Save game state for all difficulties
 - Offline mode
     - Service workers
+    - PWA
 
 Low Prio:
 - Guess distribution graph
