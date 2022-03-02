@@ -208,17 +208,11 @@ async function countryRandomizer(count) {
     }
 
     logger(colorCombos);
-<<<<<<< Updated upstream
-    chosenCountries = mergeSort(chosenCountries);
-    return chosenCountries;
-}
-=======
     chosenCountries.sort(function(a,b) {
         return comp(a,b);
     });
     logger("picked "+count+" random countries");
     logger(chosenCountries);
->>>>>>> Stashed changes
 
     countries = chosenCountries;
     countryIndex = getRandomInt(0, countries.length);
@@ -1189,12 +1183,6 @@ function reloadGame() {
 
 document.addEventListener("DOMContentLoaded", function () {
     init();
-<<<<<<< Updated upstream
-=======
-
-    logger("countryChoicesCount "+countryChoicesCount);
-    // main program
->>>>>>> Stashed changes
     countryRandomizer(countryChoicesCount).then((data) => {
         logger("RANDOMIZED: ");
         logger(data[1]);
