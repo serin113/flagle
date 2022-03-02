@@ -203,15 +203,17 @@ function hideLoadingScreen() {
     });
     let loading = document.getElementById("loading");
     loading.dataset.remove = true;
-    loading.style.opacity = "0";
-    loading.style.visibility = "hidden";
+    loading.ontransitionend = function() {
+        loading.style.visibility = "hidden";
+    }
 }
 
 function showLoadingScreen() {
     let loading = document.getElementById("loading");
     loading.removeAttribute("data-remove");
-    loading.style.opacity = "1";
-    loading.style.visibility = "visible";
+    loading.ontransitionend = function() {
+        loading.style.visibility = "visible";
+    }
 }
 
 window.addEventListener("load", hideLoadingScreen);

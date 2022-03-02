@@ -117,7 +117,7 @@ async function fetchCountries() {
 
 /* gets <count> number of countries from the country list */
 async function countryRandomizer(count) {
-    logger("picking "+count+" random countries");
+    logger("picking " + count + " random countries");
     let countries = await fetchCountries();
     let chosenCountries = [];
     let colorCombos = {};
@@ -174,10 +174,10 @@ async function countryRandomizer(count) {
     }
 
     logger(colorCombos);
-    chosenCountries.sort(function(a,b) {
-        return comp(a,b);
+    chosenCountries.sort(function (a, b) {
+        return comp(a, b);
     });
-    logger("picked "+count+" random countries");
+    logger("picked " + count + " random countries");
     logger(chosenCountries);
 
     countries = chosenCountries;
@@ -206,9 +206,28 @@ function displayCountries() {
         flag_img.height = 50;
         flag_img.width = 92;
         flag_img.src = x.img;
-        flag_img.loading = "lazy";
+        // flag_img.loading = "lazy";
         flag_img.alt = "fullname" in x ? x.fullname : x.name;
-        flag_button.appendChild(flag_img);
+        let flag_img_temp = new Image();
+        flag_img_temp.className = "flagpic_loading";
+        flag_img_temp.height = 50;
+        flag_img_temp.width = 92;
+        flag_img_temp.src = "/loading.svg";
+        flag_img_temp.loading = "lazy";
+        flag_img_temp.alt = "fullname" in x ? x.fullname : x.name;
+        // flag_button.appendChild(flag_img);
+        flag_button.appendChild(flag_img_temp);
+
+        flag_img.onload = function () {
+            document
+                .querySelector(".flagbutton[data-index='" + i + "']")
+                .replaceChild(
+                    flag_img,
+                    document
+                    .querySelector(".flagbutton[data-index='" + i + "'] > img")
+                );
+            // flag_button.appendChild(flag_img);
+        };
 
         let flag_name_box = document.createElement("div");
         flag_name_box.className = "flagnamebox";
@@ -264,9 +283,6 @@ function fadeFlag(index) {
     if (!elem) return;
     elem.dataset.disabled = true;
     elem.removeEventListener("click", onClickGameButtons);
-}
-function fadeFlag_updateVars(index) {
-    fadeFlag(index);
     currentCountryChoicesCount--;
 }
 
@@ -279,11 +295,11 @@ function fadeFlagsByColor(color) {
         let x_colors = countries[x.dataset.index].colors;
         if (colorCheck(color)) {
             if (!x_colors.includes(color)) {
-                fadeFlag_updateVars(x.dataset.index);
+                fadeFlag(x.dataset.index);
             }
         } else {
             if (x_colors.includes(color)) {
-                fadeFlag_updateVars(x.dataset.index);
+                fadeFlag(x.dataset.index);
             }
         }
     }
@@ -297,8 +313,8 @@ function enableButtons() {
         c.removeAttribute("data-wrong");
     }
     for (let f of document
-        .getElementById("choices")
-        .querySelectorAll(".flagbutton")) {
+            .getElementById("choices")
+            .querySelectorAll(".flagbutton")) {
         f.addEventListener("click", onClickGameButtons);
         f.removeAttribute("data-disabled");
         f.classList.remove("flagbutton_flaggle");
@@ -319,8 +335,8 @@ function disableButtons() {
         }
     }
     for (let f of document
-        .getElementById("choices")
-        .querySelectorAll(".flagbutton")) {
+            .getElementById("choices")
+            .querySelectorAll(".flagbutton")) {
         f.removeEventListener("click", onClickGameButtons);
         if (f.dataset.index != countryIndex) {
             f.classList.remove("flagbutton_flaggle");
@@ -338,19 +354,6 @@ function disableButtons() {
     document.getElementById("middlediv").addEventListener("click", showResults);
 }
 
-/* create a new element containing the guesses so far */
-function cloneGuesses() {
-    let newGuesses = document.createElement("div");
-    for (let i of document.getElementById("guesses").children) {
-        if (
-            i.classList.contains("guessed") ||
-            i.classList.contains("flag_guessed")
-        ) {
-            newGuesses.appendChild(i.cloneNode(true));
-        }
-    }
-    return newGuesses;
-}
 
 /* set next daily flaggle countdowns, has to be repeated per second */
 function updateCountdown(interval) {
@@ -425,6 +428,8 @@ function showResults() {
     document.getElementById("flagglepic").width = 460;
     document.getElementById("flagglepic").height = 240;
     document.getElementById("flagglepic").src = countries[countryIndex].img;
+
+    /* load bigger image */
     let bigFlagglePic = new Image();
     bigFlagglePic.width = 460;
     bigFlagglePic.height = 240;
@@ -438,17 +443,29 @@ function showResults() {
             );
         bigFlagglePic.id = "flagglepic";
     };
+
     let dailyModeText = "FLAGLE";
     if (dailyMode) {
         dailyModeText = "DAILY " + dailyModeText;
     }
     let flaggleName =
-        "fullname" in countries[countryIndex]
-            ? countries[countryIndex].fullname
-            : countries[countryIndex].name;
+        "fullname" in countries[countryIndex] ?
+        countries[countryIndex].fullname :
+        countries[countryIndex].name;
     document.getElementById("flagglenamedisplay").innerHTML =
         "The <b>" + dailyModeText + "</b> is <b>" + flaggleName + "</b>";
-    let newGuesses = cloneGuesses();
+
+    /* create a new element containing the guesses so far */
+    let newGuesses = document.createElement("div");
+    for (let i of document.getElementById("guesses").children) {
+        if (
+            i.classList.contains("guessed") ||
+            i.classList.contains("flag_guessed")
+        ) {
+            newGuesses.appendChild(i.cloneNode(true));
+        }
+    }
+
     let newGuesses_parent = document.getElementById("flaggleresultsdata");
     let resultsFlaggle = document.createElement("div");
     resultsFlaggle.classList.add("flaggle");
@@ -545,7 +562,7 @@ function onClickGameButtons() {
         currGuess.type = null;
         if (this.dataset.index != countryIndex) {
             currGuess.correct = false;
-            fadeFlag_updateVars(this.dataset.index);
+            fadeFlag(this.dataset.index);
             resultText += icons.wrongFlag;
             setGuessCounter(tries - 1, null, false);
         } else {
@@ -696,6 +713,7 @@ function saveGameStats() {
 function statModal_Daily() {
     displayGameStats(true);
 }
+
 function statModal_Random() {
     displayGameStats(false);
 }
@@ -744,9 +762,9 @@ function displayGameStats(showDaily) {
         stats_bestStreak == undefined ? 0 : Number(stats_bestStreak);
 
     let stats_winPercent =
-        stats_totalGames != 0
-            ? Math.round((stats_totalWins / stats_totalGames) * 1000) / 10
-            : 0;
+        stats_totalGames != 0 ?
+        Math.round((stats_totalWins / stats_totalGames) * 1000) / 10 :
+        0;
 
     document.getElementById("flagsguessedtext").innerHTML = stats_totalWins;
     document.getElementById("winpercenttext").innerHTML = stats_winPercent;
@@ -918,7 +936,7 @@ function loadLastGame() {
     } else {
         for (let g of guesses) {
             if (g.type == null) {
-                fadeFlag_updateVars(g.index);
+                fadeFlag(g.index);
             } else {
                 let colorButton = document.querySelector(
                     "#colorkeys > .colors[data-color='" + g.type + "']"
@@ -1001,9 +1019,9 @@ function refreshCookies() {
     if (resetLastGame) {
         logger(
             "resetting lastGame, new algoGenVersion: " +
-                algoGenVersion +
-                ", curr: " +
-                algoGenVersionCookie
+            algoGenVersion +
+            ", curr: " +
+            algoGenVersionCookie
         );
         CookiesAPI.remove("lastGame_r");
         CookiesAPI.remove("lastGame_d");

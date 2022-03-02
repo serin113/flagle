@@ -1,15 +1,13 @@
 TO DO:
 - User links
-- Save game state for all difficulties
 - Offline mode
     - Service workers
     - PWA
-
-Low Prio:
-- Guess distribution graph
-- Win as custom event
+- Save game state for all difficulties
 
 Probably not:
+- Guess distribution graph
+- Win as custom event
 - Offline support
 - Flag facts
 - Implement new win logic
