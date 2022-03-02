@@ -41,7 +41,7 @@ body {
     opacity: 1;
 }
 
-#loading[data-remove] {
+#loading.hidden {
     transition: opacity 1000ms;
     opacity: 0;
 }

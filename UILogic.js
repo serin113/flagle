@@ -203,21 +203,19 @@ function hideLoadingScreen() {
     });
     let loading = document.getElementById("loading");
     let wavetext = document.getElementsByClassName("wavy")[0];
-    loading.dataset.remove = true;
     loading.ontransitionend = function() {
         loading.style.visibility = "hidden";
         wavetext.classList.add("animate");
     }
+    loading.classList.add("hidden");
 }
 
 function showLoadingScreen() {
     let loading = document.getElementById("loading");
     let wavetext = document.getElementsByClassName("wavy")[0];
-    loading.removeAttribute("data-remove");
-    loading.ontransitionend = function() {
-        loading.style.visibility = "visible";
-        wavetext.classList.remove("animate");
-    }
+    wavetext.classList.remove("animate");
+    loading.style.visibility = "visible";
+    loading.classList.remove("hidden");
 }
 
 window.addEventListener("load", hideLoadingScreen);
