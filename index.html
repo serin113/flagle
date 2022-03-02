@@ -11,14 +11,18 @@
     <!-- <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap&text=FLAGLEDIYRNOMSHCP!." rel="stylesheet"> -->
     <!-- <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet"> -->
 
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" media="print"
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap&subset=latin" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap&subset=latin" media="print"
         onload="this.media='all'" />
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" media="print"
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap&subset=latin" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap&subset=latin" media="print"
         onload="this.media='all'" />
-
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" media="print"
+        onload="this.media='all'" />
+    <!-- <link rel="preload" as="style" href="/Style.css" />
+    <link rel="stylesheet" href="/Style.css" media="print"
+        onload="this.media='all'" /> -->
 
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
@@ -40,9 +44,12 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest" type="application/manifest+json">
     <link rel="canonical" href="https://flagle.felren.xyz">
+
     <link rel="stylesheet" type="text/css" href="/Style.css">
-    <script src="https://cdn.jsdelivr.net/combine/npm/clipboard@2,npm/js-cookie@3"></script>
-    <script src="/Defaults.js"></script>
+    <script src="https://cdn.jsdelivr.net/combine/npm/clipboard@2,npm/js-cookie@3" defer></script>
+    <script src="/Defaults.js" defer></script>
+    <script src="/UILogic.js" defer></script>
+    <script src="/GameLogic.js" defer></script>
     <title>Flagle - A daily flag game</title>
 </head>
 
@@ -320,9 +327,6 @@
             </div>
         </div>
     </div> -->
-
-    <script src="/UILogic.js"></script>
-    <script src="/GameLogic.js"></script>
 </body>
 
 </html>

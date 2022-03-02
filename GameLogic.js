@@ -434,6 +434,7 @@ function showResults() {
     bigFlagglePic.width = 460;
     bigFlagglePic.height = 240;
     bigFlagglePic.src = countries[countryIndex].img.replace("w160", "h240");
+    bigFlagglePic.alt = "fullname" in countries[countryIndex] ? countries[countryIndex].fullname : countries[countryIndex].name;
     bigFlagglePic.onload = function () {
         document
             .getElementById("flagglepic")

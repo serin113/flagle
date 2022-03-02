@@ -202,17 +202,21 @@ function hideLoadingScreen() {
         behavior: "smooth",
     });
     let loading = document.getElementById("loading");
+    let wavetext = document.getElementsByClassName("wavy")[0];
     loading.dataset.remove = true;
     loading.ontransitionend = function() {
         loading.style.visibility = "hidden";
+        wavetext.classList.add("animate");
     }
 }
 
 function showLoadingScreen() {
     let loading = document.getElementById("loading");
+    let wavetext = document.getElementsByClassName("wavy")[0];
     loading.removeAttribute("data-remove");
     loading.ontransitionend = function() {
         loading.style.visibility = "visible";
+        wavetext.classList.remove("animate");
     }
 }
 

@@ -245,8 +245,7 @@ body {
     cursor: pointer;
     /* box-shadow: 0 0.15rem 0.5rem rgba(0, 0, 0, 0.75); */
     box-shadow: 0 0.15rem 0.5rem rgba(0, 0, 0, 1);
-    transition: border-width 150ms, box-shadow 150ms, opacity 150ms,
-        visibility 150ms, scale 150ms;
+    transition: border-width 150ms, opacity 150ms, scale 150ms;
     /* flex-grow: 1; */
 }
 
@@ -494,14 +493,17 @@ body {
     -webkit-text-fill-color: transparent;
 }
 
-.wavy span {
-    position: relative;
-    display: inline-block;
-    font-size: 2em;
+.wavy.animate span {
     -webkit-animation: animate 2s ease-in-out;
     animation: animate 2s ease-in-out;
     -webkit-animation-delay: calc(0.1s * var(--i));
     animation-delay: calc(0.1s * var(--i));
+}
+
+.wavy span {
+    position: relative;
+    display: inline-block;
+    font-size: 2em;
 }
 
 @-webkit-keyframes animate {
@@ -836,7 +838,7 @@ input:checked+.slider:before {
     padding: 0.1rem;
     vertical-align: middle;
     box-shadow: 0 0.15rem 0.25rem rgba(0, 0, 0, 0);
-    transition: box-shadow 150ms, opacity 150ms, background-color 150ms;
+    transition: opacity 150ms, background-color 150ms;
     /* cursor: pointer; */
     position: relative;
 }
@@ -867,8 +869,7 @@ input:checked+.slider:before {
     display: inline-block;
     margin-left: 0.1rem;
     margin-right: 0.1rem;
-    transition: transform 150ms, scale 150ms, margin 150ms,
-        background-color 150ms;
+    transition: transform 150ms, scale 150ms;
 }
 
 .guessindicators.flag_guessed {
@@ -945,7 +946,7 @@ input:checked+.slider:before {
     border: 0.1rem solid rgb(132, 132, 220);
     background-color: rgb(132, 132, 220);
     box-shadow: 0rem 0.15rem 0.25rem rgba(0, 0, 0, 0.5);
-    transition: border-width 150ms, box-shadow 150ms, opacity 150ms;
+    transition: border-width 150ms, opacity 150ms;
     cursor: pointer;
     position: relative;
 }
