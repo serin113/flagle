@@ -133,6 +133,7 @@ function createRandomizer(seedString = null) {
 
 /* JSON file loader for the country list */
 async function fetchCountries() {
+    logger("fetching countries.json");
     var fetchHeaders = new Headers();
     fetchHeaders.append("pragma", "no-cache");
     fetchHeaders.append("cache-control", "no-cache");
@@ -143,11 +144,14 @@ async function fetchCountries() {
     var fetchRequest = new Request("countries.json");
     const response = await fetch(fetchRequest, fetchInit);
     const countries = await response.json();
+    logger("fetched countries.json");
+    logger(countries);
     return countries;
 }
 
 /* gets <count> number of countries from the country list */
-async function countryRandomizerArray(count) {
+async function countryRandomizer(count) {
+    logger("picking "+count+" random countries");
     let countries = await fetchCountries();
     let chosenCountries = [];
     let colorCombos = {};
@@ -204,16 +208,24 @@ async function countryRandomizerArray(count) {
     }
 
     logger(colorCombos);
+<<<<<<< Updated upstream
     chosenCountries = mergeSort(chosenCountries);
     return chosenCountries;
 }
+=======
+    chosenCountries.sort(function(a,b) {
+        return comp(a,b);
+    });
+    logger("picked "+count+" random countries");
+    logger(chosenCountries);
+>>>>>>> Stashed changes
 
-/* picks 1 random country from the country list */
-async function countryRandomizer(count) {
-    let countries = await countryRandomizerArray(count);
-    let country_index = getRandomInt(0, countries.length);
-    let country = countries[country_index];
-    return [countries, country, country_index];
+    countries = chosenCountries;
+    countryIndex = getRandomInt(0, countries.length);
+
+    return [countries, countryIndex];
+
+    // return chosenCountries;
 }
 
 /* display country flags and names from the country list */
@@ -1163,12 +1175,10 @@ function reloadGame() {
         enableButtons();
         init();
         countryRandomizer(countryChoicesCount).then((data) => {
-            country = data[1];
-            countries = data[0];
-            countryIndex = data[2];
             logger("RANDOMIZED: ");
-            logger(country);
-            logger(countries);
+            logger(data[1]);
+            countries = data[0];
+            countryIndex = data[1];
             displayCountries();
             enableButtons();
             loadLastGame();
@@ -1179,13 +1189,17 @@ function reloadGame() {
 
 document.addEventListener("DOMContentLoaded", function () {
     init();
+<<<<<<< Updated upstream
+=======
+
+    logger("countryChoicesCount "+countryChoicesCount);
+    // main program
+>>>>>>> Stashed changes
     countryRandomizer(countryChoicesCount).then((data) => {
-        country = data[1];
-        countries = data[0];
-        countryIndex = data[2];
         logger("RANDOMIZED: ");
-        logger(country);
-        logger(countries);
+        logger(data[1]);
+        countries = data[0];
+        countryIndex = data[1];
         displayCountries();
         enableButtons();
         loadLastGame();

@@ -27,7 +27,7 @@ module.exports = function (grunt) {
         uglify: {
             options: {
                 mangle: {
-                    reserved: ['Cookies', 'ClipboardJS']
+                    reserved: ['Cookies', 'ClipboardJS'],
                 },
                 compress: true,
                 output: {
@@ -46,8 +46,6 @@ module.exports = function (grunt) {
                 options: {
                     removeComments: true,
                     collapseBooleanAttributes: true,
-                    minifyCSS: true,
-                    minifyJS: true,
                 },
                 files: [{
                     src: '*.html',
