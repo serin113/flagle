@@ -26,45 +26,11 @@ function getRandomInt(min, max) {
     return Math.floor(randomizer() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
 }
 
-/* comparison function for mergeSort */
+/* comparison function for sorting */
 function comp(a, b) {
     let x = a.name;
     let y = b.name;
     return x.localeCompare(y);
-}
-
-/* merge sorting for flag list display */
-function mergeSort(list) {
-    if (list.length == 1) return [list[0]];
-    let mid = Math.floor(list.length / 2.0);
-    let l1 = list.slice(0, mid);
-    let l2 = list.slice(mid, list.length);
-    l1 = mergeSort(l1);
-    l2 = mergeSort(l2);
-    temp = [];
-    let i = 0; // l1 index
-    let j = 0; // l2 index
-    let k = 0; // temp index
-    while (i < l1.length && j < l2.length) {
-        if (comp(l1[i], l2[j]) <= 0) {
-            temp.push(l1[i]);
-            k += 1;
-            i += 1;
-        } else {
-            temp.push(l2[j]);
-            k += 1;
-            j += 1;
-        }
-    }
-    while (i < l1.length) {
-        temp.push(l1[i]);
-        i += 1;
-    }
-    while (j < l2.length) {
-        temp.push(l2[j]);
-        j += 1;
-    }
-    return temp;
 }
 
 /* Mulberry32 PRNG: https://github.com/bryc/code/blob/master/jshash/PRNGs.md#mulberry32 
