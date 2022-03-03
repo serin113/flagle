@@ -1,6 +1,5 @@
 TO DO:
 - User links
-- Save game state for all difficulties
 - Colorblind mode
 
 Probably not:
