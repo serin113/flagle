@@ -84,6 +84,18 @@ function MurmurHash3(key, seed = 0) {
     return h >>> 0;
 }
 
+/* get JSON as object from cookie */
+function getJSONCookie(c) {
+    let ck = CookiesAPI.get(c);
+    if (ck == undefined) return undefined;
+    return JSON.parse(ck);
+}
+
+/* set object as JSON to cookie */
+function setJSONCookie(c, val) {
+    CookiesAPI.set(c, JSON.stringify(val));
+}
+
 /* initialize the randomizer function, default seed as date if <seed> is null */
 function createRandomizer(seedString = null) {
     if (seedString == null) {
@@ -381,11 +393,11 @@ function updateCountdown(interval) {
 function startCountdown() {
     logger("trying to start countdown");
     if (countdownDaily == null) {
-        let lastGameCookie = CookiesAPI.get("lastGame_d");
+        // let lastGameCookie = CookiesAPI.get("lastGame_d");
+        let lastGameCookie = getJSONCookie("lastGame_d");
         if (lastGameCookie != undefined) {
             logger("saved daily game found, checking if out of date");
-            let lgdcObj = JSON.parse(lastGameCookie);
-            if (lgdcObj.seed == currDate.toDateString()) {
+            if (lastGameCookie.seed == currDate.toDateString()) {
                 logger("within same date, starting countdown");
                 updateCountdown();
                 countdownDaily = setInterval(function () {
@@ -656,15 +668,15 @@ function onClickRandomModeButton() {
 function onChangeMode() {
     logger("mode changed");
     let randomSeedCookie = CookiesAPI.get("randomSeed");
-    let lastGameRandomCookie = CookiesAPI.get("lastGame_r");
+    // let lastGameRandomCookie = CookiesAPI.get("lastGame_r");
+    let lastGameRandomCookie = getJSONCookie("lastGame_r");
     if (randomSeedCookie == undefined) {
         logger("setting randomizer seed");
         randomizerSeed = Math.random().toString();
         if (lastGameRandomCookie != undefined) {
-            let lgrcObj = JSON.parse(lastGameRandomCookie);
-            if (lgrcObj.isWin == null) {
+            if (lastGameRandomCookie.isWin == null) {
                 logger("seed loaded from last game");
-                randomizerSeed = lgrcObj.seed;
+                randomizerSeed = lastGameRandomCookie.seed;
             }
         }
         CookiesAPI.set("randomSeed", randomizerSeed);
@@ -882,10 +894,11 @@ function saveLastGame() {
         // return;
     }
     let lastGameCookiePrefix = dailyMode ? "_d" : "_r";
-    CookiesAPI.set(
-        "lastGame" + lastGameCookiePrefix,
-        JSON.stringify(lastGame_temp)
-    );
+    // CookiesAPI.set(
+    //     "lastGame" + lastGameCookiePrefix,
+    //     JSON.stringify(lastGame_temp)
+    // );
+    setJSONCookie("lastGame" + lastGameCookiePrefix, lastGame_temp);
 }
 
 /* load game state from lastGame cookie into globals */
@@ -894,8 +907,9 @@ function loadLastGame() {
     startCountdown();
     let dailyModeCookieBool = !(CookiesAPI.get("dailyMode") == "false");
     let lastGameCookiePrefix = dailyModeCookieBool ? "_d" : "_r";
-    let lastGameCookie = CookiesAPI.get("lastGame" + lastGameCookiePrefix);
-    if (lastGameCookie == undefined) {
+    // let lastGame = CookiesAPI.get("lastGame" + lastGameCookiePrefix);
+    let lastGame = getJSONCookie("lastGame" + lastGameCookiePrefix);
+    if (lastGame == undefined) {
         if (!window.sessionStorage.getItem("tutorialShown")) {
             document.getElementById("howtotext").style.display =
                 modalDisplayType;
@@ -903,11 +917,7 @@ function loadLastGame() {
         }
         return;
     }
-    // if (CookiesAPI.get("dailyMode") === "false") {
-    //     startCountdown();
-    //     return;
-    // }
-    let lastGame = JSON.parse(lastGameCookie);
+    // let lastGame = JSON.parse(lastGameCookie);
     logger("loading last game");
     logger(lastGame);
     if (dailyModeCookieBool) {
