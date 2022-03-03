@@ -48,9 +48,9 @@ function clickOutsideModal(event) {
     }
 }
 
-window.addEventListener("click", function (event) {
+window.onclick = function (event) {
     clickOutsideModal(event);
-});
+};
 
 //Dark Theme
 const checkbox = document.getElementById("darkthemeswitch");

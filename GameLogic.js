@@ -992,10 +992,11 @@ function loadLastGame() {
 /* handle changes on difficulty slider */
 function onInputSlider() {
     let difficultyCookie = CookiesAPI.get("difficulty");
-    document.getElementById("difficultyValue").innerHTML = this.value;
-    logger("new difficulty: " + this.value);
-    CookiesAPI.set("difficulty", this.value.toString());
-    if (this.value != countryChoicesCount && !dailyMode) {
+    let val = this.value;
+    document.getElementById("difficultyValue").innerHTML = val;
+    logger("new difficulty: " + val);
+    CookiesAPI.set("difficulty", val.toString());
+    if (val != countryChoicesCount && !dailyMode) {
         window.onclick = function (event) {
             if (event.target == modalset) {
                 document.getElementById("settingstext").style.display = "none";
@@ -1130,7 +1131,7 @@ function init() {
         .getElementById("difficultySlider")
         .addEventListener("input", onInputSlider);
 
-    /* load difficulty values into slider */
+    /* load difficulty value into slider */
     if (CookiesAPI.get("difficulty") == undefined) {
         CookiesAPI.set("difficulty", countryChoicesCount.toString());
     } else {
@@ -1139,10 +1140,12 @@ function init() {
             CookiesAPI.get("difficulty");
         document.getElementById("difficultyValue").innerHTML =
             CookiesAPI.get("difficulty");
-        if (dailyMode == false) {
-            countryChoicesCount = parseInt(CookiesAPI.get("difficulty"));
-            currentCountryChoicesCount = countryChoicesCount;
-        }
+    }
+
+    /* load difficulty value into countryChoicesCount */
+    if (!dailyMode && (CookiesAPI.get("difficulty") != undefined)) {
+        countryChoicesCount = parseInt(CookiesAPI.get("difficulty"));
+        currentCountryChoicesCount = countryChoicesCount;
     }
 
     /* create and initialize guess counter based on <maxTries> */
@@ -1181,6 +1184,9 @@ function reloadGame() {
     logger("NEW GAME\n\n\n\n");
     if (refreshOnNewGame) location.reload();
     else {
+        window.onclick = function (event) {
+            clickOutsideModal(event);
+        };
         showLoadingScreen();
         // setTimeout(showLoadingScreen, 1000);
         resetGlobalVars();
