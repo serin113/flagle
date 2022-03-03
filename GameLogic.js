@@ -9,7 +9,6 @@ let tries = 0; // number of tries (button pushes) so far
 let currDate = new Date(); // current date on page load
 let resultText = ""; // game's share text
 let isWin = null; // game state variable: null/true/false
-let hasFlaggle = false; // flaggle is directly found
 let guesses = []; // list of guesses
 let dailyMode = true; // daily/random mode
 let clipboard_share = null; // ClipboardJS object for results sharetext
@@ -256,13 +255,15 @@ function displayCountries() {
 /* set the appearance for the guess counter at <index> */
 // zero-indexed
 // if color==null, country type
+// index = position in guess indicator row
 function setGuessCounter(index, color, correct) {
     let guessIndicator = document.getElementById("guesses");
     let guessIndicatorCurrent = guessIndicator.querySelector(
         ".guessindicators[data-index='" + index + "']"
     );
-    if (guessIndicatorCurrent)
+    if (guessIndicatorCurrent) {
         guessIndicatorCurrent.classList.remove("current");
+    }
     if (index < maxTries - 1) {
         let guessIndicatorNext = guessIndicator.querySelector(
             ".guessindicators[data-index='" + (index + 1) + "']"
@@ -556,7 +557,7 @@ function onClickGameButtons() {
     let clickedFlaggle = false;
     let currGuess = {};
 
-    currGuess.index = this.dataset.index;
+    currGuess.index = ("index" in this.dataset) ? this.dataset.index : null;
     if (isColorButton) {
         // color buttons
         currGuess.type = this.dataset.color;
@@ -583,7 +584,6 @@ function onClickGameButtons() {
         } else {
             currGuess.correct = true;
             clickedFlaggle = true;
-            hasFlaggle = true;
             resultText += icons.rightFlag;
             setGuessCounter(tries - 1, null, true);
         }
@@ -887,7 +887,6 @@ function saveLastGame() {
         lastGame_temp.seed = currDate.toDateString();
         lastGame_temp.isWin = isWin;
         lastGame_temp.index = countryIndex;
-        lastGame_temp.hasFlaggle = hasFlaggle;
         lastGame_temp.resultText = resultText;
         lastGame_temp.guesses = guesses;
     } else {
@@ -906,7 +905,6 @@ function saveLastGame() {
         }
         lastGame_temp.difficulties[countryChoicesCount].isWin = isWin;
         lastGame_temp.difficulties[countryChoicesCount].index = countryIndex;
-        lastGame_temp.difficulties[countryChoicesCount].hasFlaggle = hasFlaggle;
         lastGame_temp.difficulties[countryChoicesCount].resultText = resultText;
         lastGame_temp.difficulties[countryChoicesCount].guesses = guesses;
     }
@@ -949,31 +947,22 @@ function loadLastGame() {
         countryIndex = lastGame.index;
         tries = lastGame.guesses.length;
         resultText = lastGame.resultText;
-        for (let i = 0; i < tries; i++) {
-            if (i == tries - 1) hasFlaggle = lastGame.hasFlaggle;
-            setGuessCounter(
-                i,
-                lastGame.guesses[i].type,
-                lastGame.guesses[i].correct
-            );
-        }
         guesses = lastGame.guesses;
     } else if (countryChoicesCount in lastGame.difficulties) {
         let lastGame_specDiff = lastGame.difficulties[countryChoicesCount];
         countryIndex = lastGame_specDiff.index;
         tries = lastGame_specDiff.guesses.length;
         resultText = lastGame_specDiff.resultText;
-        for (let i = 0; i < tries; i++) {
-            if (i == tries - 1) hasFlaggle = lastGame_specDiff.hasFlaggle;
-            setGuessCounter(
-                i,
-                lastGame_specDiff.guesses[i].type,
-                lastGame_specDiff.guesses[i].correct
-            );
-        }
         guesses = lastGame_specDiff.guesses;
     }
     if (isWin != null) {
+        for (let i = 0; i < guesses.length; i++) {
+            setGuessCounter(
+                i,
+                guesses[i].type,
+                guesses[i].correct
+            );
+        }
         let currentGuess = document
             .getElementById("guesses")
             .querySelector(".current");
@@ -981,7 +970,8 @@ function loadLastGame() {
         disableButtons();
         showResults();
     } else {
-        for (let g of guesses) {
+        for (let i = 0; i < guesses.length; i++) {
+            let g = guesses[i];
             if (g.type == null) {
                 fadeFlag(g.index);
             } else {
@@ -994,7 +984,7 @@ function loadLastGame() {
                 }
                 fadeFlagsByColor(g.type);
             }
-            setGuessCounter(g.index, g.type, g.correct);
+            setGuessCounter(i, g.type, g.correct);
         }
     }
 }
@@ -1084,7 +1074,6 @@ function resetGlobalVars() {
     tries = 0; // number of tries (button pushes) so far
     resultText = ""; // game's share text
     isWin = null; // game state variable: null/true/false
-    hasFlaggle = false; // flaggle is directly found
     guesses = []; // list of guesses
     dailyMode = true; // daily/random mode
     randomizerSeed = null; // seed for randomizer function

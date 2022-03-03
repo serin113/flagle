@@ -10,18 +10,16 @@ Cookies:
         seed (string)
         isWin (bool)
         index (int)
-        hasFlaggle (bool)
         resultText (string)
         guesses (list of dicts)
             type (string=color, null=flag)
-            index (int)
+            index (int if flag, null if color) (index of flag)
             correct (bool)
     lastGame_r (json)
         seed (string)
         difficulties (dict):
             difficulty (int-key, dict):
                 index (int)
-                hasFlaggle (bool)
                 resultText (string)
                 guesses (list of dicts)
                     type (string=color, null=flag)
@@ -49,7 +47,7 @@ let CookiesAPI = Cookies.withAttributes({
     path: "/",
 }); // Cookies object with default cookie attributes
 
-const algoGenVersion = 3;
+const algoGenVersion = 4;
 
 const defaultDifficulty = 30;
 const maxDifficulty = 130;
@@ -83,7 +81,7 @@ const showResultsDelay = 1250;
 const refreshOnNewGame = false;
 
 const biasRandomGen = true; // bias the generator?
-const doofyThreshold = 3;   // # of same-color-set flags before applying bias
+const doofyThreshold = 3; // # of same-color-set flags before applying bias
 
 const debug = false;
 
