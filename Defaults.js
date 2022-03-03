@@ -2,7 +2,7 @@
 Cookies:
     darkMode (bool)
     dailyMode (bool)
-    difficulty (int)            // only for random mode
+    difficulty (int)            // current difficulty, only for random mode
     algoGenVersion (int)        // change to refresh user cookies
     randomSeed (string)         // random mode's seed
                                 // see init() and onChangeMode()
@@ -18,14 +18,15 @@ Cookies:
             correct (bool)
     lastGame_r (json)
         seed (string)
-        isWin (bool)
-        index (int)
-        hasFlaggle (bool)
-        resultText (string)
-        guesses (list of dicts)
-            type (string=color, null=flag)
-            index (int)
-            correct (bool)
+        difficulties (dict):
+            difficulty (int-key, dict):
+                index (int)
+                hasFlaggle (bool)
+                resultText (string)
+                guesses (list of dicts)
+                    type (string=color, null=flag)
+                    index (int)
+                    correct (bool)
 
     stats_d_totalWins (int)
     stats_d_totalGames (int)
@@ -48,7 +49,7 @@ let CookiesAPI = Cookies.withAttributes({
     path: "/",
 }); // Cookies object with default cookie attributes
 
-const algoGenVersion = 2;
+const algoGenVersion = 3;
 
 const defaultDifficulty = 30;
 const maxDifficulty = 130;

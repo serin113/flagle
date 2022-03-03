@@ -194,6 +194,13 @@ document.addEventListener("DOMContentLoaded", function () {
     /* slider stuff */
     document.getElementById("difficultySlider").min = defaultDifficulty;
     document.getElementById("difficultySlider").max = maxDifficulty;
+
+    /* display tutorial if not already shown before */
+    if (!window.sessionStorage.getItem("tutorialShown")) {
+        document.getElementById("howtotext").style.display =
+            modalDisplayType;
+        window.sessionStorage.setItem("tutorialShown", "true");
+    }
 });
 
 function hideLoadingScreen() {

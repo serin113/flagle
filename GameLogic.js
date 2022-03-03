@@ -267,7 +267,9 @@ function setGuessCounter(index, color, correct) {
         let guessIndicatorNext = guessIndicator.querySelector(
             ".guessindicators[data-index='" + (index + 1) + "']"
         );
-        guessIndicatorNext.classList.add("current");
+        if (guessIndicatorNext) {
+            guessIndicatorNext.classList.add("current");
+        }
     }
     if (guessIndicatorCurrent) {
         if (color == null) {
@@ -656,6 +658,7 @@ function onClickGameButtons() {
 function onClickDailyModeButton() {
     // if (dailyMode) return;
     CookiesAPI.set("dailyMode", "true");
+    document.getElementById("randomflaggle").classList.remove("sticky");
     onChangeMode();
 }
 /* click handler for random mode button */
@@ -674,10 +677,8 @@ function onChangeMode() {
         logger("setting randomizer seed");
         randomizerSeed = Math.random().toString();
         if (lastGameRandomCookie != undefined) {
-            if (lastGameRandomCookie.isWin == null) {
-                logger("seed loaded from last game");
-                randomizerSeed = lastGameRandomCookie.seed;
-            }
+            logger("seed loaded from last game");
+            randomizerSeed = lastGameRandomCookie.seed;
         }
         CookiesAPI.set("randomSeed", randomizerSeed);
     } else {
@@ -700,11 +701,11 @@ function saveGameStats() {
     let currentStreakVal = CookiesAPI.get(currentStreakStr);
     let bestStreakVal = CookiesAPI.get(bestStreakStr);
 
-    totalGamesVal = totalGamesVal == undefined ? 0 : Number(totalGamesVal);
-    totalWinsVal = totalWinsVal == undefined ? 0 : Number(totalWinsVal);
+    totalGamesVal = totalGamesVal == undefined ? 0 : parseInt(totalGamesVal);
+    totalWinsVal = totalWinsVal == undefined ? 0 : parseInt(totalWinsVal);
     currentStreakVal =
-        currentStreakVal == undefined ? 0 : Number(currentStreakVal);
-    bestStreakVal = bestStreakVal == undefined ? 0 : Number(bestStreakVal);
+        currentStreakVal == undefined ? 0 : parseInt(currentStreakVal);
+    bestStreakVal = bestStreakVal == undefined ? 0 : parseInt(bestStreakVal);
 
     totalGamesVal += 1;
     CookiesAPI.set(totalGamesStr, totalGamesVal);
@@ -769,13 +770,13 @@ function displayGameStats(showDaily) {
     let stats_bestStreak = CookiesAPI.get(stats_bestStreak_str);
 
     stats_totalWins =
-        stats_totalWins == undefined ? 0 : Number(stats_totalWins);
+        stats_totalWins == undefined ? 0 : parseInt(stats_totalWins);
     stats_totalGames =
-        stats_totalGames == undefined ? 0 : Number(stats_totalGames);
+        stats_totalGames == undefined ? 0 : parseInt(stats_totalGames);
     stats_currentStreak =
-        stats_currentStreak == undefined ? 0 : Number(stats_currentStreak);
+        stats_currentStreak == undefined ? 0 : parseInt(stats_currentStreak);
     stats_bestStreak =
-        stats_bestStreak == undefined ? 0 : Number(stats_bestStreak);
+        stats_bestStreak == undefined ? 0 : parseInt(stats_bestStreak);
 
     let stats_winPercent =
         stats_totalGames != 0 ?
@@ -833,8 +834,8 @@ function displayGameStats(showDaily) {
 function loadGameMode() {
     let dailyModeCookie = CookiesAPI.get("dailyMode");
     if (dailyModeCookie === undefined) {
-        CookiesAPI.set("dailyMode", String(dailyMode));
-        dailyModeCookie = String(dailyMode);
+        CookiesAPI.set("dailyMode", dailyMode.toString());
+        dailyModeCookie = dailyMode.toString();
     }
     if (dailyModeCookie === "true") {
         dailyMode = true;
@@ -871,6 +872,8 @@ function loadGameMode() {
 
 /* save game state into lastGame cookie */
 function saveLastGame() {
+    /* skip if random mode and game finished */
+    // finished random games are not saved, only unfinished ones
     if (!dailyMode && isWin != null) {
         logger("removing random last game");
         CookiesAPI.remove("randomSeed");
@@ -879,21 +882,38 @@ function saveLastGame() {
     }
     logger("saving game");
     let lastGame_temp = {};
+    let lastGameCookiePrefix = dailyMode ? "_d" : "_r";
     if (dailyMode) {
         lastGame_temp.seed = currDate.toDateString();
+        lastGame_temp.isWin = isWin;
+        lastGame_temp.index = countryIndex;
+        lastGame_temp.hasFlaggle = hasFlaggle;
+        lastGame_temp.resultText = resultText;
+        lastGame_temp.guesses = guesses;
     } else {
         lastGame_temp.seed = randomizerSeed;
+        let lastGameCookie = getJSONCookie("lastGame" + lastGameCookiePrefix);
+        if (lastGameCookie != undefined) {
+            if ("difficulties" in lastGameCookie) {
+                lastGame_temp.difficulties = lastGameCookie.difficulties;
+            }
+        } else {
+            lastGame_temp.difficulties = {};
+        }
+        if (!(countryChoicesCount in lastGame_temp.difficulties)) {
+            logger("saving new difficulty")
+            lastGame_temp.difficulties[countryChoicesCount] = {};
+        }
+        lastGame_temp.difficulties[countryChoicesCount].isWin = isWin;
+        lastGame_temp.difficulties[countryChoicesCount].index = countryIndex;
+        lastGame_temp.difficulties[countryChoicesCount].hasFlaggle = hasFlaggle;
+        lastGame_temp.difficulties[countryChoicesCount].resultText = resultText;
+        lastGame_temp.difficulties[countryChoicesCount].guesses = guesses;
     }
-    lastGame_temp.isWin = isWin;
-    lastGame_temp.index = countryIndex;
-    lastGame_temp.hasFlaggle = hasFlaggle;
-    lastGame_temp.resultText = resultText;
-    lastGame_temp.guesses = guesses;
     if (isWin == null) {
         logger("unfinished game, saving");
         // return;
     }
-    let lastGameCookiePrefix = dailyMode ? "_d" : "_r";
     // CookiesAPI.set(
     //     "lastGame" + lastGameCookiePrefix,
     //     JSON.stringify(lastGame_temp)
@@ -910,36 +930,49 @@ function loadLastGame() {
     // let lastGame = CookiesAPI.get("lastGame" + lastGameCookiePrefix);
     let lastGame = getJSONCookie("lastGame" + lastGameCookiePrefix);
     if (lastGame == undefined) {
-        if (!window.sessionStorage.getItem("tutorialShown")) {
-            document.getElementById("howtotext").style.display =
-                modalDisplayType;
-            window.sessionStorage.setItem("tutorialShown", "true");
-        }
+        logger("no previous game save, skipping");
         return;
     }
+
     // let lastGame = JSON.parse(lastGameCookie);
-    logger("loading last game");
     logger(lastGame);
     if (dailyModeCookieBool) {
         if (currDate.toDateString() != lastGame.seed) {
+            logger("previous game save is out of date");
             CookiesAPI.remove("lastGame_d");
             return;
         }
     }
     randomizerSeed = lastGame.seed;
-    isWin = lastGame.isWin;
-    countryIndex = lastGame.index;
-    tries = lastGame.guesses.length;
-    resultText = lastGame.resultText;
-    for (let i = 0; i < tries; i++) {
-        if (i == tries - 1) hasFlaggle = lastGame.hasFlaggle;
-        setGuessCounter(
-            i,
-            lastGame.guesses[i].type,
-            lastGame.guesses[i].correct
-        );
+    if (dailyModeCookieBool) {
+        isWin = lastGame.isWin;
+        countryIndex = lastGame.index;
+        tries = lastGame.guesses.length;
+        resultText = lastGame.resultText;
+        for (let i = 0; i < tries; i++) {
+            if (i == tries - 1) hasFlaggle = lastGame.hasFlaggle;
+            setGuessCounter(
+                i,
+                lastGame.guesses[i].type,
+                lastGame.guesses[i].correct
+            );
+        }
+        guesses = lastGame.guesses;
+    } else if (countryChoicesCount in lastGame.difficulties) {
+        let lastGame_specDiff = lastGame.difficulties[countryChoicesCount];
+        countryIndex = lastGame_specDiff.index;
+        tries = lastGame_specDiff.guesses.length;
+        resultText = lastGame_specDiff.resultText;
+        for (let i = 0; i < tries; i++) {
+            if (i == tries - 1) hasFlaggle = lastGame_specDiff.hasFlaggle;
+            setGuessCounter(
+                i,
+                lastGame_specDiff.guesses[i].type,
+                lastGame_specDiff.guesses[i].correct
+            );
+        }
+        guesses = lastGame_specDiff.guesses;
     }
-    guesses = lastGame.guesses;
     if (isWin != null) {
         let currentGuess = document
             .getElementById("guesses")
@@ -971,22 +1004,20 @@ function onInputSlider() {
     let difficultyCookie = CookiesAPI.get("difficulty");
     document.getElementById("difficultyValue").innerHTML = this.value;
     logger("new difficulty: " + this.value);
-    CookiesAPI.set("difficulty", String(this.value));
+    CookiesAPI.set("difficulty", this.value.toString());
     if (this.value != countryChoicesCount && !dailyMode) {
         window.onclick = function (event) {
             if (event.target == modalset) {
                 document.getElementById("settingstext").style.display = "none";
-                // CookiesAPI.remove("randomSeed");
-                CookiesAPI.remove("lastGame_r");
-                // reloadGame();
+                // CookiesAPI.remove("lastGame_r");
+                saveLastGame();
                 onChangeMode();
             }
         };
         document.getElementById("closesettings").onclick = function (event) {
             document.getElementById("settingstext").style.display = "none";
-            // CookiesAPI.remove("randomSeed");
-            CookiesAPI.remove("lastGame_r");
-            // reloadGame();
+            // CookiesAPI.remove("lastGame_r");
+            saveLastGame();
             onChangeMode();
         };
     } else {
@@ -1112,7 +1143,7 @@ function init() {
 
     /* load difficulty values into slider */
     if (CookiesAPI.get("difficulty") == undefined) {
-        CookiesAPI.set("difficulty", String(countryChoicesCount));
+        CookiesAPI.set("difficulty", countryChoicesCount.toString());
     } else {
         logger("loaded difficulty: " + CookiesAPI.get("difficulty"));
         document.getElementById("difficultySlider").value =
@@ -1120,7 +1151,7 @@ function init() {
         document.getElementById("difficultyValue").innerHTML =
             CookiesAPI.get("difficulty");
         if (dailyMode == false) {
-            countryChoicesCount = Number(CookiesAPI.get("difficulty"));
+            countryChoicesCount = parseInt(CookiesAPI.get("difficulty"));
             currentCountryChoicesCount = countryChoicesCount;
         }
     }

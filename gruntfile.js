@@ -30,6 +30,7 @@ module.exports = function (grunt) {
                     reserved: ['Cookies', 'ClipboardJS'],
                 },
                 compress: true,
+                sourceMap: true,
                 output: {
                     comments: false,
                 },
