@@ -212,7 +212,7 @@ function displayCountries() {
         flag_img_temp.className = "flagpic_loading";
         flag_img_temp.height = 50;
         flag_img_temp.width = 92;
-        flag_img_temp.src = "/loading.svg";
+        flag_img_temp.src = document.querySelector("#loading > img").src;
         flag_img_temp.loading = "lazy";
         flag_img_temp.alt = "fullname" in x ? x.fullname : x.name;
         // flag_button.appendChild(flag_img);
