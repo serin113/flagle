@@ -654,9 +654,10 @@ function onClickRandomModeButton() {
 }
 /* create randomSeed cookie when game mode is changed */
 function onChangeMode() {
+    logger("mode changed");
     let randomSeedCookie = CookiesAPI.get("randomSeed");
     let lastGameRandomCookie = CookiesAPI.get("lastGame_r");
-    if (randomSeedCookie == undefined || isWin != null) {
+    if (randomSeedCookie == undefined) {
         logger("setting randomizer seed");
         randomizerSeed = Math.random().toString();
         if (lastGameRandomCookie != undefined) {
@@ -667,6 +668,8 @@ function onChangeMode() {
             }
         }
         CookiesAPI.set("randomSeed", randomizerSeed);
+    } else {
+        logger("randomizer seed found");
     }
     loadGameMode();
     reloadGame();

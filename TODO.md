@@ -1,6 +1,5 @@
 TO DO:
 - User links
-- Fix gamestates
 - Save game state for all difficulties
 - Colorblind mode
 
