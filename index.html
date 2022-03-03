@@ -45,7 +45,14 @@
     <link rel="manifest" href="/site.webmanifest" type="application/manifest+json">
     <link rel="canonical" href="https://flagle.felren.xyz">
 
-    <link rel="stylesheet" type="text/css" href="/Style.css">
+    <!-- <link rel="stylesheet" type="text/css" href="/Style.css"> -->
+
+    <link rel="stylesheet" type="text/css" href="/CriticalStyle.css">
+
+    <link rel="preload" as="style" href="/Style.css" />
+    <link rel="stylesheet" href="/Style.css" media="print"
+        onload="this.media='all'" />
+
     <script src="https://cdn.jsdelivr.net/combine/npm/clipboard@2,npm/js-cookie@3" defer></script>
     <script src="/Defaults.js" defer></script>
     <script src="/UILogic.js" defer></script>
@@ -54,6 +61,10 @@
 </head>
 
 <body>
+    <noscript>
+        <link rel="stylesheet" type="text/css" href="/NoscriptStyle.css">
+        <div id="noscript">Flagle requires Javascript for its core gameplay.</div>
+    </noscript>
     <div id="loading">
         <img src="/loading.svg" alt="Loading" title="loading" width="64px" height="64px">
     </div>
