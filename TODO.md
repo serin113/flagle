@@ -1,8 +1,8 @@
 TO DO:
 - User links
-- Colorblind mode
 
 Probably not:
+- Colorblind mode
 - Offline mode
     - Service workers
     - PWA
